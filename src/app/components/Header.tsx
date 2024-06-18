@@ -14,22 +14,18 @@ export const Header: React.FC<IsShowComponents> = ({
   
   return (
     <div
-      className={
-        `flex w-full bg-bgColor
-        xl: justify-center items-center`
-      }
+      className={`flex justify-center items-center w-full
+        `}
     >
       <div
-        className={
-          `z-20 py-0 w-full h-[44px] bg-bgColor flex justify-center 
-           md:px-[60px] md:h-[68px] lg:h-[84px] xl:px-[120px]`
-        }
+        className={`flex items-center justify-center py-0 w-full h-11 bg-bgColor  z-20 
+           md:px-[60px] md:h-[68px] lg:h-[84px]`}
       >
-          <div className={`flex items-center justify-between w-[1200px]`}>
-            <MainLogo isShowHalfLogo={showHalfLogo} />
-            <SearchBar isShowSearchBar={showSearchBar} />
-            <HeaderNav isShowBurgerMenu={showBurgerMenu} />
-          </div>
+        <div className={`flex items-center justify-between w-[1200px]`}>
+          <MainLogo isShowHalfLogo={showHalfLogo} />
+          <SearchBar isShowSearchBar={showSearchBar} />
+          <HeaderNav isShowBurgerMenu={showBurgerMenu} />
+        </div>
       </div>
       <Image
         className={`absolute top-0 blur-header z-10`}

@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
-  basePath: isProd ? "/reea-reveal_nextjs" : "",
+  basePath: "/reea-reveal_nextjs",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   // output: "export",
   reactStrictMode: true,

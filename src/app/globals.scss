@@ -57,7 +57,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   display: block;
-  min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
   background-color: theme("colors.bgLightColor");
@@ -176,8 +175,13 @@ h3,
 h4,
 h5,
 h6 {
-  padding: 0 16px;
+  padding: 0;
   margin: 0;
+}
+
+p{
+  font-size: 20px;
+  line-height: 150%;
 }
 
 button,

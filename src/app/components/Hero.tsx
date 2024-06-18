@@ -5,14 +5,16 @@ export const Hero: React.FC = () => {
   
   return (
     <div
-      className={`relative flex justify-between flex-col-reverse h-auto gap-6 lg:flex-row`}
+      className={`relative flex justify-between flex-col-reverse h-auto gap-6 lg:flex-row `}
     >
       <article
-        className={`flex items-center justify-center flex-col text-textColor w-full h-auto gap-6 xl:w-[590px] xl:h-[584px]`}
+        className={`flex items-center justify-center flex-col text-textColor w-full h-auto gap-6 lg:items-start`}
       >
-        <h1>Discover Your Perfect Movie with ReelReveal!</h1>
+        <h1 className={` lg:justify-start`}>
+          Discover Your Perfect Movie with ReelReveal!
+        </h1>
 
-        <p>
+        <p className={` lg:justify-start`}>
           Tired of endlessly scrolling through streaming platforms, unsure of
           what to watch? Look no further! Reel Reveal is your go-to service for
           finding the perfect movie match.
