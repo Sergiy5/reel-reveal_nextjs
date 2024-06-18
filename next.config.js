@@ -2,7 +2,7 @@
 
 
 const nextConfig = {
-  basePath: "/reea-reveal_nextjs",
+  basePath: "https://github.com/Sergiy5/reea-reveal_nextjs",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   // output: "export",
   reactStrictMode: true,
