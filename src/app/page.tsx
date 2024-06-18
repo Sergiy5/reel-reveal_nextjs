@@ -38,7 +38,7 @@ export default function Home() {
           <h2>Root Page</h2>
       </main>
 
-      <Footer isShowHalfLogo={isShowHalfLogo} />
+      <Footer />
     </>
   );
 }
