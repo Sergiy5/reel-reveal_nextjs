@@ -2,14 +2,9 @@
 
 
 const nextConfig = {
-  basePath: "https://github.com/Sergiy5/reea-reveal_nextjs",
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  // output: "export",
+  // basePath: "/reel-reveal_nextjs",
   reactStrictMode: true,
-  images: {
-    unoptimized: true,
-    formats: ["image/webp"],
-  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

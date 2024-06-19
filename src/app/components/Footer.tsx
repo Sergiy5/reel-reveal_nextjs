@@ -5,7 +5,7 @@ import { ListSocial } from "./ListSocial";
 import cameraIcon from '../../../public/icons/camera.svg';
 
 export const Footer: React.FC = () => {
-console.log(cameraIcon)
+
   return (
     <footer className={`relative flex w-full justify-center items-center`}>
       <div
