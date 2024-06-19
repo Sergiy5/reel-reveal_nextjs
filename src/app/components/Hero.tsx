@@ -29,14 +29,14 @@ export const Hero: React.FC = () => {
         className={`relative flex items-center justify-center w-full h-auto`}
       >
         <Image
-          src={"images/heroImage.webp"}
+          src={"/images/heroImage.webp"}
           width={590}
           height={584}
           alt="Hero movies"
           className={`z-20`}
         />
         <Image
-          src={"icons/hero_bg-ellips.svg"}
+          src={"/icons/hero_bg-ellips.svg"}
           width={833}
           height={890}
           alt="Hero movies"

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { MainLogo } from "./MainLogo";
 import {FooterMenu} from './FooterMenu'
 import { ListSocial } from "./ListSocial";
-import cameraIcon from '../../../public/icons/camera.svg';
+import CameraIcon from '../../../public/icons/camera.svg';
 
 export const Footer: React.FC = () => {
 
@@ -16,8 +16,7 @@ export const Footer: React.FC = () => {
 
         <div className={`flex justify-between w-full  `}>
           <FooterMenu />
-          <Image
-            src={'icons/camera.svg'}
+          <CameraIcon
             width={154}
             height={160}
             id="camera-icon"
@@ -31,7 +30,7 @@ export const Footer: React.FC = () => {
       </div>
       <Image
         className={`absolute top-[70%] -translate-y-[70%] blur-footer z-10`}
-        src={"icons/footer_bg-ellips.svg"}
+        src={"/icons/footer_bg-ellips.svg"}
         width="1429"
         height="614"
         alt="background ellips"
