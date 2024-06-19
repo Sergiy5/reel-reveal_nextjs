@@ -3,33 +3,39 @@ import { MainLogo } from "./MainLogo";
 import {FooterMenu} from './FooterMenu'
 import { ListSocial } from "./ListSocial";
 import CameraIcon from '../../../public/icons/camera.svg';
+import { ViewWidth } from "@/types";
+import { LinkToQuiz } from "./LinkToQuiz";
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<ViewWidth> = ({viewWidth}) => {
 
   return (
     <footer className={`relative flex w-full justify-center items-center`}>
       <div
-        className={`flex flex-col p-4 w-full bg-bgColor gap-4 z-20 
-           md:px-[60px] md:py-10 md:items-start lg:px-[120px]`}
+        className={`flex flex-col p-4 w-full bg-bgColor gap-8 z-20 
+           md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:px-[120px]`}
       >
-        <MainLogo isShowHalfLogo={true} />
+        {viewWidth > 768 ? (
+          <MainLogo isShowHalfLogo={true} />
+        ) : (
+          <LinkToQuiz viewWidth={viewWidth} />
+        )}
 
         <div className={`flex justify-between w-full  `}>
-          <FooterMenu />
+          {viewWidth > 768 ? <FooterMenu /> : null}
+
           <CameraIcon
             width={154}
             height={160}
             id="camera-icon"
             alt="Camera icon"
             placeholder="empty"
-            className={`hidden md:block`}
           />
 
           <ListSocial />
         </div>
       </div>
       <Image
-        className={`absolute top-[70%] -translate-y-[70%] blur-footer z-10`}
+        className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10`}
         src={"/icons/footer_bg-ellips.svg"}
         width="1429"
         height="614"

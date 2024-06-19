@@ -15,3 +15,7 @@ export interface IsShowComponents {
   showSearchBar: boolean;
   showHalfLogo:boolean;
 }
+
+export interface ViewWidth {
+  viewWidth: number;
+}
