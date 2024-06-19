@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
         className={`relative flex items-center justify-center w-full h-auto`}
       >
         <Image
-          src={"/images/heroImage.webp"}
+          src={"/reel-reveal_nextjs/images/heroImage.webp"}
           width={590}
           height={584}
           alt="Hero movies"

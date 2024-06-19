@@ -3,10 +3,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    baseUrl: "/reel-reveal_nextjs",
-    
-},
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
