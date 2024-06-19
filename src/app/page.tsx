@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import { useEffect, useState } from "react";
 import { useResize } from "@/lib";
 import { Hero } from "./components/Hero";
+import {HowItWorks} from './components/HowItWorks'
 
 export default function Home() {
   const [isShowBurgerMenu, setIsShowBurgerMenu] = useState(false);
@@ -34,8 +35,9 @@ export default function Home() {
       />
 
       <main>
-          <Hero />
-          <h2>Root Page</h2>
+        <Hero />
+        <HowItWorks />
+        <h2>Root Page</h2>
       </main>
 
       <Footer />

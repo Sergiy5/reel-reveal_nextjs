@@ -33,6 +33,7 @@ export const Hero: React.FC = () => {
           width={590}
           height={584}
           alt="Hero movies"
+          priority
           className={`z-20`}
         />
         <Image
