@@ -2,9 +2,11 @@
 
 
 const nextConfig = {
-  // basePath: "/reel-reveal_nextjs",
   reactStrictMode: true,
-
+  images: {
+    basePath: "/reel-reveal_nextjs",
+    
+},
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
