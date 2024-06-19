@@ -4,7 +4,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    basePath: "/reel-reveal_nextjs",
+    baseUrl: "/reel-reveal_nextjs",
     
 },
   webpack(config) {
