@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
           className={`z-20`}
         />
         <Image
-          src={"/icons/hero_bg-ellips.svg"}
+          src={"icons/hero_bg-ellips.svg"}
           width={833}
           height={890}
           alt="Hero movies"

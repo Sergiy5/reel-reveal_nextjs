@@ -8,7 +8,7 @@ export const MainLogo: React.FC<IsShowHalfLogo> = ({ isShowHalfLogo }) => {
   return (
     <Link href={"/"} className="flex items-center ">
       <Image
-        src={"/icons/main-logo.svg"}
+        src={"icons/main-logo.svg"}
         alt="Main logo"
         width={48}
         height={48}

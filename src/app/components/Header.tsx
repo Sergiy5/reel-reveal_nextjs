@@ -29,7 +29,7 @@ export const Header: React.FC<IsShowComponents> = ({
       </div>
       <Image
         className={`absolute top-0 blur-header z-10`}
-        src={"/icons/header_bg-ellips.svg"}
+        src={"icons/header_bg-ellips.svg"}
         width="1440"
         height="361"
         alt="background ellips"
