@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
 import { useDeviceType } from "@/hooks";
-import { LayoutProps } from "@/types";
 
 const ceraProLight = localFont({
   src: "../../public/fonts/cera-pro/CeraPro-Light.woff2",
@@ -18,8 +17,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: LayoutProps;
+  children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <head>

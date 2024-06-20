@@ -4,8 +4,7 @@ import React from "react";
 import { useDeviceType } from "@/hooks";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { DeviceType, LayoutProps } from "@/types";
-
+import { DeviceType, LayoutProps} from "@/types";
 
 export default function Layout({ children }: LayoutProps) {
   const deviceType: DeviceType = useDeviceType();
