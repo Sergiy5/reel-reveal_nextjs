@@ -3,9 +3,8 @@
 import { useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
-import { IsShowSearchBar } from "@/types";
 
-export const SearchBar: React.FC<IsShowSearchBar> = ({ isShowSearchBar }) => {
+export const SearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
@@ -20,35 +19,33 @@ export const SearchBar: React.FC<IsShowSearchBar> = ({ isShowSearchBar }) => {
 
   return (
     <>
-      {isShowSearchBar && (
-        <form className={"relative"} onSubmit={(e) => handleSubmit(e)}>
-          <input
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            type="text"
-            placeholder="search by movie, actor, genre, etc"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className={
-              "w-[403px] h-[38px] pl-[21px] pr-[54px] text-light text-xl text-textColor bg-inputColor rounded-[20px] outline-none border-[1px] border-transparent transition  hover:border-accentColor focus:border-accentColor"
-            }
-          />
-          <button
-            type="submit"
+      <form className={"relative"} onSubmit={(e) => handleSubmit(e)}>
+        <input
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          type="text"
+          placeholder="search by movie, actor, genre, etc"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          className={
+            "w-[403px] h-[38px] pl-[21px] pr-[54px] text-light text-xl text-textColor bg-inputColor rounded-[20px] outline-none border-[1px] border-transparent transition  hover:border-accentColor focus:border-accentColor"
+          }
+        />
+        <button
+          type="submit"
+          className={clsx(
+            "absolute w-[42px] h-[38px] right-0 border-r-round bg-tansparent transition duration-200",
+            isFocused && "bg-accentColor"
+          )}
+        >
+          <SearchIcon
             className={clsx(
-              "absolute w-[42px] h-[38px] right-0 border-r-round bg-tansparent transition duration-200",
-              isFocused && "bg-accentColor"
+              `ml-auto mr-auto transition duration-200`,
+              isFocused && `stroke-bgColor opacity-100`
             )}
-          >
-            <SearchIcon
-              className={clsx(
-                `ml-auto mr-auto transition duration-200`,
-                isFocused && `stroke-bgColor opacity-100`
-              )}
-            />
-          </button>
-        </form>
-      )}
+          />
+        </button>
+      </form>
     </>
   );
 };

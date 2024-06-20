@@ -3,25 +3,25 @@ import { MainLogo } from "./MainLogo";
 import {FooterMenu} from './FooterMenu'
 import { ListSocial } from "./ListSocial";
 import CameraIcon from '../../../public/icons/camera.svg';
-import { ViewWidth } from "@/types";
+import { TypeDevice, ViewWidth } from "@/types";
 import { LinkToQuiz } from "./LinkToQuiz";
 
-export const Footer: React.FC<ViewWidth> = ({viewWidth}) => {
+export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
 
   return (
     <footer className={`relative flex w-full justify-center items-center`}>
       <div
         className={`flex flex-col p-4 w-full bg-bgColor gap-8 z-20 
-           md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:px-[120px]`}
+           md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:w-[1440px] xl:px-[120px]`}
       >
-        {viewWidth > 768 ? (
-          <MainLogo isShowHalfLogo={true} />
+        {deviceType !== "mobile" ? (
+          <MainLogo deviceType={"desktop"} />
         ) : (
-          <LinkToQuiz viewWidth={viewWidth} />
+          <LinkToQuiz />
         )}
 
         <div className={`flex justify-between w-full  `}>
-          {viewWidth > 768 ? <FooterMenu /> : null}
+          {deviceType !=='mobile' && <FooterMenu />}
 
           <CameraIcon
             width={154}

@@ -6,5 +6,4 @@ export { scrollToY } from './scrollToY';
 export { loadMoreCard } from './loadMoreCard'; 
 export { getAspectRatio } from './getAspectRatio';
 export { getMovieTitleFromPath } from './getMovieTitleFromPath';
-export {useResize } from './useResize';
 

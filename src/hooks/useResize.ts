@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
  
  export const useResize = () => {
-  const [size, setSize] = useState(0);
+  const [size, setSize] = useState<number>(0);
 
   useEffect(() => {
     const getSize = () => setSize(window.innerWidth);

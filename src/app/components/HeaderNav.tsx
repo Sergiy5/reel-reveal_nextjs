@@ -2,12 +2,12 @@ import Link from "next/link";
 import HeartIcon from "../../../public/icons/heart.svg";
 import UserIcon from "../../../public/icons/user.svg";
 import BurgerIcon from "../../../public/icons/burger.svg";
-import { IsShowBurgerMenu } from "@/types";
+import { TypeDevice } from "@/types";
 
-export const HeaderNav: React.FC<IsShowBurgerMenu> = ({ isShowBurgerMenu }) => {
+export const HeaderNav: React.FC<TypeDevice> = ({ deviceType }) => {
   return (
     <>
-      {isShowBurgerMenu ? (
+      {deviceType === "desktop" ? (
         <div className={`flex items-center justify-between w-[380px] h-[40px]`}>
           <Link className={`link font-light leading-8 text-xl`} href={"/"}>
             Movie search

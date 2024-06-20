@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ViewWidth } from "@/types";
+import { TypeDevice, ViewWidth } from "@/types";
 
-export const LinkToQuiz: React.FC<ViewWidth> = ({ viewWidth }) => {
-
+export const LinkToQuiz: React.FC = () => {
+  
   return (
     <div
       className={` flex items-center justify-center flex-col gap-[28px] z-10 md:flex-row md:gap-12`}

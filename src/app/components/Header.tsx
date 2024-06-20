@@ -1,16 +1,10 @@
 import Image from "next/image";
-import clsx from "clsx";
 import { SearchBar } from "./SearchBar";
 import { MainLogo } from "./MainLogo";
 import { HeaderNav } from "./HeaderNav";
-import { IsShowComponents } from "@/types";
+import { TypeDevice } from "@/types";
 
-export const Header: React.FC<IsShowComponents> = ({
-  showBurgerMenu,
-  showSearchBar,
-  showHalfLogo,
-}) => {
-
+export const Header: React.FC<TypeDevice> = ({ deviceType }) => {
   
   return (
     <div
@@ -22,9 +16,11 @@ export const Header: React.FC<IsShowComponents> = ({
            md:px-[60px] md:h-[68px] lg:h-[84px]`}
       >
         <div className={`flex items-center justify-between w-[1200px]`}>
-          <MainLogo isShowHalfLogo={showHalfLogo} />
-          <SearchBar isShowSearchBar={showSearchBar} />
-          <HeaderNav isShowBurgerMenu={showBurgerMenu} />
+          <MainLogo deviceType={deviceType} />
+
+          {deviceType === "desktop" && <SearchBar />}
+
+          <HeaderNav deviceType={deviceType} />
         </div>
       </div>
       <Image
