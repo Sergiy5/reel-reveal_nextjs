@@ -19,7 +19,10 @@ export const SearchBar: React.FC = () => {
 
   return (
     <>
-      <form className={"relative"} onSubmit={(e) => handleSubmit(e)}>
+      <form
+        className={"relative flex w-fit mx-2"}
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -27,9 +30,8 @@ export const SearchBar: React.FC = () => {
           placeholder="search by movie, actor, genre, etc"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className={
-            "w-[403px] h-[38px] pl-[21px] pr-[54px] text-light text-xl text-textColor bg-inputColor rounded-[20px] outline-none border-[1px] border-transparent transition  hover:border-accentColor focus:border-accentColor"
-          }
+          className={` flex-grow w-full md:w-[405px] lg:w-[305px] xl:w-[405px] h-[38px] pl-[21px] pr-[54px] text-light text-xl text-textColor bg-inputColor rounded-[20px]
+             outline-none border-[1px] border-transparent transition  hover:border-accentColor focus:border-accentColor`}
         />
         <button
           type="submit"

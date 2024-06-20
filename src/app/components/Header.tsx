@@ -5,7 +5,7 @@ import { HeaderNav } from "./HeaderNav";
 import { TypeDevice } from "@/types";
 
 export const Header: React.FC<TypeDevice> = ({ deviceType }) => {
-  
+
   return (
     <div
       className={`flex justify-center items-center w-full
@@ -18,7 +18,8 @@ export const Header: React.FC<TypeDevice> = ({ deviceType }) => {
         <div className={`flex items-center justify-between w-[1200px]`}>
           <MainLogo deviceType={deviceType} />
 
-          {deviceType === "desktop" && <SearchBar />}
+          {/* {deviceType === "desktop" && <SearchBar />} */}
+          <SearchBar />
 
           <HeaderNav deviceType={deviceType} />
         </div>

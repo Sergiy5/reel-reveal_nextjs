@@ -9,10 +9,10 @@ export const MainLogo: React.FC<TypeDevice> = ({ deviceType }) => {
       <LogoMain alt="logo" width={48} height={48} />
 
       {deviceType === "desktop" && (
-          <span className="font-medium text-2xl text-textColor ">
-            ReelReveal
-          </span>
-       )}
+        <div className=" font-bold text-3xl text-textColor ">
+          ReelReveal
+        </div>
+      )}
     </Link>
   );
 };

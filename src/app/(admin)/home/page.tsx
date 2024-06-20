@@ -5,7 +5,7 @@ import { HowItWorks } from "@/app/components/HowItWorks";
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { useDeviceType } from "@/hooks";
 
-export default function Home({ ...props }) {
+export default function Home() {
   const deviceType = useDeviceType();
 
   return (
