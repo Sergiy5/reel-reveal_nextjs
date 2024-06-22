@@ -3,16 +3,17 @@
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
-import { useDeviceType } from "@/hooks";
+import { Quiz } from "@/app/components/Quiz";
+import { useLayoutContext } from "@/context/LayoutContext";
 
 export default function Home() {
-  const deviceType = useDeviceType();
+  const { deviceType } = useLayoutContext();
 
   return (
     <main>
       <Hero />
       <HowItWorks />
-
+      <Quiz />
       {deviceType !== "mobile" && <LinkToQuiz />}
     </main>
   );

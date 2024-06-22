@@ -28,6 +28,9 @@ module.exports = {
         0: "0px 0px 0px rgba(0, 0, 0, 0)",
         hoverShadow: "1px 2px 24px 0 rgba(32, 232, 218, 0.3)",
       },
+      backgroundImage: {
+        'border-icon': "url('/icons/border.svg')",
+      },
     },
   },
   plugins: [],

@@ -1,4 +1,10 @@
-export const getMovieTitleFromPath = path => {
+/**
+ * !!! NEED TO REMOVE THIS
+ * @param path : STRING
+ * @returns Name : string
+ */
+
+export const getMovieTitleFromPath = (path: string) => {
   const pathSegments = path.split('/');
   // Get the last segment of the path, which is the filename
   const filename = pathSegments[pathSegments.length - 1];

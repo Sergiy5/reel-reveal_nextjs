@@ -5,6 +5,7 @@ import { ListSocial } from "./ListSocial";
 import CameraIcon from '../../../public/icons/camera.svg';
 import { TypeDevice, ViewWidth } from "@/types";
 import { LinkToQuiz } from "./LinkToQuiz";
+import FooterBgEllips from '../../../public/icons/footer_bg-ellips.svg'
 
 export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
 
@@ -21,7 +22,7 @@ export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
         )}
 
         <div className={`flex justify-between w-full  `}>
-          {deviceType !=='mobile' && <FooterMenu />}
+          {deviceType !== "mobile" && <FooterMenu />}
 
           <CameraIcon
             width={154}
@@ -34,12 +35,8 @@ export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
           <ListSocial />
         </div>
       </div>
-      <Image
-        className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10`}
-        src={"/icons/footer_bg-ellips.svg"}
-        width="1429"
-        height="614"
-        alt="background ellips"
+      <FooterBgEllips
+        className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-[1429px] h-[614px]`}
       />
     </footer>
   );

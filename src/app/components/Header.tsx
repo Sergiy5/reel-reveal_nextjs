@@ -3,6 +3,7 @@ import { SearchBar } from "./SearchBar";
 import { MainLogo } from "./MainLogo";
 import { HeaderNav } from "./HeaderNav";
 import { TypeDevice } from "@/types";
+import HeaderBgEllips from '../../../public/icons/header_bg-ellips.svg'
 
 export const Header: React.FC<TypeDevice> = ({ deviceType }) => {
 
@@ -24,12 +25,8 @@ export const Header: React.FC<TypeDevice> = ({ deviceType }) => {
           <HeaderNav deviceType={deviceType} />
         </div>
       </div>
-      <Image
-        className={`absolute top-0 blur-header z-10`}
-        src={"/icons/header_bg-ellips.svg"}
-        width="1440"
-        height="361"
-        alt="background ellips"
+      <HeaderBgEllips
+        className={`absolute top-0 blur-header w-[1440px] h-[361px] z-10`}
       />
     </div>
   );

@@ -1,7 +1,7 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
-import { useDeviceType } from "@/hooks";
 
 const ceraProLight = localFont({
   src: "../../public/fonts/cera-pro/CeraPro-Light.woff2",
