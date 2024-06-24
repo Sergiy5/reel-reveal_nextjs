@@ -61,3 +61,16 @@ export interface QuizListMoviesProps {
   isQuizActive: () => void;
   onLoadMoreCard: (onLoadMoreCard:Movie[]) => void;
 }
+
+export interface QuizQuestions {
+  quiz: string;
+  title: string;
+  options: string[];
+  page: number;
+}
+
+export interface QuizBtnsProps {
+  answers: string[];
+  collectQuiz: (item: string) => string[];
+  isActive: boolean;
+}

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import notFoundImg from '../../../public/images/no-Image.jpg';
+
 // import { MovieCardOverlay } from './MovieCardOverlay';
 import { MovieCardProps } from '@/types';
 
@@ -13,9 +13,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { poster_path, id, title, textBtn } = movie;
 
   const poster = poster_path
-    ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-    : `${notFoundImg}`;
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : "/images/no-image.jpg";
 
+  
   return (
     <Link href={"/movie"}>
       <div

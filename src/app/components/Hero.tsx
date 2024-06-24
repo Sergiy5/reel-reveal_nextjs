@@ -29,10 +29,11 @@ export const Hero: React.FC = () => {
         className={`relative flex items-center justify-center w-full h-auto`}
       >
         <Image
-          src={"/images/heroImage.webp"}
+          src={"/images/hero-image.webp"}
           width={590}
           height={584}
-          alt="Hero movies"
+          alt="Hero movies colage"
+          placeholder="blur"
           priority
           className={`z-20`}
         />
