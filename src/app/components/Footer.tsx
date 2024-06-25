@@ -16,7 +16,7 @@ export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
            md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:w-[1440px] xl:px-[120px]`}
       >
         {deviceType !== "mobile" ? (
-          <MainLogo deviceType={"desktop"} />
+          <MainLogo />
         ) : (
           <LinkToQuiz />
         )}
@@ -35,8 +35,13 @@ export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
           <ListSocial />
         </div>
       </div>
-      <FooterBgEllips
-        className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-[1429px] h-[614px]`}
+      <Image
+        src={"/icons/footer_bg-ellips.svg"}
+        alt="Background ellips"
+        width={1429}
+        height={614}
+        priority
+        className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-auto h-auto`}
       />
     </footer>
   );

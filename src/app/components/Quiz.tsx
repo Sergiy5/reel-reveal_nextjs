@@ -2,23 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { Loader } from "./Loader";
-import { getOpenAiAPI, getQuizMovies } from "@/api";
 import { firstElementsFromArray, scrollToY } from "@/lib";
 import { Movie } from "@/types";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
+import { getOpenAiAPI, getQuizMovies } from "@/api";
 
 export const Quiz = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [moviesFromOpenaiApi, setMoviesFromOpenaiApi] = useState<Movie[]>([]);
-  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState<Movie[]>(
+  const [moviesFromOpenaiApi, setTitleMoviesFromOpenaiApi] = useState<string[]>([]);
+  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState<string[]>(
     []
   );
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const clickLoadMore = (moviesArr: Movie[]) => {
+  const clickLoadMore = (moviesArr: string[]) => {
     if (!moviesArr.length) return;
 
     const filteredMovies = moviesArr.filter((movie) =>
@@ -36,7 +36,7 @@ export const Quiz = () => {
   useEffect(() => {
     if (quizResult.length < 7) return;
 
-    const openAiAPI = async (quizMovies: string[], existedMovies: Movie[]) => {
+    const openAiAPI = async (quizMovies: string[], existedMovies: string[]) => {
       setIsLoading(true);
 
       try {
@@ -46,7 +46,7 @@ export const Quiz = () => {
           alert("Error... Try again");
           throw new Error();
         }
-        setMoviesFromOpenaiApi(response);
+        setTitleMoviesFromOpenaiApi(response);
       } catch (error) {
         console.error("Error fetch data from openai:", error);
       }
@@ -59,10 +59,9 @@ export const Quiz = () => {
   useEffect(() => {
     if (!moviesFromOpenaiApi.length) return;
 
-    const getMoviesFromAIResult = async (movies: Movie[]) => {
+    const getMoviesFromAIResult = async (movies: string[]) => {
       try {
-        const promises = await getQuizMovies(movies);
-        const response = await Promise.all(promises);
+        const response = await getQuizMovies(movies);
 
         const result = firstElementsFromArray(response);
 
@@ -76,6 +75,7 @@ export const Quiz = () => {
         setIsLoading(false);
       }
     };
+
     const lastArrayFromAI = moviesFromOpenaiApi.slice(-7);
 
     getMoviesFromAIResult(lastArrayFromAI);
@@ -99,7 +99,6 @@ export const Quiz = () => {
       )}
       <div className={` absolute bottom-0 border-quiz bg-border-icon `}></div>
 
-      {/* <BorderBottomSvg /> */}
     </div>
   );
 };

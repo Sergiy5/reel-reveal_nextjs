@@ -1,7 +1,7 @@
-import { Movie, ResponsDataOpenAI } from "@/types";
+import { Movie, ResponsDataTMbD } from "@/types";
 
 export const firstElementsFromArray = (
-  arrMovies: ResponsDataOpenAI['arrMovies']
+  arrMovies: ResponsDataTMbD["arrMovies"]
 ): Movie[] | undefined => {
   if (arrMovies.length) {
     const arrForListMovies = arrMovies.map((item) => {

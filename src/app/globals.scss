@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -68,10 +67,11 @@ main {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 24px 16px;
   max-width: 1440px;
-  color: theme('colors.textColor');
+  color: theme("colors.textColor");
   background-color: theme("colors.bgColor");
   gap: 64px;
   overflow: hidden;
@@ -180,7 +180,7 @@ h6 {
   margin: 0;
 }
 
-p{
+p {
   font-size: 20px;
   line-height: 150%;
 }
@@ -261,27 +261,62 @@ a {
 
 .arrow-button {
   position: absolute;
-  top:50%; 
-  transform: translateY(-50%); 
-  background-color: transparent; 
-  border: none; 
-  cursor: pointer; 
-  z-index:10;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .arrow-svg {
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
   color: inherit;
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
   opacity: 1;
 }
 
 .border-quiz {
-    width: 100vw;
-    height: 40px; 
-    background-repeat: 'repeat-x';
-    background-size: 'contain';
-    z-index: 1;
+  width: 100vw;
+  height: 40px;
+  background-repeat: "repeat-x";
+  background-size: "contain";
+  z-index: 1;
+}
+
+.movie-card_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 285px;
+  height: auto;
+  color: transparent;
+  background-size: contain;
+  border-radius: 18px;
+  padding-right: -50px;
+
+  @media (min-width: 577px) {
+    width: calc((100vw - 45px) / 3);
   }
+
+  @media (min-width: 855px) {
+    width: calc((100vw - 45px) / 4);
+  }
+
+  @media (min-width: 1025px) {
+    width: calc((100vw - 185px) / 4);
+  }
+
+  @media (min-width: 1281px) {
+    width: calc((100vw - 285px) / 4);
+    height: auto;
+  }
+
+  @media (min-width: 1440px) {
+    width: 285px;
+    height: 428px;
+  }
+}

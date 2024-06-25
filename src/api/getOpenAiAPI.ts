@@ -6,7 +6,7 @@ const Back_END_URL = 'http://localhost:5000/api/openai';
 
 export const getOpenAiAPI = async (
   requestArray: string[],
-  existedMovies: Movie[]
+  existedMovies: string[]
 ): Promise<OpenAiResponse> => {
   const promptText = `
   - You are a connoisseur of films and everything related to them, music, actors, genres, the year the film was released, what film genres the actor is associated with.

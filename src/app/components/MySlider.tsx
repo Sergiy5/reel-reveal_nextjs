@@ -60,7 +60,6 @@ export function SamplePrevArrow(props: CustomArrowProps): React.JSX.Element {
 
 export const MySlider: React.FC<MySliderProps> = ({
   arrMovies,
-  onClick,
 }) => {
   const viewWidth = useResize();
 
@@ -104,8 +103,7 @@ export const MySlider: React.FC<MySliderProps> = ({
 
   return (
     <div
-      onClick={onClick}
-      className="max-w-[1200px] flex flex-col w-[900px] h-auto sm:w-full lg:w-[calc(100vw-125px)] xl:w-[calc(100vw-230px)]"
+      className={`max-w-[1200px] flex flex-col w-[900px] h-auto sm:w-full lg:w-[calc(100vw-125px)] xl:w-[calc(100vw-230px)] gap-5`}
     >
       <Slider {...settings}>
         {arrMovies?.map((movie) => (

@@ -13,11 +13,11 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <LayoutProvider deviceType={deviceType}>
-            <Suspense fallback={<Loader />}>
-      <Header deviceType={deviceType} />
-      <div>{children}</div>
-      <Footer deviceType={deviceType} />
-          </Suspense>
+      <Suspense fallback={<Loader />}>
+        <Header />
+        <div>{children}</div>
+        <Footer deviceType={deviceType} />
+      </Suspense>
     </LayoutProvider>
   );
 }

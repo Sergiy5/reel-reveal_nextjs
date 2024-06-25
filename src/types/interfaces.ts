@@ -35,7 +35,6 @@ export interface ListMoviesProps {
 
 export interface MySliderProps {
   arrMovies: Movie[];
-  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface GetShowMoviesProps {
@@ -43,7 +42,7 @@ export interface GetShowMoviesProps {
   getMovies: (page: number) => Promise<Movie[]>;
 }
 
-export interface ResponsDataOpenAI {
+export interface ResponsDataTMbD {
   arrMovies: {
     data: {
       results: Movie[];
@@ -59,7 +58,7 @@ export interface LoadMoreCard {
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
   isQuizActive: () => void;
-  onLoadMoreCard: (onLoadMoreCard:Movie[]) => void;
+  onLoadMoreCard: (onLoadMoreCard:string[]) => void;
 }
 
 export interface QuizQuestions {

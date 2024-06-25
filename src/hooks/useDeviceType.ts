@@ -4,6 +4,7 @@ import { DeviceType } from "@/types";
 
 export const useDeviceType = (): DeviceType => {
   const [deviceType, setDeviceType] = useState<DeviceType>(() => {
+    
     if (typeof window === "undefined") {
       return "desktop";
     }

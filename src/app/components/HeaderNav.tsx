@@ -1,10 +1,17 @@
+'use client'
+
 import Link from "next/link";
 import HeartIcon from "../../../public/icons/heart.svg";
 import UserIcon from "../../../public/icons/user.svg";
 import BurgerIcon from "../../../public/icons/burger.svg";
-import { TypeDevice } from "@/types";
+import { DeviceType } from "@/types";
+import { useDeviceType } from "@/hooks";
 
-export const HeaderNav: React.FC<TypeDevice> = ({ deviceType }) => {
+export const HeaderNav: React.FC = () => {
+
+  const deviceType: DeviceType = useDeviceType() ?? 'desktop';
+  console.log(deviceType);
+
   return (
     <>
       {deviceType === "desktop" ? (
@@ -34,13 +41,13 @@ export const HeaderNav: React.FC<TypeDevice> = ({ deviceType }) => {
         </div>
       ) : (
         <button
-          type="button"
-          className={`flex items-center justify-center w-[40px] h-[40px] rounded-[3px] bg-bgColor
-                     transition duration-200 ease-in-out hover:bg-bgLightColor`}
-        >
+        type="button"
+        className={`flex items-center justify-center w-[40px] h-[40px] rounded-[3px] bg-bgColor
+          transition duration-200 ease-in-out hover:bg-bgLightColor`}
+          >
           <BurgerIcon
             className={`text-textColor w-[31px] h-[22px] lg:w-[38px] lg:h-[42px] `}
-          />
+            />
         </button>
       )}
     </>

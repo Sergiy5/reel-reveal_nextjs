@@ -3,10 +3,10 @@ import axios from 'axios';
 
 // dotenv.config();
 
-const AUTH_TOKEN = process.env.REACT_APP_TMDB_API_KEY;
+const AUTH_TOKEN = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/movie/';
-axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.headers.common["Authorization"] = `Bearer &{AUTH_TOKEN}`;
 
 export const getUpcomingMovies = async page => {
     try {

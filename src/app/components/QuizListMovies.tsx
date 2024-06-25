@@ -31,7 +31,7 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
       {viewWidth > 1024 ? (
         <ListMovies movies={arrMovies} onLoadMore={onLoadMoreCard} />
       ) : (
-        <MySlider arrMovies={arrMovies} onClick={handleClick} />
+        <MySlider arrMovies={arrMovies} />
       )}
       <button onClick={isQuizActive} className={`link-btn w-[285px]`}>
         retake quiz
