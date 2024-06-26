@@ -1,16 +1,22 @@
-import React from 'react';
-import { SvgBgEllips, WrapperChoseGenre, WrapperIconsGenres } from './chose-genres/ChooseGenres.styled';
-import { IconGenre } from './IconGenre';
-import sprite from '../../assets/images/svg-sprite/sprite-genres.svg'
- 
-export const ChoseGenre = () => {
+import React from "react";
+import { IconGenre } from "./IconGenre";
+import Image from "next/image";
 
+export const ChoseGenres = () => {
   return (
     <div className={`relative flex flex-col items-center gap-12`}>
-      <SvgBgEllips>
-        <use xlinkHref={`${sprite}#genresEllips`} />
-      </SvgBgEllips>
+      <Image
+        src={"/icons/genres_bg-ellips.svg"}
+        alt="Background ellips"
+        width={1440}
+        height={720}
+        priority
+        className={`absolute z-0 top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4
+           w-full h-auto blur-hero xl:max-w-[1440px]`}
+      />
+     
       <h2>Choose a movie by genre</h2>
+
       <div
         className={`relative flex items-start flex-wrap justify-around gap-16 sm:justify-between`}
       >

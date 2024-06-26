@@ -9,6 +9,7 @@ import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/types";
+import {ChoseGenres} from '@/app/components/ChooseGenres'
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -27,6 +28,7 @@ export default function Home() {
         title={"Upcoming 20 movies in 2024"}
         getMovies={getUpcomingMovies}
       />
+      <ChoseGenres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>
   );
