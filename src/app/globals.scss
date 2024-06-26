@@ -259,32 +259,13 @@ a {
   }
 }
 
-.arrow-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.arrow-svg {
-  margin-left: auto;
-  margin-right: auto;
-  color: inherit;
-  width: 24px;
-  height: 24px;
-  opacity: 1;
-}
-
-.border-quiz {
-  width: 100vw;
-  height: 40px;
-  background-repeat: "repeat-x";
-  background-size: "contain";
-  z-index: 1;
-}
+// .border-quiz {
+//   width: 100vw;
+//   height: 40px;
+//   background-repeat: "repeat-x";
+//   background-size: "contain";
+//   z-index: 1;
+// }
 
 .movie-card_wrapper {
   position: relative;
@@ -292,7 +273,7 @@ a {
   align-items: center;
   justify-content: center;
   width: 285px;
-  height: auto;
+  aspect-ratio: 285/428;
   color: transparent;
   background-size: contain;
   border-radius: 18px;
@@ -306,11 +287,11 @@ a {
     width: calc((100vw - 45px) / 4);
   }
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     width: calc((100vw - 185px) / 4);
   }
 
-  @media (min-width: 1281px) {
+  @media (min-width: 1280px) {
     width: calc((100vw - 285px) / 4);
     height: auto;
   }
@@ -318,5 +299,25 @@ a {
   @media (min-width: 1440px) {
     width: 285px;
     height: 428px;
+  }
+}
+
+.my-slyder_wrapper {
+    max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  height: auto;
+
+  @media (min-width: 577px) {
+    width: 100vw;
+  }
+ 
+  @media (min-width: 1025px) {
+    width: calc(100vw - 125px);
+  }
+
+  @media (min-width: 1281px) {
+    width: calc(100vw - 230px);
   }
 }

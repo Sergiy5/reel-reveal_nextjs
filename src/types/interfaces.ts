@@ -1,3 +1,5 @@
+import { CustomArrowProps } from "react-slick";
+
 export interface LayoutProps {
   children: React.ReactNode;
 }
@@ -72,4 +74,8 @@ export interface QuizBtnsProps {
   answers: string[];
   collectQuiz: (item: string) => string[];
   isActive: boolean;
+}
+
+export interface MySliderBtnProps extends CustomArrowProps {
+  prevStyle?: string;
 }

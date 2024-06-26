@@ -13,11 +13,8 @@ export const Header: React.FC = () => {
       >
         <div className={`flex items-center justify-between px-4 w-[1200px] md:px-0`}>
           <MainLogo />
-
           <SearchBar />
-
           <HeaderNav />
-          
         </div>
       </div>
       <Image
@@ -26,7 +23,7 @@ export const Header: React.FC = () => {
         width={1440}
         height={361}
         priority
-        className={`absolute top-0 blur-header w-auto h-auto z-10 `}
+        className={`absolute top-0 blur-header 2xl:max-w-[1440px] h-auto z-10 `}
       />
     </div>
   );

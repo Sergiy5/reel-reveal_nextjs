@@ -48,7 +48,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
               alt={title}
               width={285}
               height={428}
-              className={`w-full h-auto rounded-[18px]`}
+              className={`w-full h-full rounded-[18px]`}
             />
           </>
         )}

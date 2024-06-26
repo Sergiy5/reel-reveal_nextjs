@@ -1,13 +1,20 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MainLogo } from "./MainLogo";
 import {FooterMenu} from './FooterMenu'
 import { ListSocial } from "./ListSocial";
 import CameraIcon from '../../../public/icons/camera.svg';
-import { TypeDevice, ViewWidth } from "@/types";
+import { DeviceType, TypeDevice} from "@/types";
 import { LinkToQuiz } from "./LinkToQuiz";
-import FooterBgEllips from '../../../public/icons/footer_bg-ellips.svg'
+import { useDeviceType } from "@/hooks";
 
-export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
+export const Footer: React.FC<TypeDevice> = () => {
+    const [isClient, setIsClient] = useState(false);
+    const deviceType: DeviceType = useDeviceType();
+
+    useEffect(() => {
+      setIsClient(true);
+    }, []);
 
   return (
     <footer className={`relative flex w-full justify-center items-center`}>
@@ -15,14 +22,14 @@ export const Footer: React.FC<TypeDevice> = ({deviceType}) => {
         className={`flex flex-col p-4 w-full bg-bgColor gap-8 z-20 
            md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:w-[1440px] xl:px-[120px]`}
       >
-        {deviceType !== "mobile" ? (
+        {!isClient ? <LinkToQuiz /> : (deviceType !== "mobile" ? (
           <MainLogo />
         ) : (
           <LinkToQuiz />
-        )}
+        ))}
 
         <div className={`flex justify-between w-full  `}>
-          {deviceType !== "mobile" && <FooterMenu />}
+          {!isClient ? null : deviceType !== "mobile" && <FooterMenu />}
 
           <CameraIcon
             width={154}

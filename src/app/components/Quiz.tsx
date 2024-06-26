@@ -85,7 +85,9 @@ export const Quiz = () => {
     <div
       className={`relative flex items-center justify-center py-[131px] w-full gap-12`}
     >
-      <div className={` absolute top-0 border-quiz bg-border-icon `}></div>
+      <div
+        className={` absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-border-icon rotate-180`}
+      ></div>
       {isLoading ? (
         <Loader />
       ) : isQuizActive ? (
@@ -97,8 +99,9 @@ export const Quiz = () => {
           onLoadMoreCard={clickLoadMore}
         />
       )}
-      <div className={` absolute bottom-0 border-quiz bg-border-icon `}></div>
-
+      <div
+        className={` absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-border-icon `}
+      ></div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useResize } from "./useResize";
 import { DeviceType } from "@/types";
 
 export const useDeviceType = (): DeviceType => {

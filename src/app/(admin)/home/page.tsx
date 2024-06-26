@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { getUpcomingMovies } from "@/api";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { Hero } from "@/app/components/Hero";
@@ -10,8 +11,12 @@ import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/types";
 
 export default function Home() {
-    const deviceType: DeviceType = useDeviceType() ?? "mobile";
+  const [isClient, setIsClient] = useState(false);
+  const deviceType: DeviceType = useDeviceType();
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <main>
@@ -22,7 +27,7 @@ export default function Home() {
         title={"Upcoming 20 movies in 2024"}
         getMovies={getUpcomingMovies}
       />
-      {deviceType !== "mobile" && <LinkToQuiz />}
+      {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>
   );
 }
