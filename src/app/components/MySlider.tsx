@@ -8,35 +8,6 @@ import { useResize } from "@/hooks";
 import { MovieCard } from "./MovieCard";
 import { MySliderBtn } from "./MySliderBtn";
 
-// export function SampleNextArrow(props: CustomArrowProps): React.JSX.Element {
-//   const { currentSlide, onClick } = props;
-//   const isActive = currentSlide !== 16 ? false : true;
-
-//   return (
-//     <button
-//       onClick={onClick}
-//       disabled={isActive}
-//       className={`arrow-button  right-0`}
-//     >
-//       <ArrowIcon className={`arrow-svg `} />
-//     </button>
-//   );
-// }
-
-// export function SamplePrevArrow(props: CustomArrowProps): React.JSX.Element {
-//   const { currentSlide, onClick } = props;
-//   const isActive = currentSlide !== 0 ? false : true;
-
-//   return (
-//     <button
-//       onClick={onClick}
-//       disabled={isActive}
-//       className={`arrow-button rotate-180 -left-4`}
-//     >
-//       <ArrowIcon className={`arrow-svg rotate-180 `} />
-//     </button>
-//   );
-// }
 
 export const MySlider: React.FC<MySliderProps> = ({
   arrMovies,
@@ -53,7 +24,7 @@ export const MySlider: React.FC<MySliderProps> = ({
     arrows: viewWidth > 1024 ? true : false,
     pauseOnFocus: true,
     initialSlide: 0,
-    // lazyLoad: "ondemand",
+    lazyLoad: "ondemand",
     responsive: [
       {
         breakpoint: 855,

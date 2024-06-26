@@ -47,7 +47,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
               src={poster}
               alt={title}
               width={285}
-              height={428}
+                height={428}
+                priority
               className={`w-full h-full rounded-[18px]`}
             />
           </>
