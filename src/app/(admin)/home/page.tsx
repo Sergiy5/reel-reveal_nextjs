@@ -9,7 +9,7 @@ import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/types";
-import {ChoseGenres} from '@/app/components/ChooseGenres'
+import { Genres } from "@/app/components/Genres";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -29,7 +29,7 @@ export default function Home() {
         getMovies={getUpcomingMovies}
       />
       <GetShowMovies title={"TOP 20 rated movies"} getMovies={topRatedMovies} />
-      <ChoseGenres />
+      <Genres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>
   );

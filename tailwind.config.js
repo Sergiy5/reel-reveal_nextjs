@@ -30,6 +30,18 @@ module.exports = {
       },
       backgroundImage: {
         'border-icon': "url('/icons/border.svg')",
+        'cardGradient': `linear-gradient(
+      180deg,
+      rgba(15, 12, 32, 1) 0%,
+      rgba(8, 7, 18, 0.46) 24.88%,
+      rgba(7, 6, 14, 0.3) 33.67%,
+      rgba(4, 3, 8, 0.07) 41.12%,
+      rgba(0, 9, 0, 0) 51.67%,
+      rgba(3, 3, 6, 0.02) 60.19%,
+      rgba(6, 5, 12, 0.3) 68.67%,
+      rgba(8, 7, 18, 0.46) 78.32%,
+      rgba(15, 12, 32, 1) 100%
+    )` 
       },
     },
   },

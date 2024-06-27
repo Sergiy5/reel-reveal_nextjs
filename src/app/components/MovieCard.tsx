@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 
-// import { MovieCardOverlay } from './MovieCardOverlay';
+import { MovieCardHover } from './MovieCardHover';
 import { MovieCardProps } from "@/types";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
@@ -40,18 +40,20 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             {textBtn}
           </button>
         ) : ( */}
-          <>
-            {/* {isShowHover ? <MovieCardOverlay movie={movie} /> : null} */}
-            <Image
-              id={`${id}`}
-              src={poster}
-              alt={title}
-              width={285}
-                height={428}
-                priority
-              className={`w-full h-full rounded-[18px]`}
-            />
-          </>
+        <>
+          {/* <MovieCardHover movie={movie} /> */}
+          {isShowHover ? <MovieCardHover movie={movie} /> : null}
+          <Image
+            id={`${id}`}
+            src={poster}
+            alt={title}
+            width={285}
+            height={428}
+            sizes="(max-width: 285px) 100vw, (max-width: 285px) 50vw"
+            priority
+            className={`w-full h-full rounded-[18px]`}
+          />
+        </>
       </div>
     </Link>
   );
