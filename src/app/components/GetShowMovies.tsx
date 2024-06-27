@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetShowMoviesProps, Movie, Movie } from "@/types";
+import { GetShowMoviesProps, Movie } from "@/types";
 import { MySlider } from "./MySlider";
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
