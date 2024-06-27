@@ -9,11 +9,10 @@ import { MovieCard } from "./MovieCard";
 import { MySliderBtn } from "./MySliderBtn";
 
 
-export const MySlider: React.FC<MySliderProps> = ({
-  arrMovies,
-}) => {
+export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
+
   const viewWidth = useResize();
-console.log("arrMovies in my slider", arrMovies);
+
   const settings: Settings = {
     pauseOnHover: true,
     slidesToShow: 4,
@@ -56,7 +55,7 @@ console.log("arrMovies in my slider", arrMovies);
     <div className={`my-slyder_wrapper`}>
       <Slider {...settings}>
         {arrMovies.map((movie) => {
-          console.log("first in map", movie);
+
           return <MovieCard key={nanoid()} movie={movie} />
         })}
       </Slider>
