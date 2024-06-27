@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { GetShowMoviesProps, Movie } from '@/types';
-import { MySlider } from './MySlider';
+import React, { useEffect, useState } from "react";
+import { GetShowMoviesProps, Movie, Movie } from "@/types";
+import { MySlider } from "./MySlider";
 
-export const GetShowMovies: React.FC<GetShowMoviesProps> = ({ title, getMovies }) => {
+export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
+  title,
+  getMovies,
+}) => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
   // Get first request movies
@@ -12,7 +15,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({ title, getMovies }
         const response = await getMovies(page);
         setAllMovies(response);
       } catch (error) {
-        console.log('Get Show Movies', error);
+        console.log("Get Show Movies", error);
       }
     };
 

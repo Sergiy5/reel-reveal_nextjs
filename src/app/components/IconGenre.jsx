@@ -1,10 +1,7 @@
 import Link from 'next/link';
-// import sprite from '/icons/genres-sprite.svg';
+import { capitalizeFirstLetter } from '@/lib';
 
 export const IconGenre = ({ name }) => {
-
-    const capitalizeFirstLetter = str =>
-      `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 
   return (
     <Link href={"#"} className={`link`}>

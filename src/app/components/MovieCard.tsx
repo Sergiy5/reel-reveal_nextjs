@@ -9,7 +9,7 @@ import { MovieCardProps } from "@/types";
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
 
-  const { poster_path, id, title, textBtn } = movie;
+  const { poster_path, id, title } = movie;
 
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -27,7 +27,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         }}
         className={`movie-card_wrapper`}
       >
-        {id === "load_more" ? (
+        {/* {id === "load_more" ? (
           <button
             id={id}
             className={`flex w-auto h-auto text-textColor border border-white bg-transparent
@@ -39,11 +39,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           >
             {textBtn}
           </button>
-        ) : (
+        ) : ( */}
           <>
             {/* {isShowHover ? <MovieCardOverlay movie={movie} /> : null} */}
             <Image
-              id={id}
+              id={`${id}`}
               src={poster}
               alt={title}
               width={285}
@@ -52,7 +52,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
               className={`w-full h-full rounded-[18px]`}
             />
           </>
-        )}
       </div>
     </Link>
   );

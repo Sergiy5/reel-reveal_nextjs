@@ -18,12 +18,32 @@ export interface LayoutProviderProps {
 }
 
 export interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
   poster_path: string | null;
-  id: string;
+  release_date: string;
   title: string;
-  textBtn?: string;
-  vote_average?: number;
-  release_date?: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+// export interface Movies {
+//   poster_path: string | null;
+//   id: string;
+//   title: string;
+//   textBtn?: string;
+//   vote_average?: number;
+//   release_date?: string;
+// }
+
+export interface LoadMoreBtnCard {
+  
 }
 
 export interface MovieCardProps {
@@ -60,7 +80,7 @@ export interface LoadMoreCard {
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
   isQuizActive: () => void;
-  onLoadMoreCard: (onLoadMoreCard:string[]) => void;
+  onLoadMoreCard: (onLoadMoreCard: string[]) => void;
 }
 
 export interface QuizQuestions {

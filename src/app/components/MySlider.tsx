@@ -13,11 +13,11 @@ export const MySlider: React.FC<MySliderProps> = ({
   arrMovies,
 }) => {
   const viewWidth = useResize();
-
+console.log("arrMovies in my slider", arrMovies);
   const settings: Settings = {
     pauseOnHover: true,
     slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToScroll: 4,
     infinite: false,
     nextArrow: <MySliderBtn />,
     prevArrow: <MySliderBtn prevStyle={'rotate-180'} />,
@@ -55,9 +55,10 @@ export const MySlider: React.FC<MySliderProps> = ({
   return (
     <div className={`my-slyder_wrapper`}>
       <Slider {...settings}>
-        {arrMovies?.map((movie) => (
-          <MovieCard key={nanoid()} movie={movie} />
-        ))}
+        {arrMovies.map((movie) => {
+          console.log("first in map", movie);
+          return <MovieCard key={nanoid()} movie={movie} />
+        })}
       </Slider>
     </div>
   );

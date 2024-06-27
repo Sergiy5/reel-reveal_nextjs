@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/(admin)/home/layout.tsx", "src/hooks/useResize.ts", "src/api/getQuizMovies.js", "src/api/getUpcomingMovies.js", "src/api/topRatedMovies.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/(admin)/home/layout.tsx", "src/hooks/useResize.ts", "src/api/getQuizMovies.js", "src/api/getUpcomingMovies.ts", "src/api/topRatedMovies.ts"],
   "exclude": ["node_modules"]
 }
