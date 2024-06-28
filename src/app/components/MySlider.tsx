@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {default as Slider, Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +10,7 @@ import { MySliderBtn } from "./MySliderBtn";
 
 
 export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
-
+  
   const viewWidth = useResize();
 
   const settings: Settings = {
@@ -19,44 +19,43 @@ export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
     slidesToScroll: 4,
     infinite: false,
     nextArrow: <MySliderBtn />,
-    prevArrow: <MySliderBtn prevStyle={'rotate-180'} />,
+    prevArrow: <MySliderBtn prevStyle={"rotate-180"} />,
     arrows: viewWidth > 1024 ? true : false,
     pauseOnFocus: true,
     initialSlide: 0,
     lazyLoad: "ondemand",
     responsive: [
       {
-        breakpoint: 855,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          // centerMode: true,
+
+          slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
           centerMode: true,
-          centerPadding: "0px",
-          slidesToShow: 3,
+          centerPadding: "10%",
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
     ],
   };
- 
+
+
   return (
-    <div className={`my-slyder_wrapper`}>
+    <div className={`my-slyder_wrapper `}>
       <Slider {...settings}>
         {arrMovies.map((movie) => {
-
-          return <MovieCard key={nanoid()} movie={movie} />
+          return (
+            <div key={nanoid()} className="wrapper-slide">
+              <MovieCard movie={movie} />
+            </div>
+          );
         })}
       </Slider>
     </div>

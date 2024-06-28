@@ -16,7 +16,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     : "/images/no-image.jpg";
 
   return (
-    <Link href={"/movie"}>
+    <div>
       <div
         key={nanoid()}
         onMouseEnter={() => {
@@ -41,7 +41,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           </button>
         ) : ( */}
         <>
-          {/* <MovieCardHover movie={movie} /> */}
           {isShowHover ? <MovieCardHover movie={movie} /> : null}
           <Image
             id={`${id}`}
@@ -49,12 +48,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             alt={title}
             width={285}
             height={428}
+            quality={75}
             sizes="(max-width: 285px) 100vw, (max-width: 285px) 50vw"
             priority
             className={`w-full h-full rounded-[18px]`}
           />
         </>
       </div>
-    </Link>
+    </div>
   );
 };

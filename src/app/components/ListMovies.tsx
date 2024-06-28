@@ -17,7 +17,6 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
     }
   };
 
-// const arrayMoviesWithLoadMoreCard: CombinedMovieArr = [...movies, loadMoreCard()];
 
   return (
     <div

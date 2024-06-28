@@ -51,7 +51,7 @@ export const QuizQuestions = ({ quizData }) => {
       </div>
 
       <div
-        className={` grid items-center flex-wrap grid-cols-2 gap-5 w-full h-auto lg:flex `}
+        className={` grid items-center flex-wrap grid-cols-2 gap-5 w-full h-auto lg:flex lg:flex-nowrap `}
       >
         <QuizButtons
           collectQuiz={collectQuizChoices}
@@ -59,7 +59,6 @@ export const QuizQuestions = ({ quizData }) => {
           answers={options}
         />
       </div>
-
       {viewWidth < 1025 ? (
         <QuizProgresBar page={currentPageForProgresBar} />
       ) : null}

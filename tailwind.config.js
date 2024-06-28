@@ -29,8 +29,8 @@ module.exports = {
         hoverShadow: "1px 2px 24px 0 rgba(32, 232, 218, 0.3)",
       },
       backgroundImage: {
-        'border-icon': "url('/icons/border.svg')",
-        'cardGradient': `linear-gradient(
+        borderIcon: "url('/icons/border.svg')",
+        cardGradient: `linear-gradient(
       180deg,
       rgba(15, 12, 32, 1) 0%,
       rgba(8, 7, 18, 0.46) 24.88%,
@@ -41,7 +41,12 @@ module.exports = {
       rgba(6, 5, 12, 0.3) 68.67%,
       rgba(8, 7, 18, 0.46) 78.32%,
       rgba(15, 12, 32, 1) 100%
-    )` 
+    )`,
+        quizBtnGradient: `radial-gradient(
+     ellipse closest-side at center,
+     rgb(32, 43, 61),
+     rgb(18, 19, 44) 160%
+   )`,
       },
     },
   },

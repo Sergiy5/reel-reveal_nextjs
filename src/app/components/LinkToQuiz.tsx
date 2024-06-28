@@ -9,7 +9,10 @@ export const LinkToQuiz: React.FC = () => {
     >
       <h2 className={`hidden md:flex`}>Take Our Quiz!</h2>
 
-      <Link href={"/quiz"} className={`link-btn w-[343px] md:w-[249px]`}>
+      <Link
+        href={"/quiz"}
+        className={`link-btn w-[249px] sm:w-[343px] md:w-[249px]`}
+      >
         take a quiz
       </Link>
     </div>
