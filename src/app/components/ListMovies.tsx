@@ -9,7 +9,7 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
   movies,
   onLoadMore,
 }) => {
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     if ((e.target as HTMLElement).id === "load_more") {
       const filteredMovies = movies.filter((movie) => movie.title);
       const arrExistedTitles = filteredMovies.map((movie) => movie.title);
