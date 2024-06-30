@@ -20,16 +20,15 @@ export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
     infinite: false,
     nextArrow: <MySliderBtn />,
     prevArrow: <MySliderBtn prevStyle={"rotate-180"} />,
-    arrows: viewWidth > 1024 ? true : false,
+    arrows: true,
     pauseOnFocus: true,
     initialSlide: 0,
-    lazyLoad: "ondemand",
+    // lazyLoad: "ondemand",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          // centerMode: true,
-
+          arrows: false,
           slidesToShow: 2,
           slidesToScroll: 2,
         },
@@ -37,6 +36,7 @@ export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
       {
         breakpoint: 769,
         settings: {
+          arrows: false,
           centerMode: true,
           centerPadding: "10%",
           slidesToShow: 1,
