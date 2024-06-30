@@ -22,7 +22,7 @@ const sliderRef = useRef<Slider>(null);
     arrows: true,
     pauseOnFocus: true,
     initialSlide: 0,
-    // lazyLoad: "ondemand",
+    lazyLoad: "ondemand",
     responsive: [
       {
         breakpoint: 1024,

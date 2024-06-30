@@ -53,7 +53,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             width={285}
             height={428}
             quality={75}
-            sizes="(max-width: 285px) 100vw"
+            priority={true}
+            // sizes="(max-width: 285px) 100vw"
             className={`w-full h-full rounded-[18px]`}
           />
         </>
