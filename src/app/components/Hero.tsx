@@ -34,7 +34,7 @@ export const Hero: React.FC = () => {
           height={584}
           alt="Hero movies colage"
           priority
-          className={`w-[590] h-auto z-20`}
+          className={` aspect-[590/584] z-20`}
         />
         <Image
           src={"/icons/hero_bg-ellips.svg"}

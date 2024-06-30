@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {default as Slider, Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { nanoid } from "nanoid";
 import { MySliderProps } from "@/types";
-import { useResize } from "@/hooks";
 import { MovieCard } from "./MovieCard";
 import { MySliderBtn } from "./MySliderBtn";
 
 
 export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
-  
-  const viewWidth = useResize();
+const [key, setKey] = useState(0);
+const sliderRef = useRef<Slider>(null);
 
   const settings: Settings = {
     pauseOnHover: true,
@@ -46,17 +45,21 @@ export const MySlider: React.FC<MySliderProps> = ({ arrMovies }) => {
     ],
   };
 
+  useEffect(() => {
+    const handleImagesLoad = () => {
+      setKey((prevKey) => prevKey + 1); // Force re-render by changing key
+    };
+
+    // Assume all images have loaded
+    handleImagesLoad();
+  }, [arrMovies]);
 
   return (
     <div className={`my-slyder_wrapper `}>
-      <Slider {...settings}>
-        {arrMovies.map((movie) => {
-          return (
-            <div key={nanoid()} className="wrapper-slide">
-              <MovieCard movie={movie} />
-            </div>
-          );
-        })}
+      <Slider key={key} ref={sliderRef} {...settings}>
+        {arrMovies.map((movie) => (
+          <MovieCard key={nanoid()} movie={movie} />
+        ))}
       </Slider>
     </div>
   );

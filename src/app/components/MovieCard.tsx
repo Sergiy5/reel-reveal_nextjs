@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 
 import { MovieCardHover } from './MovieCardHover';
 import { MovieCardProps } from "@/types";
+import Head from "next/head";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
@@ -40,6 +41,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             {textBtn}
           </button>
         ) : ( */}
+        <Head>
+          <link rel="preload" href={poster} as="image" />
+        </Head>
         <>
           {isShowHover ? <MovieCardHover movie={movie} /> : null}
           <Image
@@ -50,7 +54,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             height={428}
             quality={75}
             sizes="(max-width: 285px) 100vw"
-            priority
             className={`w-full h-full rounded-[18px]`}
           />
         </>
