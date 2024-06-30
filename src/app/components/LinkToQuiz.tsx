@@ -5,7 +5,7 @@ export const LinkToQuiz: React.FC = () => {
   
   return (
     <div
-      className={` flex items-center justify-center flex-col gap-[28px] z-10 md:flex-row md:gap-12`}
+      className={` flex items-center justify-center flex-col gap-[28px] z-20 md:flex-row md:gap-12`}
     >
       <h2 className={`hidden md:flex`}>Take Our Quiz!</h2>
 

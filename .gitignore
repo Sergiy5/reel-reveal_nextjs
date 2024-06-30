@@ -131,3 +131,6 @@ dist
 
 # old folder
 assets
+
+# Responsiv hints
+hints.md

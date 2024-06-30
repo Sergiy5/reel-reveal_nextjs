@@ -14,52 +14,6 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
         const [first, second] = item.split(/\s*(?=\()/);
 
 
-//   width: auto;
-//   height: calc(((100vw - 140px) / 2) / ${getAspectRatio(285, 200)});
-//   color: inherit;
-//   border-radius: 18px;
-//   border: 1px solid ${colors.bgColor};
-
-//   background-image: radial-gradient(
-//     ellipse closest-side at center,
-//     rgb(32, 43, 61),
-//     ${colors.bgColor} 160%
-//   );
-//   transform: none;
-//   transition-property: transform, border, color;
-//   transition-duration: 350ms;
-//   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-//   @media (min-width: 1025px) {
-//     width: calc((100% - 60px) / 4);
-//     height: calc(((100vw - 300px) / 4) / ${getAspectRatio(285, 200)});
-//   }
-
-//   @media (min-width: 1440px) {
-//     width: 285px;
-//     height: 200px;
-//   }
-
-//   &:hover {
-//     ${props =>
-//       props.$isActive
-//         ? null
-//         : `
-//     transform: scale(1.01);
-//     border: 1px solid ${colors.accentColor};
-//     color: ${colors.accentColor};
-//     `}
-//   }
-//   &:focus {
-//     outline: 2px solid ${colors.accentColor};
-//     color: ${colors.accentClickedColor};
-//   }
-//   &:active {
-//     transform: ${props => (props.$isActive ? 'scale(1)' : null)};
-//   }
-
-
-
         return (
           <button
             key={item}
@@ -67,7 +21,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
             disabled={isActive}
             type="button"
             className={clsx(
-              "flex items-center justify-center w-auto aspect-[285/200] px-2 rounded-[18px] bg-quizBtnGradient border-[1px] border-transparent ",
+              "flex items-center justify-center w-auto aspect-[285/200] px-2 rounded-xl sm:rounded-[18px] bg-quizBtnGradient border-[1px] border-transparent ",
               "transition duration-300 ease-in-out hover:border-solid hover:scale-[1.01] hover:border-accentColor hover:text-accentColor",
               "lg:w-[285px] lg:h-[200px]",
               {
@@ -76,7 +30,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
               }
             )}
           >
-            <p className=" font-normal text-3xl  text-inherit">
+            <p className=" font-normal text-xl sm:text-2xl md:text-3xl  text-inherit">
               {first}
               <br />
               {second}
