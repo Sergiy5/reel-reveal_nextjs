@@ -295,10 +295,6 @@ a {
   width: 100%;
   height: auto;
   gap: 10px;
-
-  // @media (min-width: 577px) {
-  //   width: 1024px;
-  // }
  
   @media (min-width: 1025px) {
     width: calc(100vw - 125px);

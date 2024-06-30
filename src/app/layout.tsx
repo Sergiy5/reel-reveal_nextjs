@@ -28,7 +28,10 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0"
         ></meta>
         <title>Reel-Reveal</title>
-        <link
+
+        {/* It doesn't worked this preload fonts ... */}
+        
+        {/* <link
           rel="preload"
           href="/fonts/cera-pro/CeraPro-Light.woff2"
           as="font"
@@ -69,7 +72,7 @@ export default function RootLayout({
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
-        />
+        /> */}
       </head>
       <body className={ceraProLight.className}>{children}</body>
     </html>
