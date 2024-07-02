@@ -12,14 +12,16 @@ interface MovieResponse {
 // Construct the search URL for a movie
 
 // Function to fetch movie data based on an array of movie titles
-export const quizMovies = async (arrMovies: string[]): Promise<Movie[][]> => {
+export const quizMovies = async (arrMovies: string): Promise<Movie[][]> => {
 const apiKey = process.env.TMDB_API_KEY;
 
     const urlSearchMovie = (movie: string) => {
       return `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1&api_key=${apiKey}`;
-    };
+  };
+  
+  const parsedMOvies: string[] = JSON.parse(arrMovies);
   try {
-    const requests = arrMovies.map((movie) =>
+    const requests = parsedMOvies.map((movie) =>
       axios.get<MovieResponse>(urlSearchMovie(movie))
     );
 

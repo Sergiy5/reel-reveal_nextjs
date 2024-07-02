@@ -1,4 +1,4 @@
-// import { quizMovies } from "../../controllers/quizMovies";
+import { quizMovies } from "../../controllers/quizMovies";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
@@ -7,22 +7,21 @@ export const GET = async (
 ) => {
 const { searchParams } = new URL(req.url);
 const arrMovies = searchParams.get("strings");
-const params = 'jou'
+    console.log('++++++++++++++ first +++++++++++', arrMovies)
 
+    const stringifyMovies = JSON.stringify(arrMovies);
+    
   if (req.method === "GET") {
       
-      if (!params) {
-        
-      return NextResponse.json({ error: "Movie titles are required" });
-    }
-
-    const movieTitles = Array.isArray(params) ? params : [params];
+      if (!arrMovies) {
+        return NextResponse.json({ error: "Movie titles are required" });
+      }
 
     try {
-    //     const movies = await quizMovies(arrMovies);
+        const movies = await quizMovies(stringifyMovies);
 
-    //     console.log('SERVER RESPONSE', movies)
-    //   return NextResponse.json(movies);
+     console.log('SERVER RESPONSE', movies)
+      return NextResponse.json(movies);
     } catch (error: any) {
       console.error("Error fetching quiz movies:", error.message);
       return NextResponse.json({ error: "Failed to fetch quiz movies" });
