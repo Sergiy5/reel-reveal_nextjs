@@ -1,14 +1,14 @@
-import { Movie, OpenAiResponse } from '@/types';
+import { OpenAiResponse } from '@/types';
 import axios from 'axios';
 
 
-const Back_END_URL = 'http://localhost:5000/api/openai';
+const Back_END_URL = '/server/routes/openAI';
 
-export const getOpenAiAPI = async (
+export const quizDataFromOpenAI = async (
   requestArray: string[],
   existedMovies: string[]
 ): Promise<OpenAiResponse> => {
-  const promptText = `
+  const prompt = `
   - You are a connoisseur of films and everything related to them, music, actors, genres, the year the film was released, what film genres the actor is associated with.
   - Find 7 movies, one for each element form the array ${requestArray}.
   - Search for lesser-known films.
@@ -21,12 +21,13 @@ export const getOpenAiAPI = async (
 
   try {
     const result = await axios.post<{ response: string }>(Back_END_URL, {
-      promptText,
+      prompt,
     });
+
+    console.log(result)
     const res: OpenAiResponse = JSON.parse(result.data.response);
 
     return res;
-    
   } catch (error) {
     console.log("getOpenAiAPI error", error);
   }

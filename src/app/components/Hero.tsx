@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
           finding the perfect movie match.
         </p>
 
-        <Link href="#" className={`link-btn w-[285px]`}>
+        <Link href="/quiz" className={`link-btn w-[285px]`}>
           start quiz
         </Link>
       </article>

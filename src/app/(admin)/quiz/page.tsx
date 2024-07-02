@@ -1,11 +1,13 @@
-'use client'
+"use client";
 
+import { HowItWorks } from "@/app/components/HowItWorks";
 import { Quiz } from "@/app/components/Quiz";
 
 export default function Home() {
-    return (
-        <main>
-            <Quiz />
+  return (
+    <main>
+      <Quiz />
+      <HowItWorks />
     </main>
-)
-} 
+  );
+}

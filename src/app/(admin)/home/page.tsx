@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getUpcomingMovies, topRatedMovies } from "@/api";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
@@ -14,6 +13,9 @@ import { Genres } from "@/app/components/Genres";
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
   const deviceType: DeviceType = useDeviceType();
+  const upcomingURL = process.env.NEXT_PUBLIC_UPCOMING_MOVIES_URL;
+  const topRatedURL = process.env.NEXT_PUBLIC_TOP_RATED_MOVIES_URL;
+
 
   useEffect(() => {
     setIsClient(true);
@@ -24,11 +26,8 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <Quiz />
-      <GetShowMovies
-        title={"Upcoming 20 movies in 2024"}
-        getMovies={getUpcomingMovies}
-      />
-      <GetShowMovies title={"TOP 20 rated movies"} getMovies={topRatedMovies} />
+      <GetShowMovies title={"Upcoming 20 movies in 2024"} url={upcomingURL} />
+      <GetShowMovies title={"TOP 20 rated movies"} url={topRatedURL} />
       <Genres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>

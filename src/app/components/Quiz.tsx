@@ -6,7 +6,8 @@ import { firstElementsFromArray, scrollToY } from "@/lib";
 import { Movie } from "@/types";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { getOpenAiAPI, getQuizMovies } from "@/api";
+import { quizDataFromOpenAI } from "@/api";
+import axios from "axios";
 
 export const Quiz = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -40,7 +41,8 @@ export const Quiz = () => {
       setIsLoading(true);
 
       try {
-        const response = await getOpenAiAPI(quizMovies, existedMovies);
+        const response = await quizDataFromOpenAI(quizMovies, existedMovies);
+
         if (!response) {
           setIsLoading(false);
           alert("Error... Try again");
@@ -60,12 +62,19 @@ export const Quiz = () => {
     if (!moviesFromOpenaiApi.length) return;
 
     const getMoviesFromAIResult = async (movies: string[]) => {
+
+const params = {
+  strings: JSON.stringify(movies), // Convert array to JSON string
+};
+
       try {
-        const response = await getQuizMovies(movies);
+        const response = await axios.get(
+          `/server/routes/getQuizMovies`, {params}
+        );
+console.log("RESPONSE IN QUIZ", response)
+        // const result = firstElementsFromArray(response);
 
-        const result = firstElementsFromArray(response);
-
-        if (result) setListMovies(result);
+        // if (result) setListMovies(result);
 
         setIsQuizActive(false);
         scrollToY(1440);

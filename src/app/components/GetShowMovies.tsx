@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GetShowMoviesProps, Movie } from "@/types";
 import { MySlider } from "./MySlider";
+import axios from "axios";
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
-  getMovies,
+  url,
 }) => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
@@ -12,15 +13,17 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   useEffect(() => {
     const getAllMovies = async (page = 1) => {
       try {
-        const response = await getMovies(page);
-        setAllMovies(response);
+        const response = await axios.get(`${url}page=${page}`);
+        const result = response.data as Movie[];
+        
+        setAllMovies(result);
       } catch (error) {
         console.log("Get Show Movies", error);
       }
     };
 
     getAllMovies();
-  }, [getMovies]);
+  }, [url]);
 
   return (
     <div
