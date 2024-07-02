@@ -20,13 +20,11 @@ const arrMovies = searchParams.get("strings");
     try {
         const movies = await quizMovies(stringifyMovies);
 
-     console.log('SERVER RESPONSE', movies)
-      return NextResponse.json(movies);
+        return NextResponse.json(movies);
+        
     } catch (error: any) {
       console.error("Error fetching quiz movies:", error.message);
       return NextResponse.json({ error: "Failed to fetch quiz movies" });
     }
-  } else {
-    return NextResponse.json({ error: "Method not allowed" });
-  }
+  } 
 }
