@@ -22,7 +22,10 @@ const arrMovies = searchParams.get("strings");
         
     } catch (error: any) {
       console.error("Error fetching quiz movies:", error.message);
-      return NextResponse.json({ error: "Failed to fetch quiz movies" });
+      return NextResponse.json(
+        { error: "Failed to fetch quiz movies" },
+        { status: 500 }
+      );
     }
   } 
 }
