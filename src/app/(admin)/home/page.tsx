@@ -26,8 +26,14 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <Quiz />
-      <GetShowMovies title={"Upcoming 20 movies in 2024"} url={upcomingURL} />
-      <GetShowMovies title={"TOP 20 rated movies"} url={topRatedURL} />
+      <GetShowMovies
+        title={"Upcoming 20 movies in 2024"}
+        url={"/api/getUpcomingMovies?"}
+      />
+      <GetShowMovies
+        title={"TOP 20 rated movies"}
+        url={"/api/getTopRatedMovies?"}
+      />
       <Genres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>

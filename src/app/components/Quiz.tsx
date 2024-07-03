@@ -69,7 +69,7 @@ export const Quiz = () => {
       };
 
       try {
-        const response = await axios.get(`/server/routes/getQuizMovies`, {
+        const response = await axios.get(`/api/getQuizMovies`, {
           params,
         });
         console.log("RESPONSE IN QUIZ", response);

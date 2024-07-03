@@ -2,7 +2,7 @@ import { OpenAiResponse } from '@/types';
 import axios from 'axios';
 
 
-const Back_END_URL = '/server/routes/openAI';
+const Back_END_URL = '/api/postOpenAI';
 
 export const quizDataFromOpenAI = async (
   requestArray: string[],

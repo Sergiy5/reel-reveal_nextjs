@@ -2,14 +2,14 @@ import { OpenAI } from "openai";
 
 export const POST = async (req: Request) => {
 
+  console.log('+++++++++++++++ POST ++++++++++')
+  
   if (req.method !== "POST") Response.json({ error: "Method not allowed" });
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const { prompt } = await req.json();
 
-  if (!prompt) {
-    return Response.json({ error: "Prompt is required" });
-  }
+  if (!prompt) Response.json({ error: "Prompt is required" });
 
   try {
     const result = await openai.chat.completions.create({
