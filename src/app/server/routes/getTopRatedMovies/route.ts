@@ -1,9 +1,9 @@
 import { fetchMovies } from "../../controllers/fetchMovies";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (
+export async function GET (
   req: NextRequest,
-) => {
+) {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page");
     if (req.method === "GET") {
