@@ -2,12 +2,10 @@ import { quizMovies } from "../../controllers/quizMovies";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
-  req: NextRequest,
-  res: NextResponse
+  req: NextRequest
 ) => {
 const { searchParams } = new URL(req.url);
 const arrMovies = searchParams.get("strings");
-    console.log('++++++++++++++ first +++++++++++', arrMovies)
 
     const stringifyMovies = JSON.stringify(arrMovies);
     
