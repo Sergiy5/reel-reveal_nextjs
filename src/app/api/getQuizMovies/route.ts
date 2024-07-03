@@ -1,4 +1,4 @@
-import { quizMovies } from "../../controllers/quizMovies";
+import { quizMovies } from "@/app/actions/quizMovies";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (

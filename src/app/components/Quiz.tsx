@@ -6,15 +6,17 @@ import { firstElementsFromArray, scrollToY } from "@/lib";
 import { Movie } from "@/types";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { quizDataFromOpenAI } from "@/api";
+import { quizDataFromOpenAI } from "@/app/api";
 import axios from "axios";
 
 export const Quiz = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [moviesFromOpenaiApi, setTitleMoviesFromOpenaiApi] = useState<string[]>([]);
-  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState<string[]>(
+  const [moviesFromOpenaiApi, setTitleMoviesFromOpenaiApi] = useState<string[]>(
     []
   );
+  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState<
+    string[]
+  >([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,16 +64,15 @@ export const Quiz = () => {
     if (!moviesFromOpenaiApi.length) return;
 
     const getMoviesFromAIResult = async (movies: string[]) => {
-
-const params = {
-  strings: JSON.stringify(movies), // Convert array to JSON string
-};
+      const params = {
+        strings: JSON.stringify(movies), // Convert array to JSON string
+      };
 
       try {
-        const response = await axios.get(
-          `/server/routes/getQuizMovies`, {params}
-        );
-console.log("RESPONSE IN QUIZ", response)
+        const response = await axios.get(`/server/routes/getQuizMovies`, {
+          params,
+        });
+        console.log("RESPONSE IN QUIZ", response);
         // const result = firstElementsFromArray(response);
 
         // if (result) setListMovies(result);
