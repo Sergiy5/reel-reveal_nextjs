@@ -6,7 +6,7 @@ import { MySlider } from "./MySlider";
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
-  url,
+  category
 }) => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
@@ -14,18 +14,19 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   useEffect(() => {
     const getAllMovies = async (page = 1) => {
       try {
-        const response = await fetch(`${url}page=1`);
+        const response = await fetch(
+          `/api/movies?category=${category}&page=${page}`
+        );
         const data = await response.json();
-        // console.log(data);
-        
-        setAllMovies(data as Movie[]);
+
+        setAllMovies(data);
       } catch (error) {
         console.log("Get Show Movies", error);
       }
     };
 
     getAllMovies();
-  }, [url]);
+  }, [category]);
 
   return (
     <div

@@ -28,12 +28,9 @@ export default function Home() {
       <Quiz />
       <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
-        url={"/api/getUpcomingMovies?"}
+        category={"upcoming"}
       />
-      <GetShowMovies
-        title={"TOP 20 rated movies"}
-        url={"/api/getTopRatedMovies?"}
-      />
+      <GetShowMovies title={"TOP 20 rated movies"} category={"top_rated"} />
       <Genres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>

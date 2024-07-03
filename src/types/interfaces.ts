@@ -61,7 +61,7 @@ export interface MySliderProps {
 
 export interface GetShowMoviesProps {
   title: string;
-  url: string | undefined;
+  category: string;
   // getMovies: (page: number) => Promise<Movie[]>;
 }
 
