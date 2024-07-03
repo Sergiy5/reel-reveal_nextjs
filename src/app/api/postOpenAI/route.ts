@@ -2,8 +2,6 @@ import { OpenAI } from "openai";
 
 export const POST = async (req: Request) => {
 
-  console.log('+++++++++++++++ POST ++++++++++')
-  
   if (req.method !== "POST") Response.json({ error: "Method not allowed" });
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

@@ -1,4 +1,6 @@
-import { fetchMovies } from "@/app/actions/fetchMovies";
+import axios from "axios";
+// import { fetchMovies } from "@/app/actions/fetchMovies";
+
 
 export async function GET(req: Request) {
   
@@ -7,10 +9,19 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page");
 
+  // try {
+  //   const upcomingMovies = await fetchMovies("upcoming", page as string);
+  const apiKey = process.env.TMDB_API_KEY;
+const category: string | undefined = 'upcoming'
   try {
-    const upcomingMovies = await fetchMovies("upcoming", page as string);
+    const url = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}&api_key=${apiKey}`;
 
-    return Response.json(upcomingMovies);
+    const response = await axios.get(url).then((res) =>res.data.results);
+
+    return Response.json(response);
+
+    // return response.data.results as Movie[];
+    // return Response.json(upcomingMovies);
   } catch (error) {
     console.error(error);
 
