@@ -13,10 +13,11 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   useEffect(() => {
     const getAllMovies = async (page = 1) => {
       try {
-        const response = await axios.get(`${url}page=${page}`);
-        const result = response.data as Movie[];
+        const response = await fetch(`${url}page=${page}`);
+        const data = await response.json();
+        console.log(data);
         
-        setAllMovies(result);
+        setAllMovies(data as Movie[]);
       } catch (error) {
         console.log("Get Show Movies", error);
       }
