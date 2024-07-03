@@ -1,11 +1,11 @@
 import axios from "axios";
 import { Movie } from "@/types";
 
-export const fetchMovies = async (
+const fetchMovies = async (
   category: string | undefined,
   page: string | undefined
 ): Promise<Movie[]> => {
-  
+
   const apiKey = process.env.TMDB_API_KEY;
 
   try {
