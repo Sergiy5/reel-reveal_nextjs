@@ -1,10 +1,8 @@
-'use server'
-
 import { generatorUrl } from "@/lib";
 import { Movie } from "@/types";
 
 export const getMovies = async (category: string, page: string): Promise<Movie[]> => {
-    
+
   const token = process.env.BEARER_TOKEN_TMDB;
   const url = generatorUrl(category, parseInt(page, 10));
 
