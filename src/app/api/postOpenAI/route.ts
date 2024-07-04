@@ -1,5 +1,9 @@
+'use server'
+
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 
 export const POST = async (req: Request) => {
   if (req.method !== "POST") {
