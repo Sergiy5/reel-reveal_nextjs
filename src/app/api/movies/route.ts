@@ -1,4 +1,5 @@
-import { getMovies } from "../../actions/getMovies";
+import { generatorUrl } from "@/lib";
+import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -20,13 +21,15 @@ export async function GET(
       { status: 400 }
     );
   }
-
+const token = process.env.BEARER_TOKEN_TMDB;
+  const url = generatorUrl(category, parseInt(page, 10));
+  
   try {
-    const movies = await getMovies(
-      category as string,
-      parseInt(page as string, 10)
-    );
-   
+    const movies = await axios.get(url, { headers: {
+        Authorization: `Bearer ${token}`,
+    },
+    })
+    
     return NextResponse.json(movies.data.results, {status: 200});
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, {status: 500});

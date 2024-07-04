@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { GetShowMoviesProps, Movie } from "@/types";
 import { MySlider } from "./MySlider";
+import {moviesFromTmdb} from '@/app/actions/moviesFromTmdb'
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
@@ -12,14 +13,11 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
 
   // Get first request movies
   useEffect(() => {
-    const getAllMovies = async (page = 1) => {
+    const getAllMovies = async (page = '1') => {
       try {
-        const response = await fetch(
-          `/api/movies?category=${category}&page=${page}`
-        );
-        const data = await response.json();
-
-        setAllMovies(data);
+        const response = await moviesFromTmdb(category, page);
+        
+        setAllMovies(response);
       } catch (error) {
         console.log("Get Show Movies", error);
       }
