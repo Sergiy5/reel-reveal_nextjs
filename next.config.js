@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-
 const nextConfig = {
   async redirects() {
     return [
       {
         source: "/",
         destination: "/home",
-        permanent: false, // Use true for a permanent redirect (301), false for a temporary redirect (302)
+        permanent: false,
       },
     ];
   },

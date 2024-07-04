@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { GetShowMoviesProps, Movie } from "@/types";
 import { MySlider } from "./MySlider";
-import {moviesFromTmdb} from '@/app/actions/moviesFromTmdb'
+import dynamic from "next/dynamic";
+import { moviesFromTmdb } from "../actions/moviesFromTmdb";
 
-export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
+
+const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
   category
 }) => {
@@ -35,3 +37,5 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
     </div>
   );
 };
+
+export default GetShowMovies;

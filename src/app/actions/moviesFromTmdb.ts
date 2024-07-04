@@ -1,5 +1,5 @@
-import { Movie } from "@/types";
 import axios from "axios";
+import { Movie } from "@/types";
 
 export const moviesFromTmdb = async (category: string, page: string): Promise<Movie[]> => {
     const params = new URLSearchParams({
