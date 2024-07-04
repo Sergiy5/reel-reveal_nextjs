@@ -3,6 +3,9 @@
 import axios from "axios";
 import { Movie } from "@/types";
 import { generatorUrl } from "@/lib";
+// import dynamic from "next/dynamic";
+
+// export const dynamic = "force-dynamic";
 
 export async function moviesFromTmdb(
   category: string,
