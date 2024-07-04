@@ -3,8 +3,6 @@
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
 
-export const dynamic = "force-dynamic";
-
 export const POST = async (req: Request) => {
   if (req.method !== "POST") {
     return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
