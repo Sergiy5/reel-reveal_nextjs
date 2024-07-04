@@ -25,6 +25,7 @@ const fetchData = async ( category: string,
   } catch (error: any) {
     return error.message;
   }
+  return []
 };
 
 export default async function Home (){
