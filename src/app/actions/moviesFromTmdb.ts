@@ -2,8 +2,9 @@
 
 import axios from "axios";
 import { Movie } from "@/types";
-
 import { generatorUrl } from "@/lib";
+
+export const dynamic = "force-dynamic";
 
 export const moviesFromTmdb = async (
   category: string,
