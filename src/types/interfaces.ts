@@ -61,7 +61,7 @@ export interface MySliderProps {
 
 export interface GetShowMoviesProps {
   title: string;
-  movies: Movie[];
+  category: string;
 }
 
 export interface ResponsDataTMbD {
