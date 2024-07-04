@@ -7,7 +7,8 @@ import { Genres } from "@/app/components/Genres";
 import { generatorUrl } from "@/lib";
 import { Movie } from '@/types';
 
-const fetchData = async ( category: string,
+const fetchData = async (
+  category: string,
   page: string
 ): Promise<Movie[]> => {
   
@@ -15,17 +16,22 @@ const fetchData = async ( category: string,
   const url = generatorUrl(category, parseInt(page, 10));
   
   try {
-    const movies = await fetch(url, {
-      next: {revalidate: 3600},
+    const response = await fetch(url, {
+      next: { revalidate: 3600 },
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then(res => res.json());
-    return movies.results;
+    }).then((res) => res.json());
+
+    if (!response) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.results || [];
   } catch (error: any) {
-    return error.message;
+    console.error("Fetch error:", error.message);
+    return [];
   }
-  return []
 };
 
 export default async function Home (){
