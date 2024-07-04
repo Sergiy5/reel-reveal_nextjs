@@ -9,7 +9,6 @@ import { moviesFromTmdb } from "../actions/moviesFromTmdb";
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
   category,
-  movies
 }) => {
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
