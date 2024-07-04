@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef, useState } from "react";
 import {default as Slider, Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";

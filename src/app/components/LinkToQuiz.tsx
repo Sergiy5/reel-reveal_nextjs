@@ -2,7 +2,13 @@ import Link from "next/link";
 import { TypeDevice, ViewWidth } from "@/types";
 
 export const LinkToQuiz: React.FC = () => {
-  
+  // const [isClient, setIsClient] = useState(false);
+  // const deviceType: DeviceType = useDeviceType();
+
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
+  // !isClient ? null : deviceType !== "mobile" &&
   return (
     <div
       className={` flex items-center justify-center flex-col gap-[28px] z-20 md:flex-row md:gap-12`}

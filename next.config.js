@@ -1,15 +1,16 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/",
-  //       destination: "/home",
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
+  reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: false,
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -25,7 +26,7 @@ const nextConfig = {
         hostname: "image.tmdb.org",
         pathname: "/t/p/**",
       },
-    ], 
+    ],
   },
 };
 

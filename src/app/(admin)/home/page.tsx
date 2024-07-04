@@ -1,24 +1,37 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { GetShowMovies } from '@/app/components/GetShowMovies';
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Quiz } from "@/app/components/Quiz";
-import { useDeviceType } from "@/hooks";
-import { DeviceType} from "@/types";
 import { Genres } from "@/app/components/Genres";
+import { generatorUrl } from "@/lib";
+import { Movie } from '@/types';
 
+const fetchData = async ( category: string,
+  page: string
+): Promise<Movie[]> => {
+  
+  const token = process.env.BEARER_TOKEN_TMDB;
+  const url = generatorUrl(category, parseInt(page, 10));
+  
+  try {
+    const movies = await fetch(url, {
+      next: {revalidate: 3600},
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(res => res.json());
+    return movies.results;
+  } catch (error: any) {
+    return error.message;
+  }
+};
 
-export default function Home (){
-  const [isClient, setIsClient] = useState(false);
-  const deviceType: DeviceType = useDeviceType();
+export default async function Home (){
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
+  const upcoming = await fetchData('upcoming', '1');
+  const topRated = await fetchData("top_rated", "1");
+  
   return (
     <main>
       <Hero />
@@ -26,14 +39,11 @@ export default function Home (){
       <Quiz />
       <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
-        category={"upcoming"}
+        movies={upcoming}
       />
-      <GetShowMovies
-        title={"TOP 20 rated movies"}
-        category={"top_rated"}
-      />
+      <GetShowMovies title={"TOP 20 rated movies"} movies={topRated} />
       <Genres />
-      {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
+      <LinkToQuiz />
     </main>
   );
 };
