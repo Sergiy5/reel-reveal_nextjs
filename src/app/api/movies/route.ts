@@ -21,7 +21,8 @@ export async function GET(
       { status: 400 }
     );
   }
-const token = process.env.BEARER_TOKEN_TMDB;
+  const token = process.env.BEARER_TOKEN_TMDB;
+  
   const url = generatorUrl(category, parseInt(page, 10));
   
   try {
