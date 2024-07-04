@@ -6,10 +6,10 @@ import { generatorUrl } from "@/lib";
 
 export const dynamic = "force-dynamic";
 
-export const moviesFromTmdb = async (
+export async function moviesFromTmdb(
   category: string,
   page: string
-): Promise<Movie[]> => {
+): Promise<Movie[]>{
     
   // const params = new URLSearchParams({
   //   category: category,
