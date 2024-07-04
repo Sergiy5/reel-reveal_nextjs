@@ -1,25 +1,37 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import {  } from ;
+import { GetShowMovies } from '@/app/components/GetShowMovies';
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { useDeviceType } from "@/hooks";
-import { DeviceType } from "@/types";
+import { DeviceType, Movie } from "@/types";
 import { Genres } from "@/app/components/Genres";
-import dynamic from "next/dynamic";
+import { GetStaticProps, NextPage } from "next";
+import { moviesFromTmdb } from "@/app/actions/moviesFromTmdb";
 
-export default function Home() {
+interface HomeProps {
+  movies: Movie[];
+}
+
+const Home: NextPage<HomeProps> = ({ movies }) => {
   const [isClient, setIsClient] = useState(false);
   const deviceType: DeviceType = useDeviceType();
 
-const DynamicGetShowMovies = dynamic(() => import("../../components/GetShowMovies"), {
-  ssr: false,
-});
  
 
+
+  // export async function getServerSideProps() {
+    
+  //   console.log(process.env.BEARER_TOKEN_TMDB);
+  //   return {
+  //     props: {
+  //       hello:'HELLO'
+  //     }
+  //   }
+  // }
 
   useEffect(() => {
     setIsClient(true);
@@ -30,16 +42,29 @@ const DynamicGetShowMovies = dynamic(() => import("../../components/GetShowMovie
       <Hero />
       <HowItWorks />
       <Quiz />
-      <DynamicGetShowMovies
+      <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
         category={"upcoming"}
+        movies={movies}
       />
-      <DynamicGetShowMovies
+      <GetShowMovies
         title={"TOP 20 rated movies"}
         category={"top_rated"}
+        movies={movies}
       />
       <Genres />
       {!isClient ? null : deviceType !== "mobile" && <LinkToQuiz />}
     </main>
   );
-}
+};
+export default Home
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   console.log(process.env.BEARER_TOKEN_TMDB);
+//   const movies = await moviesFromTmdb("upcoming", "1");
+//   console.log("first", movies);
+//   return {
+//     props: { movies },
+//     revalidate: 60,
+//   };
+// };
