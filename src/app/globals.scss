@@ -242,7 +242,7 @@ a {
 .slick-track {
   display: flex !important;
   left: -15% !important;
-  gap:10px;
+  gap: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -261,7 +261,6 @@ a {
   flex-direction: column;
   width: 100%;
   height: auto;
-  gap: 10px;
  
   @media (min-width: 1025px) {
     width: calc(100vw - 125px);

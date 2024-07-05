@@ -24,11 +24,10 @@ export const quizDataFromOpenAI = async (
       prompt,
     });
 
-    console.log(result)
     const res: OpenAiResponse = JSON.parse(result.data.response);
 
     return res;
-  } catch (error) {
-    console.log("getOpenAiAPI error", error);
+  } catch (error: any) {
+    console.log("getOpenAiAPI error", error.message);
   }
 };

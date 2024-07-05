@@ -7,27 +7,24 @@ import { Movie } from "@/types";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-import axios from "axios";
+import { getQuizMovies } from "../actions/getQuizMovies";
 
-export const Quiz = () => {
+export const Quiz: React.FC = () => {
+
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [moviesFromOpenaiApi, setTitleMoviesFromOpenaiApi] = useState<string[]>(
-    []
-  );
-  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState<
-    string[]
-  >([]);
+  const [titlesFromOpenaiApi, setTitlesFromOpenaiApi] = useState<string[]>([]);
+  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const clickLoadMore = (moviesArr: string[]) => {
-    if (!moviesArr.length) return;
+  const onClickLoadMore = (moviesArr: string[]) => {
+    // if (!moviesArr.length) return;
 
-    const filteredMovies = moviesArr.filter((movie) =>
-      allMoviesForOneSession.indexOf(movie)
-    );
-    setAllMoviesForOneSession((prev) => [...prev, ...filteredMovies]);
+    // const filteredMovies = moviesArr.filter((movie) =>
+    //   allMoviesForOneSession.indexOf(movie)
+    // );
+    // setAllMoviesForOneSession((prev) => [...prev, ...filteredMovies]);
   };
 
   const onNewQuiz = () => {
@@ -47,10 +44,10 @@ export const Quiz = () => {
 
         if (!response) {
           setIsLoading(false);
-          alert("Error... Try again");
+          alert("Error... fetch data");
           throw new Error();
         }
-        setTitleMoviesFromOpenaiApi(response);
+        setTitlesFromOpenaiApi(response);
       } catch (error) {
         console.error("Error fetch data from openai:", error);
       }
@@ -61,24 +58,19 @@ export const Quiz = () => {
 
   // Rquest to TMdB
   useEffect(() => {
-    if (!moviesFromOpenaiApi.length) return;
+    if (!titlesFromOpenaiApi.length) return;
 
-    const getMoviesFromAIResult = async (movies: string[]) => {
-      const params = {
-        strings: JSON.stringify(movies), // Convert array to JSON string
-      };
-
-      try {
-        const response = await axios.get(`/api/getQuizMovies`, {
-          params,
-        });
-        console.log("RESPONSE IN QUIZ", response);
-        // const result = firstElementsFromArray(response);
-
-        // if (result) setListMovies(result);
+const  getArrMovies =async(movies: string[]) =>{
+         try {
+           const response = await getQuizMovies(movies);
+           
+           const result = firstElementsFromArray(response);
+           
+        if (result) setListMovies(result);
 
         setIsQuizActive(false);
-        scrollToY(1440);
+           scrollToY(1440);
+           
       } catch (error) {
         console.log("Error in Quiz!!!", error);
       } finally {
@@ -86,10 +78,10 @@ export const Quiz = () => {
       }
     };
 
-    const lastArrayFromAI = moviesFromOpenaiApi.slice(-7);
+    const lastArrayFromAI = titlesFromOpenaiApi.slice(-7);
 
-    getMoviesFromAIResult(lastArrayFromAI);
-  }, [moviesFromOpenaiApi]);
+    getArrMovies(lastArrayFromAI);
+  }, [titlesFromOpenaiApi]);
 
   return (
     <div
@@ -106,7 +98,7 @@ export const Quiz = () => {
         <QuizListMovies
           isQuizActive={onNewQuiz}
           arrMovies={listMovies}
-          onLoadMoreCard={clickLoadMore}
+          onLoadMoreCard={onClickLoadMore}
         />
       )}
       <div

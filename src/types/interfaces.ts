@@ -65,11 +65,7 @@ export interface GetShowMoviesProps {
 }
 
 export interface ResponsDataTMbD {
-  arrMovies: {
-    data: {
-      results: Movie[];
-    };
-  }[];
+  results: Movie[];
 }
 
 export interface LoadMoreCard {

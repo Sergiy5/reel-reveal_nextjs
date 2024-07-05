@@ -49,10 +49,9 @@ const sliderRef = useRef<Slider>(null);
 
   useEffect(() => {
     const handleImagesLoad = () => {
-      setKey((prevKey) => prevKey + 1); // Force re-render by changing key
+      setKey((prevKey) => prevKey + 1);
     };
 
-    // Assume all images have loaded
     handleImagesLoad();
   }, [arrMovies]);
 

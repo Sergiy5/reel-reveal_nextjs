@@ -6,5 +6,5 @@ export { loadMoreCard } from "./loadMoreCard";
 export { getMovieTitleFromPath } from "./getMovieTitleFromPath";
 export { nextQuestion } from "./nextQuestion";
 export { capitalizeFirstLetter } from "./capitalizeFirstLetter";
-export { generatorUrl} from "./generatorUrl";
-// export { sliceMoviesPerPage } from './sliceMoviesPerPage';
+export { getTmdbUrl } from "./getTmdbUrl";
+

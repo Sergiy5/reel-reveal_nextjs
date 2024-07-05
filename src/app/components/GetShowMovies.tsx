@@ -8,7 +8,6 @@ import { getMovies } from "../actions/getMovies";
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({ title, category }) => {
 const [movies, setMovies] = useState<Movie[]>([])
 
-
   useEffect(() => {
 const upcomingTopRatedMovies = async (page = '1') => {
 try {

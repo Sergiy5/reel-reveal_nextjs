@@ -1,4 +1,4 @@
-export const generatorUrl = (
+export const getTmdbUrl = (
   category: string,
   page: number,
   searchingMovie?: string
