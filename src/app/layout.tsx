@@ -3,11 +3,23 @@ import localFont from "next/font/local";
 import "./globals.scss";
 
 const ceraProLight = localFont({
-  src: "fonts/cera-pro/CeraPro-Light.woff2",
-  style: "normal",
-  variable: "--cera-pro__light",
+  src: [
+    {
+      path: "../../public/fonts/cera-pro/CeraPro-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/cera-pro/CeraPro-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--cera-pro",
 });
-
+// "../../public/fonts/cera-pro/CeraPro-Light.woff2",
+//   style: "normal",
+//   variable: "--cera-pro__light
 export const metadata: Metadata = {
   title: "Reel-Reveal",
   description: "Movie quiz based on OpenAi",
