@@ -9,35 +9,35 @@
 }
 
 @layer base {
-  @font-face {
-    font-family: "CeraPro-Light";
-    src: url("/fonts/cera-pro/CeraPro-Light.woff2") format("woff2");
-    font-style: normal;
-    font-display: swap;
-  }
+  // @font-face {
+  //   font-family: "CeraPro-Light";
+  //   src: url("/fonts/cera-pro/CeraPro-Light.woff2") format("woff2");
+  //   font-style: normal;
+  //   font-display: swap;
+  // }
 
-  @font-face {
-    font-family: "CeraPro-Medium";
-    src: url("/fonts/cera-pro/CeraPro-Medium.woff2") format("woff2");
-    font-style: normal;
-    font-display: swap;
-  }
+  // @font-face {
+  //   font-family: "CeraPro-Medium";
+  //   src: url("/fonts/cera-pro/CeraPro-Medium.woff2") format("woff2");
+  //   font-style: normal;
+  //   font-display: swap;
+  // }
 
-  @font-face {
-    font-family: "CeraPro-Bold";
-    src: url("/fonts/cera-pro/CeraPro-Bold.woff2") format("woff2");
-    font-style: normal;
-    font-display: swap;
-  }
+  // @font-face {
+  //   font-family: "CeraPro-Bold";
+  //   src: url("/fonts/cera-pro/CeraPro-Bold.woff2") format("woff2");
+  //   font-style: normal;
+  //   font-display: swap;
+  // }
 
-  @font-face {
-    font-family: "CeraPro-Reg";
-    src: url("/fonts/cera-pro/CeraPro-Regular.woff2")
-      format("woff2");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+  // @font-face {
+  //   font-family: "CeraPro-Reg";
+  //   src: url("/fonts/cera-pro/CeraPro-Regular.woff2")
+  //     format("woff2");
+  //   font-weight: normal;
+  //   font-style: normal;
+  //   font-display: swap;
+  // }
   @font-face {
     font-family: "Hind-Bold";
     src: url("/fonts/hind/Hind-Bold.woff2") format("woff2");
@@ -66,6 +66,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  font-family: var(--cera-pro);
+  font-weight: 300;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
@@ -93,7 +95,7 @@ main {
 }
 
 code {
-  font-family: "mainFont", monospace;
+  font-family: var(--cera-pro), monospace;
 }
 
 p {
@@ -130,7 +132,8 @@ h2 {
 }
 
 h3 {
-  font-family: CeraPro-Bold;
+  font-family: var(--cera-pro);
+  font-weight: bold;
   font-size: 22px;
   line-height: 150%;
   line-height: 33px;
@@ -142,13 +145,15 @@ h3 {
 }
 
 h4 {
-  font-family: CeraPro-Light;
+  font-family: var(--cera-pro);
+  font-weight: 300;
   line-height: 32px;
   font-size: 28px;
 }
 
 h5 {
-  font-family: CeraPro-Medium;
+  font-family: var(--cera-pro);
+  font-weight: 500;
   line-height: 30px;
   font-size: 20px;
 }
@@ -161,7 +166,8 @@ ol {
 }
 
 span {
-  font-family: CeraPro-Reg;
+  font-family: var(--cera-pro);
+  font-weight: 400;
 }
 
 a {
@@ -220,7 +226,8 @@ a {
 }
 
 .header__link-btn {
-  font-family: CeraPro-Medium;
+  font-family: var(--cera-pro);
+  font-weight: 500;
   font-size: 20px;
 
   // line-height: 30px;
@@ -232,7 +239,7 @@ a {
   align-items: center;
   justify-content: center;
   height: 40px;
-  font-family: CeraPro-Bold;
+  font-family: var(--cera-pro);
   font-weight: 700;
   font-size: 18px;
   line-height: 333%;

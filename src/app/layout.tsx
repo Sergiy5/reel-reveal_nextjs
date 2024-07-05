@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
 
-const ceraProLight = localFont({
+const ceraPro = localFont({
   src: [
     {
       path: "../../public/fonts/cera-pro/CeraPro-Light.woff2",
@@ -11,6 +11,16 @@ const ceraProLight = localFont({
     },
     {
       path: "../../public/fonts/cera-pro/CeraPro-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/cera-pro/CeraPro-Medium.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/cera-pro/CeraPro-Bold.woff2",
       weight: "400",
       style: "normal",
     },
@@ -34,59 +44,16 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+
       <head>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
         <title>Reel-Reveal</title>
-
-        {/* It doesn't worked this preload fonts ... */}
-
-        <link
-          rel="preload"
-          href="/fonts/cera-pro/CeraPro-Light.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/public/fonts/cera-pro/CeraPro-Medium.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="../../public/fonts/cera-pro/CeraPro-Bold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        {/* <link
-          rel="preload"
-          href="/fonts/cera-pro/CeraPro-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/hind/Hind-Bold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/hind/Hind-SemiBold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        /> */}
       </head>
-      <body className={ceraProLight.className}>{children}</body>
+      
+      <body className={ceraPro.className}>{children}</body>
     </html>
   );
 }

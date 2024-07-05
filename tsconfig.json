@@ -34,8 +34,7 @@
     ".next/types/**/*.ts",
     ".next/types/app/(admin)/home/layout.tsx",
     "src/hooks/useResize.ts",
-    "build/types/**/*.ts"
-  ],
+     ],
   "exclude": [
     "node_modules"
   ]
