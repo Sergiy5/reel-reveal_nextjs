@@ -37,7 +37,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-family: var(--cera-pro), sans-serif;
+  font-family: var(--cera-pro);
   font-weight: 300;
   flex-direction: column;
   margin-left: auto;
@@ -81,7 +81,7 @@ h3 {
 }
 
 h1 {
-  font-family: 'Hind-Bold', sans-serif;
+  font-family: 'Hind-Bold';
   font-size: 40px;
   line-height: 120%;
 
@@ -92,7 +92,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Hind-SemiBold', sans-serif;
+  font-family: 'Hind-SemiBold';
   font-size: 38px;
   line-height: 124%;
 
@@ -140,7 +140,7 @@ li{
 }
 
 span {
-  font-family: var(--cera-pro), sans-serif;
+  font-family: var(--cera-pro);
   font-weight: 400;
 }
 
