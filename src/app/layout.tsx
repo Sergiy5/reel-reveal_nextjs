@@ -25,6 +25,7 @@ const ceraPro = localFont({
       style: "normal",
     },
   ],
+  fallback: ['system-ui', 'arial'],
   preload: true,
   variable: "--cera-pro",
 });
