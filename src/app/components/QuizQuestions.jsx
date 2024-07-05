@@ -40,7 +40,7 @@ export const QuizQuestions = ({ quizData }) => {
   return (
     <div className={`flex items-center flex-col justify-center w-full gap-12`}>
       <div className={` flex flex-row justify-between w-full gap-5`}>
-        <h2>
+        <h2 className=" font-semibold">
           <span className={` text-accentColor `}>{quiz}</span>
           {title}
         </h2>

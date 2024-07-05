@@ -25,6 +25,7 @@ const ceraPro = localFont({
       style: "normal",
     },
   ],
+  preload: true,
   variable: "--cera-pro",
 });
 
@@ -38,7 +39,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
 
   return (
     <html lang="en">
