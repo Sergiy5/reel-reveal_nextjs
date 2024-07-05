@@ -1,5 +1,3 @@
-"use client";
-
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { Quiz } from "@/app/components/Quiz";
 
