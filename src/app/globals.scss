@@ -9,35 +9,6 @@
 }
 
 @layer base {
-  // @font-face {
-  //   font-family: "CeraPro-Light";
-  //   src: url("/fonts/cera-pro/CeraPro-Light.woff2") format("woff2");
-  //   font-style: normal;
-  //   font-display: swap;
-  // }
-
-  // @font-face {
-  //   font-family: "CeraPro-Medium";
-  //   src: url("/fonts/cera-pro/CeraPro-Medium.woff2") format("woff2");
-  //   font-style: normal;
-  //   font-display: swap;
-  // }
-
-  // @font-face {
-  //   font-family: "CeraPro-Bold";
-  //   src: url("/fonts/cera-pro/CeraPro-Bold.woff2") format("woff2");
-  //   font-style: normal;
-  //   font-display: swap;
-  // }
-
-  // @font-face {
-  //   font-family: "CeraPro-Reg";
-  //   src: url("/fonts/cera-pro/CeraPro-Regular.woff2")
-  //     format("woff2");
-  //   font-weight: normal;
-  //   font-style: normal;
-  //   font-display: swap;
-  // }
   @font-face {
     font-family: "Hind-Bold";
     src: url("/fonts/hind/Hind-Bold.woff2") format("woff2");
@@ -164,6 +135,9 @@ ol {
   padding: 0;
   margin: 0;
 }
+li{
+  font-weight: 300;
+}
 
 span {
   font-family: var(--cera-pro);
@@ -187,6 +161,7 @@ h6 {
 }
 
 p {
+  font-weight: 300;
   font-size: 20px;
   line-height: 150%;
 }

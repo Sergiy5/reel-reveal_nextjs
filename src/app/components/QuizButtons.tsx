@@ -22,7 +22,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
             type="button"
             className={clsx(
               "flex items-center justify-center w-auto aspect-[285/200] px-2 rounded-xl sm:rounded-[18px] bg-quizBtnGradient border-[1px] border-transparent ",
-              "transition duration-300 ease-in-out hover:border-solid hover:scale-[1.01] hover:border-accentColor hover:text-accentColor",
+              "transition duration-300 ease-in-out hover:border-solid hover:border-accentColor hover:text-accentColor",
               
               {
                 // "focus:outline-2 focus:outline-accentColor focus:text-accentClickedColor":
@@ -30,7 +30,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
               }
             )}
           >
-            <p className=" font-normal text-xl sm:text-2xl md:text-3xl  text-inherit">
+            <p className=" text-xl sm:text-2xl md:text-3xl  text-inherit">
               {first}
               <br />
               {second}

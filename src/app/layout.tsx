@@ -16,20 +16,18 @@ const ceraPro = localFont({
     },
     {
       path: "../../public/fonts/cera-pro/CeraPro-Medium.woff2",
-      weight: "400",
+      weight: "500",
       style: "normal",
     },
     {
       path: "../../public/fonts/cera-pro/CeraPro-Bold.woff2",
-      weight: "400",
+      weight: "700",
       style: "normal",
     },
   ],
   variable: "--cera-pro",
 });
-// "../../public/fonts/cera-pro/CeraPro-Light.woff2",
-//   style: "normal",
-//   variable: "--cera-pro__light
+
 export const metadata: Metadata = {
   title: "Reel-Reveal",
   description: "Movie quiz based on OpenAi",
