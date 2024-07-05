@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.scss";
 
 const ceraProLight = localFont({
-  src: "../../public/fonts/cera-pro/CeraPro-Light.woff2",
+  src: "/fonts/cera-pro/CeraPro-Light.woff2",
   style: "normal",
   variable: "--cera-pro__light",
 });
@@ -30,8 +30,8 @@ export default function RootLayout({
         <title>Reel-Reveal</title>
 
         {/* It doesn't worked this preload fonts ... */}
-        
-        {/* <link
+
+        <link
           rel="preload"
           href="/fonts/cera-pro/CeraPro-Light.woff2"
           as="font"
@@ -40,19 +40,19 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="/fonts/cera-pro/CeraPro-Medium.woff2"
+          href="/public/fonts/cera-pro/CeraPro-Medium.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/cera-pro/CeraPro-Bold.woff2"
+          href="../../public/fonts/cera-pro/CeraPro-Bold.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
+        {/* <link
           rel="preload"
           href="/fonts/cera-pro/CeraPro-Regular.woff2"
           as="font"
