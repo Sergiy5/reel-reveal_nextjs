@@ -50,6 +50,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0"
         ></meta>
         <title>Reel-Reveal</title>
+        <link rel="preload" href="https://reel-reveal-nextjs.vercel.app/fonts/hind/Hind-Bold.woff2" as="font" crossOrigin="anonymous"></link>
       </head>
       
       <body className={ceraPro.className}>{children}</body>
