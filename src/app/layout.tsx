@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.scss";
 
 const ceraProLight = localFont({
-  src: "/fonts/cera-pro/CeraPro-Light.woff2",
+  src: "fonts/cera-pro/CeraPro-Light.woff2",
   style: "normal",
   variable: "--cera-pro__light",
 });
