@@ -13,7 +13,8 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     if (target.id === "load_more") {
-
+      console.log('TARGET',
+        target); 
       const filteredMovies = arrMovies.filter((movie) => movie.title);
       const arrExistedTitles = filteredMovies.map((movie) => movie.title);
 

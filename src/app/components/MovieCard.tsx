@@ -10,6 +10,14 @@ import Head from "next/head";
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
 
+  const handleMovie = (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+  ) => {
+    e.stopPropagation();
+// console.log(    e.currentTarget.dataset.movie)
+    return e.currentTarget.dataset.movie;
+  };
+
   const { poster_path, id, title } = movie;
 
   const poster = poster_path
@@ -26,26 +34,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         onMouseLeave={() => {
           setIsShowHover(false);
         }}
-        className={`movie-card_wrapper`}
+        className={` relative flex items-center justify-center w-full
+           aspect-auto text-transparent bg-contain`}
       >
-        {/* {id === "load_more" ? (
-          <button
-            id={id}
-            className={`flex w-auto h-auto text-textColor border border-white bg-transparent
-        transition duration-[350ms] ease-in-out
-        
-        hover:border-accentColor hover:text-accentColor
-        focus:border-accentColor focus:outline focus:outline-1 focus:outline-accentColor
-      `}
-          >
-            {textBtn}
-          </button>
-        ) : ( */}
-        <Head>
-          <link rel="preload" href={poster} as="image" />
-        </Head>
         <>
-          {isShowHover ? <MovieCardHover movie={movie} /> : null}
+          {isShowHover ? (
+            <MovieCardHover movie={movie} handleMovie={handleMovie} />
+          ) : null}
           <Image
             id={`${id}`}
             src={poster}
@@ -54,7 +49,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             height={428}
             quality={75}
             priority={true}
-            // sizes="(max-width: 285px) 100vw"
             className={`w-full h-full rounded-[18px]`}
           />
         </>

@@ -56,7 +56,9 @@ const sliderRef = useRef<Slider>(null);
   }, [arrMovies]);
 
   return (
-    <div className={`my-slyder_wrapper `}>
+    <div
+      className={` max-w-[1200px] flex flex-col w-full h-auto`}
+    >
       <Slider key={key} ref={sliderRef} {...settings}>
         {arrMovies.map((movie) => (
           <MovieCard key={nanoid()} movie={movie} />

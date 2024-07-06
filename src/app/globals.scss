@@ -226,28 +226,22 @@ a {
   }
 }
 
-.movie-card_wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  aspect-ratio: 285/428;
-  color: transparent;
-  background-size: contain;
-  border-radius: 18px;
-
-}
-
 .slick-track {
   display: flex !important;
   left: -15% !important;
-  gap: 10px;
+  gap: 12px;
 }
 
 @media screen and (min-width: 768px) {
   .slick-track {
     left: -5px !important;
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .slick-track {
+    gap: 20px;
   }
 }
 
@@ -255,18 +249,3 @@ a {
   width: 100%  !important;
 }
 
-.my-slyder_wrapper {
-    max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
- 
-  @media (min-width: 1025px) {
-    width: calc(100vw - 125px);
-  }
-
-  @media (min-width: 1281px) {
-    width: calc(100vw - 230px);
-  }
-}

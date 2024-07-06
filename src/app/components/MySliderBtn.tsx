@@ -34,7 +34,7 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = (
             !isActive,
           "focus:outline-2": !isActive,
         },
-        prevStyle ? "-left-8" : "-right-10"
+        prevStyle ? "-left-8" : "-right-8"
       )}
     >
       <ArrowIcon className={clsx(" ml-auto mr-auto text-inherit w-6 h-6 opacity-100", prevStyle)} />

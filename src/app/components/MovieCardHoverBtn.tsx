@@ -1,20 +1,20 @@
+import { MovieCardHoverBtnProps } from "@/types";
 import clsx from "clsx";
 
-export interface MovieCardHoverBtnProps {
-  id: string;
-  text: string;
-    isChecked: boolean;
-}
 
 export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   id,
   text,
   isChecked,
+  dataMovie,
+  onClick
 }): React.JSX.Element => {
   return (
     <>
-          <button
-              type="button"
+      <button
+        type="button"
+        data-movie={dataMovie}
+        onClick={onClick}
         className={clsx(
           `relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full
            border-solid border-[1px] transition-all duration-350 ease-in-out group`,
