@@ -57,7 +57,7 @@ const sliderRef = useRef<Slider>(null);
 
   return (
     <div
-      className={` max-w-[1200px] flex flex-col w-full h-auto`}
+      className={` max-w-[1200px] w-full flex flex-col h-auto`}
     >
       <Slider key={key} ref={sliderRef} {...settings}>
         {arrMovies.map((movie) => (

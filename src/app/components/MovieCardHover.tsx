@@ -59,6 +59,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
         </ul>
       </div>
       <span className="text-white">{title}</span>
-    </div>
+      </div>
+      
   );
 };

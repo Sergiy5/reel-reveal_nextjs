@@ -14,9 +14,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
     e.stopPropagation();
-// console.log(    e.currentTarget.dataset.movie)
+console.log(    e.currentTarget.dataset.movie)
     return e.currentTarget.dataset.movie;
   };
+
+  
 
   const { poster_path, id, title } = movie;
 
@@ -34,10 +36,14 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         onMouseLeave={() => {
           setIsShowHover(false);
         }}
-        className={` relative flex items-center justify-center w-full
-           aspect-auto text-transparent bg-contain`}
+        className={` flex px-1 items-center justify-center w-full
+           aspect-auto text-transparent bg-contain lg:px-2 xl:px-3`}
       >
-        <>
+        {/* Need to change !!! */}
+        {/* <Head>
+          <link rel="preload" href={poster} as="image" />
+        </Head> */}
+        <div className=" relative w-full">
           {isShowHover ? (
             <MovieCardHover movie={movie} handleMovie={handleMovie} />
           ) : null}
@@ -51,7 +57,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             priority={true}
             className={`w-full h-full rounded-[18px]`}
           />
-        </>
+        </div>
       </div>
     </div>
   );

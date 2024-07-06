@@ -228,24 +228,19 @@ a {
 
 .slick-track {
   display: flex !important;
-  left: -15% !important;
-  gap: 12px;
+  left: -14% !important;
+  // gap: 12px;
 }
 
 @media screen and (min-width: 768px) {
   .slick-track {
-    left: -5px !important;
-    gap: 16px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .slick-track {
-    gap: 20px;
+    left: 0 !important;
+    // gap: 16px;
   }
 }
 
 .slick-slide{
   width: 100%  !important;
+
 }
 
