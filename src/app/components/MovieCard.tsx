@@ -36,8 +36,8 @@ console.log(    e.currentTarget.dataset.movie)
         onMouseLeave={() => {
           setIsShowHover(false);
         }}
-        className={` flex px-1 items-center justify-center w-full
-           aspect-auto text-transparent bg-contain lg:px-2 xl:px-3`}
+        className={` flex p-1 items-center justify-center w-full
+           aspect-auto text-transparent bg-contain lg:p-2 xl:p-3`}
       >
         {/* Need to change !!! */}
         {/* <Head>
