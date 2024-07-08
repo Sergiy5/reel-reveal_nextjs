@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 import Slider from "react-slick";
@@ -8,14 +8,26 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FrameShot from "../../../public/icons/frame-shot.svg";
 import { getFilNameFromPath } from "@/lib";
+import { getPaths } from "../api/getPaths";
 
 export interface StuckOnMovieChoicesProps {
   images: string[];
 }
 
-export const StuckOnMovieChoices: React.FC<StuckOnMovieChoicesProps> = ({
-  images,
-}) => {
+export const StuckOnMovieChoices: React.FC = () => {
+  const [images, setFiles] = useState<string[]>([])
+
+  useEffect(() => {
+    const handler = async () => {
+      try {
+        const { files } = await getPaths();
+        setFiles(files)
+      } catch (error: any) {
+    console.log(error)
+      }
+    }
+handler()
+},[])
   
   const settings = {
     infinite: true,

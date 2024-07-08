@@ -5,15 +5,10 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import StuckOnMovieChoices from "@/app/components/StuckOnMovieChoices";
-import { getPaths } from "@/app/api/getPaths";
-
-
-
-
 
 export default async function Home() {
 
-  const { files } = await getPaths();
+  // const { files } = await getPaths();
 
   return (
     <main>
@@ -26,7 +21,7 @@ export default async function Home() {
       />
       <GetShowMovies title={"TOP 20 rated movies"} category={"top_rated"} />
       <Genres />
-      <StuckOnMovieChoices images={files} />
+      <StuckOnMovieChoices  />
       <TakeOurQuiz />
     </main>
   );
