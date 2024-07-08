@@ -1,18 +1,11 @@
-/**
- * !!! NEED TO REMOVE THIS
- * @param path : STRING
- * @returns Name : string
- */
 
-export const getFilNameFromPath = (filePath: string) => {
+export const getFilNameFromPath = (filePath: string, regExp: string) => {
 
-  const isDev = process.env.NODE_ENV 
-
-  const pathSegments = filePath.split(isDev ? "\\" : "/");
+  const pathSegments = filePath.split(regExp);
 
   const fileName = pathSegments[pathSegments.length - 1];
 
   // // Remove the file extension
-  const nameFile = fileName.split('.')[0];
+  const nameFile = fileName.split(".")[0];
   return nameFile;
 };

@@ -17,6 +17,11 @@ export interface StuckOnMovieChoicesProps {
 export const StuckOnMovieChoices: React.FC = () => {
   const [images, setFiles] = useState<string[]>([])
 
+  const isDev = process.env.NODE_ENV;
+
+  const regExp = isDev ? "\\" : "/"
+  
+  console.log("first3333", isDev);
 
   useEffect(() => {
     const handler = async () => {
@@ -72,7 +77,7 @@ handler()
       >
         <Slider {...settings}>
           {images.map((image) => {
-            const pathName = getFilNameFromPath(image);
+            const pathName = getFilNameFromPath(image, regExp);
             const title = pathName.replaceAll("-", " ");
 
             return (
