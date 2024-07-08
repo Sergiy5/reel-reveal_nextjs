@@ -1,13 +1,15 @@
 import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
-import { LinkToQuiz } from "@/app/components/LinkToQuiz";
+import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
+import StuckOnMovieChoices from "@/app/components/StuckOnMovieChoices";
+import { getPaths } from "@/app/actions/getPaths";
 
 export default async function Home() {
-  // const upcoming = await fetchData('upcoming', '1');
-  // const topRated = await fetchData("top_rated", "1");
+
+  const { files } = await getPaths();
 
   return (
     <main>
@@ -20,7 +22,10 @@ export default async function Home() {
       />
       <GetShowMovies title={"TOP 20 rated movies"} category={"top_rated"} />
       <Genres />
-      <LinkToQuiz />
+      <StuckOnMovieChoices images={files} />
+      <TakeOurQuiz />
     </main>
   );
 }
+
+    

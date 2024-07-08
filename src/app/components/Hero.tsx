@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const Hero: React.FC = () => {
-  
+
   return (
     <div
       className={`relative flex justify-between flex-col-reverse h-auto gap-6 lg:flex-row `}

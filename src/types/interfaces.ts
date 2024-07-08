@@ -96,3 +96,10 @@ export interface QuizBtnsProps {
 export interface MySliderBtnProps extends CustomArrowProps {
   prevStyle?: string;
 }
+
+export interface quizDataType {
+  quiz: string;
+  title: string;
+  options: string[];
+  page: number;
+}

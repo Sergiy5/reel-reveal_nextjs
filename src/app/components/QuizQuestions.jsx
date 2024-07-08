@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { QuizProgresBar } from './QuizProgresBar';
 import { QuizButtons } from './QuizButtons'
-import {quizDataList} from '../../../public/ststic-data/quizDataList'
+import {quizDataList} from '../../../public/quiz-data/quizDataList'
 import { useResize } from "@/hooks";
 import { nextQuestion } from "@/lib";
 

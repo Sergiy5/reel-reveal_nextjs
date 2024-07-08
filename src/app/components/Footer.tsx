@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { MainLogo } from "./MainLogo";
-import {FooterMenu} from './FooterMenu'
-import { FooterListSocial } from "./FooterListSocial";
-import CameraIcon from '../../../public/icons/camera.svg';
-import { DeviceType, TypeDevice} from "@/types";
-import { LinkToQuiz } from "./LinkToQuiz";
 import { useDeviceType } from "@/hooks";
+import { MainLogo } from "./MainLogo";
+import { FooterMenu } from "./FooterMenu";
+import { FooterListSocial } from "./FooterListSocial";
+import CameraIcon from "../../../public/icons/camera.svg";
+import { DeviceType, TypeDevice } from "@/types";
+import { LinkToQuiz } from "./LinkToQuiz";
 
 export const Footer: React.FC<TypeDevice> = () => {
-    const [isClient, setIsClient] = useState(false);
-    const deviceType: DeviceType = useDeviceType();
+  const [isClient, setIsClient] = useState(false);
+  const deviceType: DeviceType = useDeviceType();
 
-    useEffect(() => {
-      setIsClient(true);
-    }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <footer className={`relative flex w-full justify-center items-center`}>
