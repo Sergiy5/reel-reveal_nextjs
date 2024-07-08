@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import * as fs from "fs";
 import * as path from "path";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const getAllFiles = (
   dirPath: string,
@@ -22,7 +21,7 @@ const getAllFiles = (
   return arrayOfFiles;
 };
 
-export const GET = async (req: NextApiRequest) => {
+export const GET = async (req: NextRequest) => {
   const directoryPath = path.join(process.cwd(), "public", "carousel-images");
   const files = getAllFiles(directoryPath);
 
