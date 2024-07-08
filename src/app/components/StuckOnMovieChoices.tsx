@@ -19,9 +19,9 @@ export const StuckOnMovieChoices: React.FC = () => {
 
   const isDev = process.env.NODE_ENV;
 
-  const regExp = isDev ? "\\" : "/"
+  const regExp = isDev=== 'development' ? "\\" : "/"
   
-  console.log("first3333", isDev);
+  console.log("first3333", regExp);
 
   useEffect(() => {
     const handler = async () => {
@@ -79,7 +79,8 @@ handler()
           {images.map((image) => {
             const pathName = getFilNameFromPath(image, regExp);
             const title = pathName.replaceAll("-", " ");
-
+            console.log("pathName", pathName);
+            console.log("title", title);
             return (
               <div key={nanoid()} className={` relative cursor-pointer`}>
                 <FrameShot className={`w-[288px] h-auto`} />
