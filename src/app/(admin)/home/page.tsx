@@ -5,7 +5,17 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import StuckOnMovieChoices from "@/app/components/StuckOnMovieChoices";
-import { getPaths } from "@/app/actions/getPaths";
+
+export const getPaths = async () => {
+  const res = await fetch("http://localhost:3000/api/files");
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+};
+
+
 
 export default async function Home() {
 
