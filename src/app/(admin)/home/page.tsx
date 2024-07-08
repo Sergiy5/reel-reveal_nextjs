@@ -6,16 +6,19 @@ import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import StuckOnMovieChoices from "@/app/components/StuckOnMovieChoices";
 
-export const getPaths = async () => {
+interface FileData {
+  files: string[];
+}
+
+export const getPaths = async (): Promise<FileData> => {
   const res = await fetch("http://localhost:3000/api/files");
+  
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
 
   return res.json();
 };
-
-
 
 export default async function Home() {
 
