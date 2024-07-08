@@ -6,7 +6,9 @@
 
 export const getFilNameFromPath = (filePath: string) => {
 
-  const pathSegments = filePath.split("\\");
+  const isDev = process.env.NODE_ENV 
+
+  const pathSegments = filePath.split(isDev ? "\\" : "/");
 
   const fileName = pathSegments[pathSegments.length - 1];
 

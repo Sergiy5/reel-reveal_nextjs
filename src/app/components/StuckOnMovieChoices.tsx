@@ -17,6 +17,7 @@ export interface StuckOnMovieChoicesProps {
 export const StuckOnMovieChoices: React.FC = () => {
   const [images, setFiles] = useState<string[]>([])
 
+
   useEffect(() => {
     const handler = async () => {
       try {
