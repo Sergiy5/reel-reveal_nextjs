@@ -81,7 +81,7 @@ export interface LoadMoreCard {
 
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
-  isQuizActive: () => void;
+  clearPrevQuiz: () => void;
   onLoadMoreCard: (onLoadMoreCard: string[]) => void;
 }
 

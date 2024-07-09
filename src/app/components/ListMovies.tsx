@@ -1,28 +1,14 @@
 import { nanoid } from "nanoid";
 import React from "react";
-import { CombinedMovieArr, ListMoviesProps } from "@/types";
+import { ListMoviesProps } from "@/types";
 import { MovieCard } from "./MovieCard";
-import { loadMoreCard } from "@/lib";
 
 export const ListMovies: React.FC<ListMoviesProps> = ({
   movies,
-  // onLoadMore,
 }) => {
-  const handleClickLoadMore = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if ((e.target as HTMLElement).id === "load_more") {
-      const movieTitles = movies.map((movie) => movie.title);
-      console.log(e)
-      // return onLoadMore(movieTitles);
-    } else {
-
-    }
-  };
-
+ 
   return (
-    <div
-      onClick={handleClickLoadMore}
-      className="grid grid-cols-8 w-full h-auto sm:grid-cols-4 sm:items-center"
-    >
+    <div className="grid grid-cols-8 w-full h-auto sm:grid-cols-4 sm:items-center">
       {movies.map((item) => (
         <MovieCard key={nanoid()} item={item} />
       ))}
@@ -37,7 +23,8 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
         focus:border-accentColor focus:outline focus:outline-1 focus:outline-accentColor active:border-accentClicked
       `}
         >
-          load more
+          This feature is still under development
+          {/* load more */}
         </button>
       </div>
     </div>

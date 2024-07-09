@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Movie Discovery Platform
 
-## Getting Started
+Welcome to the Movie Discovery Platform, a web application built with Next.js where you can explore a vast collection of movies, get detailed information, take quizzes to discover personalized recommendations, and enjoy an enhanced movie-watching experience.
 
-First, run the development server:
+Overview
 
-```bash
+The Movie Discovery Platform combines the wealth of information from TMdB with the cutting-edge capabilities of OpenAI to offer personalized movie suggestions. Whether you're in the mood for a feel-good movie, an intense thriller, or something suitable for a specific age group, our platform is designed to simplify your movie selection process.
+
+Key Features
+Comprehensive Movie Information: Access detailed information, ratings, reviews, and more from TMdB.
+Interactive Quiz: Take a fun quiz to understand your movie preferences better.
+Personalized Recommendations: Receive tailored movie suggestions based on your quiz responses, powered by OpenAI.
+Technologies Used
+Next.js: A React framework for building server-side rendered and static web applications.
+React: A JavaScript library for building user interfaces, ensuring responsiveness and interactivity.
+TypeScript: A typed superset of JavaScript that enhances code quality and maintainability.
+Slick-Slider: A carousel component for creating responsive sliders and carousels.
+Tailwind CSS: A utility-first CSS framework for rapid UI development.
+Sass: A CSS preprocessor for advanced stylesheet features like variables, nesting, and mixins.
+Why This Project?
+Finding the perfect movie to watch can be daunting with so many options available. This project aims to streamline your decision-making process by offering tailored recommendations based on your preferences. Whether you're exploring new releases or classics, our platform ensures you find movies that match your tastes.
+
+Getting Started
+Installation
+Clone the repository:
+
+bash
+Копіювати код
+git clone https://github.com/your-username/movie-discovery.git
+Navigate into the project directory:
+
+bash
+Копіювати код
+cd movie-discovery
+Install dependencies:
+
+bash
+Копіювати код
+npm install
+# or
+yarn install
+Running the Application
+bash
+Копіювати код
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open your browser and navigate to http://localhost:3000 to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Contributing
+Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Fork the repository.
+Create a new branch (git checkout -b feature/my-feature).
+Make your changes.
+Commit your changes (git commit -am 'Add new feature').
+Push to the branch (git push origin feature/my-feature).
+Create a new Pull Request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+License
+This project is licensed under the MIT License.

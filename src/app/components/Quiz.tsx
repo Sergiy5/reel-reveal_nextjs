@@ -19,6 +19,7 @@ export const Quiz: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onClickLoadMore = (moviesArr: string[]) => {
+    // console.log("first", moviesArr);
     // if (!moviesArr.length) return;
 
     // const filteredMovies = moviesArr.filter((movie) =>
@@ -27,7 +28,7 @@ export const Quiz: React.FC = () => {
     // setAllMoviesForOneSession((prev) => [...prev, ...filteredMovies]);
   };
 
-  const onNewQuiz = () => {
+  const clearPrevQuiz = () => {
     setIsQuizActive(true);
     setAllMoviesForOneSession([]);
     setQuizResult([]);
@@ -41,7 +42,7 @@ export const Quiz: React.FC = () => {
 
       try {
         const response = await quizDataFromOpenAI(quizMovies, existedMovies);
-
+console.log('AI', response)
         if (!response) {
           setIsLoading(false);
           alert("Error... fetch data");
@@ -65,7 +66,7 @@ const  getArrMovies =async(movies: string[]) =>{
            const response = await getQuizMovies(movies);
            
            const result = firstElementsFromArray(response);
-           
+           console.log("result", result);
         if (result) setListMovies(result);
 
         setIsQuizActive(false);
@@ -96,7 +97,7 @@ const  getArrMovies =async(movies: string[]) =>{
         <QuizQuestions quizData={setQuizResult} />
       ) : (
         <QuizListMovies
-          isQuizActive={onNewQuiz}
+          clearPrevQuiz={clearPrevQuiz}
           arrMovies={listMovies}
           onLoadMoreCard={onClickLoadMore}
         />
