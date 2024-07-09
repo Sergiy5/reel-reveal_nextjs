@@ -4,11 +4,9 @@ import { HowItWorks } from "@/app/components/HowItWorks";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
-import StuckOnMovieChoices from "@/app/components/StuckOnMovieChoices";
+import SliderCarousel from "@/app/components/SliderCarousel";
 
 export default async function Home() {
-
-  // const { files } = await getPaths();
 
   return (
     <main>
@@ -21,7 +19,7 @@ export default async function Home() {
       />
       <GetShowMovies title={"TOP 20 rated movies"} category={"top_rated"} />
       <Genres />
-      <StuckOnMovieChoices  />
+      <SliderCarousel />
       <TakeOurQuiz />
     </main>
   );

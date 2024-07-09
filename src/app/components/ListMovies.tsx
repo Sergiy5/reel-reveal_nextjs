@@ -24,7 +24,7 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
       className="grid grid-cols-8 w-full h-auto sm:grid-cols-4 sm:items-center"
     >
       {movies.map((item) => (
-        <MovieCard key={nanoid()} movie={item} />
+        <MovieCard key={nanoid()} item={item} />
       ))}
       <div className="flex h-full lg:p-2 xl:p-3 ">
         <button

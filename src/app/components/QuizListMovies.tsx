@@ -2,6 +2,8 @@ import { useResize } from "@/hooks";
 import { ListMovies } from "./ListMovies";
 import { MySlider } from "./MySlider";
 import { QuizListMoviesProps } from "@/types";
+import { MovieCard } from "./MovieCard";
+import { Settings } from "react-slick";
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   arrMovies,
@@ -22,6 +24,37 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
     }
   };
 
+ const settings: Settings = {
+   pauseOnHover: true,
+   slidesToShow: 4,
+   slidesToScroll: 4,
+   infinite: false,
+   arrows: false,
+   pauseOnFocus: true,
+   initialSlide: 0,
+   lazyLoad: "ondemand",
+   responsive: [
+     {
+       breakpoint: 1024,
+       settings: {
+         arrows: false,
+         slidesToShow: 2,
+         slidesToScroll: 2,
+       },
+     },
+     {
+       breakpoint: 769,
+       settings: {
+         arrows: false,
+         centerMode: true,
+         centerPadding: "10%",
+         slidesToShow: 1,
+         slidesToScroll: 1,
+       },
+     },
+   ],
+ };
+
   return (
     <div
       onClick={handleClick}
@@ -32,7 +65,13 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
       {viewWidth > 1024 ? (
         <ListMovies movies={arrMovies} onLoadMore={onLoadMoreCard} />
       ) : (
-        <MySlider arrMovies={arrMovies} />
+              <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>
+        <MySlider
+          arraySlides={arrMovies}
+          SlideComponent={MovieCard}
+          settings={settings}
+        />
+              </div>
       )}
       <button onClick={isQuizActive} className={`link-btn w-[285px]`}>
         retake quiz

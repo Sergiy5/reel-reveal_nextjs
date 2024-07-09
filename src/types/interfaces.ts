@@ -1,4 +1,4 @@
-import { CustomArrowProps } from "react-slick";
+import { CustomArrowProps, Settings } from "react-slick";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -41,7 +41,7 @@ export interface MovieCardHoverBtnProps {
   onClick: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }
 export interface MovieCardProps {
-  movie: Movie;
+  item: Movie;
 }
 
 export interface MovieCardHoverProps {
@@ -56,10 +56,15 @@ export interface ListMoviesProps {
   onLoadMore: (titles: string[]) => void;
 }
 
-export interface MySliderProps {
-  arrMovies: Movie[];
+export interface MySliderProps<T> {
+  arraySlides: T[];
+  settings: Settings;
+  SlideComponent: React.ComponentType<{ item: T }>;
 }
 
+export interface SliderCarouselSlideProps {
+  item: string;
+}
 export interface GetShowMoviesProps {
   title: string;
   category: string;
