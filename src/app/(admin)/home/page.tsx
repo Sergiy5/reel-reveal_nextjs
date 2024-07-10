@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <CallErrorBtn></CallErrorBtn>
+      {/* <CallErrorBtn></CallErrorBtn> */}
       <HowItWorks />
       <Quiz />
       <GetShowMovies
