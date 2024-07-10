@@ -108,3 +108,9 @@ export interface quizDataType {
   options: string[];
   page: number;
 }
+
+export interface ErrorComponentProp {
+  error: Error;
+  reset: () => void;
+  from: string;
+}
