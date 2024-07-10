@@ -5,12 +5,14 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import SliderCarousel from "@/app/components/SliderCarousel";
+import { CallErrorBtn } from "@/app/components/callErrorBtn";
 
 export default async function Home() {
 
   return (
     <main>
       <Hero />
+      {/* <CallErrorBtn></CallErrorBtn> */}
       <HowItWorks />
       <Quiz />
       <GetShowMovies
