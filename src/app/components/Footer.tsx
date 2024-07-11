@@ -18,10 +18,12 @@ export const Footer: React.FC<TypeDevice> = () => {
 
   return (
     <footer className={`block mx-auto w-max`}>
-      <div className={`relative flex w-full justify-center items-center mx-auto `}>
+      <div
+        className={`relative flex w-full justify-center items-center mx-auto `}
+      >
         <div
-          className={`flex flex-col p-4 w-full bg-bgColor gap-8 z-20 
-           md:px-[60px] md:gap-6 md:py-10 md:items-start lg:px-[60px] xl:w-[1440px] xl:px-[120px]`}
+          className={`flex flex-col p-4 w-screen bg-bgColor gap-8 z-20 
+           md:px-[60px] md:gap-6 md:py-10 md:items-start xl:max-w-[1440px] xl:px-[120px]`}
         >
           {!isClient ? (
             <LinkToQuiz />

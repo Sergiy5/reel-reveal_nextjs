@@ -34,14 +34,14 @@ export const Hero: React.FC = () => {
           height={584}
           alt="Hero movies colage"
           priority
-          className={` aspect-[590/584] z-20`}
+          className={` aspect-[590/584] z-10`}
         />
         <Image
           src={"/icons/hero_bg-ellips.svg"}
           width={833}
           height={890}
           alt="Hero movies"
-          className={` absolute w-auto h-auto blur-hero z-10 `}
+          className={` absolute w-auto h-auto blur-hero `}
         />
       </div>
     </div>

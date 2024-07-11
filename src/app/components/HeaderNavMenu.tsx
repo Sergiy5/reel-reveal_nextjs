@@ -1,34 +1,94 @@
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import clsx from "clsx";
 import HeartIcon from "../../../public/icons/heart.svg";
 import UserIcon from "../../../public/icons/user.svg";
+import BurgerIcon from "../../../public/icons/burger.svg";
+import CrossIcon from "../../../public/icons/cross.svg";
+import { useDeviceType } from "@/hooks";
+import { DeviceType } from "@/types";
 
 export const HeaderNavMenu: React.FC = () => {
-    return (
-      <>
-        <div className={`flex items-center justify-between w-[380px] h-[40px]`}>
-          <Link className={`link font-light leading-8 text-xl`} href={"/"}>
-            Movie search
-          </Link>
-          <Link className="link" href={"/"}>
-            <HeartIcon
-              className={`w-[18px] h-[16px] fill-textColor transition hover:fill-accentColor`}
-            />
-          </Link>
-          <Link className="link" href={"/"}>
-            <UserIcon
-              className={`w-[18px] h-[20px] fill-textColor transition hover:fill-accentColor`}
-            />
-          </Link>
-          <Link
-            href={"/quiz"}
-            className={`header__link-btn flex items-center justify-center font-medium leading-8 text-xl
+  const [isOpenMenu, setIsOpenMenu] = useState(true);
+  const diviceSize: DeviceType = useDeviceType();
+  
+useEffect(() => {
+  diviceSize === "desktop" ? setIsOpenMenu(true) : setIsOpenMenu(false);
+}, [diviceSize])
+
+
+  return (
+    <div className="relative flex pt-2">
+      <div
+        className={clsx(
+          diviceSize === "mobile" &&
+            `absolute pt-10 pb-5 -right-4 -top-0 flex-col items-center justify-between w-screen h-80 bg-bgLightColor z-30`,
+          diviceSize === "tablet" &&
+            "absolute pt-12 pb-5 -right-16 -top-3 flex-col items-center justify-between w-56 h-80 bg-bgLightColor",
+          diviceSize === "desktop" &&
+            "flex items-center justify-between w-[380px] h-[40px] flex-row p-0 bg-transparent",
+          isOpenMenu ? "flex" : "hidden"
+        )}
+      >
+        <button
+          type="button"
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          className={`absolute right-2 top-2 flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgLightColor
+                     transition-all duration-300 lg:hidden`}
+        >
+          <CrossIcon
+            className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor transition duration-300`}
+          />
+        </button>
+        <Link
+          href={"/movies/movie"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          className={`link font-light leading-8 text-xl`}
+        >
+          Movie search
+        </Link>
+        <Link
+          href={"/"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          className="link"
+        >
+          <HeartIcon
+            className={`hidden w-[18px] h-[16px] fill-textColor transition hover:fill-accentColor lg:block`}
+          />
+          <p className="lg:hidden">My library</p>
+        </Link>
+        <Link
+          href={"/"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          className="link"
+        >
+          <UserIcon
+            className={`hidden w-[18px] h-[20px] fill-textColor transition hover:fill-accentColor lg:block`}
+          />
+          <p className="lg:hidden">Login</p>
+        </Link>
+        <Link
+          href={"/quiz"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          className={`header__link-btn flex items-center justify-center font-medium leading-8 text-xl
                w-[140px] h-[40px] text-bgColor bg-textColor rounded-[30px] shadow-0
                 transition duration-250 ease-in-out hover:bg-accentColor hover:shadow-hoverShadow
                  active:bg-clickedColor`}
-          >
-            take quiz
-          </Link>
-        </div>
-      </>
-    );
-}
+        >
+          take quiz
+        </Link>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setIsOpenMenu(!isOpenMenu)}
+        className={`group flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgColor
+                     transition-all duration-300 hover:bg-bgLightColor lg:hidden`}
+      >
+        <BurgerIcon
+          className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor transition duration-300 group-hover:stroke-accentColor `}
+        />
+      </button>
+    </div>
+  );
+};

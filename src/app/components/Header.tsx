@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { SearchBar } from "./SearchBar";
 import { MainLogo } from "./MainLogo";
-import { HeaderNav } from "./HeaderNav";
+import { HeaderNavMenu } from "./HeaderNavMenu";
 
 export const Header: React.FC = () => {
 
@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
         <div className={`flex items-center justify-between px-4 w-[1200px] md:px-0`}>
           <MainLogo />
           <SearchBar />
-          <HeaderNav />
+          <HeaderNavMenu />
         </div>
       </div>
       <Image
