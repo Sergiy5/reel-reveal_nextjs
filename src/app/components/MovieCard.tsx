@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { MovieCardHover } from "./MovieCardHover";
 import { MovieCardProps } from "@/types";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
   const [isShowHover, setIsShowHover] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
@@ -16,8 +16,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     const clickeTtarget = e.currentTarget.dataset.movie;
 
     if (clickeTtarget === "movie") {
-      console.log("movie", item.id)
-      // router.push(`/movies/${item.id}`);
+      router.push(`/movies/${item.id}`);
     };
     if (clickeTtarget === "saw it") console.log("saw it", item.id);
     if (clickeTtarget === "save it") console.log("save it", item.id);

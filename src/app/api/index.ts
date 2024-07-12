@@ -1,2 +1,2 @@
-export { quizDataFromOpenAI } from "./quizDataFromOpenAI";
-export { getPaths } from './getPaths'
+export { quizDataFromOpenAI } from "./actions/quizDataFromOpenAI";
+export { getPaths } from "./actions/getPaths";

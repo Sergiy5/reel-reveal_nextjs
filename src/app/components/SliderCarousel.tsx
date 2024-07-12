@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getPaths } from "../api/getPaths";
+import { getPaths } from "../api/actions/getPaths";
 import { MySlider } from "./MySlider";
 import { SliderCarouselSlide } from "./SliderCarouselSlide";
 
