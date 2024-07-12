@@ -7,7 +7,7 @@ import { Movie } from "@/types";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-import { getQuizMovies } from "../actions/getQuizMovies";
+import { getQuizMovies } from "../api/actions/getQuizMovies";
 
 export const Quiz: React.FC = () => {
 

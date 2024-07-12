@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { GetShowMoviesProps, Movie } from "@/types";
 import { MySlider } from "./MySlider";
-import { getMovies } from "../actions/getMovies";
+import { getMovies } from "../api/actions/getMovies";
 import { MySliderBtn } from "./MySliderBtn";
 import { Settings } from "react-slick";
 import { MovieCard } from "./MovieCard";

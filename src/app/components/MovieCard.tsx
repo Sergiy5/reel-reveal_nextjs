@@ -1,16 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import { useState } from "react";
 import { MovieCardHover } from "./MovieCardHover";
 import { MovieCardProps } from "@/types";
+import { useRouter } from "next/router";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
   const [isShowHover, setIsShowHover] = useState(false);
-
+  // const router = useRouter();
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
     e.stopPropagation();
-    console.log(e.currentTarget.dataset.movie);
+    const clickeTtarget = e.currentTarget.dataset.movie;
+
+    if (clickeTtarget === "movie") {
+      console.log("movie", item.id)
+      // router.push(`/movies/${item.id}`);
+    };
+    if (clickeTtarget === "saw it") console.log("saw it", item.id);
+    if (clickeTtarget === "save it") console.log("save it", item.id);
+    if (clickeTtarget === "trailer") console.log("trailer", item.id);
 
     return e.currentTarget.dataset.movie;
   };
@@ -23,7 +34,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
   return (
     <div>
       <div
-        // key={nanoid()}
         onMouseEnter={() => {
           setIsShowHover(true);
         }}

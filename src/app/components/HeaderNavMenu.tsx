@@ -9,7 +9,8 @@ import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/types";
 
 export const HeaderNavMenu: React.FC = () => {
-  const [isOpenMenu, setIsOpenMenu] = useState(true);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
   const diviceSize: DeviceType = useDeviceType();
   
 useEffect(() => {
@@ -18,15 +19,12 @@ useEffect(() => {
 
 
   return (
-    <div className="relative flex pt-2">
+    <div className="relative flex">
       <div
         className={clsx(
-          diviceSize === "mobile" &&
-            `absolute pt-10 pb-5 -right-4 -top-0 flex-col items-center justify-between w-screen h-80 bg-bgLightColor z-30`,
-          diviceSize === "tablet" &&
-            "absolute pt-12 pb-5 -right-16 -top-3 flex-col items-center justify-between w-56 h-80 bg-bgLightColor",
-          diviceSize === "desktop" &&
-            "flex items-center justify-between w-[380px] h-[40px] flex-row p-0 bg-transparent",
+          `absolute flex flex-col items-center justify-between w-screen  h-80 bg-bgLightColor z-30
+           pt-10 pb-5 -right-4 -top-2 md:-right-16 md:-top-4
+           lg:relative lg:top-0 lg:right-0 lg:w-[380px] lg:h-[40px] lg:flex-row lg:p-0 lg:bg-transparent`,
           isOpenMenu ? "flex" : "hidden"
         )}
       >
@@ -82,11 +80,11 @@ useEffect(() => {
       <button
         type="button"
         onClick={() => setIsOpenMenu(!isOpenMenu)}
-        className={`group flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgColor
-                     transition-all duration-300 hover:bg-bgLightColor lg:hidden`}
+        className={`flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgColor
+                     transition-all duration-300 lg:hidden`}
       >
         <BurgerIcon
-          className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor transition duration-300 group-hover:stroke-accentColor `}
+          className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor transition duration-300 `}
         />
       </button>
     </div>

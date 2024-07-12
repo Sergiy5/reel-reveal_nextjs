@@ -10,17 +10,9 @@ interface MovieResponse {
   total_results: number;
 }
 
-
 export const getQuizMovies = async (arrMovies: string[]): Promise<Movie[][]> => {
   
   const TOKEN = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;;
-  
-
-  //   const urlSearchMovie = (movie: string) => {
-  //     return `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1&api_key=${apiKey}`;
-  // };
-
-  // const parsedMovies: string[] = JSON.parse(arrMovies);
   
   try {
     const requests = arrMovies.map((movie) =>
