@@ -1,13 +1,14 @@
 import { getTmdbUrl } from "@/lib";
 import { Movie } from "@/types";
 
-export const getMovies = async (category: string, page: string): Promise<Movie[]> => {
-
+export const getMovieById = async (
+  id: string | string[]
+): Promise<Movie> => {
   const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
-  const url = getTmdbUrl(category, parseInt(page, 10));
+  const url = `https://api.themoviedb.org/3/movie/${id}`
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
       next: { revalidate: 3600 },
       headers: {
         Authorization: `Bearer ${token}`,
@@ -17,10 +18,10 @@ export const getMovies = async (category: string, page: string): Promise<Movie[]
     if (!response) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    
-    return response.results || [];
+
+    return response as Movie;
   } catch (error: any) {
     console.error("Fetch error:", error);
-    return [];
+    return {} as Movie;
   }
 };
