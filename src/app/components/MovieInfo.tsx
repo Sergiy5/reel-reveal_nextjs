@@ -1,12 +1,10 @@
-"use client";
-
 import { getMovieById } from "@/app/api/actions/getMovieById";
 import { MovieInfoProps } from "@/types";
 import Image from "next/image";
 
 export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
   const movie = await getMovieById(id);
-
+console.log("id", id);
   const {
     backdrop_path,
     adult,
@@ -36,6 +34,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
         height={400}
         className={`absolute -top-[120px] w-screen h-800`}
       />
+      <p>{`Movie id: ${id}`}</p>
     </div>
   );
 };

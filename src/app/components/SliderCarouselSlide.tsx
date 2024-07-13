@@ -10,6 +10,7 @@ export const SliderCarouselSlide: React.FC<SliderCarouselSlideProps> = ({
   const regExp = isDev === "development" ? "\\" : "/";
 
   const pathName = getFilNameFromPath(item, regExp);
+
   const title = pathName.replaceAll("-", " ");
 
   return (
