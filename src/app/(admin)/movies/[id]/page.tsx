@@ -1,6 +1,5 @@
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { MovieInfo } from "@/app/components/MovieInfo";
-import { Movie } from "@/types";
 
 export async function generateStaticParams() {
 return [{ id: "1" }, { id: "2" }, { id: "3" }];

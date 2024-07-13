@@ -19,7 +19,7 @@ export interface LayoutProviderProps {
 
 export interface Movie {
   adult: boolean;
-  backdrop_path: string;
+  backdrop_path: string | null;
   genre_ids: number[];
   id: number;
   original_language: string;
@@ -32,13 +32,14 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  runtime: number;
 }
 export interface MovieCardHoverBtnProps {
   id: string;
   text: string;
   isChecked: boolean;
   dataMovie: string;
-  onClick: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }
 export interface MovieCardProps {
   item: Movie;

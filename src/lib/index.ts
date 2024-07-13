@@ -6,4 +6,5 @@ export { getFilNameFromPath } from "./getFilNameFromPath";
 export { nextQuestion } from "./nextQuestion";
 export { capitalizeFirstLetter } from "./capitalizeFirstLetter";
 export { getTmdbUrl } from "./getTmdbUrl";
+export { yearFromDate } from './yearFromDate';
 
