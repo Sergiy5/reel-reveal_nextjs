@@ -1,4 +1,3 @@
-import { getTmdbUrl } from "@/lib";
 import { Movie } from "@/types";
 
 export const getMovieById = async (

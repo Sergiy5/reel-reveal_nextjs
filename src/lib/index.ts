@@ -7,4 +7,5 @@ export { nextQuestion } from "./nextQuestion";
 export { capitalizeFirstLetter } from "./capitalizeFirstLetter";
 export { getTmdbUrl } from "./getTmdbUrl";
 export { yearFromDate } from './yearFromDate';
-
+export { generateUrlImage } from './generateUrlImage';
+export { hoursFromMinuts } from "./hoursFromMinutes";
