@@ -1,37 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { getMovieById } from "@/app/api/actions/getMovieById";
+import { MovieInfoProps } from "@/types";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { getMovieById } from "../api/actions/getMovieById";
-import { Movie } from "@/types";
 
-export const MovieInfo: React.FC = () => {
-  const [movie, setMovie] = useState<Movie | null>(null);
-  const params = useParams();
-  const { id } = params;
+export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
+  const movie = await getMovieById(id);
 
-  useEffect(() => {
-    const movieData = async (id: string | string[]) => {
-      try {
-        const result = await getMovieById(id);
-        console.log("Movie Info", result);
-        setMovie(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const {
+    backdrop_path,
+    adult,
+    genre_ids,
+    original_language,
+    original_title,
+    overview,
+    popularity,
+    poster_path,
+    release_date,
+    title,
+    video,
+    vote_average,
+    vote_count,
+  } = movie;
 
-    if (id) {
-      movieData(id);
-    }
-  }, [id]);
-
-  if (!id || !movie) {
-    return <div>Loading...</div>;
-  }
-
-  const poster = movie.backdrop_path
+  const poster = backdrop_path
     ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
     : "/images/no-image.jpg";
 
@@ -42,7 +34,7 @@ export const MovieInfo: React.FC = () => {
         alt={"Movie image"}
         width={600}
         height={400}
-        className={`absolute -top-[120px] w-screen h-[800px]`}
+        className={`absolute -top-[120px] w-screen h-800`}
       />
     </div>
   );

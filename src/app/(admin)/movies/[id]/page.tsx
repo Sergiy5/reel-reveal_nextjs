@@ -1,11 +1,10 @@
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { MovieInfo } from "@/app/components/MovieInfo";
 
-export default async function MoviePage() {
-
+export default async function MoviePage({ params }: { params: { id: string } }) {
   return (
     <main>
-      <MovieInfo />
+      <MovieInfo id={params.id} />
       <LinkToQuiz />
     </main>
   );

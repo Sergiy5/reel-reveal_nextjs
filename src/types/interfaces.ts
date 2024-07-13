@@ -114,3 +114,7 @@ export interface ErrorComponentProp {
   reset: () => void;
   from: string;
 }
+
+export interface MovieInfoProps {
+  id: string;
+};
