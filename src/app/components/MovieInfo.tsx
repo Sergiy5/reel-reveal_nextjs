@@ -41,7 +41,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
 
 
   return (
-    <div className={`relative w-screen max-w-[1440px]  h-[800px] `}>
+    <div className={`relative w-screen max-w-[1440px]  aspect-[1440/800] `}>
       <div
         className={`absolute flex -top-[120px] items-center justify-center w-full h-full bg-movieGradient gap-12 z-10`}
       >
@@ -50,7 +50,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
           alt={title}
           width={285}
           height={428}
-          className={`rounded-2xl`}
+          className={`rounded-2xl aspect-auto`}
         />
         <div className={` w-[800px] `}>
           <div className={`flex items-center justify-start gap-9`}>
@@ -86,7 +86,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = async ({ id }) => {
         alt={"Movie image"}
         width={600}
         height={400}
-        className={`absolute -top-[120px] w-screen h-full  `}
+        className={`absolute -top-[120px] w-screen aspect-auto  `}
       />
     </div>
   );
