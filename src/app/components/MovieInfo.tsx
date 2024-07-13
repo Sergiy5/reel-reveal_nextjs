@@ -7,6 +7,7 @@ import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { generateUrlImage, hoursFromMinuts, yearFromDate } from "@/lib";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { Loader } from "./Loader";
 
 export const MovieInfo = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
@@ -46,7 +47,7 @@ export const MovieInfo = () => {
  
   return (
     <div className={`relative w-screen max-w-[1440px] aspect-[1440/810] `}>
-      {movie && (
+      {movie ? (
         <>
           <div
             className={`absolute flex -top-[120px] items-center justify-center w-full h-full bg-movieGradient gap-12 z-10`}
@@ -99,7 +100,7 @@ export const MovieInfo = () => {
             className={`absolute -top-[120px] w-screen aspect-auto  `}
           />
         </>
-      )}
+      ) : <Loader />}
     </div>
   );
 };
