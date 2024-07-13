@@ -13,7 +13,6 @@ export const MovieInfo = () => {
 
   const { id } = useParams()
   
-console.log('id',id)
   useEffect(() => {
     const fetchMovie = async (id: string | string[]) => {
       try {
@@ -46,7 +45,7 @@ console.log('id',id)
  
  
   return (
-    <div className={`relative w-screen max-w-[1440px] aspect-[1440/809] `}>
+    <div className={`relative w-screen max-w-[1440px] aspect-[1440/810] `}>
       {movie && (
         <>
           <div
