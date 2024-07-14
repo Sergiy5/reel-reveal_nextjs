@@ -9,9 +9,9 @@ export const Header: React.FC = () => {
     <div className={`flex justify-center items-center w-full `}>
       <div
         className={`flex items-center justify-center py-0 w-full h-11 bg-bgColor  z-20 
-           md:px-[60px] md:h-[68px] lg:h-[84px]`}
+            md:h-[68px] lg:h-[84px]`}
       >
-        <div className={`flex items-center justify-between px-4 w-[1200px] md:px-0`}>
+        <div className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}>
           <MainLogo />
           <SearchBar />
           <HeaderNavMenu />

@@ -4,7 +4,7 @@ import { getMovieById } from "@/app/api/actions/getMovieById";
 import { Movie} from "@/types";
 import Image from "next/image";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
-import { generateUrlImage, hoursFromMinuts, yearFromDate } from "@/lib";
+import { floorNumber, generateUrlImage, hoursFromMinuts, yearFromDate } from "@/lib";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Loader } from "./Loader";
@@ -13,36 +13,22 @@ export const MovieInfo = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
 
   const { id } = useParams()
-  
+  console.log(id)
   useEffect(() => {
     const fetchMovie = async (id: string | string[]) => {
       try {
        const movieData = await getMovieById(id);
        setMovie(movieData);
+       
+         const { vote_average } = movieData;
+      console.log(Math.floor(vote_average * 10) / 10);
       } catch (error) {
         console.log(error)
      }
    };
 
    fetchMovie(id);
- }, [id]);
-  
-  // const {
-  //   backdrop_path,
-  //   adult,
-  //   genre_ids,
-  //   original_language,
-  //   original_title,
-  //   overview,
-  //   popularity,
-  //   poster_path,
-  //   release_date,
-  //   title,
-  //   video,
-  //   vote_average,
-  //   vote_count,
-  //   runtime,
-  // } = movie; 
+  }, [id]);
  
  
   return (
@@ -50,7 +36,7 @@ export const MovieInfo = () => {
       {movie ? (
         <>
           <div
-            className={`absolute flex -top-[120px] items-center justify-center w-full h-full bg-movieGradient gap-12 z-10`}
+            className={`absolute flex -top-[120px] items-center justify-center w-full h-full px-[120px] bg-movieGradient gap-12 z-10`}
           >
             <Image
               src={generateUrlImage(movie.poster_path)}
@@ -62,7 +48,7 @@ export const MovieInfo = () => {
             <div className={` w-[800px] `}>
               <div className={`flex items-center justify-start gap-9`}>
                 <h2>{movie.title}</h2>
-                <h3>IMBd {movie.vote_average}</h3>
+                <h3>IMBd {floorNumber(movie.vote_average)}</h3>
                 <div className={`flex gap-10`}>
                   <MovieCardHoverBtn
                     id="icon-heart_btn"
@@ -100,7 +86,9 @@ export const MovieInfo = () => {
             className={`absolute -top-[120px] w-screen aspect-auto  `}
           />
         </>
-      ) : <Loader />}
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

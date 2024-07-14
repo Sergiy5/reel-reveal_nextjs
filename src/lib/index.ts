@@ -9,3 +9,4 @@ export { getTmdbUrl } from "./getTmdbUrl";
 export { yearFromDate } from './yearFromDate';
 export { generateUrlImage } from './generateUrlImage';
 export { hoursFromMinuts } from "./hoursFromMinutes";
+export { floorNumber } from './floorNumber';
