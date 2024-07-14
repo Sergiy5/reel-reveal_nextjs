@@ -40,6 +40,7 @@ export interface MovieCardHoverBtnProps {
   isChecked: boolean;
   dataMovie: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
+  hoverd?: boolean;
 }
 export interface MovieCardProps {
   item: Movie;

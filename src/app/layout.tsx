@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import { ceraPro } from './fonts'
+import { ceraPro, hind } from "./fonts";
+
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -15,12 +16,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-
       <head>
         <title>Reel-Reveal</title>
       </head>
-      
-      <body className={ceraPro.className}>{children}</body>
+
+      <body className={(ceraPro.className, hind.className)}>{children}</body>
     </html>
   );
 }

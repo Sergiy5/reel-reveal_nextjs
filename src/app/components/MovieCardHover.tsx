@@ -38,6 +38,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               onClick={handleMovie}
               text="save it"
               isChecked={false}
+              hoverd={true}
             />
           </li>
           <li key={nanoid()}>
@@ -47,6 +48,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               onClick={handleMovie}
               text="saw it"
               isChecked={false}
+              hoverd={true}
             />
           </li>
           <li key={nanoid()}>
@@ -56,12 +58,12 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               onClick={handleMovie}
               text="trailer"
               isChecked={false}
+              hoverd={true}
             />
           </li>
         </ul>
       </div>
       <span className="text-white">{title}</span>
-      </div>
-      
+    </div>
   );
 };
