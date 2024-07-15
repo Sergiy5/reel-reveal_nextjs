@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 // import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -14,7 +14,7 @@ import {
 } from "@/lib";
 // import { Loader } from "./Loader";
 interface MovieInfoProps{
-  movie: Movie;
+  movie: Movie | null;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
