@@ -1,11 +1,11 @@
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
-import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
+// import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { VideoComponent } from "@/app/components/VideoComponent";
 
 export async function generateStaticParams() {
 
-return [{ id: "X" }];
+return [{ id: "748783"}];
 }
 export default async function MoviePage({ params }: { params: { id: string } }) {
 
@@ -24,7 +24,7 @@ export default async function MoviePage({ params }: { params: { id: string } }) 
       <MovieInfo movie={movie} />
       {/* <VideoComponent id={params.id} /> */}
       <SliderCarousel />
-      <TakeOurQuiz />
+      {/* <TakeOurQuiz /> */}
     </main>
   );
 }
