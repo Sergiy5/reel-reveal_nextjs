@@ -1,8 +1,10 @@
-"use client";
+// "use client";
 
-import { getMovieById } from "@/app/api/actions/getMovieById";
-import { Movie } from "@/types";
+// import { useEffect, useState } from "react";
 import Image from "next/image";
+// import { useParams } from "next/navigation";
+// import { getMovieById } from "@/app/api/actions/getMovieById";
+import { Movie } from "@/types";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
   floorNumber,
@@ -10,53 +12,45 @@ import {
   hoursFromMinuts,
   yearFromDate,
 } from "@/lib";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Loader } from "./Loader";
-
+// import { Loader } from "./Loader";
 interface MovieInfoProps{
-  id: string;
+  movie: Movie;
 }
 
-export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
-  const [movie, setMovie] = useState<Movie | null>(null);
+export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
+  // const [movie, setMovie] = useState<Movie | null>(null);
 
   // const { id } = useParams();
 
-  useEffect(() => {
-    const fetchMovie = async (id: string | string[]) => {
-      try {
-        const movieData = await getMovieById(id);
-        // console.log('first', movieData)
-        setMovie(movieData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchMovie = async (id: string | string[]) => {
+  //     try {
+  //       const movieData = await getMovieById(id);
+  //       console.log('first', movieData)
+  //       setMovie(movieData);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchMovie(id);
-  }, [id]);
+  //   fetchMovie(id);
+  // }, [id]);
 
-  useEffect(() => {
-    const getTMDBVideoInfo = async (id: string | string[]) => {
-      const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}`
-      );
-      const data = await response.json();
-      // console.log('video',data)
-
-      // const trailer = data.results.find((video) => video.type === "Trailer");
-
-      // Extract the video ID (if trailer exists)
-      // return trailer ? trailer.key : null;
-    };
-    getTMDBVideoInfo(id);
-  }, [id]);
+  // useEffect(() => {
+  //   const getTMDBVideoInfo = async (id: string | string[]) => {
+  //     const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+  //     const response = await fetch(
+  //       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}`
+  //     );
+  //     const data = await response.json();
+  //    console.log("dataVideo", KEY);
+  //   };
+  //   getTMDBVideoInfo(id);
+  // }, [id]);
 
   return (
     <>
-      {movie && id !== "X" ? (
+      {movie ? (
         <div
           className={`relative lg:w-screen w-screen h-full aspect-[3.8/4] md:aspect-[4/3] lg:max-w-[1440px] lg:aspect-[1440/810]`}
         >
@@ -76,11 +70,11 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
               />
               <div className={`flex flex-col  lg:w-[800px] gap-6 `}>
                 <div
-                  className={`flex gap-9 flex-col xl:justify-between lg:items-start xl:items-center xl:flex-row`}
+                  className={`flex gap-9 flex-col xl:justify-between lg:items-start xl:items-start xl:flex-row`}
                 >
                   <h1 className={`hidden lg:flex`}>{movie.title}</h1>
-                  <div className={`flex w-48 justify-between`}>
-                    <h3 className={`flex max-w-32`}>
+                  <div className={`flex w-48 justify-between xl:pt-5`}>
+                    <h3 className={`flex max-w-32 `}>
                       IMBd {floorNumber(movie.vote_average)}
                     </h3>
                     <MovieCardHoverBtn
@@ -120,7 +114,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
           />
         </div>
       ) : (
-        <Loader />
+        <div>Loading...</div>
       )}
     </>
   );
