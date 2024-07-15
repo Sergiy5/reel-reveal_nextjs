@@ -33,6 +33,7 @@ export const Quiz: React.FC = () => {
     setAllMoviesForOneSession([]);
     setQuizResult([]);
   };
+
   // Request (POST) to openai API =====================
   useEffect(() => {
     if (quizResult.length < 7) return;
@@ -42,7 +43,7 @@ export const Quiz: React.FC = () => {
 
       try {
         const response = await quizDataFromOpenAI(quizMovies, existedMovies);
-console.log('AI', response)
+
         if (!response) {
           setIsLoading(false);
           alert("Error... fetch data");

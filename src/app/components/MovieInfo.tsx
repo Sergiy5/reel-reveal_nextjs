@@ -23,7 +23,7 @@ export const MovieInfo = () => {
     const fetchMovie = async (id: string | string[]) => {
       try {
         const movieData = await getMovieById(id);
-        console.log('first', movieData)
+        // console.log('first', movieData)
         setMovie(movieData);
 
       } catch (error) {
@@ -33,6 +33,26 @@ export const MovieInfo = () => {
 
     fetchMovie(id);
   }, [id]);
+
+  
+  
+  useEffect(() => {
+    const getTMDBVideoInfo = async (id: string | string[]) => {
+     const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}`      
+      );
+      const data = await response.json();
+      // console.log('video',data)
+      
+      // const trailer = data.results.find((video) => video.type === "Trailer");
+
+      // Extract the video ID (if trailer exists)
+      // return trailer ? trailer.key : null;
+    }
+getTMDBVideoInfo(id);
+
+  }, [id])
 
   return (
     <>

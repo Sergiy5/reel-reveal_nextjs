@@ -1,6 +1,4 @@
 import { OpenAiResponse } from '@/types';
-import axios from 'axios';
-
 
 const Back_END_URL = '/api/postOpenAI';
 
@@ -20,13 +18,15 @@ export const quizDataFromOpenAI = async (
     `;
 
   try {
-    const result = await axios.post<{ response: string }>(Back_END_URL, {
-      prompt,
-    });
+    const {response} = await fetch(Back_END_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify({ prompt }), 
+    }).then(( res ) => res.json());
 
-    const res: OpenAiResponse = JSON.parse(result.data.response);
-
-    return res;
+    return JSON.parse(response);
   } catch (error: any) {
     console.log("getOpenAiAPI error", error.message);
   }
