@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 
 return [{ id: "748783"}];
 }
-export default async function MoviePage({ params }: { params: { id: string } }) {
+export default async function MoviePage({ params }: { params: { id: string | null} }) {
 
   const token = process.env.BEARER_TOKEN_TMDB;
 
