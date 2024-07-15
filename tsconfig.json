@@ -33,7 +33,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/types/app/(admin)/home/layout.tsx",
-    "src/hooks/useResize.ts",
+    "src/hooks/useResize.ts", "src/app/api/movies",
      ],
   "exclude": [
     "node_modules"

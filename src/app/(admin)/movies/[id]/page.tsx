@@ -1,6 +1,7 @@
+import { getMovieById } from "@/app/api/actions/getMovieById";
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
-// import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
+import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { VideoComponent } from "@/app/components/VideoComponent";
 
 export async function generateStaticParams() {
@@ -11,12 +12,7 @@ export default async function MoviePage({ params }: { params: { id: string } }) 
 
   const token = process.env.BEARER_TOKEN_TMDB;
 
-  const movie = await fetch(`https://api.themoviedb.org/3/movie/${params.id}`, {
-    next: { revalidate: 3600 },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => res.json());
+  const movie = await getMovieById(params.id);
 // console.log(movie)
 
   return (
@@ -24,7 +20,7 @@ export default async function MoviePage({ params }: { params: { id: string } }) 
       <MovieInfo movie={movie} />
       {/* <VideoComponent id={params.id} /> */}
       <SliderCarousel />
-      {/* <TakeOurQuiz /> */}
+      <TakeOurQuiz />
     </main>
   );
 }
