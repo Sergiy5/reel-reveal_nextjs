@@ -3,7 +3,7 @@ import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 
 export async function generateStaticParams() {
-return [{ id: "" }];
+return [{ id: "X" }];
 }
 export default async function MoviePage({ params }: { params: { id: string } }) {
 

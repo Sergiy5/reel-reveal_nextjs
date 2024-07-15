@@ -56,7 +56,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
 
   return (
     <>
-      {movie && id !== "" ? (
+      {movie && id !== "X" ? (
         <div
           className={`relative lg:w-screen w-screen h-full aspect-[3.8/4] md:aspect-[4/3] lg:max-w-[1440px] lg:aspect-[1440/810]`}
         >
