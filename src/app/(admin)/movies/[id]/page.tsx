@@ -4,26 +4,28 @@ import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { VideoComponent } from "@/app/components/VideoComponent";
 
-export async function generateStaticParams() {
-
-return [{ id: ""}];
+interface MoviePageProps {
+  params: {
+    id: string;
+  };
 }
-export default async function MoviePage({ params }: { params: { id: string | null} }) {
 
-  // const token = process.env.BEARER_TOKEN_TMDB;
+export default async function MoviePage({ params }: MoviePageProps) {
 
   const movie = await getMovieById(params.id);
-// console.log(movie)
-  const { id } = params
-  // console.log("++++++++++++++++++++++++++++++++++ID+++++++++++++++++",id)
+  
   return (
     <>
-    {params.id ? <main className={`pt-0`}>
-      <MovieInfo movie={movie} />
-      {/* <VideoComponent id={params.id} /> */}
-      <SliderCarousel />
-      <TakeOurQuiz />
-    </main> : <div>Loading...</div>}
+      {params.id ? (
+        <main className={`pt-0`}>
+          <MovieInfo movie={movie} />
+          {/* <VideoComponent id={params.id} /> */}
+          <SliderCarousel />
+          <TakeOurQuiz />
+        </main>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 }
