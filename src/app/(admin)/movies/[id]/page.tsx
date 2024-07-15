@@ -6,7 +6,7 @@ import { VideoComponent } from "@/app/components/VideoComponent";
 
 export async function generateStaticParams() {
 
-return [{ id: "748783"}];
+  return [{ id: ""}];
 }
 export default async function MoviePage({ params }: { params: { id: string | null} }) {
 
