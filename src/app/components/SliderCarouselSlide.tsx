@@ -22,8 +22,9 @@ export const SliderCarouselSlide: React.FC<SliderCarouselSlideProps> = ({
           width={288}
           height={275}
           data-title={title}
+          quality={75}
           alt={title}
-          className={`absolute w-[276px] mt-[1.5px] rounded-xl h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+          className={`absolute w-[276px] aspect-auto mt-[1.5px] rounded-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
         />
       </div>
     </div>

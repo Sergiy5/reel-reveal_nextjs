@@ -13,19 +13,17 @@ import {
 } from "@/lib";
 import { Loader } from "./Loader";
 interface MovieInfoProps{
-  id: string | [];
+  id: string;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
   const [movie, setMovie] = useState<Movie | null>(null);
-
-  // const { id } = useParams();
-
+// console.log(movie)
   useEffect(() => {
-    const fetchMovie = async (id: string | []) => {
+    const fetchMovie = async (id: string) => {
       try {
         const movieData = await getMovieById(id);
-        console.log('first', movieData)
+        // console.log('first', movieData)
         setMovie(movieData);
       } catch (error) {
         console.log(error);
@@ -92,7 +90,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
                 </div>
                 <ul className={`flex justify-between`}>
                   <li className={`rounded-2xl bg-bgColor px-2`}>
-                    {/* {yearFromDate(movie.release_date)} */}
+                    {yearFromDate(movie.release_date)}
                   </li>
                   <li className={`rounded-2xl bg-bgColor px-2`}>{}</li>
                   <li className={`rounded-2xl bg-bgColor px-2`}>
