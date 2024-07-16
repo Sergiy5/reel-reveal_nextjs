@@ -2,8 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  distDir: "build",
-  output: "export",
+  distDir: "out",
   async redirects() {
     return [
       {

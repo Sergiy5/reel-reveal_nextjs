@@ -35,7 +35,8 @@
     ".next/types/app/(admin)/home/layout.tsx",
     "src/hooks/useResize.ts",
     "src/app/api/movies",
-    "build/types/**/*.ts"
+    "build/types/**/*.ts",
+    "out/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
