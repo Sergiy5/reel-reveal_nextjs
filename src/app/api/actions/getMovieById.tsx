@@ -9,7 +9,7 @@ export const getMovieById = async (
   const url = `https://api.themoviedb.org/3/movie/${id}`
 
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
+    const response = await fetch(url, {
       next: { revalidate: 3600 },
       headers: {
         Authorization: `Bearer ${token}`,
