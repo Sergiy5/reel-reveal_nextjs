@@ -5,34 +5,23 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { VideoComponent } from "@/app/components/VideoComponent";
 import { GetServerSidePropsContext } from "next";
 
-// export async function generateStaticParams() {
+export async function generateStaticParams() {
 
-// return [];
-// }
+return [{params:{id: "1"}}];
+}
 
-// export async function getServerSideProps(
-//   context: GetServerSidePropsContext<any>
-// ): Promise<{ props: { data: any } }> {
-//   const { id } = context.params;
-//   const token = process.env.BEARER_TOKEN_TMDB;
 
-//   const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
-//     next: { revalidate: 3600 },
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   const data: any = await response.json();
 
-//   return { props: { data } };
-// }
+// type MoviePageParams = {params:{id: string}}
 
-type MoviePageParams = {params:{id: string}}
-export default async function MoviePage({ params }:MoviePageParams) {
+export default async function Page({ params }: { params: { id: string } }) {
 
 
   const { id } = params
-  console.log('FOOT++++++++++++++++++++++++++', id)
+  if (id === "1") {
+    return (<div>Page</div>)
+  }
+  // console.log('FOOT++++++++++++++++++++++++++', id)
   return (
     <>
     <main className={`pt-0`}>
@@ -44,4 +33,3 @@ export default async function MoviePage({ params }:MoviePageParams) {
     </>
   );
 }
-// : { params: { data: string | []} }
