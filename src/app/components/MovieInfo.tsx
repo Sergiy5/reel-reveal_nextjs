@@ -13,7 +13,7 @@ import {
 } from "@/lib";
 import { Loader } from "./Loader";
 interface MovieInfoProps{
-  id: string | null;
+  id: string | [];
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
@@ -22,7 +22,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
   // const { id } = useParams();
 
   useEffect(() => {
-    const fetchMovie = async (id: string | null) => {
+    const fetchMovie = async (id: string | []) => {
       try {
         const movieData = await getMovieById(id);
         console.log('first', movieData)
