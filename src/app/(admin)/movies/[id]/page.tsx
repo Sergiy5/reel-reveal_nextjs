@@ -7,10 +7,8 @@ import { GetServerSidePropsContext } from "next";
 
 export async function generateStaticParams() {
 
-return [{params:{id: "1"}}];
+return [{id: "1"}];
 }
-
-
 
 // type MoviePageParams = {params:{id: string}}
 
