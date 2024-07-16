@@ -1,9 +1,8 @@
 "use client";
 
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-// import { useParams } from "next/navigation";
-// import { getMovieById } from "@/app/api/actions/getMovieById";
+import { getMovieById } from "@/app/api/actions/getMovieById";
 import { Movie } from "@/types";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
@@ -12,29 +11,29 @@ import {
   hoursFromMinuts,
   yearFromDate,
 } from "@/lib";
-// import { Loader } from "./Loader";
+import { Loader } from "./Loader";
 interface MovieInfoProps{
-  movie: Movie | null;
+  id: string | null;
 }
 
-export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-  // const [movie, setMovie] = useState<Movie | null>(null);
+export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
+  const [movie, setMovie] = useState<Movie | null>(null);
 
   // const { id } = useParams();
 
-  // useEffect(() => {
-  //   const fetchMovie = async (id: string | string[]) => {
-  //     try {
-  //       const movieData = await getMovieById(id);
-  //       console.log('first', movieData)
-  //       setMovie(movieData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchMovie = async (id: string | null) => {
+      try {
+        const movieData = await getMovieById(id);
+        console.log('first', movieData)
+        setMovie(movieData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //   fetchMovie(id);
-  // }, [id]);
+    fetchMovie(id);
+  }, [id]);
 
   // useEffect(() => {
   //   const getTMDBVideoInfo = async (id: string | string[]) => {
@@ -93,7 +92,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                 </div>
                 <ul className={`flex justify-between`}>
                   <li className={`rounded-2xl bg-bgColor px-2`}>
-                    {yearFromDate(movie.release_date)}
+                    {/* {yearFromDate(movie.release_date)} */}
                   </li>
                   <li className={`rounded-2xl bg-bgColor px-2`}>{}</li>
                   <li className={`rounded-2xl bg-bgColor px-2`}>
@@ -114,7 +113,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
           />
         </div>
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
     </>
   );

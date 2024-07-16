@@ -1,3 +1,5 @@
+"use server"
+
 import { Movie } from "@/types";
 
 export const getMovieById = async (
