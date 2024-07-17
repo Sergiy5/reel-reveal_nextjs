@@ -1,7 +1,7 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import "./globals.scss";
 import { ceraPro, hind } from "./fonts";
-
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -13,14 +13,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <head>
         <title>Reel-Reveal</title>
       </head>
 
-      <body className={(ceraPro.className, hind.className)}>{children}</body>
+      <body className={(ceraPro.className, hind.className)}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
