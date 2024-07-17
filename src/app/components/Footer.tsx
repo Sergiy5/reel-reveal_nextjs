@@ -56,6 +56,7 @@ export const Footer: React.FC<TypeDevice> = () => {
           className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-1440 h-auto`}
         />
       </div>
+      <div className={`flex justify-center  text-textColor`}>© 2024 Reel Reveal</div>
     </footer>
   );
 };
