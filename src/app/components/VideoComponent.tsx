@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Loader } from "./Loader";
 
 interface VideoComponentProps {
   id: string;
@@ -35,15 +36,15 @@ export const VideoComponent: React.FC<VideoComponentProps> = ({ id }) => {
     <div>
       {trailerId ? (
         <iframe
-          width="800"
-          height="600"
+          width="860"
+          height="480"
           src={`https://www.youtube.com/embed/${trailerId}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="Embedded YouTube"
         />
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
     </div>
   );

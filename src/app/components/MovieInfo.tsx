@@ -33,17 +33,6 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
     fetchMovie(id);
   }, [id]);
 
-  // useEffect(() => {
-  //   const getTMDBVideoInfo = async (id: string | string[]) => {
-  //     const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  //     const response = await fetch(
-  //       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}`
-  //     );
-  //     const data = await response.json();
-  //    console.log("dataVideo", KEY);
-  //   };
-  //   getTMDBVideoInfo(id);
-  // }, [id]);
 
   return (
     <>
@@ -63,7 +52,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
                 alt={movie.title}
                 width={285}
                 height={428}
-                className={` rounded-2xl w-[285px] aspect-auto md:w-52 lg:w-[285px]`}
+                priority={true}
+                className={` rounded-2xl w-[285px] aspect-[285/428] md:w-52 lg:w-[285px]`}
               />
               <div className={`flex flex-col  lg:w-[800px] gap-6 `}>
                 <div
@@ -107,7 +97,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
             alt={"Movie image"}
             width={600}
             height={400}
-            className={`absolute w-full h-full object-cover lg:h-auto lg:object-fill`}
+            priority={true}
+            className={`absolute w-full aspect-auto object-cover lg:h-auto lg:object-fill`}
           />
         </div>
       ) : (
