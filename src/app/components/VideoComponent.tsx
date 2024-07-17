@@ -12,8 +12,10 @@ export const VideoComponent: React.FC<VideoComponentProps> = ({ id }) => {
 
   useEffect(() => {
     const getTMDBVideoInfo = async (id: string) => {
-      const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-
+      const KEY =
+        process.env.NEXT_PUBLIC_TMDB_API_KEY ??
+        process.env.TMDB_API_KEY;
+console.log('first', KEY)
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${KEY}`
       );
