@@ -15,8 +15,8 @@ export const TopCast: React.FC<TopCastProps> = ({ id }) => {
     useEffect(() => {
         const getCast = async (id: string) => {
         try {
-          const result =  await getMovieCast(id) 
-            console.log('RESULT IN CAST', result)
+          const result = await getMovieCast(id) 
+          
             setCast(result.cast)
             
         } catch (error) {

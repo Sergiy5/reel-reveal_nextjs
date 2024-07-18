@@ -38,10 +38,10 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
     <>
       {movie ? (
         <div
-          className={`relative w-screen aspect-[3.8/4] md:aspect-[4/3] lg:w-screen  lg:max-w-[1440px] lg:aspect-[600/400]`}
+          className={`relative w-screen aspect-[3.8/4] md:aspect-[1440/810] lg:w-screen  lg:max-w-[1440px]`}
         >
           <div
-            className={`absolute flex flex-col items-center justify-center w-full h-full aspect-[3.8/4] md:aspect-[4/3]  lg:w-full lg:h-auto bg-movieGradient z-10`}
+            className={`absolute flex flex-col items-center justify-center w-full h-full aspect-[3.8/4] md:aspect-[1440/810]  lg:w-full lg:h-auto bg-movieGradient z-10`}
           >
             <h1 className={`block lg:hidden pb-6`}>{movie.title}</h1>
             <div
@@ -97,10 +97,10 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
             src={generateUrlImage(movie.backdrop_path, "500")}
             alt={"Movie image"}
             width={600}
-            height={400}
+            height={380}
             priority={true}
             quality={75}
-            className={`absolute w-full aspect-[3.8/4] md:aspect-[4/3] object-cover lg:h-auto`}
+            className={`absolute w-full aspect-[3.8/4] md:aspect-[1440/810] object-cover lg:h-auto`}
           />
         </div>
       ) : (

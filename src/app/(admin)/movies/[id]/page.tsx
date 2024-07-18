@@ -19,10 +19,10 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <main className={`pt-0`}>
-        {/* <MovieInfo id={id} /> */}
-        {/* <MovieInfoTrailer id={params.id} /> */}
+        <MovieInfo id={id} />
+        <MovieInfoTrailer id={params.id} />
         <TopCast id={id} />
-        {/* <SliderCarousel /> */}
+        <SliderCarousel />
         <TakeOurQuiz />
       </main>
     </>
