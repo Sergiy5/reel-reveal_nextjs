@@ -25,12 +25,11 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <div>
+    <div className={`video-container px-6 h-auto`}>
       <iframe
         src={`https://www.youtube.com/embed/${trailerId} `}
         allowFullScreen
-        width={860}
-        height={440}
+        className="video-iframe w-screen max-w-[1200px] px-24 aspect-[1200/670]"
         title="Description"
       />
     </div>

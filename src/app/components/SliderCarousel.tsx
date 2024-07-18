@@ -29,6 +29,7 @@ export const SliderCarousel: React.FC = () => {
     autoplaySpeed: 3000,
     cssEase: "linear",
     arrows: false,
+    pauseOnHover: false,
     responsive: [
       {
         breakpoint: 375,
@@ -55,7 +56,7 @@ export const SliderCarousel: React.FC = () => {
   };
 
   return (
-    <div className={` flex flex-col max-w-[3168px] gap-12 w-lvw xl:full  `}>
+    <div className={` flex flex-col max-w-[3168px] gap-12 w-lvw xl:full z-20 `}>
       <h2 className={`mx-auto w-auto px-3`}>Stuck on Movie Choices?</h2>
       <div
         className={` flex flex-col mx-auto w-[576px] h-auto sm:w-full md:w-full`}

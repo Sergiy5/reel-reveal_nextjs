@@ -69,7 +69,6 @@ useEffect(() => {
         </Link>
         <Link
           href={"/quiz"}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`header__link-btn flex items-center justify-center font-medium leading-8 text-xl
                w-[140px] h-[40px] text-bgColor bg-textColor rounded-[30px] shadow-0
                 transition duration-250 ease-in-out hover:bg-accentColor hover:shadow-hoverShadow

@@ -23,7 +23,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
     const fetchMovie = async (id: string) => {
       try {
         const movieData = await getMovieById(id);
-        console.log('first', movieData)
+        
         setMovie(movieData);
       } catch (error) {
         console.log(error);
@@ -38,21 +38,22 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
     <>
       {movie ? (
         <div
-          className={`relative lg:w-screen w-screen h-full aspect-[3.8/4] md:aspect-[4/3] lg:max-w-[1440px] lg:aspect-[1440/810]`}
+          className={`relative w-screen aspect-[3.8/4] md:aspect-[4/3] lg:w-screen  lg:max-w-[1440px] lg:aspect-[600/400]`}
         >
           <div
-            className={`absolute flex flex-col items-center justify-center w-full h-full lg:aspect-[1440/810] lg:w-full lg:h-auto bg-movieGradient z-10`}
+            className={`absolute flex flex-col items-center justify-center w-full h-full aspect-[3.8/4] md:aspect-[4/3]  lg:w-full lg:h-auto bg-movieGradient z-10`}
           >
             <h1 className={`block lg:hidden pb-6`}>{movie.title}</h1>
             <div
               className={`flex items-end px-4 gap-10  w-full md:px-[60px] lg:gap-[122px] xl:px-[120px]`}
             >
               <Image
-                src={generateUrlImage(movie.poster_path)}
+                src={generateUrlImage(movie.poster_path, "300")}
                 alt={movie.title}
                 width={285}
                 height={428}
                 priority={true}
+                quality={75}
                 className={` rounded-2xl w-[285px] aspect-[285/428] md:w-52 lg:w-[285px]`}
               />
               <div className={`flex flex-col  lg:w-[800px] gap-6 `}>
@@ -93,12 +94,13 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
           </div>
           <div />
           <Image
-            src={generateUrlImage(movie.backdrop_path)}
+            src={generateUrlImage(movie.backdrop_path, "500")}
             alt={"Movie image"}
             width={600}
             height={400}
             priority={true}
-            className={`absolute w-full aspect-auto object-cover lg:h-auto lg:object-fill`}
+            quality={75}
+            className={`absolute w-full aspect-[3.8/4] md:aspect-[4/3] object-cover lg:h-auto`}
           />
         </div>
       ) : (

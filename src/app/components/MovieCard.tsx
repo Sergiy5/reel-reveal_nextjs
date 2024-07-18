@@ -31,7 +31,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     : "/images/no-image.jpg";
 
   return (
-    <div>
       <div
         onMouseEnter={() => {
           setIsShowHover(true);
@@ -39,13 +38,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
         onMouseLeave={() => {
           setIsShowHover(false);
         }}
-        className={` flex p-1 items-center justify-center w-full
-           aspect-auto text-transparent bg-contain lg:p-2 xl:p-3`}
+        className={`p-1 w-full lg:p-2 xl:p-3`}
       >
         <div className=" relative w-full">
           {isShowHover ? (
             <MovieCardHover movie={item} handleMovie={handleMovie} />
-          ) : null}
+           ) : null} 
           <Image
             id={`${id}`}
             src={poster}
@@ -58,6 +56,5 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
           />
         </div>
       </div>
-    </div>
   );
 };

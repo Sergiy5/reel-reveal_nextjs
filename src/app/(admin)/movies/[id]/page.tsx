@@ -2,6 +2,7 @@ import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
+import { TopCast } from "@/app/components/TopCast";
 
 export async function generateStaticParams() {
 
@@ -15,13 +16,13 @@ export default async function Page({ params }: { params: { id: string } }) {
     return (<div>Page</div>)
   }
 
-
   return (
     <>
       <main className={`pt-0`}>
-        <MovieInfo id={id} />
-        <MovieInfoTrailer id={params.id} />
-        <SliderCarousel />
+        {/* <MovieInfo id={id} /> */}
+        {/* <MovieInfoTrailer id={params.id} /> */}
+        <TopCast id={id} />
+        {/* <SliderCarousel /> */}
         <TakeOurQuiz />
       </main>
     </>

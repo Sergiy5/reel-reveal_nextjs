@@ -21,7 +21,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
     >
       <div className="flex justify-between">
         <div className=" flex flex-col h-12.5">
-          <div className="flex text-textColor items-center mb-1 ">
+          <div className="flex text-textColor mb-1 ">
             <svg width="19" height="19" className="mr-1">
               <use xlinkHref={`/icons/sprite.svg#icon-star`} />
             </svg>
