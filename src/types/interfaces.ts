@@ -55,7 +55,6 @@ export interface MovieCardHoverProps {
 
 export interface ListMoviesProps {
   movies: Movie[];
-  onLoadMore: (titles: string[]) => void;
 }
 
 export interface MySliderProps<T> {
@@ -84,7 +83,6 @@ export interface LoadMoreCard {
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
   clearPrevQuiz: () => void;
-  onLoadMoreCard: (onLoadMoreCard: string[]) => void;
 }
 
 export interface QuizQuestions {
@@ -119,4 +117,4 @@ export interface ErrorComponentProp {
 
 export interface MovieInfoProps {
   id: string;
-};
+}

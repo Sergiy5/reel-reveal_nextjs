@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useDeviceType } from "@/hooks";
@@ -5,10 +7,10 @@ import { MainLogo } from "./MainLogo";
 import { FooterMenu } from "./FooterMenu";
 import { FooterListSocial } from "./FooterListSocial";
 import CameraIcon from "../../../public/icons/camera.svg";
-import { DeviceType, TypeDevice } from "@/types";
+import { DeviceType} from "@/types";
 import { LinkToQuiz } from "./LinkToQuiz";
 
-export const Footer: React.FC<TypeDevice> = () => {
+export const Footer: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const deviceType: DeviceType = useDeviceType();
 

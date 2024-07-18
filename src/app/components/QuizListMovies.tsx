@@ -8,20 +8,8 @@ import { Settings } from "react-slick";
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   arrMovies,
   clearPrevQuiz,
-  onLoadMoreCard,
 }) => {
   const viewWidth = useResize();
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.id === "load_more") {
-      
-      const filteredMovies = arrMovies.filter((movie) => movie.title);
-      const arrExistedTitles = filteredMovies.map((movie) => movie.title);
-
-      onLoadMoreCard(arrExistedTitles);
-    }
-  };
 
   const settings: Settings = {
     pauseOnHover: true,
@@ -55,14 +43,11 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   };
 
   return (
-    <div
-      onClick={handleClick}
-      className={` flex flex-col items-center justify-center w-full gap-12`}
-    >
+    <div className={` flex flex-col items-center justify-center w-full gap-12`}>
       <h2 className={`pr-2.5 pl-2.5`}>Have you seen these?</h2>
 
       {viewWidth > 1024 ? (
-        <ListMovies movies={arrMovies} onLoadMore={onLoadMoreCard} />
+        <ListMovies movies={arrMovies} />
       ) : (
         <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>
           <MySlider

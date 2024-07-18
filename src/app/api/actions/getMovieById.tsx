@@ -1,5 +1,6 @@
 import { Movie } from "@/types";
 
+
 export const getMovieById = async (
   id: string | string[] | null
 ): Promise<Movie> => {

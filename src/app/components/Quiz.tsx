@@ -10,39 +10,21 @@ import { quizDataFromOpenAI } from "@/app/api";
 import { getQuizMovies } from "../api/actions/getQuizMovies";
 
 export const Quiz: React.FC = () => {
-
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [titlesFromOpenaiApi, setTitlesFromOpenaiApi] = useState<string[]>([]);
-  const [allMoviesForOneSession, setAllMoviesForOneSession] = useState([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClickLoadMore = (moviesArr: string[]) => {
-    // console.log("first", moviesArr);
-    // if (!moviesArr.length) return;
-
-    // const filteredMovies = moviesArr.filter((movie) =>
-    //   allMoviesForOneSession.indexOf(movie)
-    // );
-    // setAllMoviesForOneSession((prev) => [...prev, ...filteredMovies]);
-  };
-
-  const clearPrevQuiz = () => {
-    setIsQuizActive(true);
-    setAllMoviesForOneSession([]);
-    setQuizResult([]);
-  };
-
-  // Request (POST) to openai API =====================
+   // Request (POST) to openai API =====================
   useEffect(() => {
     if (quizResult.length < 7) return;
 
-    const openAiAPI = async (quizMovies: string[], existedMovies: string[]) => {
+    const openAiAPI = async (quizMovies: string[]) => {
       setIsLoading(true);
 
       try {
-        const response = await quizDataFromOpenAI(quizMovies, existedMovies);
+        const response = await quizDataFromOpenAI(quizMovies);
 
         if (!response) {
           setIsLoading(false);
@@ -55,24 +37,22 @@ export const Quiz: React.FC = () => {
       }
     };
 
-    openAiAPI(quizResult, allMoviesForOneSession);
-  }, [quizResult, allMoviesForOneSession]);
+    openAiAPI(quizResult);
+  }, [quizResult]);
 
   // Rquest to TMdB
   useEffect(() => {
     if (!titlesFromOpenaiApi.length) return;
 
-const  getArrMovies =async(movies: string[]) =>{
-         try {
-           const response = await getQuizMovies(movies);
-           
-           const result = firstElementsFromArray(response);
-           console.log("result", result);
+    const getArrMovies = async (movies: string[]) => {
+      try {
+        const response = await getQuizMovies(movies);
+        const result = firstElementsFromArray(response);
+
         if (result) setListMovies(result);
 
         setIsQuizActive(false);
-           scrollToY(1440);
-           
+        scrollToY(1440);
       } catch (error) {
         console.log("Error in Quiz!!!", error);
       } finally {
@@ -98,9 +78,8 @@ const  getArrMovies =async(movies: string[]) =>{
         <QuizQuestions quizData={setQuizResult} />
       ) : (
         <QuizListMovies
-          clearPrevQuiz={clearPrevQuiz}
+          clearPrevQuiz={()=>setIsQuizActive(true)}
           arrMovies={listMovies}
-          onLoadMoreCard={onClickLoadMore}
         />
       )}
       <div

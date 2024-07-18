@@ -18,12 +18,12 @@ interface MovieInfoProps{
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
   const [movie, setMovie] = useState<Movie | null>(null);
-// console.log(movie)
+  
   useEffect(() => {
     const fetchMovie = async (id: string) => {
       try {
         const movieData = await getMovieById(id);
-        // console.log('first', movieData)
+        console.log('first', movieData)
         setMovie(movieData);
       } catch (error) {
         console.log(error);
