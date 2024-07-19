@@ -47,7 +47,7 @@ module.exports = {
      rgb(32, 43, 61),
      rgb(18, 19, 44) 160%
    )`,
-        movieGradient: `linear-gradient(0deg, rgba(18, 19, 44, 0.95) 3%, rgba(18, 19, 44, 0.16) 100%) `,
+        movieGradient: `linear-gradient(0deg, rgba(18, 19, 44, 0.96) 8%, rgba(18, 19, 44, 0.16) 100%) `,
       },
     },
   },

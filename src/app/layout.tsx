@@ -19,7 +19,7 @@ export default function RootLayout({
         <title>Reel-Reveal</title>
       </head>
 
-      <body className={(ceraPro.className, hind.className)}>
+      <body className={(ceraPro.className)}>
         {children}
         <SpeedInsights />
       </body>
