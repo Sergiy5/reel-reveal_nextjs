@@ -1,4 +1,3 @@
-export { firstMovieOnPage } from "./firstMovieOnPage";
 export { arrayFromString } from "./arrayFromString";
 export { firstElementsFromArray } from "./firstElementsFromArray";
 export { scrollToY } from "./scrollToY";

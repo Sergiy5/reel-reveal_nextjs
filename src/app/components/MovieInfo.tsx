@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getMovieById } from "@/app/api/actions/getMovieById";
-import { Movie } from "@/types";
+import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
   floorNumber,
@@ -12,18 +12,18 @@ import {
   yearFromDate,
 } from "@/lib";
 import { Loader } from "./Loader";
-interface MovieInfoProps{
+interface MovieInfoProps {
   id: string;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
   const [movie, setMovie] = useState<Movie | null>(null);
-  
+
   useEffect(() => {
     const fetchMovie = async (id: string) => {
       try {
         const movieData = await getMovieById(id);
-        
+
         setMovie(movieData);
       } catch (error) {
         console.log(error);
@@ -32,7 +32,6 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
 
     fetchMovie(id);
   }, [id]);
-
 
   return (
     <>

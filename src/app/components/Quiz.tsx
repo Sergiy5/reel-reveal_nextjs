@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Loader } from "./Loader";
-import { firstElementsFromArray, scrollToY } from "@/lib";
-import { Movie } from "@/types";
+import { firstElementsFromArray} from "@/lib";
+import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
@@ -15,8 +15,9 @@ export const Quiz: React.FC = () => {
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  
 
-   // Request (POST) to openai API =====================
+  // Request (POST) to openai API =====================
   useEffect(() => {
     if (quizResult.length < 7) return;
 
@@ -52,7 +53,6 @@ export const Quiz: React.FC = () => {
         if (result) setListMovies(result);
 
         setIsQuizActive(false);
-        scrollToY(1440);
       } catch (error) {
         console.log("Error in Quiz!!!", error);
       } finally {
@@ -60,7 +60,7 @@ export const Quiz: React.FC = () => {
       }
     };
 
-    const lastArrayFromAI = titlesFromOpenaiApi.slice(-7);
+    const lastArrayFromAI = titlesFromOpenaiApi.slice(-8);
 
     getArrMovies(lastArrayFromAI);
   }, [titlesFromOpenaiApi]);
@@ -78,7 +78,7 @@ export const Quiz: React.FC = () => {
         <QuizQuestions quizData={setQuizResult} />
       ) : (
         <QuizListMovies
-          clearPrevQuiz={()=>setIsQuizActive(true)}
+          clearPrevQuiz={() => setIsQuizActive(true)}
           arrMovies={listMovies}
         />
       )}

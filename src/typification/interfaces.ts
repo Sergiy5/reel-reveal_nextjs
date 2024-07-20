@@ -85,18 +85,19 @@ export interface QuizListMoviesProps {
   clearPrevQuiz: () => void;
 }
 
-export interface QuizQuestions {
-  quiz: string;
-  title: string;
-  options: string[];
-  page: number;
-}
+// export interface QuizQuestions {
+//   quiz: string;
+//   title: string;
+//   options: { ansver: string, value: ""}[];
+//   page: number;
+// }
 
 export interface QuizBtnsProps {
-  answers: string[];
-  collectQuiz: (item: string) => string[];
+  answers: { answer: string; value: string }[];
+  collectQuiz: (answer: string) => void;
   isActive: boolean;
 }
+
 
 export interface MySliderBtnProps extends CustomArrowProps {
   prevStyle?: string;
@@ -105,7 +106,7 @@ export interface MySliderBtnProps extends CustomArrowProps {
 export interface quizDataType {
   quiz: string;
   title: string;
-  options: string[];
+  options: { answer: string, value: string }[];
   page: number;
 }
 
@@ -117,4 +118,8 @@ export interface ErrorComponentProp {
 
 export interface MovieInfoProps {
   id: string;
+}
+
+export interface QuizQuestionsProps {
+  quizData: (answerForAI: string[]) => void;
 }

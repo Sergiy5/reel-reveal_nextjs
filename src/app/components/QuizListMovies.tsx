@@ -1,7 +1,7 @@
 import { useResize } from "@/hooks";
 import { ListMovies } from "./ListMovies";
 import { MySlider } from "./MySlider";
-import { QuizListMoviesProps } from "@/types";
+import { QuizListMoviesProps } from "@/typification";
 import { MovieCard } from "./MovieCard";
 import { Settings } from "react-slick";
 

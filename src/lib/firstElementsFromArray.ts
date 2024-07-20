@@ -1,6 +1,8 @@
-import { Movie, ResponsDataTMbD } from "@/types";
+import { Movie, ResponsDataTMbD } from "@/typification";
 
-export const firstElementsFromArray = (arrMovies: Movie[][]): Movie[] | undefined => {
+export const firstElementsFromArray = (
+  arrMovies: Movie[][]
+): Movie[] | undefined => {
   if (arrMovies.length) {
     const arrForListMovies = arrMovies.map((item: Movie[]) => {
       return item[0];

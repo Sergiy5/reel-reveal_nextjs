@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -8,17 +8,16 @@ import UserIcon from "../../../public/icons/user.svg";
 import BurgerIcon from "../../../public/icons/burger.svg";
 import CrossIcon from "../../../public/icons/cross.svg";
 import { useDeviceType } from "@/hooks";
-import { DeviceType } from "@/types";
+import { DeviceType } from "@/typification";
 
 export const HeaderNavMenu: React.FC = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const diviceSize: DeviceType = useDeviceType();
-  
-useEffect(() => {
-  diviceSize === "desktop" ? setIsOpenMenu(true) : setIsOpenMenu(false);
-}, [diviceSize])
 
+  useEffect(() => {
+    diviceSize === "desktop" ? setIsOpenMenu(true) : setIsOpenMenu(false);
+  }, [diviceSize]);
 
   return (
     <div className="relative flex">

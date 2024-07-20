@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { TypeDevice } from "@/types";
+import { TypeDevice } from "@/typification";
 import LogoMain from "../../../public/icons/main-logo.svg";
 
 export const MainLogo: React.FC = () => {
-  
   return (
     <Link href={"/"} className="flex items-center ">
       <LogoMain alt="logo" width={48} height={48} />

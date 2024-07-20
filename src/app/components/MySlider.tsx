@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import {default as Slider} from "react-slick";
+import { default as Slider } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { nanoid } from "nanoid";
-import { MySliderProps } from "@/types";
+import { MySliderProps } from "@/typification";
 
 export const MySlider = <T,>({
   arraySlides,

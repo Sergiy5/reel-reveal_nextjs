@@ -1,10 +1,13 @@
 import clsx from "clsx";
 
-export const QuizProgresBar = ({ page }) => {
-  const barArray = [1, 2, 3, 4, 5, 6, 7];
+interface QuizProgresBarProps{ page: number}
+
+
+export const QuizProgresBar: React.FC<QuizProgresBarProps> = ({ page }) => {
+  const barArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <div className={` flex flex-row items-center gap-2 w-[244px] h-[68px] `}>
+    <div className={` flex flex-row items-center gap-2 w-[280px] h-[68px] `}>
       {barArray.map((bar) => {
         const isFilled = bar < page;
         const isCurrent = bar <= page;

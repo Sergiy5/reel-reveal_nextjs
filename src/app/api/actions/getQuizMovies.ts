@@ -1,10 +1,9 @@
-import { Movie } from "@/types";
+import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
 
 export const getQuizMovies = async (
   arrMovies: string[]
 ): Promise<Movie[][]> => {
-  
   const TOKEN = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
 
   try {

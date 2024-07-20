@@ -1,10 +1,12 @@
+import { getTmdbUrl } from "@/lib";
 import { Movie } from "@/typification";
 
-export const getMovieById = async (
-  id: string | string[] | null
-): Promise<Movie> => {
+export const getMoviesByCategory = async (
+  category: string,
+  page: string
+): Promise<Movie[]> => {
   const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
-  const url = `https://api.themoviedb.org/3/movie/${id}`;
+  const url = getTmdbUrl(category, parseInt(page, 10));
 
   try {
     const response = await fetch(url, {
@@ -18,9 +20,9 @@ export const getMovieById = async (
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response as Movie;
+    return response.results || [];
   } catch (error: any) {
     console.error("Fetch error:", error);
-    return {} as Movie;
+    return [];
   }
 };

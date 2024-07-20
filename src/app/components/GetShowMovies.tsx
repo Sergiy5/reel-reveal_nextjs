@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { GetShowMoviesProps, Movie } from "@/types";
+import { GetShowMoviesProps, Movie } from "@/typification";
 import { MySlider } from "./MySlider";
-import { getMovies } from "../api/actions/getMovies";
+import { getMoviesByCategory } from "../api/actions/getMoviesByCategory";
 import { MySliderBtn } from "./MySliderBtn";
 import { Settings } from "react-slick";
 import { MovieCard } from "./MovieCard";
@@ -17,7 +17,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   useEffect(() => {
     const upcomingTopRatedMovies = async (page = "1") => {
       try {
-        const response = await getMovies(category, page);
+        const response = await getMoviesByCategory(category, page);
 
         setMovies(response);
       } catch (error) {

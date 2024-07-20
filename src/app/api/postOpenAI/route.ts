@@ -23,9 +23,9 @@ export const POST = async (req: Request) => {
     });
 
     const message = result?.choices?.[0]?.message?.content
-      ?.trim()
-      .replace("\n", "");
-
+    ?.trim()
+    .replace("\n", "");
+    
     if (message) {
       return NextResponse.json({ response: message });
     } else {

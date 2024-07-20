@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { MovieCardHover } from "./MovieCardHover";
-import { MovieCardProps } from "@/types";
+import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
@@ -17,7 +17,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
 
     if (clickeTtarget === "movie") {
       router.push(`/movies/${item.id}`);
-    };
+    }
     if (clickeTtarget === "saw it") console.log("saw it", item.id);
     if (clickeTtarget === "save it") console.log("save it", item.id);
     if (clickeTtarget === "trailer") console.log("trailer", item.id);
@@ -31,30 +31,30 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     : "/images/no-image.jpg";
 
   return (
-      <div
-        onMouseEnter={() => {
-          setIsShowHover(true);
-        }}
-        onMouseLeave={() => {
-          setIsShowHover(false);
-        }}
-        className={`p-1 w-full lg:p-2 xl:p-3`}
-      >
-        <div className=" relative w-full">
-          {isShowHover ? (
-            <MovieCardHover movie={item} handleMovie={handleMovie} />
-           ) : null} 
-          <Image
-            id={`${id}`}
-            src={poster}
-            alt={title}
-            width={285}
-            height={428}
-            quality={75}
-            priority={true}
-            className={`w-full h-full rounded-[18px]`}
-          />
-        </div>
+    <div
+      onMouseEnter={() => {
+        setIsShowHover(true);
+      }}
+      onMouseLeave={() => {
+        setIsShowHover(false);
+      }}
+      className={`p-1 w-full lg:p-2 xl:p-3`}
+    >
+      <div className=" relative w-full">
+        {isShowHover ? (
+          <MovieCardHover movie={item} handleMovie={handleMovie} />
+        ) : null}
+        <Image
+          id={`${id}`}
+          src={poster}
+          alt={title}
+          width={285}
+          height={428}
+          quality={75}
+          priority={true}
+          className={`w-full h-full rounded-[18px]`}
+        />
       </div>
+    </div>
   );
 };

@@ -1,6 +1,5 @@
-import { MovieCardHoverBtnProps } from "@/types";
+import { MovieCardHoverBtnProps } from "@/typification";
 import clsx from "clsx";
-
 
 export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   id,
@@ -8,7 +7,7 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   isChecked,
   dataMovie,
   onClick,
-  hoverd
+  hoverd,
 }): React.JSX.Element => {
   return (
     <>
@@ -17,7 +16,9 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
         data-movie={dataMovie}
         onClick={onClick}
         className={clsx(
-          `${hoverd && 'group'} relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full
+          `${
+            hoverd && "group"
+          } relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full
            border-solid border-[1px] transition-all duration-350 ease-in-out `,
           {
             "border-accentColor text-accentColor": isChecked,

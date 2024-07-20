@@ -1,7 +1,7 @@
 import { getFilNameFromPath } from "@/lib";
 import FrameShotIcon from "../../../public/icons/frame-shot.svg";
 import Image from "next/image";
-import { SliderCarouselSlideProps } from "@/types";
+import { SliderCarouselSlideProps } from "@/typification";
 
 export const SliderCarouselSlide: React.FC<SliderCarouselSlideProps> = ({
   item,

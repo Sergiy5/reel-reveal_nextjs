@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieCardHoverProps } from "@/types";
+import { MovieCardHoverProps } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
 import { yearFromDate } from "@/lib";
@@ -10,7 +10,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
 }) => {
   const { vote_average, release_date, title, id } = movie;
 
-  const releaseYear = yearFromDate(release_date)
+  const releaseYear = yearFromDate(release_date);
 
   return (
     <div

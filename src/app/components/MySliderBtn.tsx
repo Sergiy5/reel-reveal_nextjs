@@ -1,7 +1,7 @@
 import React from "react";
 import ArrowIcon from "../../../public/icons/arrow.svg";
 import clsx from "clsx";
-import { MySliderBtnProps } from "@/types";
+import { MySliderBtnProps } from "@/typification";
 
 export const MySliderBtn: React.FC<MySliderBtnProps> = (
   props
@@ -37,7 +37,12 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = (
         prevStyle ? "-left-7" : "-right-8"
       )}
     >
-      <ArrowIcon className={clsx(" ml-auto mr-auto text-inherit w-6 h-6 opacity-100", prevStyle)} />
+      <ArrowIcon
+        className={clsx(
+          " ml-auto mr-auto text-inherit w-6 h-6 opacity-100",
+          prevStyle
+        )}
+      />
     </button>
   );
 };

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import { MainLogo } from "./MainLogo";
 import { FooterMenu } from "./FooterMenu";
 import { FooterListSocial } from "./FooterListSocial";
 import CameraIcon from "../../../public/icons/camera.svg";
-import { DeviceType} from "@/types";
+import { DeviceType } from "@/typification";
 import { LinkToQuiz } from "./LinkToQuiz";
 
 export const Footer: React.FC = () => {
@@ -58,7 +58,9 @@ export const Footer: React.FC = () => {
           className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-1440 h-auto`}
         />
       </div>
-      <div className={`flex justify-center  text-textColor`}>© 2024 Reel Reveal</div>
+      <div className={`flex justify-center  text-textColor`}>
+        © 2024 Reel Reveal
+      </div>
     </footer>
   );
 };

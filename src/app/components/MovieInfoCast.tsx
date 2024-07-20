@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getMovieCast } from "../api/actions/getMovieCast";
 import { MySlider } from "./MySlider";
 import { MovieInfoCastCard } from "./MovieInfoCastCard";
-import { Actor } from "@/types";
+import { Actor } from "@/typification";
 import { MySliderBtn } from "./MySliderBtn";
 
 interface TopCastProps {
@@ -78,7 +78,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
   };
 
   return (
-    <div className={`w-full`}>
+    <div className={`flex flex-col justify-center items-center w-full`}>
       <h2 className={`flex justify-center w-full mb-12`}>Top cast</h2>
       <div className="container -ml-10 w-full sm:ml-0 md:-mx-2.5">
         {" "}

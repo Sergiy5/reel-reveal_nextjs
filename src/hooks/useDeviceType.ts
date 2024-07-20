@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { DeviceType } from "@/types";
+import { DeviceType } from "@/typification";
 
 export const useDeviceType = (): DeviceType => {
   const [deviceType, setDeviceType] = useState<DeviceType>(() => {
-    
     if (typeof window === "undefined") {
       return "desktop";
     }
@@ -16,9 +15,7 @@ export const useDeviceType = (): DeviceType => {
     }
   });
 
-
   useEffect(() => {
-
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setDeviceType("mobile");

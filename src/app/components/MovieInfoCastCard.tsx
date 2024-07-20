@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { generateUrlImage } from "@/lib";
-import { Actor } from "@/types";
+import { Actor } from "@/typification";
 
 interface MovieInfoCastCardProps {
   item: Actor;
 }
-export const MovieInfoCastCard: React.FC<MovieInfoCastCardProps> = ({ item }) => {
+export const MovieInfoCastCard: React.FC<MovieInfoCastCardProps> = ({
+  item,
+}) => {
   const { profile_path, name, character, original_name } = item;
 
   return (

@@ -1,16 +1,15 @@
 import React, { Suspense } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { LayoutProps } from "@/types";
+import { LayoutProps } from "@/typification";
 import { Loader } from "../components/Loader";
 
 export default function Layout({ children }: LayoutProps) {
-
   return (
-      <Suspense fallback={<Loader />}>
-        <Header />
-        <div>{children}</div>
-        <Footer />
-      </Suspense>
+    <Suspense fallback={<Loader />}>
+      <Header />
+      <div>{children}</div>
+      <Footer />
+    </Suspense>
   );
 }
