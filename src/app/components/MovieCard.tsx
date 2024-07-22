@@ -16,6 +16,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     const clickeTtarget = e.currentTarget.dataset.movie;
 
     if (clickeTtarget === "movie") {
+      // const stringifyMovie = JSON.stringify(movie);
 
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
       router.push(`/movies/${stringifyMovie}`);
