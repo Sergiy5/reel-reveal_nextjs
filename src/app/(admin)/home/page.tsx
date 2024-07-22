@@ -43,11 +43,17 @@ async function getUpcoming() {
 export default async function Home() {
   // const { topRatedMovies, upcomingMovies } = props;
 // console.log("+++++++))))))======", topRatedMovies);
-  // const topRatedMovies = getTopRatedMovies();
+  const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcoming();
   console.log("___+++++++++++++++++++++++++++++", upcomingMovies.succes)
   
   if (upcomingMovies.status_code === 7) return(<><div>Page</div></>)
+  if (!topRatedMovies)
+    return (
+      <>
+        <div>Page</div>
+      </>
+    );
     
     
     console.log(upcomingMovies);
@@ -60,7 +66,7 @@ export default async function Home() {
         title={"Upcoming 20 movies in 2024"}
         movies={upcomingMovies.results}
       />
-      {/* <GetShowMovies title={"TOP 20 rated movies"} movies={topRatedMovies} /> */}
+      <GetShowMovies title={"TOP 20 rated movies"} movies={topRatedMovies} />
       <Genres />
       <SliderCarousel />
       <TakeOurQuiz />
