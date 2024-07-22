@@ -43,7 +43,7 @@ export interface MovieCardHoverBtnProps {
   hoverd?: boolean;
 }
 export interface MovieCardProps {
-  item: Movie;
+  movie: Movie;
 }
 
 export interface MovieCardHoverProps {
@@ -60,11 +60,11 @@ export interface ListMoviesProps {
 export interface MySliderProps<T> {
   arraySlides: T[];
   settings: Settings;
-  SlideComponent: React.ComponentType<{ item: T }>;
+  SlideComponent: React.ComponentType<{ movie: T }>;
 }
 
 export interface SliderCarouselSlideProps {
-  item: string;
+  movie: string;
 }
 export interface GetShowMoviesProps {
   title: string;
@@ -85,13 +85,6 @@ export interface QuizListMoviesProps {
   clearPrevQuiz: () => void;
 }
 
-// export interface QuizQuestions {
-//   quiz: string;
-//   title: string;
-//   options: { ansver: string, value: ""}[];
-//   page: number;
-// }
-
 export interface QuizBtnsProps {
   answers: { answer: string; value: string }[];
   collectQuiz: (answer: string) => void;
@@ -100,7 +93,7 @@ export interface QuizBtnsProps {
 
 
 export interface MySliderBtnProps extends CustomArrowProps {
-  prevStyle?: string;
+  prev_style?: string;
 }
 
 export interface quizDataType {

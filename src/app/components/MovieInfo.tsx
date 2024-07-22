@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Image from "next/image";
-import { getMovieById } from "@/app/api/actions/getMovieById";
+// import { getMovieById } from "@/app/api/actions/getMovieById";
 import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
@@ -11,27 +11,26 @@ import {
   hoursFromMinuts,
   yearFromDate,
 } from "@/lib";
-import { Loader } from "./Loader";
+// import { Loader } from "./Loader";
 interface MovieInfoProps {
-  id: string;
+  movie: Movie;
 }
 
-export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
-  const [movie, setMovie] = useState<Movie | null>(null);
+export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
+  // const [movie, setMovie] = useState<Movie | null>(null);
+  // useEffect(() => {
+  //   const fetchMovie = async (id: string) => {
+  //     try {
+  //       const movieData = await getMovieById(id);
 
-  useEffect(() => {
-    const fetchMovie = async (id: string) => {
-      try {
-        const movieData = await getMovieById(id);
+  //       setMovie(movieData);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-        setMovie(movieData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchMovie(id);
-  }, [id]);
+  //   fetchMovie(id);
+  // }, [id]);
 
   return (
     <>
@@ -103,7 +102,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ id }) => {
           />
         </div>
       ) : (
-        <Loader />
+          <div>LOADING...</div>
+        // <Loader />
       )}
     </>
   );

@@ -3,12 +3,12 @@ import { generateUrlImage } from "@/lib";
 import { Actor } from "@/typification";
 
 interface MovieInfoCastCardProps {
-  item: Actor;
+  movie: Actor;
 }
 export const MovieInfoCastCard: React.FC<MovieInfoCastCardProps> = ({
-  item,
+  movie,
 }) => {
-  const { profile_path, name, character, original_name } = item;
+  const { profile_path, name, character, original_name } = movie;
 
   return (
     <div className={`flex flex-col p-1 sm:p-2.5 w-auto gap-6`}>

@@ -5,9 +5,10 @@ const Back_END_URL = "/api/postOpenAI";
 export const quizDataFromOpenAI = async (
   requestArray: string[]
 ): Promise<OpenAiResponse> => {
+  const releaseDate = requestArray[3]
   const prompt = `
-  You are a connoisseur of films. Provide 8 lesser-known movies, one for each element in the array: ${requestArray}.
-  Return the result as a JSON array of only TITLES!: ["title1", "title2", "title3", "title4", "title5", "title6", "title7", "title8"].
+  You are a connoisseur of films. Provide 8 lesser-known movies, use release date ${releaseDate} one for each element in the array: ${requestArray}.
+ The result in JSON format like this: ""["title", "title", "title", "title", "title", "title", "title", "title"]"" without any additional text.
   `;
 
   try {

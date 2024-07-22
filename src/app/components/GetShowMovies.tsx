@@ -33,7 +33,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
     slidesToScroll: 4,
     infinite: false,
     nextArrow: <MySliderBtn />,
-    prevArrow: <MySliderBtn prevStyle={"rotate-180"} />,
+    prevArrow: <MySliderBtn prev_style={"rotate-180"} />,
     arrows: true,
     pauseOnFocus: true,
     initialSlide: 0,

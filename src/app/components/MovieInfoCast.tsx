@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 import { getMovieCast } from "../api/actions/getMovieCast";
 import { MySlider } from "./MySlider";
 import { MovieInfoCastCard } from "./MovieInfoCastCard";
-import { Actor } from "@/typification";
 import { MySliderBtn } from "./MySliderBtn";
 
 interface TopCastProps {
-  id: string;
+  id: number;
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    const getCast = async (id: string) => {
+    const getCast = async (id: number) => {
       try {
         const result = await getMovieCast(id);
 
@@ -36,7 +35,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
     cssEase: "linear",
     arrows: true,
     nextArrow: <MySliderBtn />,
-    prevArrow: <MySliderBtn prevStyle={"rotate-180"} />,
+    prevArrow: <MySliderBtn prev_style={"rotate-180"} />,
     pauseOnHover: false,
     responsive: [
       {

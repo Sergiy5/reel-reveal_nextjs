@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getTrailer } from "../api/actions/getTrailler";
 interface VideoComponentProps {
-  id: string;
+  id: number;
 }
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
@@ -12,7 +12,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   useEffect(() => {
     const fetchTrailerId = async () => {
       try {
-        const response = await getTrailer(id);
+        const response = await getTrailer(`${id}`);
         if (response) {
           setTrailerId(response);
         }

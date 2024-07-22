@@ -26,7 +26,7 @@ export const MySlider = <T,>({
   return (
     <Slider key={key} ref={sliderRef} {...settings}>
       {arraySlides.map((item) => (
-        <SlideComponent key={nanoid()} item={item} />
+        <SlideComponent key={nanoid()} movie={item} />
       ))}
     </Slider>
   );

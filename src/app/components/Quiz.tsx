@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Loader } from "./Loader";
-import { firstElementsFromArray} from "@/lib";
+import { firstElementsFromArray, isArray} from "@/lib";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
@@ -25,15 +26,22 @@ export const Quiz: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const response = await quizDataFromOpenAI(quizMovies);
+        const result = await quizDataFromOpenAI(quizMovies);
 
-        if (!response) {
+        if (!result) {
           setIsLoading(false);
-          alert("Error... fetch data");
+          toast.error("Error... fetch data");
           throw new Error();
         }
-        setTitlesFromOpenaiApi(response);
+      
+        if (isArray(result)) {
+
+          return setTitlesFromOpenaiApi(result)
+        }
+         toast.error("Something went wrong, try again...");
+
       } catch (error) {
+        toast.error("Error... fetch data");
         console.error("Error fetch data from openai:", error);
       }
     };
@@ -43,13 +51,14 @@ export const Quiz: React.FC = () => {
 
   // Rquest to TMdB
   useEffect(() => {
+    
     if (!titlesFromOpenaiApi.length) return;
 
     const getArrMovies = async (movies: string[]) => {
       try {
         const response = await getQuizMovies(movies);
         const result = firstElementsFromArray(response);
-
+console.log(result)
         if (result) setListMovies(result);
 
         setIsQuizActive(false);
@@ -60,9 +69,8 @@ export const Quiz: React.FC = () => {
       }
     };
 
-    const lastArrayFromAI = titlesFromOpenaiApi.slice(-8);
 
-    getArrMovies(lastArrayFromAI);
+    getArrMovies(titlesFromOpenaiApi);
   }, [titlesFromOpenaiApi]);
 
   return (

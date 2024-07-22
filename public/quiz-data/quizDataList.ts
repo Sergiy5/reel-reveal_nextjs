@@ -42,10 +42,19 @@ export const quizDataList: quizDataType[] = [
     quiz: "Q4/8",
     title: ": Something old or something new?",
     options: [
-      { answer: "Classic (pre-1970s)", value: "" },
-      { answer: "Retro (1970s-1990s)", value: "" },
-      { answer: "Modern (2000s-2010s)", value: "" },
-      { answer: "Recent (2010-2020s)", value: "" },
+      { answer: "Classic (pre-1970s)", value: "to 1970 YEAR" },
+      {
+        answer: "Retro (1970s-1990s)",
+        value: "from 1970 to 1990 years",
+      },
+      {
+        answer: "Modern (2000s-2010s)",
+        value: "from 2000 to 2010 years",
+      },
+      {
+        answer: "Recent (2010s to 2020s)",
+        value: "from 2010 to present years",
+      },
     ],
     page: 4,
   },
@@ -64,10 +73,10 @@ export const quizDataList: quizDataType[] = [
     quiz: "Q6/8",
     title: ": What actor or actress  you would like to spend a day with?",
     options: [
-      { answer: "Melissa McCarthy", value: "" },
-      { answer: "Harrison Ford", value: "" },
-      { answer: "Anthony Hopkins", value: "" },
-      { answer: "Margot Robbie", value: "" },
+      { answer: "Melissa McCarthy", value: "comedy" },
+      { answer: "Harrison Ford", value: "action-adventure" },
+      { answer: "Anthony Hopkins", value: "drama" },
+      { answer: "Margot Robbie", value: "action" },
     ],
     page: 6,
   },

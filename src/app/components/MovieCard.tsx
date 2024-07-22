@@ -6,7 +6,7 @@ import { MovieCardHover } from "./MovieCardHover";
 import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 
-export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
+export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const router = useRouter();
   const handleMovie = (
@@ -16,15 +16,17 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     const clickeTtarget = e.currentTarget.dataset.movie;
 
     if (clickeTtarget === "movie") {
-      router.push(`/movies/${item.id}`);
+
+      const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
+      router.push(`/movies/${stringifyMovie}`);
     }
-    if (clickeTtarget === "saw it") console.log("saw it", item.id);
-    if (clickeTtarget === "save it") console.log("save it", item.id);
-    if (clickeTtarget === "trailer") console.log("trailer", item.id);
+    if (clickeTtarget === "saw it") console.log("saw it", movie.id);
+    if (clickeTtarget === "save it") console.log("save it", movie.id);
+    if (clickeTtarget === "trailer") console.log("trailer", movie.id);
 
     return e.currentTarget.dataset.movie;
   };
-  const { poster_path, id, title } = item;
+  const { poster_path, id, title } = movie;
 
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -42,7 +44,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
     >
       <div className=" relative w-full">
         {isShowHover ? (
-          <MovieCardHover movie={item} handleMovie={handleMovie} />
+          <MovieCardHover movie={movie} handleMovie={handleMovie} />
         ) : null}
         <Image
           id={`${id}`}

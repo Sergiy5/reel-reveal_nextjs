@@ -4,12 +4,12 @@ import Image from "next/image";
 import { SliderCarouselSlideProps } from "@/typification";
 
 export const SliderCarouselSlide: React.FC<SliderCarouselSlideProps> = ({
-  item,
+  movie,
 }) => {
   const isDev = process.env.NODE_ENV;
   const regExp = isDev === "development" ? "\\" : "/";
 
-  const pathName = getFilNameFromPath(item, regExp);
+  const pathName = getFilNameFromPath(movie, regExp);
 
   const title = pathName.replaceAll("-", " ");
 

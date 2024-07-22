@@ -1,7 +1,9 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import "./globals.scss";
-import { ceraPro, hind } from "./fonts";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ceraPro } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -19,8 +21,9 @@ export default function RootLayout({
         <title>Reel-Reveal</title>
       </head>
 
-      <body className={(ceraPro.className)}>
+      <body className={ceraPro.className}>
         {children}
+        <ToastContainer />
         <SpeedInsights />
       </body>
     </html>

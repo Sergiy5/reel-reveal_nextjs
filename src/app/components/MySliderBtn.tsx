@@ -1,21 +1,24 @@
 import React from "react";
-import ArrowIcon from "../../../public/icons/arrow.svg";
 import clsx from "clsx";
+import ArrowIcon from "../../../public/icons/arrow.svg";
 import { MySliderBtnProps } from "@/typification";
 
-export const MySliderBtn: React.FC<MySliderBtnProps> = (
-  props
-): React.JSX.Element => {
-  const { currentSlide, onClick, prevStyle } = props;
+export const MySliderBtn: React.FC<MySliderBtnProps> = ({
+  currentSlide,
+  slideCount,
+  prev_style,
+  ...props
+}): React.JSX.Element => {
 
   const isActiveNext = currentSlide === 16;
   const isActivePrev = currentSlide === 0;
 
-  const isActive = prevStyle ? isActivePrev : isActiveNext;
+  const isActive = prev_style ? isActivePrev : isActiveNext;
+
   return (
     <button
-      onClick={onClick}
-      disabled={isActive}
+      {...props}
+      aria-disabled={isActive}
       className={clsx(
         `absolute  top-[42%] flex items-center justify-center w-20 h-20 rounded-[20px]
          outline-none transition-colors transition-outline duration-250 ease-[cubic-bezier(0.4,0,0.2,1)] z-10`,
@@ -34,13 +37,13 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = (
             !isActive,
           "focus:outline-2": !isActive,
         },
-        prevStyle ? "-left-7" : "-right-8"
+        prev_style ? "-left-7" : "-right-8"
       )}
     >
       <ArrowIcon
         className={clsx(
           " ml-auto mr-auto text-inherit w-6 h-6 opacity-100",
-          prevStyle
+          prev_style
         )}
       />
     </button>
