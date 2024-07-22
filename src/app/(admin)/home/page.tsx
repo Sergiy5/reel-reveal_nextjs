@@ -20,7 +20,8 @@ import { Movie } from "@/typification";
 //   return [{ topRatedMovies, upcomingMovies }];
 // }
 async function getUpcoming() {
-  const token = process.env.BEARER_TOKEN_TMDB;
+ 
+  const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=en-US`,
     {
@@ -40,7 +41,7 @@ export default async function Home() {
 // console.log("+++++++))))))======", topRatedMovies);
   // const topRatedMovies = getTopRatedMovies();
   const upcomingMovies = await getUpcoming();
-  
+
   if (!upcomingMovies) return(<><div>Page</div></>)
     
     
