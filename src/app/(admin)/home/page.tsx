@@ -22,7 +22,10 @@ import { Movie } from "@/typification";
 async function getUpcoming() {
  
   const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  
+  console.log("PUBLIC_KEY", API_KEY)
+   const API = process.env.TMDB_API_KEY;
+   console.log("SERVER_KEY", API);
+
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US`
   );
