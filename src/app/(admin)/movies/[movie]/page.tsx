@@ -8,9 +8,8 @@ export async function generateStaticParams() {
   const movie = { id: 1 }
   // const movies = [{id: 1}, {id: 2}]
   const movieString = encodeURIComponent(JSON.stringify(movie));
-  // const moviesString = encodeURIComponent(JSON.stringify(movies));
   
-  return [{ movie: movieString}];
+  return [{ movie: "1"}];
 }
 
 export default async function Page({ params }: { params: { movie: string} }) {
