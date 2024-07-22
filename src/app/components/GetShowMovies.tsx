@@ -1,31 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { GetShowMoviesProps, Movie } from "@/typification";
+import React from "react";
+import { GetShowMoviesProps } from "@/typification";
 import { MySlider } from "./MySlider";
-import { getMoviesByCategory } from "../api/actions/getMoviesByCategory";
 import { MySliderBtn } from "./MySliderBtn";
 import { Settings } from "react-slick";
 import { MovieCard } from "./MovieCard";
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
-  category,
+  movies
 }) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    const upcomingTopRatedMovies = async (page = "1") => {
-      try {
-        const response = await getMoviesByCategory(category, page);
-
-        setMovies(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    upcomingTopRatedMovies();
-  }, [category]);
 
   const settings: Settings = {
     pauseOnHover: true,

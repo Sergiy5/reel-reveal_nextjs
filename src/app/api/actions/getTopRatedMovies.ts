@@ -1,9 +1,8 @@
 import { Movie } from "@/typification";
 
-export const searchMovieByTitle = async (title: string, page?: string): Promise<Movie> => {
-    
-  const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
-  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&language=en-US`;
+export const getTopRatedMovies = async (): Promise<Movie[]> => {
+  const token = process.env.BEARER_TOKEN_TMDB;
+  const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US`;
 
   try {
     const response = await fetch(url, {
@@ -17,9 +16,9 @@ export const searchMovieByTitle = async (title: string, page?: string): Promise<
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response as Movie;
+    return response.results;
   } catch (error: any) {
     console.error("Fetch error:", error);
-    return {} as Movie;
+    return [];
   }
 };

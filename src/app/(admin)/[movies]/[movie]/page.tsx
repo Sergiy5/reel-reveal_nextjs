@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   return [{movies: "11", movie: '1' }];
 }
 
-export default async function Page({ params }: { params: { movie: string, movies: string} }) {
+export default async function OneMoviePage({ params }: { params: { movie: string, movies: string} }) {
   const { movie } = params;
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
   const { id } = decodedMovie;

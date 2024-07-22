@@ -68,7 +68,8 @@ export interface SliderCarouselSlideProps {
 }
 export interface GetShowMoviesProps {
   title: string;
-  category: string;
+  // category: string;
+  movies: Movie[]
 }
 
 export interface ResponsDataTMbD {
