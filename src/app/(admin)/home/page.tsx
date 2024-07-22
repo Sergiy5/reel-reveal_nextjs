@@ -21,15 +21,21 @@ import { Movie } from "@/typification";
 // }
 async function getUpcoming() {
  
-  const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-  console.log("PUBLIC_KEY", API_KEY)
-   const API = process.env.TMDB_API_KEY;
-   console.log("SERVER_KEY", API);
+  // const API_KEY = process.env.TMDB_API_KEY;
+  // console.log("PUBLIC_KEY", API_KEY)
+  //  const API = process.env.TMDB_API_KEY;
+  //  console.log("SERVER_KEY", API);
+  const TOKEN = process.env.BEARER_TOKEN_TMDB;
 
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US`
+  const res = await fetch( `https://api.themoviedb.org/3/movie/upcoming?&language=en-US`,
+    {
+      cache: "force-cache",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    }
   );
- // `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+
   return res.json()
 }
 
@@ -41,7 +47,7 @@ export default async function Home() {
   const upcomingMovies = await getUpcoming();
   console.log("___+++++++++++++++++++++++++++++", upcomingMovies.succes)
   
-  if (!upcomingMovies.succes) return(<><div>Page</div></>)
+  if (upcomingMovies.status_code === 7) return(<><div>Page</div></>)
     
     
     console.log(upcomingMovies);
