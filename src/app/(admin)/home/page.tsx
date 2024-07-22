@@ -6,57 +6,17 @@ import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
-import { Movie } from "@/typification";
-
-// export interface PageProps {
-//   topRatedMovies: Movie[];
-//   upcomingMovies: Movie[];
-// }
-
-// export async function generateStaticParams() {
-//   const topRatedMovies = await getTopRatedMovies();
-//   const upcomingMovies = await getUpcomingMovies();
-
-//   return [{ topRatedMovies, upcomingMovies }];
-// }
-async function getUpcoming() {
- 
-  // const API_KEY = process.env.TMDB_API_KEY;
-  // console.log("PUBLIC_KEY", API_KEY)
-  //  const API = process.env.TMDB_API_KEY;
-  //  console.log("SERVER_KEY", API);
-  const TOKEN = process.env.BEARER_TOKEN_TMDB;
-
-  const res = await fetch( `https://api.themoviedb.org/3/movie/upcoming?&language=en-US`,
-    {
-      cache: "force-cache",
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      },
-    }
-  );
-
-  return res.json()
-}
 
   
 export default async function Home() {
-  // const { topRatedMovies, upcomingMovies } = props;
-// console.log("+++++++))))))======", topRatedMovies);
+
   const topRatedMovies = await getTopRatedMovies();
-  const upcomingMovies = await getUpcoming();
-  console.log("___+++++++++++++++++++++++++++++", upcomingMovies.succes)
+  const upcomingMovies = await getUpcomingMovies();
   
-  if (upcomingMovies.status_code === 7) return(<><div>Page</div></>)
-  if (!topRatedMovies)
-    return (
-      <>
-        <div>Page</div>
-      </>
-    );
+  if (!upcomingMovies) return(<div>Page</div>)
+  if (!topRatedMovies) return (<div>Page</div>);
     
     
-    console.log(upcomingMovies);
   return (
     <main>
       <Hero />
@@ -64,7 +24,7 @@ export default async function Home() {
       <Quiz />
       <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
-        movies={upcomingMovies.results}
+        movies={upcomingMovies}
       />
       <GetShowMovies title={"TOP 20 rated movies"} movies={topRatedMovies} />
       <Genres />
