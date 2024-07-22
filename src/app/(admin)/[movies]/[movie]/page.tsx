@@ -11,13 +11,12 @@ export async function generateStaticParams() {
 }
 
 export default async function OneMoviePage({ params }: { params: { movie: string, movies: string} }) {
-  const { movie } = params;
+  const { movie, movies } = params;
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
   const { id } = decodedMovie;
-  if (movie === "1") {
-    return <div>Page</div>;
-  }
-
+  
+  if (movie === "1") return <div>Page</div>;
+  if (movies === "11") return <div>Page</div>;
 
 
   return (

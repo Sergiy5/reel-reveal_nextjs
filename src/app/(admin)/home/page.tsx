@@ -7,16 +7,13 @@ import { Genres } from "@/app/components/Genres";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
 
-  
 export default async function Home() {
-
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
-  
-  if (!upcomingMovies) return(<div>Page</div>)
-  if (!topRatedMovies) return (<div>Page</div>);
-    
-    
+
+  if (!upcomingMovies) return <div>Page</div>;
+  if (!topRatedMovies) return <div>Page</div>;
+
   return (
     <main>
       <Hero />
@@ -33,5 +30,3 @@ export default async function Home() {
     </main>
   );
 }
-
-    
