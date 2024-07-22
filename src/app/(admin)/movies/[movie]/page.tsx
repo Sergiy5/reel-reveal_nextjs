@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   const movieString = encodeURIComponent(JSON.stringify(movie));
   // const moviesString = encodeURIComponent(JSON.stringify(movies));
   
-  return [{ movie: movieString}];
+  return [{ movie: [movieString]}];
 }
 
 export default async function Page({ params }: { params: { movie: string} }) {
