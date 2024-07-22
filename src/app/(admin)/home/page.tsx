@@ -21,17 +21,12 @@ import { Movie } from "@/typification";
 // }
 async function getUpcoming() {
  
-  const token = process.env.BEARER_TOKEN_TMDB;
+  const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+  
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?language=en-US`,
-    {
-      next: { revalidate: 3600 },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US`
   );
-      
+ // `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
   return res.json()
 }
 
@@ -41,7 +36,7 @@ export default async function Home() {
 // console.log("+++++++))))))======", topRatedMovies);
   // const topRatedMovies = getTopRatedMovies();
   const upcomingMovies = await getUpcoming();
-console.log("___+++++++++++++++++++++++++++++",upcomingMovies)
+console.log("___+++++++++++++++++++++++++++++", upcomingMovies)
   if (!upcomingMovies) return(<><div>Page</div></>)
     
     
