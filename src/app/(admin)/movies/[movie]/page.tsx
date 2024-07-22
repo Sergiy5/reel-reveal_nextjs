@@ -5,28 +5,28 @@ import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 
 export async function generateStaticParams() {
-  // const movie = { id: 1 }
+  const movie = { id: "1" }
   // const movies = [{id: 1}, {id: 2}]
-  // const movieString = encodeURIComponent(JSON.stringify(movie));
+  const movieString = encodeURIComponent(JSON.stringify(movie));
   
-  return [{ movie: {id:"1"}}];
+  return [{ movie:'1' }];
 }
 
 export default async function Page({ params }: { params: { movie: string} }) {
   const { movie } = params;
-  const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
-  const { id } = decodedMovie;
+  // const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
+  // const { id } = decodedMovie;
 
-  if (id === 1) {
+  if (movie === "1") {
     return <div>Page</div>;
   }
 
   return (
     <>
       <main className={`pt-0 `}>
-        <MovieInfo movie={decodedMovie} />
+        {/* <MovieInfo movie={decodedMovie} />
         <MovieInfoTrailer id={id} />
-        <MovieInfoCast id={id} />
+        <MovieInfoCast id={id} /> */}
         <SliderCarousel />
         <TakeOurQuiz />
       </main>
