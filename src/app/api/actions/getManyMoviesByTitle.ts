@@ -9,6 +9,7 @@ export const getManyMoviesByTitle = async (
   try {
     const requests = arrMovies.map((movie) =>
       fetch(getTmdbUrl("search", 1, movie), {
+        cache: "force-cache",
         headers: {
           Authorization: `Bearer ${TOKEN}`,
         },
