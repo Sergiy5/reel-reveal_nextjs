@@ -3,6 +3,7 @@ import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
+import { SimilarMovies } from "@/app/components/SimilarMovies";
 
 export async function generateStaticParams() {
   
@@ -13,10 +14,11 @@ export default async function OneMoviePage({ params }: { params: { movie: string
   const { movie } = params;
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
   const { id } = decodedMovie;
-
   if (movie === "1") {
     return <div>Page</div>;
   }
+
+
 
   return (
     <>
@@ -24,6 +26,7 @@ export default async function OneMoviePage({ params }: { params: { movie: string
         <MovieInfo movie={decodedMovie} />
         <MovieInfoTrailer id={id} />
         <MovieInfoCast id={id} />
+        <SimilarMovies movie={decodedMovie} />
         <SliderCarousel />
         <TakeOurQuiz />
       </main>

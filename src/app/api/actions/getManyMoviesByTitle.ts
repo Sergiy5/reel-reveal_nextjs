@@ -1,7 +1,7 @@
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
 
-export const getQuizMovies = async (
+export const getManyMoviesByTitle = async (
   arrMovies: string[]
 ): Promise<Movie[][]> => {
   const TOKEN = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
@@ -18,6 +18,7 @@ export const getQuizMovies = async (
     const response = await Promise.all(requests);
 
     return response.map(({ results }) => results);
+    
   } catch (error: any) {
     console.log("getQuizMovies error", error.message);
     throw error;

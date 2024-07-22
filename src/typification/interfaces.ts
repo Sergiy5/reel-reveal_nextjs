@@ -68,8 +68,7 @@ export interface SliderCarouselSlideProps {
 }
 export interface GetShowMoviesProps {
   title: string;
-  // category: string;
-  movies: Movie[]
+  movies: Movie[];
 }
 
 export interface ResponsDataTMbD {
@@ -92,7 +91,6 @@ export interface QuizBtnsProps {
   isActive: boolean;
 }
 
-
 export interface MySliderBtnProps extends CustomArrowProps {
   prev_style?: string;
 }
@@ -100,7 +98,7 @@ export interface MySliderBtnProps extends CustomArrowProps {
 export interface quizDataType {
   quiz: string;
   title: string;
-  options: { answer: string, value: string }[];
+  options: { answer: string; value: string }[];
   page: number;
 }
 

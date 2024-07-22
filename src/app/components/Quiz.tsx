@@ -8,7 +8,7 @@ import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-import { getQuizMovies } from "../api/actions/getQuizMovies";
+import { getManyMoviesByTitle} from "../api/actions";
 
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -56,9 +56,10 @@ export const Quiz: React.FC = () => {
 
     const getArrMovies = async (movies: string[]) => {
       try {
-        const response = await getQuizMovies(movies);
+        const response = await getManyMoviesByTitle(movies);
+        
         const result = firstElementsFromArray(response);
-console.log(result)
+
         if (result) setListMovies(result);
 
         setIsQuizActive(false);
