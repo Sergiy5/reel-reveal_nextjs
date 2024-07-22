@@ -5,11 +5,11 @@ import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 
 export async function generateStaticParams() {
-  const movie = { id: 1 }
+  // const movie = { id: 1 }
   // const movies = [{id: 1}, {id: 2}]
-  const movieString = encodeURIComponent(JSON.stringify(movie));
+  // const movieString = encodeURIComponent(JSON.stringify(movie));
   
-  return [{ movie: "1"}];
+  return [{ movie: {id:"1"}}];
 }
 
 export default async function Page({ params }: { params: { movie: string} }) {
