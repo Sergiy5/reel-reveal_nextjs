@@ -40,7 +40,11 @@ export default async function Home() {
 // console.log("+++++++))))))======", topRatedMovies);
   // const topRatedMovies = getTopRatedMovies();
   const upcomingMovies = await getUpcoming();
-  console.log(upcomingMovies)
+  
+  if (!upcomingMovies) return(<><div>Page</div></>)
+    
+    
+    console.log(upcomingMovies);
   return (
     <main>
       <Hero />
