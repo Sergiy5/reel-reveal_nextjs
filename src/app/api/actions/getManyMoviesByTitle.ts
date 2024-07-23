@@ -1,12 +1,10 @@
-// 'use server'
-
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
 
 export const getManyMoviesByTitle = async (
   arrMovies: string[]
 ): Promise<Movie[][]> => {
-  const TOKEN = process.env.BEARER_TOKEN_TMDB;
+  const TOKEN = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
 
   try {
     const requests = arrMovies.map((movie) =>
