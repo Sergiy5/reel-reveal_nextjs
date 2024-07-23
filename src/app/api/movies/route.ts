@@ -1,5 +1,4 @@
 "use server"
-// export const dynamic = "force-dynamic";
 
 import { NextResponse, type NextRequest } from "next/server";
 
