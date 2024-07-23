@@ -1,4 +1,4 @@
-
+"use server"
 
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
@@ -24,7 +24,7 @@ export const getManyMoviesByTitle = async (
     );
   
     const response = await Promise.all(requests);
-  
+  console.log(response)
     return response.map(({ results }) => results);
     
   } catch (error: any) {

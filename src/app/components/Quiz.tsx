@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useSWR from "swr";
 import { Loader } from "./Loader";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-// import { getManyMoviesByTitle } from "../api/actions";
+import { getManyMoviesByTitle } from "../api/actions";
 import { firstElementsFromArray, isArray } from "@/lib";
-import { fetchManyMovies } from "@/lib/fetchManyMovies";
-
 
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -18,6 +17,7 @@ export const Quiz: React.FC = () => {
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const { data, error } = useSWR(titlesFromOpenaiApi, getManyMoviesByTitle);
 
   // Request (POST) to openai API =====================
   useEffect(() => {
@@ -25,6 +25,7 @@ export const Quiz: React.FC = () => {
 
     const openAiAPI = async (quizMovies: string[]) => {
       setIsLoading(true);
+      setIsQuizActive(false);
 
       try {
         const result = await quizDataFromOpenAI(quizMovies);
@@ -34,14 +35,15 @@ export const Quiz: React.FC = () => {
           toast.error("Error... fetch data");
           throw new Error();
         }
-
         if (isArray(result)) {
-          return setTitlesFromOpenaiApi(result);
+          if (result) return setTitlesFromOpenaiApi(result);
         }
         toast.error("Something went wrong, try again...");
       } catch (error) {
         toast.error("Error... fetch data");
         console.error("Error fetch data from openai:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -50,26 +52,15 @@ export const Quiz: React.FC = () => {
 
   // Rquest to TMdB
   useEffect(() => {
-    if (!titlesFromOpenaiApi.length) return;
-
-    const getArrMovies = async (movies: string[]) => {
-      try {
-        const response = await fetchManyMovies(movies);
-
-        const result = firstElementsFromArray(response);
-
-        if (result) setListMovies(result);
-
-        setIsQuizActive(false);
-      } catch (error) {
-        console.log("Error in Quiz...", error);
-      } finally {
-        setIsLoading(false);
+    if (data) {
+      const movies = firstElementsFromArray(data);
+      if (movies) setListMovies(movies);
+    } else {
+      if (error) {
+        toast.error("Somthing went wron... Try again");
       }
-    };
-
-    getArrMovies(titlesFromOpenaiApi);
-  }, [titlesFromOpenaiApi]);
+    }
+  }, [data, error]);
 
   return (
     <div

@@ -37,7 +37,7 @@ export default async function OneMoviePage({
       <MovieInfo movie={decodedMovie} />
       <MovieInfoTrailer id={traillerId} />
       <MovieInfoCast cast={castMovie} />
-      {/* <DynamicSimilarMovies title={(title ?? original_title)} /> */}
+      <DynamicSimilarMovies title={(title ?? original_title)} />
       <SliderCarousel />
       <TakeOurQuiz />
     </main>
