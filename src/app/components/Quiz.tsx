@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import useSWR from "swr";
 import { Loader } from "./Loader";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-import { getManyMoviesByTitle } from "../api/actions";
 import { firstElementsFromArray, isArray } from "@/lib";
+import { useFetchManyMovies } from "@/hooks";
 
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -17,7 +16,7 @@ export const Quiz: React.FC = () => {
   const [listMovies, setListMovies] = useState<Movie[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const { data, error } = useSWR(titlesFromOpenaiApi, getManyMoviesByTitle);
+  const { data, error } = useFetchManyMovies(titlesFromOpenaiApi);
 
   // Request (POST) to openai API =====================
   useEffect(() => {

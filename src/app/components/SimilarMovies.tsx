@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import useSWR from "swr";
 import { Movie } from "@/typification";
 import {
-  getManyMoviesByTitle,
   getSimilarMovieFromOpenAI,
 } from "../api/actions";
 import { firstElementsFromArray } from "@/lib";
 import { GetShowMovies } from "./GetShowMovies";
+import { useFetchManyMovies } from "@/hooks";
 
 interface SimilarMoviesProps {
   title: string;
@@ -17,7 +16,8 @@ interface SimilarMoviesProps {
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
   const [similarTitles, setSimilarTitles] = useState<string[]>([]);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
-  const { data, error } = useSWR(similarTitles, getManyMoviesByTitle);
+    const { data, error } = useFetchManyMovies(similarTitles);
+
 
   useEffect(() => {
     const fetchSimilarTitles = async (title: string) => {
