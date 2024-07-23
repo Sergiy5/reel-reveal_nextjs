@@ -8,7 +8,7 @@ export const getUpcomingMovies = async (
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 },
+      cache: "force-cache",
       headers: {
         Authorization: `Bearer ${token}`,
       },

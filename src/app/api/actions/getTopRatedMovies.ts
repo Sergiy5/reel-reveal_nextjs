@@ -6,7 +6,7 @@ export const getTopRatedMovies = async (): Promise<Movie[]> => {
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 },
+       cache: 'force-cache' ,
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -5,7 +5,9 @@ import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
-import { getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
+import { getManyMoviesByTitle, getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
+import { firstElementsFromArray } from "@/lib";
+import { Movie } from "@/typification";
 
 export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
@@ -14,11 +16,12 @@ export default async function Home() {
   if (!upcomingMovies) return <div>Page</div>;
   if (!topRatedMovies) return <div>Page</div>;
 
+
   return (
     <main>
       <Hero />
       <HowItWorks />
-      <Quiz />
+      <Quiz action={getManyMoviesByTitle} />
       <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
         movies={upcomingMovies}
