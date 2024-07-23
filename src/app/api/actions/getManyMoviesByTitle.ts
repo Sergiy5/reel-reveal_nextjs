@@ -2,7 +2,7 @@
 
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
-
+export const dynamic = "force-dynamic";
 export default async function getManyMoviesByTitle  (
   arrMovies: string[]
 ): Promise<Movie[][]>{
