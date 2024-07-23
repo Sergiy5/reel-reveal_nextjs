@@ -6,7 +6,7 @@ import { getManyMoviesByTitle } from "@/app/api/actions";
 export default function Home() {
   return (
     <main>
-      <Quiz action={getManyMoviesByTitle} />
+      {/* <Quiz action={getManyMoviesByTitle} /> */}
       <HowItWorks />
       <SliderCarousel />
     </main>

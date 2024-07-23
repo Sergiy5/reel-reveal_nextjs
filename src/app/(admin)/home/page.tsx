@@ -21,7 +21,7 @@ export default async function Home() {
     <main>
       <Hero />
       <HowItWorks />
-      <Quiz action={getManyMoviesByTitle} />
+      <Quiz />
       <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
         movies={upcomingMovies}

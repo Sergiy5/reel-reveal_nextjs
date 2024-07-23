@@ -14,8 +14,7 @@ interface QuizProps {
   action: (movies: string[]) => Promise<Movie[][]>;
 }
 
-
-export const Quiz: React.FC<QuizProps> = ({action}) => {
+export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [titlesFromOpenaiApi, setTitlesFromOpenaiApi] = useState<string[]>([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
@@ -57,7 +56,7 @@ export const Quiz: React.FC<QuizProps> = ({action}) => {
 
     const getArrMovies = async (movies: string[]) => {
       try {
-        const response = await action(movies);
+        const response = await getManyMoviesByTitle(movies);
 
         const result = firstElementsFromArray(response);
 
@@ -72,7 +71,7 @@ export const Quiz: React.FC<QuizProps> = ({action}) => {
     };
 
     getArrMovies(titlesFromOpenaiApi);
-  }, [action, titlesFromOpenaiApi]);
+  }, [titlesFromOpenaiApi]);
 
   return (
     <div
