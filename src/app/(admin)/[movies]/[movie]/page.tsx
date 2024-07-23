@@ -1,12 +1,12 @@
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
-import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
-import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import { SimilarMovies } from "@/app/components/SimilarMovies";
-import { getTrailer } from "@/app/api/actions/getTrailler";
-import { getMovieCast } from "@/app/api/actions/getMovieCast";
-import { getManyMoviesByTitle, getSimilarMovieFromOpenAI } from "@/app/api/actions";
+// import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
+// import { MovieInfoCast } from "@/app/components/MovieInfoCast";
+// import { getTrailer } from "@/app/api/actions/getTrailler";
+// import { getMovieCast } from "@/app/api/actions/getMovieCast";
+// import { getManyMoviesByTitle, getSimilarMovieFromOpenAI } from "@/app/api/actions";
 
 export async function generateStaticParams() {
   return [{ movies: "11", movie: "1" }];
@@ -24,14 +24,14 @@ export default async function OneMoviePage({
   if (movie === "1") return <div>Page</div>;
   if (movies === "11") return <div>Page</div>;
 
-  const traillerId = await getTrailer(`${id}`);
-  const castMovie = await getMovieCast(`${id}`);
+  // const traillerId = await getTrailer(`${id}`);
+  // const castMovie = await getMovieCast(`${id}`);
 
   return (
     <main className={`pt-0 `}>
       <MovieInfo movie={decodedMovie} />
-      <MovieInfoTrailer id={traillerId} />
-      <MovieInfoCast cast={castMovie} />
+      {/* <MovieInfoTrailer id={traillerId} />
+      <MovieInfoCast cast={castMovie} /> */}
       <SimilarMovies title={(title ?? original_title)} />
       <SliderCarousel />
       <TakeOurQuiz />
