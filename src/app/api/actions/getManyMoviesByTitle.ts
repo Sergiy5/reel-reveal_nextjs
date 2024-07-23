@@ -1,14 +1,10 @@
-"use server"
-
 import { Movie } from "@/typification";
-import { getTmdbUrl } from "@/lib";
-export const dynamic = "force-dynamic";
+
 export default async function getManyMoviesByTitle  (
   arrMovies: string[]
 ): Promise<Movie[][]>{
-  // getTmdbUrl("search", 1, movie)
-  const TOKEN = process.env.BEARER_TOKEN_TMDB;
-  // const url = `https://api.themoviedb.org/3/search/movie?query=${searchingMovie}&language=en-US`;
+
+  const TOKEN = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
   
   try {
     const requests = arrMovies.map((movie) =>
