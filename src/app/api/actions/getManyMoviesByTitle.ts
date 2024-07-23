@@ -4,7 +4,7 @@ import { getTmdbUrl } from "@/lib";
 export const getManyMoviesByTitle = async (
   arrMovies: string[]
 ): Promise<Movie[][]> => {
-  const Back_END_URL = "/api/movies?query=";
+  const Back_END_URL = "/api/fetchMovies?query=";
 
   const results = arrMovies.map((movie) => {
     return fetch(`${Back_END_URL}${movie}`).then((res) => res.json());
