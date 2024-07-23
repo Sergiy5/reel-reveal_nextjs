@@ -3,7 +3,7 @@ import { Movie } from "@/typification";
 export const getMovieById = async (
   id: string | string[] | null
 ): Promise<Movie> => {
-  const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
+  const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/movie/${id}`;
 
   try {
