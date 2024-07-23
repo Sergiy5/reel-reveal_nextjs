@@ -3,9 +3,9 @@
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
 
-export const getManyMoviesByTitle = async (
+export default async function getManyMoviesByTitle  (
   arrMovies: string[]
-): Promise<Movie[][]> => {
+): Promise<Movie[][]>{
   // getTmdbUrl("search", 1, movie)
   const TOKEN = process.env.BEARER_TOKEN_TMDB;
   // const url = `https://api.themoviedb.org/3/search/movie?query=${searchingMovie}&language=en-US`;
