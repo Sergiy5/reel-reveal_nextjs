@@ -1,7 +1,7 @@
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
-import { SimilarMovies } from "@/app/components/SimilarMovies";
+// import { SimilarMovies } from "@/app/components/SimilarMovies";
 // import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 // import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 // import { getTrailer } from "@/app/api/actions/getTrailler";
@@ -32,7 +32,7 @@ export default async function OneMoviePage({
       <MovieInfo movie={decodedMovie} />
       {/* <MovieInfoTrailer id={traillerId} />
       <MovieInfoCast cast={castMovie} /> */}
-      <SimilarMovies title={(title ?? original_title)} />
+      {/* <SimilarMovies title={(title ?? original_title)} /> */}
       <SliderCarousel />
       <TakeOurQuiz />
     </main>
