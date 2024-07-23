@@ -1,7 +1,7 @@
-import { getManyMoviesByTitle } from "@/app/api/actions";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { Quiz } from "@/app/components/Quiz";
 import SliderCarousel from "@/app/components/SliderCarousel";
+import { getManyMoviesByTitle } from "@/app/api/actions";
 
 export default function Home() {
   return (

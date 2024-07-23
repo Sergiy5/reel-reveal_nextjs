@@ -57,7 +57,6 @@ export const Quiz: React.FC<QuizProps> = ({action}) => {
 
     const getArrMovies = async (movies: string[]) => {
       try {
-        "use server"
         const response = await action(movies);
 
         const result = firstElementsFromArray(response);
