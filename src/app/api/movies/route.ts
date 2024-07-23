@@ -1,7 +1,6 @@
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 import { NextResponse, type NextRequest } from "next/server";
-// query is "hello" for /api/search?query=hello
 
 export async function GET(request: NextRequest) {
  
