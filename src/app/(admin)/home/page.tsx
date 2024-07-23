@@ -1,14 +1,11 @@
+import dynamic from "next/dynamic";
+import SliderCarousel from "@/app/components/SliderCarousel";
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
-// import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
-import SliderCarousel from "@/app/components/SliderCarousel";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
-import { getManyMoviesByTitle, getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
-import { firstElementsFromArray } from "@/lib";
-import { Movie } from "@/typification";
-import dynamic from "next/dynamic";
+import { getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
 
 const DynamicQuiz = dynamic(
   () => import("../../components/Quiz").then((mod) => mod.Quiz),

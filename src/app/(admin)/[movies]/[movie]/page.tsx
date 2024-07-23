@@ -1,12 +1,17 @@
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
-import { SimilarMovies } from "@/app/components/SimilarMovies";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import { getTrailer } from "@/app/api/actions/getTrailler";
 import { getMovieCast } from "@/app/api/actions/getMovieCast";
-// import { getManyMoviesByTitle, getSimilarMovieFromOpenAI } from "@/app/api/actions";
+import dynamic from "next/dynamic";
+
+const DynamicSimilarMovies = dynamic(
+  () =>
+    import("@/app/components/SimilarMovies").then((mod) => mod.SimilarMovies),
+  { ssr: false }
+);
 
 export async function generateStaticParams() {
   return [{ movies: "11", movie: "1" }];
@@ -31,8 +36,8 @@ export default async function OneMoviePage({
     <main className={`pt-0 `}>
       <MovieInfo movie={decodedMovie} />
       <MovieInfoTrailer id={traillerId} />
-      <MovieInfoCast cast={castMovie} /> 
-      {/* <SimilarMovies title={(title ?? original_title)} /> */}
+      <MovieInfoCast cast={castMovie} />
+      {/* <DynamicSimilarMovies title={(title ?? original_title)} /> */}
       <SliderCarousel />
       <TakeOurQuiz />
     </main>

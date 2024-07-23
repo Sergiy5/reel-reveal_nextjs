@@ -1,12 +1,16 @@
+import dynamic from "next/dynamic";
 import { HowItWorks } from "@/app/components/HowItWorks";
-import { Quiz } from "@/app/components/Quiz";
 import SliderCarousel from "@/app/components/SliderCarousel";
-import { getManyMoviesByTitle } from "@/app/api/actions";
+
+const DynamicQuiz = dynamic(
+  () => import("../../components/Quiz").then((mod) => mod.Quiz),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
     <main>
-      {/* <Quiz action={getManyMoviesByTitle} /> */}
+      <DynamicQuiz  />
       <HowItWorks />
       <SliderCarousel />
     </main>

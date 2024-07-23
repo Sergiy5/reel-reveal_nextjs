@@ -7,12 +7,10 @@ import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { quizDataFromOpenAI } from "@/app/api";
-import { getManyMoviesByTitle } from "../api/actions";
+// import { getManyMoviesByTitle } from "../api/actions";
 import { firstElementsFromArray, isArray } from "@/lib";
+import { fetchManyMovies } from "@/lib/fetchManyMovies";
 
-interface QuizProps {
-  action: (movies: string[]) => Promise<Movie[][]>;
-}
 
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -56,7 +54,7 @@ export const Quiz: React.FC = () => {
 
     const getArrMovies = async (movies: string[]) => {
       try {
-        const response = await getManyMoviesByTitle(movies);
+        const response = await fetchManyMovies(movies);
 
         const result = firstElementsFromArray(response);
 
@@ -64,7 +62,7 @@ export const Quiz: React.FC = () => {
 
         setIsQuizActive(false);
       } catch (error) {
-        console.log("Error in Quiz!!!", error);
+        console.log("Error in Quiz...", error);
       } finally {
         setIsLoading(false);
       }
