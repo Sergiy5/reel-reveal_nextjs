@@ -1,10 +1,10 @@
-import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Quiz } from "@/app/components/Quiz";
 import { Genres } from "@/app/components/Genres";
 import SliderCarousel from "@/app/components/SliderCarousel";
+// import { GetShowMovies } from "@/app/components/GetShowMovies";
 // import { getTopRatedMovies, getUpcomingMovies } from "@/app/api/actions";
 
 export default async function Home() {

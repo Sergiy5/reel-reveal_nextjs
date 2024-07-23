@@ -1,4 +1,4 @@
-'use server'
+// 'use server'
 
 import { Movie } from "@/typification";
 import { getTmdbUrl } from "@/lib";
