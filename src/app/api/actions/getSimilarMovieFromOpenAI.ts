@@ -18,7 +18,7 @@ export const getSimilarMovieFromOpenAI = async (
       },
       body: JSON.stringify({ prompt }),
     }).then((res) => res.json());
-
+    
     return JSON.parse(response);
   } catch (error: any) {
     console.log("Error fetching data from OpenAI API:", error.message);

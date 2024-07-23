@@ -1,29 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getMovieCast } from "../api/actions/getMovieCast";
 import { MySlider } from "./MySlider";
 import { MovieInfoCastCard } from "./MovieInfoCastCard";
 import { MySliderBtn } from "./MySliderBtn";
+import { Actor } from "@/typification";
 
 interface TopCastProps {
-  id: number;
+  cast: Actor[];
 }
-export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
-  const [cast, setCast] = useState([]);
-
-  useEffect(() => {
-    const getCast = async (id: number) => {
-      try {
-        const result = await getMovieCast(id);
-
-        setCast(result.cast);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCast(id);
-  }, [id]);
+export const MovieInfoCast: React.FC<TopCastProps> = ({ cast }) => {
 
   const settings = {
     infinite: false,

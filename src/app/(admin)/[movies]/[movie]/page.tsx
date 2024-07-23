@@ -4,31 +4,37 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import { SimilarMovies } from "@/app/components/SimilarMovies";
+import { getTrailer } from "@/app/api/actions/getTrailler";
+import { getMovieCast } from "@/app/api/actions/getMovieCast";
+import { getManyMoviesByTitle, getSimilarMovieFromOpenAI } from "@/app/api/actions";
 
 export async function generateStaticParams() {
-  
-  return [{movies: "11", movie: '1' }];
+  return [{ movies: "11", movie: "1" }];
 }
 
-export default async function OneMoviePage({ params }: { params: { movie: string, movies: string} }) {
+export default async function OneMoviePage({
+  params,
+}: {
+  params: { movie: string; movies: string };
+}) {
   const { movie, movies } = params;
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
-  const { id } = decodedMovie;
-  
+  const { id, title, original_title } = decodedMovie;
+
   if (movie === "1") return <div>Page</div>;
   if (movies === "11") return <div>Page</div>;
 
+  const traillerId = await getTrailer(`${id}`);
+  const castMovie = await getMovieCast(`${id}`);
 
   return (
-    <>
-      <main className={`pt-0 `}>
-        <MovieInfo movie={decodedMovie} />
-        <MovieInfoTrailer id={id} />
-        <MovieInfoCast id={id} />
-        <SimilarMovies movie={decodedMovie} />
-        <SliderCarousel />
-        <TakeOurQuiz />
-      </main>
-    </>
+    <main className={`pt-0 `}>
+      <MovieInfo movie={decodedMovie} />
+      <MovieInfoTrailer id={traillerId} />
+      <MovieInfoCast cast={castMovie} />
+      <SimilarMovies title={(title ?? original_title)} />
+      <SliderCarousel />
+      <TakeOurQuiz />
+    </main>
   );
 }

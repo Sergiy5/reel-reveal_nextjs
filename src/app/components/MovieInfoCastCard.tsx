@@ -19,12 +19,12 @@ export const MovieInfoCastCard: React.FC<MovieInfoCastCardProps> = ({
         height={183}
         className={`object-cover aspect-square rounded-xl`}
       />
-      <ul className={`flex flex-col items-center gap-4`}>
+      <ul className={`flex flex-col justify-center gap-4`}>
         <li>
           <p className={`font-medium`}>{name ?? original_name}</p>
         </li>
         <li>
-          <p className="text-xs">{character}</p>
+          <p className="text-base">{character}</p>
         </li>
       </ul>
     </div>

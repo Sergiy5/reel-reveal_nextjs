@@ -23,7 +23,7 @@ export const getManyMoviesByTitle = async (
     return response.map(({ results }) => results);
     
   } catch (error: any) {
-    console.log("getQuizMovies error", error.message);
+    console.log("getManyMoviesByTitle error", error.message);
     throw error;
   }
 };

@@ -1,5 +1,5 @@
 export const getTrailer = async (id: string) => {
-  const KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+  const KEY = process.env.TMDB_API_KEY;
 
   try {
     const response = await fetch(

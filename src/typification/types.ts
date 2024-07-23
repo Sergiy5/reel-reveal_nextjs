@@ -1,7 +1,7 @@
 
 export type DeviceType = "mobile" | "tablet" | "desktop";
 
-export type OpenAiResponse = string[] | undefined;
+export type OpenAiResponse = string[];
 export type Actor = {
   adult: boolean;
   cast_id: number;
