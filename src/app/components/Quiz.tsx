@@ -17,7 +17,7 @@ export const Quiz: React.FC = () => {
   const [isQuizActive, setIsQuizActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Request (POST) to openai API =====================
+  // Request to openai API =====================
   useEffect(() => {
     if (quizResult.length < 7) return;
 
@@ -40,23 +40,22 @@ export const Quiz: React.FC = () => {
       } catch (error) {
         toast.error("Error... fetch data");
         console.error("Error fetch data from openai:", error);
-      } finally {
-        setIsLoading(false);
-      }
+      } 
     };
 
     openAiAPI(quizResult);
   }, [quizResult]);
 
-  // Rquest to TMdB
+  // Rquest to TMdB ============================
   useEffect(() => {
     if (!titlesFromOpenaiApi.length) return;
     const getMovies = async (movies: string[]) => {
       try {
         const response = await fetchMovies(movies);
-        console.log(response);
+
         if (!response || response.length === 0) {
           toast.error("Something went wrong, try again...");
+
           return;
         }
         const result = firstElementsFromArray(response);
@@ -64,6 +63,7 @@ export const Quiz: React.FC = () => {
       } catch (error) {
         toast.error("Error... fetch data");
         console.error("Error fetching data:", error);
+
       } finally {
         setIsLoading(false);
       }
