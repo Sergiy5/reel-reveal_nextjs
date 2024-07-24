@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Movie } from "@/typification";
-import {
-  getSimilarMovieFromOpenAI,
-} from "../api/actions";
+import { getSimilarMovieFromOpenAI } from "../actions";
 import { firstElementsFromArray } from "@/lib";
 import { GetShowMovies } from "./GetShowMovies";
-import { useFetchManyMovies } from "@/hooks";
+import { fetchMovies } from "../actions/fetchMovies";
+import { Loader } from "./Loader";
 
 interface SimilarMoviesProps {
   title: string;
@@ -16,11 +15,13 @@ interface SimilarMoviesProps {
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
   const [similarTitles, setSimilarTitles] = useState<string[]>([]);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
-    const { data, error } = useFetchManyMovies(similarTitles);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   useEffect(() => {
     const fetchSimilarTitles = async (title: string) => {
+      setIsLoading(true);
+
       try {
         const result = await getSimilarMovieFromOpenAI(title);
 
@@ -35,34 +36,37 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
     fetchSimilarTitles(title);
   }, [title]);
 
-  useEffect(() => {
-    if (data) {
-      const movies = firstElementsFromArray(data);
-      if (movies) setSimilarMovies(movies);
-    } else {
-      if (error) {
-        toast.error("Somthing went wron... Try again");
-      }
-    }
-  }, [data, error]);
+ useEffect(() => {
+   if (!similarTitles.length) return;
+   const getMovies = async (movies: string[]) => {
+     console.log("TITLES_FROM OPEN_AI_SECOND_EFFECT", movies);
 
-  // useEffect(() => {
-  //   const fetchSimilarMovies = async (titles: string[]) => {
-  //     try {
-  //       const response = await getManyMoviesByTitle(titles);
+     try {
+       const response = await fetchMovies(movies);
+       console.log(response);
+       if (!response || response.length === 0) {
+         toast.error("Something went wrong, try again...");
+         return;
+       }
+       const result = firstElementsFromArray(response);
+       if (result) setSimilarMovies(result);
+     } catch (error) {
+       toast.error("Error... fetch data");
+       console.error("Error fetching data:", error);
+     } finally {
+       setIsLoading(false);
+     }
+   };
+   getMovies(similarTitles);
+ }, [similarTitles]);
 
-  //       if (!response) throw new Error();
-
-  //       const result = firstElementsFromArray(response);
-
-  //       if (result) setSimilarMovies(result);
-  //     } catch (error) {
-  //       toast.error(`Somthing went wrong, try again, ${error}`);
-  //       console.log(`Error on TMDB similar movies, ${error}`);
-  //     }
-  //   };
-  //   fetchSimilarMovies(similarTitles);
-  // }, [similarTitles]);
-
-  return <GetShowMovies title={"Similar movies"} movies={similarMovies} />;
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <GetShowMovies title={"Similar movies"} movies={similarMovies} />
+      )}
+    </>
+  );
 };
