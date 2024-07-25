@@ -39,11 +39,10 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
  useEffect(() => {
    if (!similarTitles.length) return;
    const getMovies = async (movies: string[]) => {
-     console.log("TITLES_FROM OPEN_AI_SECOND_EFFECT", movies);
 
      try {
        const response = await fetchMovies(movies);
-       console.log(response);
+       
        if (!response || response.length === 0) {
          toast.error("Something went wrong, try again...");
          return;

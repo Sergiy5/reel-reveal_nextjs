@@ -33,7 +33,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
         <ul className="flex flex-col justify-between h-[119px]">
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              id="icon-heart_btn"
+              iconId="icon-heart_btn"
               dataMovie={"save it"}
               onClick={handleMovie}
               text="save it"
@@ -43,7 +43,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           </li>
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              id="icon-checked"
+              iconId="icon-checked"
               dataMovie={"saw it"}
               onClick={handleMovie}
               text="saw it"
@@ -53,7 +53,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           </li>
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              id="icon-play"
+              iconId="icon-play"
               dataMovie={"trailer"}
               onClick={handleMovie}
               text="trailer"

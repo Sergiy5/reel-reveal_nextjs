@@ -54,9 +54,7 @@ export const Quiz: React.FC = () => {
         const response = await fetchMovies(movies);
 
         if (!response || response.length === 0) {
-          toast.error("Something went wrong, try again...");
-
-          return;
+        return  toast.error("Something went wrong, try again...");
         }
         const result = firstElementsFromArray(response);
         if (result) setListMovies(result);

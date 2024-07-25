@@ -5,10 +5,17 @@ import { useState } from "react";
 import { MovieCardHover } from "./MovieCardHover";
 import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
+import { Modal } from "./Modal";
+import { MovieInfoTrailer } from "./MovieInfoTrailer";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const router = useRouter();
+
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
@@ -16,14 +23,14 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     const clickeTtarget = e.currentTarget.dataset.movie;
 
     if (clickeTtarget === "movie") {
-      // const stringifyMovie = JSON.stringify(movie);
-
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
       router.push(`/movies/${stringifyMovie}`);
     }
     if (clickeTtarget === "saw it") console.log("saw it", movie.id);
     if (clickeTtarget === "save it") console.log("save it", movie.id);
-    if (clickeTtarget === "trailer") console.log("trailer", movie.id);
+    if (clickeTtarget === "trailer") {
+    openModal();
+    };
 
     return e.currentTarget.dataset.movie;
   };
@@ -58,6 +65,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           className={`w-full h-full rounded-[18px]`}
         />
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <MovieInfoTrailer id={movie.id} />
+      </Modal>
     </div>
   );
 };

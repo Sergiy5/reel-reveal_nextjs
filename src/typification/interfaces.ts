@@ -35,7 +35,7 @@ export interface Movie {
   runtime: number;
 }
 export interface MovieCardHoverBtnProps {
-  id: string;
+  iconId: string;
   text: string;
   isChecked: boolean;
   dataMovie: string;

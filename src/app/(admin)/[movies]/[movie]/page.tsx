@@ -3,7 +3,6 @@ import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
-import { getTrailer } from "@/app/actions/getTrailler";
 import { getMovieCast } from "@/app/actions/getMovieCast";
 import dynamic from "next/dynamic";
 
@@ -29,13 +28,12 @@ export default async function OneMoviePage({
   if (movie === "1") return <div>Page</div>;
   if (movies === "11") return <div>Page</div>;
 
-  const traillerId = await getTrailer(`${id}`);
   const castMovie = await getMovieCast(`${id}`);
 
   return (
     <main className={`pt-0 `}>
       <MovieInfo movie={decodedMovie} />
-      <MovieInfoTrailer id={traillerId} />
+      <MovieInfoTrailer id={id} />
       <MovieInfoCast cast={castMovie} />
       <DynamicSimilarMovies title={title ?? original_title} />
       <SliderCarousel />

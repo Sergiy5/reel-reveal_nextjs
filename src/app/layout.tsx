@@ -1,9 +1,9 @@
+import "./globals.scss";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import "./globals.scss";
+import { ceraPro } from "./fonts";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ceraPro } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -25,6 +25,7 @@ export default function RootLayout({
         {children}
         <ToastContainer />
         <SpeedInsights />
+        <div id="modal" />
       </body>
     </html>
   );
