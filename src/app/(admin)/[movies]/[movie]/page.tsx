@@ -31,13 +31,15 @@ export default async function OneMoviePage({
   const castMovie = await getMovieCast(`${id}`);
 
   return (
-    <main className={`pt-0 `}>
+    <main className={`pt-0 gap-0`}>
       <MovieInfo movie={decodedMovie} />
       <MovieInfoTrailer id={id} />
-      <MovieInfoCast cast={castMovie} />
-      <DynamicSimilarMovies title={title ?? original_title} />
-      <SliderCarousel />
-      <TakeOurQuiz />
+      <div className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}>
+        <MovieInfoCast cast={castMovie} />
+        <DynamicSimilarMovies title={title ?? original_title} />
+        <SliderCarousel />
+        <TakeOurQuiz />
+      </div>
     </main>
   );
 }

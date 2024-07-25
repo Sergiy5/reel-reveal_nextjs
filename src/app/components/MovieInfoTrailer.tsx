@@ -35,13 +35,17 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={`video-container flex justify-center w-screen lg:w-full px-6 h-auto`}>
-          <iframe
-            src={`https://www.youtube.com/embed/${movieId} `}
-            allowFullScreen
-            className="sm:w-full xl:max-w-[1200px] px-24 aspect-video"
-            title="Description"
-          />
+        <div className={`relative flex justify-center w-full px-6 h-auto `}>
+          <div
+            className={` flex items-center justify-center overflow-hidden w-screen xl:max-w-[1200px] border-0 rounded-2xl bg-white`}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/${movieId} `}
+              allowFullScreen
+              className="w-full aspect-video"
+              title="Description"
+            />
+          </div>
         </div>
       )}
     </>

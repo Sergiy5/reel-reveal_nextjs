@@ -9,6 +9,7 @@ interface TopCastProps {
   cast: Actor[];
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ cast }) => {
+
   const settings = {
     infinite: false,
     slidesToShow: 6,
@@ -63,7 +64,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ cast }) => {
   };
 
   return (
-    <div className={`flex flex-col justify-center items-center w-full`}>
+    <div className={`flex flex-col justify-center items-center w-full mt-16 md:mt-20 xl:mt-30 `}>
       <h2 className={`flex justify-center w-full mb-12`}>Top cast</h2>
       <div className="container w-full md:-mx-2.5">
         {" "}
