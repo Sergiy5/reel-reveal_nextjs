@@ -37,7 +37,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       ) : (
         <div className={`relative flex justify-center w-full px-6 h-auto `}>
           <div
-            className={` flex items-center justify-center overflow-hidden w-screen xl:max-w-[1200px] border-0 rounded-2xl bg-white`}
+            className={` flex items-center justify-center overflow-hidden w-screen xl:max-w-[1200px] border-0 rounded-2xl`}
           >
             <iframe
               src={`https://www.youtube.com/embed/${movieId} `}

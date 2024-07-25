@@ -18,7 +18,7 @@ export const HeaderNavMenu: React.FC = () => {
   useEffect(() => {
     diviceSize === "desktop" ? setIsOpenMenu(true) : setIsOpenMenu(false);
   }, [diviceSize]);
-console.log("isOpenMenu", isOpenMenu);
+  
   return (
     <div className={`relative flex`}>
       <div

@@ -51,7 +51,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       className="fixed inset-0 z-50 bg-black bg-opacity-50"
     >
       <div
-        className="relative flex items-center justify-center p-6 rounded shadow-lg"
+        className="relative flex items-center justify-center py-6 px-12 rounded shadow-lg"
         role="dialog"
         aria-modal="true"
       >
