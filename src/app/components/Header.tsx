@@ -1,19 +1,20 @@
 import Image from "next/image";
-import { SearchBar } from "./SearchBar";
+import { HeaderSearchBar } from "./HeaderSearchBar";
 import { MainLogo } from "./MainLogo";
 import { HeaderNavMenu } from "./HeaderNavMenu";
 
 export const Header: React.FC = () => {
-
   return (
     <div className={`flex justify-center items-center w-full `}>
       <div
         className={`flex items-center justify-center py-0 w-full h-11 bg-bgColor  z-20 
             md:h-[68px] lg:h-[84px]`}
       >
-        <div className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}>
+        <div
+          className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}
+        >
           <MainLogo />
-          <SearchBar />
+          <HeaderSearchBar />
           <HeaderNavMenu />
         </div>
       </div>

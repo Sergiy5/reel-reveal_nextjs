@@ -4,7 +4,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
 
-export const SearchBar: React.FC = () => {
+export const HeaderSearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
