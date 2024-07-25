@@ -1,8 +1,6 @@
-// "use client";
+"use client";
 
-// import { useEffect, useState } from "react";
 import Image from "next/image";
-// import { getMovieById } from "@/app/api/actions/getMovieById";
 import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
@@ -11,26 +9,13 @@ import {
   hoursFromMinuts,
   yearFromDate,
 } from "@/lib";
-// import { Loader } from "./Loader";
+import { Loader } from "./Loader";
 interface MovieInfoProps {
   movie: Movie;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-  // const [movie, setMovie] = useState<Movie | null>(null);
-  // useEffect(() => {
-  //   const fetchMovie = async (id: string) => {
-  //     try {
-  //       const movieData = await getMovieById(id);
 
-  //       setMovie(movieData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchMovie(id);
-  // }, [id]);
 
   return (
     <>
@@ -64,13 +49,13 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                       IMBd {floorNumber(movie.vote_average)}
                     </h3>
                     <MovieCardHoverBtn
-                      id="icon-heart_btn"
+                      iconId="icon-heart_btn"
                       dataMovie={"save it"}
                       text="save it"
                       isChecked={false}
                     />
                     <MovieCardHoverBtn
-                      id="icon-checked"
+                      iconId="icon-checked"
                       dataMovie={"saw it"}
                       text="saw it"
                       isChecked={false}
@@ -102,8 +87,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
           />
         </div>
       ) : (
-          <div>LOADING...</div>
-        // <Loader />
+        <Loader />
       )}
     </>
   );
