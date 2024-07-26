@@ -1,3 +1,5 @@
 export { getTopRatedMovies } from "./getTopRatedMovies";
 export { getUpcomingMovies } from "./getUpcomingMovies";
-export { getSimilarMovieFromOpenAI } from "./getSimilarMovieFromOpenAI";
+export { fetchSimilarMovieFromOpenAI as getSimilarMovieFromOpenAI } from "./fetchSimilarMovieFromOpenAI";
+export { fetchQuizDataFromOpenAI } from "../actions/fetchQuizDataFromOpenAI";
+export { fetchPaths as getPaths } from "./fetchPaths";

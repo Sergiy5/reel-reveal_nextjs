@@ -2,7 +2,7 @@ import { OpenAiResponse } from "@/typification";
 
 const Back_END_URL = "/api/postOpenAI";
 
-export const getSimilarMovieFromOpenAI = async (
+export const fetchSimilarMovieFromOpenAI = async (
   title: string
 ): Promise<OpenAiResponse> => {
   const prompt = `
@@ -18,7 +18,7 @@ export const getSimilarMovieFromOpenAI = async (
       },
       body: JSON.stringify({ prompt }),
     }).then((res) => res.json());
-    
+
     return JSON.parse(response);
   } catch (error: any) {
     console.log("Error fetching data from OpenAI API:", error.message);

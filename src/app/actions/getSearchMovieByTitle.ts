@@ -1,8 +1,8 @@
 import { Movie } from "@/typification";
 
-export const searchMovieByTitle = async (title: string): Promise<Movie> => {
+export const getSearchMovieByTitle = async (title: string): Promise<Movie> => {
     
-  const token = process.env.NEXT_PUBLIC_BEARER_TOKEN_TMDB;
+  const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/search/movie?query=${title}&language=en-US`;
 
   try {
