@@ -1,8 +1,8 @@
 import { Movie } from "@/typification";
 
-export default async function getManyMoviesByTitle  (
+export const getManyMoviesByTitle = async (
   arrMovies: string[]
-): Promise<Movie[][]>{
+): Promise<Movie[][]> => {
 
   const SERVER_TOKEN = process.env.BEARER_TOKEN_TMDB;
   

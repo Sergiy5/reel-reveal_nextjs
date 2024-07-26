@@ -3,7 +3,7 @@ import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
-import { getMovieCast } from "@/app/actions/getMovieCast";
+import { getMovieCast } from "@/app/services/getMovieCast";
 import dynamic from "next/dynamic";
 
 const DynamicSimilarMovies = dynamic(

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTrailer } from "../actions/getTrailler";
+import { getTrailer } from "../services/getTrailer";
 import { toast } from "react-toastify";
 import { Loader } from "./Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
