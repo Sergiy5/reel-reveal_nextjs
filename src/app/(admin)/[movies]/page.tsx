@@ -2,7 +2,7 @@ import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Genres } from "@/app/components/Genres";
 
 export async function generateStaticParams() {
-  return [{ movies: "1" }];
+  return [{ movies: "1", movie: '1'}];
 }
 
 export default async function MoviesPage({

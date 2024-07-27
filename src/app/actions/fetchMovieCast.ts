@@ -1,6 +1,8 @@
-export const fetchTrailerId = async (movieId: number): Promise<number> => {
+import { Actor } from "@/typification";
+
+export const fetchMovieCast = async (movieId: string) => {
   try {
-    const response = await fetch("/api/get-trailer_id", {
+    const response = await fetch("/api/get-cast", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -8,13 +10,13 @@ export const fetchTrailerId = async (movieId: number): Promise<number> => {
       body: JSON.stringify({ movieId }),
     });
     if (!response.ok) {
-      throw new Error("Failed to fetch trailer id");
+      throw new Error("Failed to fetch cast");
     }
     const data = await response.json();
 
     return data.response;
   } catch (error) {
-    console.error("Error fetching trailer id:", error);
+    console.error("Error fetching cast:", error);
   }
-  return 0;
-}
+  return [];
+};
