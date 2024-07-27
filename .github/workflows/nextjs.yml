@@ -29,9 +29,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Create env file
+        run: |
+          touch .env
+          echo BEARER_TOKEN_TMDB=${BEARER_TOKEN_TMDB} >> .env
+          cat .env
+        env: 
+          BEARER_TOKEN_TMDB: ${{ secrets.BEARER_TOKEN_TMDB }} 
       - name: Checkout
-        env:
-          BEARER_TOKEN_TMDB: ${{ secrets.BEARER_TOKEN_TMDB }}
         uses: actions/checkout@v4
         with:
           lfs: true
