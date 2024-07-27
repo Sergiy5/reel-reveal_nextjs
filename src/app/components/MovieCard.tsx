@@ -24,16 +24,23 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
     if (clickeTtarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
-      router.push(`/movies/${stringifyMovie}`);
+
+      const url = `/movies/${stringifyMovie}`;
+      if (e.ctrlKey || e.metaKey) {
+        window.open(url, "_blank"); // Open the URL in a new tab if Ctrl or Meta key is pressed
+      } else {
+        router.push(url);
+      }
     }
     if (clickeTtarget === "saw it") console.log("saw it", movie.id);
     if (clickeTtarget === "save it") console.log("save it", movie.id);
     if (clickeTtarget === "trailer") {
-    openModal();
-    };
+      openModal();
+    }
 
     return e.currentTarget.dataset.movie;
   };
+
   const { poster_path, id, title } = movie;
 
   const poster = poster_path

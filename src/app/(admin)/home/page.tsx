@@ -16,9 +16,6 @@ export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
 
-  // if (!upcomingMovies) return <div>Page</div>;
-  // if (!topRatedMovies) return <div>Page</div>;
-
   return (
     <main>
       <Hero />

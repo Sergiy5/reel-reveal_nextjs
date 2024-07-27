@@ -20,7 +20,7 @@ export const HeaderNavMenu: React.FC = () => {
   }, [diviceSize]);
   
   return (
-    <div className={`relative flex`}>
+    <div id="nav" className={`relative flex`}>
       <div
         className={clsx(
           `absolute flex flex-col items-center justify-between w-screen bg-bgLightColor lg:bg-transparent z-30

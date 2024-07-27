@@ -18,7 +18,7 @@ export const HeaderSearchBar: React.FC = () => {
   };
 
   return (
-    <>
+    <div id="search movie">
       <form
         className={"relative flex w-fit mx-2"}
         onSubmit={(e) => handleSubmit(e)}
@@ -48,6 +48,6 @@ export const HeaderSearchBar: React.FC = () => {
           />
         </button>
       </form>
-    </>
+    </div>
   );
 };

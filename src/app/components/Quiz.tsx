@@ -71,6 +71,7 @@ export const Quiz: React.FC = () => {
 
   return (
     <div
+      id="quiz"
       className={`relative flex items-center justify-center py-[131px] w-full gap-12`}
     >
       <div
