@@ -115,3 +115,7 @@ export interface MovieInfoProps {
 export interface QuizQuestionsProps {
   quizData: (answerForAI: string[]) => void;
 }
+
+export interface VideoComponentProps {
+  id: number;
+}

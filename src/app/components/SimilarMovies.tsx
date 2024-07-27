@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Movie } from "@/typification";
-import { getSimilarMovieFromOpenAI } from "../actions";
 import { firstElementsFromArray } from "@/lib";
 import { GetShowMovies } from "./GetShowMovies";
 import { fetchMovies } from "../actions/fetchMovies";
 import { Loader } from "./Loader";
+import { fetchSimilarMovieFromOpenAI } from "../actions";
 
 interface SimilarMoviesProps {
   title: string;
@@ -23,7 +23,7 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
       setIsLoading(true);
 
       try {
-        const result = await getSimilarMovieFromOpenAI(title);
+        const result = await fetchSimilarMovieFromOpenAI(title);
 
         if (!result) throw new Error();
 

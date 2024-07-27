@@ -6,9 +6,9 @@ import { Loader } from "./Loader";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { quizDataFromOpenAI } from "@/app/api";
 import { firstElementsFromArray, isArray } from "@/lib";
 import { fetchMovies } from "../actions/fetchMovies";
+import { fetchQuizDataFromOpenAI } from "../actions";
 
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -26,7 +26,7 @@ export const Quiz: React.FC = () => {
       setIsQuizActive(false);
 
       try {
-        const result = await quizDataFromOpenAI(quizMovies);
+        const result = await fetchQuizDataFromOpenAI(quizMovies);
 
         if (!result) {
           setIsLoading(false);

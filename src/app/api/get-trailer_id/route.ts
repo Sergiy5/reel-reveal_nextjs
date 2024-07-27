@@ -1,4 +1,4 @@
-import { getTrailer } from "@/app/actions/getTrailler";
+import { getTrailer } from "@/app/services";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {

@@ -1,9 +1,9 @@
+import { getManyMoviesByTitle } from "@/app/services";
 import useSWR from "swr";
-import getManyMoviesByTitle from "@/app/services/getManyMoviesByTitle";
 
-export const useFetchManyMovies = (similarTitles: string[]) => {
+export const useFetchManyMovies = (titles: string[]) => {
   const { data, error, isLoading } = useSWR(
-    similarTitles,
+    titles,
     getManyMoviesByTitle
   );
   return { data, error, isLoading };

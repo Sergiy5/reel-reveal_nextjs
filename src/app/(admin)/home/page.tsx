@@ -5,7 +5,7 @@ import { HowItWorks } from "@/app/components/HowItWorks";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { Genres } from "@/app/components/Genres";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
-import { getTopRatedMovies, getUpcomingMovies } from "@/app/actions";
+import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 
 const DynamicQuiz = dynamic(
   () => import("../../components/Quiz").then((mod) => mod.Quiz),
@@ -16,19 +16,19 @@ export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
 
-  if (!upcomingMovies) return <div>Page</div>;
-  if (!topRatedMovies) return <div>Page</div>;
+  // if (!upcomingMovies) return <div>Page</div>;
+  // if (!topRatedMovies) return <div>Page</div>;
 
   return (
     <main>
       <Hero />
       <HowItWorks />
       <DynamicQuiz />
-      <GetShowMovies
+      { upcomingMovies && <GetShowMovies
         title={"Upcoming 20 movies in 2024"}
         movies={upcomingMovies}
-      />
-      <GetShowMovies title={"TOP 20 rated movies"} movies={topRatedMovies} />
+      />}
+      {topRatedMovies && <GetShowMovies title={"TOP 20 rated movies"} movies={topRatedMovies} />}
       <Genres />
       <SliderCarousel />
       <TakeOurQuiz />

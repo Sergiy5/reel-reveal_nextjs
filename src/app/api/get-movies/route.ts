@@ -1,4 +1,4 @@
-import getManyMoviesByTitle from "@/app/services/getManyMoviesByTitle";
+import {getManyMoviesByTitle} from "@/app/services/getManyMoviesByTitle";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {

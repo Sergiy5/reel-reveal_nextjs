@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getPaths } from "@/app/actions/getPaths";
 import { MySlider } from "./MySlider";
 import { SliderCarouselSlide } from "./SliderCarouselSlide";
+import { fetchPaths } from "../actions";
 
 export const SliderCarousel: React.FC = () => {
   const [images, setFiles] = useState<string[]>([]);
@@ -11,7 +11,7 @@ export const SliderCarousel: React.FC = () => {
   useEffect(() => {
     const handler = async () => {
       try {
-        const { files } = await getPaths();
+        const { files } = await fetchPaths();
         setFiles(files);
       } catch (error: any) {
         console.log(error);

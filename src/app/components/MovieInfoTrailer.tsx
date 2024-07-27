@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTrailer } from "../services/getTrailer";
 import { toast } from "react-toastify";
 import { Loader } from "./Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
+import { VideoComponentProps } from "@/typification";
 
-interface VideoComponentProps {
-  id: number;
-}
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [movieId, setMovieId] = useState<number>(0);
@@ -31,23 +28,23 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <>
+    <div className={`flex items-center justify-center h-lvh`}>
       {isLoading ? (
-        <Loader />
-      ) : (
-        <div className={`relative flex justify-center w-full px-6 h-auto `}>
+          <Loader />
+        ) : (
+          <div className={`relative flex justify-center w-full px-6 h-auto `}>
           <div
             className={` flex items-center justify-center overflow-hidden w-screen xl:max-w-[1200px] border-0 rounded-2xl`}
-          >
+            >
             <iframe
               src={`https://www.youtube.com/embed/${movieId} `}
               allowFullScreen
               className="w-full aspect-video"
               title="Description"
-            />
+              />
           </div>
         </div>
       )}
-    </>
+      </div>
   );
 };
