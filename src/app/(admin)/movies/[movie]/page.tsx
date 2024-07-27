@@ -17,13 +17,13 @@ export async function generateStaticParams() {
 
    const token = process.env.BEARER_TOKEN_TMDB;
    const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
-  const {results} = await fetch(url, {
+  const results = await fetch(url, {
     cache: "force-cache",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
-console.log("RESULTS_ARR",results)
+console.log("RESULTS_ARR", results)
   return results.map((item: object) => ({
     movie: encodeURIComponent(JSON.stringify(item))
   }));
