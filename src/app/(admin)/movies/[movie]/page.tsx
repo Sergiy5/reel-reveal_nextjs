@@ -17,14 +17,14 @@ export async function generateStaticParams() {
 
    const token = process.env.BEARER_TOKEN_TMDB;
    const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
-  const upcomingMovies = await fetch(url, {
+  const {results} = await fetch(url, {
     cache: "force-cache",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
-
-  return upcomingMovies.results.map((item: object) => ({
+console.log("RESULTS_ARR",results)
+  return results.map((item: object) => ({
     movie: encodeURIComponent(JSON.stringify(item))
   }));
 
@@ -36,8 +36,6 @@ export default async function OneMoviePage({
   params: { movie: string};
   }) {
   
-//  const mov = await getUpcomingMovies();
-//   console.log("first++++++++++++++", mov )
   const { movie } = params;
 
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
