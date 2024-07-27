@@ -1,3 +1,5 @@
+"use client"
+
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
