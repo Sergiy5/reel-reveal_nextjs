@@ -1,11 +1,10 @@
-"use client"
-
 import { MovieInfo } from "@/app/components/MovieInfo";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import dynamic from "next/dynamic";
+import { getUpcomingMovies } from "@/app/services";
 
 const DynamicSimilarMovies = dynamic(
   () =>
@@ -13,16 +12,23 @@ const DynamicSimilarMovies = dynamic(
   { ssr: false }
 );
 
-// export async function generateStaticParams() {
-//   return [{ movies: "11", movie: "1" }];
-// }
+export async function generateStaticParams() {
+  const upcomingMovies = await getUpcomingMovies();
+
+  return upcomingMovies.map((item) => ({
+    movie: encodeURIComponent(JSON.stringify(item))
+  }));
+
+}
 
 export default function OneMoviePage({
   params,
 }: {
-  params: { movie: string; movies: string };
-}) {
-  const { movie} = params;
+  params: { movie: string};
+  }) {
+  
+  const { movie } = params;
+
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
   const { id, title, original_title } = decodedMovie;
 

@@ -4,7 +4,6 @@ import { MySlider } from "./MySlider";
 import { MovieInfoCastCard } from "./MovieInfoCastCard";
 import { MySliderBtn } from "./MySliderBtn";
 import { Actor } from "@/typification";
-import { useEffect } from "react";
 import { fetchMovieCast } from "../actions/fetchMovieCast";
 import { toast } from "react-toastify";
 import useSWR from "swr";
@@ -82,7 +81,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
         <div className="container w-full md:-mx-2.5">
           {" "}
           <MySlider
-            arraySlides={data}
+            arraySlides={data as Actor[]}
             SlideComponent={MovieInfoCastCard}
             settings={settings}
           />
