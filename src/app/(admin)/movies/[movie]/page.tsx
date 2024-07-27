@@ -12,21 +12,32 @@ const DynamicSimilarMovies = dynamic(
   { ssr: false }
 );
 
-export async function generateStaticParams() {
-  const upcomingMovies = await getUpcomingMovies();
 
-  return upcomingMovies.map((item) => ({
+export async function generateStaticParams() {
+
+   const token = process.env.BEARER_TOKEN_TMDB;
+   const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
+  const upcomingMovies = await fetch(url, {
+    cache: "force-cache",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => res.json());
+
+  return upcomingMovies.results.map((item: object) => ({
     movie: encodeURIComponent(JSON.stringify(item))
   }));
 
 }
 
-export default function OneMoviePage({
+export default async function OneMoviePage({
   params,
 }: {
   params: { movie: string};
   }) {
   
+//  const mov = await getUpcomingMovies();
+//   console.log("first++++++++++++++", mov )
   const { movie } = params;
 
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
