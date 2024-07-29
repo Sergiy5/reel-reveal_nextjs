@@ -43,7 +43,7 @@ export default async function OneMoviePage({
   params: { movie: string}[];
   }) {
   
-  const { movie } = params;
+  const [{ movie }] = params;
   console.log("movie=============================================================", movie)
   if(movie === "3") return(<div>Page</div>)
 
