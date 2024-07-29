@@ -14,23 +14,30 @@ const DynamicSimilarMovies = dynamic(
 
 
 export async function generateStaticParams() {
-
   const TOKEN = process.env.BEARER_TOKEN_TMDB;
-  console.log("TOKEN", TOKEN)
-   const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
-  const {results} = await fetch(url, {
-    cache: "force-cache",
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-    },
-  }).then((res) => res.json());
-  console.log("RESULTS_ARR", results)
-  if(!results) return [{movie: "3"}]
-  return results.map((item: object) => ({
-    movie: encodeURIComponent(JSON.stringify(item))
-  }));
+  const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
 
+  try {
+    const response = await fetch(url, {
+      cache: "force-cache",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    });
+
+    const { results } = await response.json();
+
+    if (!results) return [{ movie: "3" }];
+
+    return results.map((item: object) => ({
+      movie: encodeURIComponent(JSON.stringify(item)),
+    }));
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [{ movie: "3" }]; // Fallback in case of error
+  }
 }
+
 
 export default async function OneMoviePage({
   params,
@@ -39,6 +46,7 @@ export default async function OneMoviePage({
   }) {
   
   const { movie } = params;
+  console.log("movie=============================================================", movie)
   if(movie === "3") return(<div>Page</div>)
 
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
