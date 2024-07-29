@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 
     if (!results) return [{ movie: "3" }];
 
-    return results.map((item: object) => ({movie:JSON.stringify(item)}));
+    return results.map((item: object) => ({movie:encodeURIComponent(JSON.stringify(item))}));
   } catch (error) {
     console.error("Error fetching data:", error);
     return [{ movie: "3" }]; // Fallback in case of error
@@ -40,7 +40,7 @@ export async function generateStaticParams() {
 export default async function OneMoviePage({
   params,
 }: {
-  params: { movie: string};
+  params: { movie: string}[];
   }) {
   
   const { movie } = params;
