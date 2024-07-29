@@ -76,11 +76,11 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         env:
-          BEARER_TOKEN_TMDB: ${{ secrets }}
+          BEARER_TOKEN_TMDB: ${{ secrets.BEARER_TOKEN_TMDB }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          BEARER_TOKEN_TMDB: ${{ secrets }}
+          BEARER_TOKEN_TMDB: ${{ secrets.BEARER_TOKEN_TMDB }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -98,4 +98,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         env:
-          BEARER_TOKEN_TMDB: ${{ secrets }}
+          BEARER_TOKEN_TMDB: ${{ secrets.BEARER_TOKEN_TMDB }}
