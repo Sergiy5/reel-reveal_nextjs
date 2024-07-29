@@ -33,6 +33,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           lfs: true
+
+      - name: Set secret
+        run: echo "BEARER_TOKEN_TMDB=Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OGU5MzBjMmZhNzRjYWVhNjRmMjAyNmNmNzBlYzQxMyIsInN1YiI6IjY0NmQwNWJhZDE4NTcyMDE4MDJlOGYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gvC078v2ZEDlsUKlhf6XJhVHnGo7gwYMbWV5S3NVSKY" >> $GITHUB_ENV
+
+      - name: Verify secret
+        run: echo $BEARER_TOKEN_TMDB
+        
+      - name: Install, lint, build 🔧
+        run: |
+          npm install
+          npm run lint:js
+          npm run build
       - name: Detect package manager
         id: detect-package-manager
         run: |
