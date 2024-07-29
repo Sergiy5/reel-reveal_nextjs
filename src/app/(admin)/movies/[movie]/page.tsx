@@ -15,15 +15,17 @@ const DynamicSimilarMovies = dynamic(
 
 export async function generateStaticParams() {
 
-   const token = process.env.BEARER_TOKEN_TMDB;
+  const TOKEN = process.env.BEARER_TOKEN_TMDB;
+  console.log("TOKEN", TOKEN)
    const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
   const {results} = await fetch(url, {
     cache: "force-cache",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${TOKEN}`,
     },
   }).then((res) => res.json());
-// console.log("RESULTS_ARR", results)
+  console.log("RESULTS_ARR", results)
+  if(!results) return [{movie: "3"}]
   return results.map((item: object) => ({
     movie: encodeURIComponent(JSON.stringify(item))
   }));
@@ -37,10 +39,10 @@ export default async function OneMoviePage({
   }) {
   
   const { movie } = params;
+  if(movie === "3") return(<div>Page</div>)
 
   const decodedMovie = JSON.parse(decodeURIComponent(movie as string));
   const { id, title, original_title } = decodedMovie;
-
   return (
     <main className={`pt-0 gap-0`}>
       <MovieInfo movie={decodedMovie} />
