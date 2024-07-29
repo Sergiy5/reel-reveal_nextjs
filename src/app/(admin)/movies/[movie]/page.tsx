@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 
     if (!results) return [{ movie: "3" }];
 
-    return results.map((item: object) => (encodeURIComponent(JSON.stringify(item))));
+    return results.map((item: object) => ({movie:JSON.stringify(item)}));
   } catch (error) {
     console.error("Error fetching data:", error);
     return [{ movie: "3" }]; // Fallback in case of error
