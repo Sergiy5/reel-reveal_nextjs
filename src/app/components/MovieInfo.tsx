@@ -19,7 +19,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
 
   return (
     <>
-      {movie ? (
+      {movie && (
         <div
           className={`relative w-screen aspect-[3.8/4] md:aspect-[1440/810] lg:w-screen  lg:max-w-[1440px]`}
         >
@@ -86,8 +86,6 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
             className={`w-full aspect-[3.8/4] md:aspect-[1440/810] object-cover lg:h-auto`}
           />
         </div>
-      ) : (
-        <Loader />
       )}
     </>
   );
