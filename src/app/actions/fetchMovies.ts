@@ -4,6 +4,7 @@ export async function fetchMovies(titles: string[]): Promise<Movie[][]> {
   try {
     const response = await fetch("/api/get-movies", {
       method: "POST",
+      cache: "force-cache",
       headers: {
         "Content-Type": "application/json",
       },

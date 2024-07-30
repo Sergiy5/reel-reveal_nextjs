@@ -14,6 +14,7 @@ export const FooterLinkIconSocial: React.FC<FooterLinkIconSocialProps> = ({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`Link to ${link}`}
       className={`link`}
     >
       <svg

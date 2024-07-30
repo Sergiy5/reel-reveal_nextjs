@@ -16,8 +16,11 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
   const [similarTitles, setSimilarTitles] = useState<string[]>([]);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
 
+  console.log("similarMovies", similarMovies);
+  
   useEffect(() => {
     const fetchSimilarTitles = async (title: string) => {
       setIsLoading(true);
@@ -63,8 +66,15 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
     <>
       {isLoading ? (
         <Loader />
-      ) : (
+      ) : similarMovies.length ? (
         <GetShowMovies title={"Similar movies"} movies={similarMovies} />
+      ) : (
+        <button
+          onClick={() => setReloadKey((key) => key + 1)}
+          className={`link-btn w-[285px]`}
+        >
+          Reload
+        </button>
       )}
     </>
   );
