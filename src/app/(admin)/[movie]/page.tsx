@@ -13,11 +13,6 @@ const DynamicSimilarMovies = dynamic(
   { ssr: false }
 );
 
-
-type ApiResponse = {
-  results: Movie[];
-};
-
 export async function generateStaticParams() {
  
     return [{ movie: "3" }]; 

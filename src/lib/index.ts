@@ -10,3 +10,4 @@ export { generateUrlImage } from "./generateUrlImage";
 export { hoursFromMinuts } from "./hoursFromMinutes";
 export { floorNumber } from "./floorNumber";
 export { isArray } from "./isArray";
+export { getGenres } from "./getGenres";

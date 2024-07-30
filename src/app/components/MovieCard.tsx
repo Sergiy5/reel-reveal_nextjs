@@ -25,7 +25,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (clickeTtarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
 
-      const url = `/movies/${stringifyMovie}`;
+      const url = `/${stringifyMovie}`;
       if (e.ctrlKey || e.metaKey) {
         window.open(url, "_blank"); // Open the URL in a new tab if Ctrl or Meta key is pressed
       } else {

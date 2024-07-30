@@ -1,34 +1,34 @@
-"use client";
-
 import Image from "next/image";
 import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import {
   floorNumber,
   generateUrlImage,
+  getGenres,
   hoursFromMinuts,
   yearFromDate,
 } from "@/lib";
-import { Loader } from "./Loader";
+import { nanoid } from "nanoid";
 interface MovieInfoProps {
   movie: Movie;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-
-
+  
+  const listGenres = getGenres(movie && movie.genre_ids)
+  
   return (
     <>
       {movie && (
         <div
-          className={`relative w-screen aspect-[3.8/4] md:aspect-[1440/810] lg:w-screen  lg:max-w-[1440px]`}
+          className={`relative w-screen h-[1024px] sm:h-[960px] sm:aspect-[3/4] md:h-auto md:aspect-[1440/810] lg:max-w-[1440px]`}
         >
           <div
-            className={`absolute flex flex-col items-center justify-center w-full h-full aspect-[3.8/4] md:aspect-[1440/810] bg-movieGradient lg:w-full lg:h-auto z-10`}
+            className={`absolute flex flex-col items-center justify-center w-full h-full bg-movieGradient z-10`}
           >
             <h1 className={`block lg:hidden pb-6`}>{movie.title}</h1>
             <div
-              className={`flex items-end px-4 gap-10  w-full md:px-[60px] lg:gap-[122px] xl:px-[120px]`}
+              className={`flex flex-col-reverse items-center md:items-end px-4 gap-10 md:flex-row w-full md:px-[60px] lg:gap-[122px] xl:px-[120px]`}
             >
               <Image
                 src={generateUrlImage(movie.poster_path, "300")}
@@ -62,13 +62,24 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                     />
                   </div>
                 </div>
-                <ul className={`flex justify-between`}>
-                  <li className={`rounded-2xl bg-bgColor px-2`}>
+                <ul className={`flex justify-between flex-wrap`}>
+                  <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
                     {yearFromDate(movie.release_date)}
                   </li>
-                  <li className={`rounded-2xl bg-bgColor px-2`}>{}</li>
-                  <li className={`rounded-2xl bg-bgColor px-2`}>
-                    {hoursFromMinuts(movie.runtime)}
+                  {listGenres.map((item: string) => {
+                    return (
+                      <li
+                        key={nanoid()}
+                        className={`rounded-2xl bg-bgColor m-2 px-2`}
+                      >
+                        {item}
+                      </li>
+                    );
+                  })}
+                  <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
+                    {movie.runtime
+                      ? hoursFromMinuts(movie.runtime)
+                      : "Unknown duration"}
                   </li>
                 </ul>
                 <p className={`flex`}>{movie.overview}</p>
@@ -83,7 +94,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
             height={380}
             priority={true}
             quality={75}
-            className={`w-full aspect-[3.8/4] md:aspect-[1440/810] object-cover lg:h-auto`}
+            className={`w-full h-full lg:aspect-[1440/810] object-cover lg:h-auto`}
           />
         </div>
       )}

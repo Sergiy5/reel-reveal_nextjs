@@ -1,4 +1,4 @@
-export const fetchTrailerId = async (movieId: number): Promise<number> => {
+export const fetchTrailerId = async (movieId: string): Promise<number> => {
   try {
     const response = await fetch("/api/get-trailer_id", {
       method: "POST",
