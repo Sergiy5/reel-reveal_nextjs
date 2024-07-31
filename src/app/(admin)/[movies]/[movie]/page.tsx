@@ -15,7 +15,7 @@ const DynamicSimilarMovies = dynamic(
 
 export async function generateStaticParams() {
  
-    return [{ movie: "3" }]; 
+    return [{ movie: "3", movies: "1" }]; 
 }
 
 export default async function OneMoviePage({
