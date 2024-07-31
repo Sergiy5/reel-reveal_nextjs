@@ -1,5 +1,6 @@
 import { LinkToQuiz } from "@/app/components/LinkToQuiz";
 import { Genres } from "@/app/components/Genres";
+import { MovieSearch } from "@/app/components/MovieSearch";
 
 export async function generateStaticParams() {
   return [{ movies: "1" }];
@@ -18,6 +19,7 @@ export default async function MoviesPage({
 
   return (
     <main>
+      <MovieSearch movieTitle={movies} />
       <Genres />
       <LinkToQuiz />
     </main>

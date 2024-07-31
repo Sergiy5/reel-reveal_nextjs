@@ -25,7 +25,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (clickeTtarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
 
-      const url = `/${stringifyMovie}`;
+      const url = `/movies/${stringifyMovie}`;
       if (e.ctrlKey || e.metaKey) {
         window.open(url, "_blank"); // Open the URL in a new tab if Ctrl or Meta key is pressed
       } else {
@@ -44,8 +44,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { poster_path, id, title } = movie;
 
   const poster = poster_path
-    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-    : "/images/no-image.jpg";
+    ? `https://image.tmdb.org/t/p/w200/${poster_path}`
+    : "/images/no-image.webp";
 
   return (
     <div

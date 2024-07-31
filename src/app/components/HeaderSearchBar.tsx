@@ -3,31 +3,31 @@
 import { useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
+import { useRouter } from "next/navigation";
+import { searchQuerySignal } from "@/context/MoviesContext";
 
 export const HeaderSearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("inputValue", inputValue);
+
+    const clearValue = inputValue.trim().toLowerCase() 
+    router.push(`/${clearValue}`);
     setInputValue("");
   };
 
   return (
     <div id="search movie">
-      <form
-        className={"relative flex w-fit mx-2"}
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <form className={"relative flex w-fit mx-2"} onSubmit={handleSubmit}>
         <input
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           type="text"
-          placeholder="search by movie, actor, genre, etc"
+          autoComplete="off"
+          placeholder="Search for a movie..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className={` flex-grow w-full font-light md:w-[405px] lg:w-[305px] xl:w-[405px] h-[38px] pl-[21px] pr-[54px] text-light text-xl text-textColor bg-inputColor rounded-[20px]

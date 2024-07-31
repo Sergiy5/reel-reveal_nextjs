@@ -19,8 +19,6 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
   const [reloadKey, setReloadKey] = useState(0);
 
 
-  console.log("similarMovies", similarMovies);
-  
   useEffect(() => {
     const fetchSimilarTitles = async (title: string) => {
       setIsLoading(true);

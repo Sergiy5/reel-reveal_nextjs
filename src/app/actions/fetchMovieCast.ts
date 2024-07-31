@@ -11,7 +11,7 @@ export const fetchMovieCast = async (movieId: string) => {
       throw new Error("Failed to fetch cast");
     }
     const data = await response.json();
-console.log("FETCH_DATA_CAST",data)
+    
     return data.response;
   } catch (error) {
     console.error("Error fetching cast:", error);

@@ -1,18 +1,13 @@
 import { Movie } from "@/typification";
 
-export const getUpcomingMovies = async (
-
-): Promise<Movie[]> => {
-  const token = process.env.BEARER_TOKEN_TMDB;
-  const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
+export const getMovieByTitle = async (title: string, page: number) => {
+  const TOKEN = process.env.BEARER_TOKEN_TMDB;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&language=en-US&page=${page}`;
 
   try {
     const response = await fetch(url, {
-      next: {
-        revalidate: 3600,
-      },
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${TOKEN}`,
       },
     }).then((res) => res.json());
 
@@ -20,9 +15,12 @@ export const getUpcomingMovies = async (
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response.results;
+    return response;
+
   } catch (error: any) {
+
     console.error("Fetch error:", error);
+    
     return [];
   }
 };
