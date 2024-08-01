@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { MovieCardHover } from "./MovieCardHover";
 import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
-import { MovieInfoTrailer } from "./MovieInfoTrailer";
+import { MovieInfoTrailer } from "../MovieInfoTrailer";
+import { MovieCardHover } from "./MovieCardHover";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);

@@ -1,5 +1,5 @@
 import { getFilNameFromPath } from "@/lib";
-import FrameShotIcon from "../../../public/icons/frame-shot.svg";
+import FrameShotIcon from "../../../../public/icons/frame-shot.svg";
 import Image from "next/image";
 import { SliderCarouselSlideProps } from "@/typification";
 

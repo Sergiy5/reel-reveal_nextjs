@@ -1,15 +1,14 @@
 import React, { useEffect, ReactNode } from "react";
 import { createPortal } from "react-dom";
-import CrossIcon from "../../../public/icons/cross.svg";
+import CrossIcon from "../../../../public/icons/cross.svg";
 
 interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
   children: ReactNode;
+  isOpen: boolean;
+  onClose?: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  
+export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -23,20 +22,22 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   }, [isOpen]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
+    if (onClose) {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+      };
+      if (isOpen) {
+        document.addEventListener("keydown", handleKeyDown);
+      } else {
+        document.removeEventListener("keydown", handleKeyDown);
       }
-    };
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.removeEventListener("keydown", handleKeyDown);
-    }
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -55,16 +56,18 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         role="dialog"
         aria-modal="true"
       >
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-textColor hover:text-accentColor"
-          aria-label="Close Modal"
-        >
-          <CrossIcon
-            className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-2 right-2 text-textColor hover:text-accentColor"
+            aria-label="Close Modal"
+          >
+            <CrossIcon
+              className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor
                          transition duration-300 hover:stroke-accentColor`}
-          />
-        </button>
+            />
+          </button>
+        )}
         {children}
       </div>
     </div>,

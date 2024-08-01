@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { TypeDevice } from "@/typification";
-import LogoMain from "../../../public/icons/main-logo.svg";
+import LogoMain from "../../../../public/icons/main-logo.svg";
 
 export const MainLogo: React.FC = () => {
   return (

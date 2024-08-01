@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Movie } from "@/typification";
-import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
+import { MovieCardHoverBtn } from "./ui/MovieCardHoverBtn";
 import {
   floorNumber,
   generateUrlImage,

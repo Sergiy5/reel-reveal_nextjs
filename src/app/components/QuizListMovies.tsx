@@ -1,8 +1,8 @@
 import { useResize } from "@/hooks";
 import { ListMovies } from "./ListMovies";
-import { MySlider } from "./MySlider";
+import { MySlider } from "./ui/MySlider";
 import { QuizListMoviesProps } from "@/typification";
-import { MovieCard } from "./MovieCard";
+import { MovieCard } from "./ui/MovieCard";
 import { Settings } from "react-slick";
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({

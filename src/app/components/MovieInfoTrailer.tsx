@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Loader } from "./Loader";
+import { Loader } from "./ui/Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
 import { VideoComponentProps } from "@/typification";
-
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [movieId, setMovieId] = useState<number>(0);
@@ -17,12 +16,12 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       try {
         const traillerId = await fetchTrailerId(`${id}`);
         // console.log("first", traillerId)
-        if (!traillerId) throw new Error()
+        if (!traillerId) throw new Error();
         setMovieId(traillerId);
       } catch (error) {
- toast.error("Failed to load trailer...", {
-   toastId: "success1",
- });
+        toast.error("Failed to load trailer...", {
+          toastId: "success1",
+        });
       } finally {
         setIsLoading(false);
       }
@@ -31,15 +30,13 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <div className={`flex items-center justify-center px-16`}>
+    <div className={`flex items-center w-full justify-center lg:px-16`}>
       {isLoading ? (
         <Loader />
       ) : (
-        <div
-          className={`relative flex justify-center w-full px-6 h-auto`}
-        >
+        <div className={`flex justify-center w-full h-auto`}>
           <div
-            className={` flex items-center justify-center overflow-hidden w-screen xl:max-w-[1200px] border-0 rounded-2xl`}
+            className={` flex items-center justify-center overflow-hidden w-full xl:max-w-[1200px] border-0 rounded-2xl`}
           >
             <iframe
               src={`https://www.youtube.com/embed/${movieId} `}

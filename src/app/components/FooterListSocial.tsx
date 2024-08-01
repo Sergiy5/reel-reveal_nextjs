@@ -1,4 +1,4 @@
-import { FooterLinkIconSocial } from './FooterLinkIconSocial';
+import { FooterLinkIconSocial } from './ui/FooterLinkIconSocial';
 
 export const FooterListSocial: React.FC = () => {
   return (

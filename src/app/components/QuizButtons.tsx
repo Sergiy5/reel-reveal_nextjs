@@ -14,7 +14,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
         // To prettify text in button to divide strings
         const [firstString, secondString] = answer.split(/\s*(?=\()/);
         const answerForAI = value.length ? value : answer;
-        // console.log("first", answerForAI);
+        
         return (
           <button
             key={answer}

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { GenreLinkIcon } from "./GenreLinkIcon";
+import { GenreLinkIcon } from "./ui/GenreLinkIcon";
 
 export const Genres: React.FC = (): React.JSX.Element => {
   return (

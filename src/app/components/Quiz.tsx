@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Loader } from "./Loader";
+import { Loader } from "./ui/Loader";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
@@ -40,7 +40,7 @@ export const Quiz: React.FC = () => {
       } catch (error) {
         toast.error("Error... fetch data");
         console.error("Error fetch data from openai:", error);
-      } 
+      }
     };
 
     openAiAPI(quizResult);
@@ -54,14 +54,13 @@ export const Quiz: React.FC = () => {
         const response = await fetchMovies(movies);
 
         if (!response || response.length === 0) {
-        return  toast.error("Something went wrong, try again...");
+          return toast.error("Something went wrong, try again...");
         }
         const result = firstElementsFromArray(response);
         if (result) setListMovies(result);
       } catch (error) {
         toast.error("Error... fetch data");
         console.error("Error fetching data:", error);
-
       } finally {
         setIsLoading(false);
       }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useDeviceType } from "@/hooks";
-import { MainLogo } from "./MainLogo";
+import { MainLogo } from "./ui/MainLogo";
 import { FooterMenu } from "./FooterMenu";
 import { FooterListSocial } from "./FooterListSocial";
 import CameraIcon from "../../../public/icons/camera.svg";

@@ -1,22 +1,22 @@
 "use client";
 
-import { MySlider } from "./MySlider";
-import { MovieInfoCastCard } from "./MovieInfoCastCard";
-import { MySliderBtn } from "./MySliderBtn";
+import { MySlider } from "./ui/MySlider";
+import { MovieInfoCastCard } from "./ui/MovieInfoCastCard";
+import { MySliderBtn } from "./ui/MySliderBtn";
 import { Actor } from "@/typification";
 import { fetchMovieCast } from "../actions/fetchMovieCast";
 import { toast } from "react-toastify";
 import useSWR from "swr";
-import { Loader } from "./Loader";
+import { Loader } from "./ui/Loader";
 
 interface TopCastProps {
-  id: number
+  id: number;
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
   const { data, error, isLoading } = useSWR(`${id}`, fetchMovieCast);
-  
+
   if (error) return toast.error("Failed to load cast...");
-  
+
   const settings = {
     infinite: false,
     slidesToShow: 6,

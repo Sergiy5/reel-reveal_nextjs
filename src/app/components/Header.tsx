@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { HeaderSearchBar } from "./HeaderSearchBar";
-import { MainLogo } from "./MainLogo";
+import { MainLogo } from "./ui/MainLogo";
 import { HeaderNavMenu } from "./HeaderNavMenu";
 
 export const Header: React.FC = () => {

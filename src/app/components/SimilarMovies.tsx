@@ -6,7 +6,7 @@ import { Movie } from "@/typification";
 import { firstElementsFromArray } from "@/lib";
 import { GetShowMovies } from "./GetShowMovies";
 import { fetchMovies } from "../actions/fetchMovies";
-import { Loader } from "./Loader";
+import { Loader } from "./ui/Loader";
 import { fetchSimilarMovieFromOpenAI } from "../actions";
 
 interface SimilarMoviesProps {
@@ -17,7 +17,6 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-
 
   useEffect(() => {
     const fetchSimilarTitles = async (title: string) => {
@@ -37,28 +36,27 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
     fetchSimilarTitles(title);
   }, [title]);
 
- useEffect(() => {
-   if (!similarTitles.length) return;
-   const getMovies = async (movies: string[]) => {
+  useEffect(() => {
+    if (!similarTitles.length) return;
+    const getMovies = async (movies: string[]) => {
+      try {
+        const response = await fetchMovies(movies);
 
-     try {
-       const response = await fetchMovies(movies);
-       
-       if (!response || response.length === 0) {
-         toast.error("Something went wrong, try again...");
-         return;
-       }
-       const result = firstElementsFromArray(response);
-       if (result) setSimilarMovies(result);
-     } catch (error) {
-       toast.error("Error... fetch data");
-       console.error("Error fetching data:", error);
-     } finally {
-       setIsLoading(false);
-     }
-   };
-   getMovies(similarTitles);
- }, [similarTitles]);
+        if (!response || response.length === 0) {
+          toast.error("Something went wrong, try again...");
+          return;
+        }
+        const result = firstElementsFromArray(response);
+        if (result) setSimilarMovies(result);
+      } catch (error) {
+        toast.error("Error... fetch data");
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getMovies(similarTitles);
+  }, [similarTitles]);
 
   return (
     <>

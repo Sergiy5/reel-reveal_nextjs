@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { MySlider } from "./MySlider";
-import { SliderCarouselSlide } from "./SliderCarouselSlide";
+import { MySlider } from "./ui/MySlider";
+import { SliderCarouselSlide } from "./ui/SliderCarouselSlide";
 import { fetchPaths } from "../actions";
 
 export const SliderCarousel: React.FC = () => {

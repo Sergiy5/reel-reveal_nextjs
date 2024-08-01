@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import ArrowIcon from "../../../public/icons/arrow.svg";
+import ArrowIcon from "../../../../public/icons/arrow.svg";
 import { MySliderBtnProps } from "@/typification";
 
 export const MySliderBtn: React.FC<MySliderBtnProps> = ({

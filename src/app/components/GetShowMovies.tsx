@@ -2,9 +2,9 @@
 
 import React from "react";
 import { GetShowMoviesProps } from "@/typification";
-import { MySlider } from "./MySlider";
-import { MovieCard } from "./MovieCard";
-import { settings } from "./MySlider";
+import { MySlider } from "./ui/MySlider";
+import { MovieCard } from "./ui/MovieCard";
+import { settings } from "./ui/MySlider";
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
