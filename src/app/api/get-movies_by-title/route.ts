@@ -6,6 +6,7 @@ export const POST = async (req: Request) => {
 
   try {
     const response = await getMovieByTitle(title, page);
+    
     if (!response) {
       return new NextResponse(JSON.stringify({ error: "Movie not found" }), {
         status: 404,

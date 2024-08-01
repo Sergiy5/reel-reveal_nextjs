@@ -15,7 +15,7 @@ interface TopCastProps {
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
   const { data, error, isLoading } = useSWR(`${id}`, fetchMovieCast);
   
-  if (error) return toast.error('Error fetch cast...')
+  if (error) return toast.error("Failed to load cast...");
   
   const settings = {
     infinite: false,

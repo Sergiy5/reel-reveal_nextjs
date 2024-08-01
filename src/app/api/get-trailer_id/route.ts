@@ -1,13 +1,11 @@
 import { getTrailer } from "@/app/services";
 import { NextResponse } from "next/server";
 
-export const POST = async (req: Request) => {
-
-    const { movieId } = await req.json();
-    
+export const POST = async (req: Request): Promise<NextResponse> => {
   try {
-      const response = await getTrailer(movieId);
-      
+    const { movieId } = await req.json();
+    const response = await getTrailer(movieId);
+
     if (!response) {
       return new NextResponse(JSON.stringify({ error: "Trailer not found" }), {
         status: 404,
@@ -16,6 +14,14 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json({ response });
   } catch (error) {
-    NextResponse.json({ error: "Failed to fetch movies" });
+    console.error("Error in POST /api/get-trailer_id:", error);
+    return new NextResponse(
+      JSON.stringify({
+        error: (error as Error).message || "Failed to fetch movies",
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 };

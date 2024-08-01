@@ -9,30 +9,39 @@ import { MySlider } from "./MySlider";
 import { ListMovies } from "./ListMovies";
 import { useResize } from "@/hooks";
 import Link from "next/link";
-import { Movie } from "@/typification";
 import { settings } from "./MySlider";
 import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
 
 export interface MovieSearchProps {
   movieTitle: string;
 }
+
 export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
   const [isLoading, setIsLoading] = useState(false);
-const page = 3
+  const [page, setPage] = useState(1);
+
   const viewWidth = useResize();
 
+  console.log("PAGE", page)
+  
   useEffect(() => {
-    if (searchQuerySignal.value === movieTitle) return;
+    if (searchQuerySignal.value === movieTitle && page === 1) return;
+
     searchQuerySignal.value = movieTitle;
 
     const getMovies = async (title: string) => {
       setIsLoading(true);
       try {
         const response = await fetchMoviesByTitle(title, page);
-        console.log("Response", response);
+
         if (!response) throw new Error();
-        if (response.results.length === 0) toast.info(`We can't find movie... Try again.`);
-        searchMoviesSignal.value = response.results;
+        if (response.results.length === 0)
+          toast.info(`We can't find any movie... Try again.`);
+
+        searchMoviesSignal.value = [
+          ...searchMoviesSignal.value,
+          ...response.results,
+        ];
       } catch (error) {
         toast.error("Faild to fetch movies...");
         console.log(error);
@@ -41,10 +50,17 @@ const page = 3
       }
     };
     getMovies(searchQuerySignal.value);
-  }, [movieTitle]);
+  }, [movieTitle, page]);
+
+
+  const incrementPage = () => {
+  setPage((prev) => prev + 1)
+}
 
   return (
-    <div className={` flex flex-col items-center justify-center w-full gap-12 z-10`}>
+    <div
+      className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
+    >
       {isLoading ? (
         <Loader />
       ) : viewWidth > 1024 ? (
@@ -59,7 +75,10 @@ const page = 3
         </div>
       )}
       <div className={`flex gap-5 z-10`}>
-        <button className={`link-btn text-transparent w-[285px]`}>
+        <button
+          className={`link-btn text-transparent w-[285px]`}
+          onClick={incrementPage}
+        >
           load more
         </button>
         <Link href="/quiz" className={`link-btn w-[285px]`}>

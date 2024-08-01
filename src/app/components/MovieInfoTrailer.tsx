@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Loader } from "./Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
 import { VideoComponentProps } from "@/typification";
-import useSWR from "swr";
 
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
@@ -17,10 +16,13 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       setIsLoading(true);
       try {
         const traillerId = await fetchTrailerId(`${id}`);
-        if (!traillerId) toast.error("Faild fetch trailler id");
+        // console.log("first", traillerId)
+        if (!traillerId) throw new Error()
         setMovieId(traillerId);
       } catch (error) {
-        console.log(error);
+ toast.error("Failed to load trailer...", {
+   toastId: "success1",
+ });
       } finally {
         setIsLoading(false);
       }

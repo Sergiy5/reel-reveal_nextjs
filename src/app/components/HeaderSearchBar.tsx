@@ -4,7 +4,8 @@ import { useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
 import { useRouter } from "next/navigation";
-import { searchQuerySignal } from "@/context/MoviesContext";
+import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
+import { toast } from "react-toastify";
 
 export const HeaderSearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
@@ -13,9 +14,12 @@ export const HeaderSearchBar: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const clearValue = inputValue.trim().toLowerCase() 
+    if (inputValue.trim() === "") {
+      return toast.info("Please enter a movie title.");
+    }
+    const clearValue = inputValue.trim().toLowerCase();
     router.push(`/${clearValue}`);
+    searchMoviesSignal.value = [];
     setInputValue("");
   };
 
