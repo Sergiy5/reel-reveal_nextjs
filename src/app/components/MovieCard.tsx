@@ -44,7 +44,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { poster_path, id, title } = movie;
 
   const poster = poster_path
-    ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+    ? `https://image.tmdb.org/t/p/w400/${poster_path}`
     : "/images/no-image.webp";
 
   return (
