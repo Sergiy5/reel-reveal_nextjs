@@ -17,7 +17,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
       id={`${id}`}
       data-movie={"movie"}
       onClick={handleMovie}
-      className="absolute w-full h-full rounded-[18px] bg-cardGradient p-4 flex flex-col justify-between"
+      className="absolute w-full h-full rounded-[18px] bg-cardGradient p-4 flex flex-col justify-between border-[1px] border-accentColor"
     >
       <div className="flex justify-between">
         <div className=" flex flex-col h-12.5">
