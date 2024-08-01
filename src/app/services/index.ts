@@ -5,4 +5,5 @@ export { getTopRatedMovies } from "./getTopRatedMovies";
 export { getTrailer } from "./getTrailer";
 export { getUpcomingMovies } from "./getUpcomingMovies";
 export { getMovieByTitle } from "./getMovieByTitle";
+export { getPopularMovies } from "./getPopularMovies";
 // export {getRattings} from "./getRattings";

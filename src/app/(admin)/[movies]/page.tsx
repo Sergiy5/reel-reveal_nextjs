@@ -3,23 +3,25 @@ import { Genres } from "@/app/components/Genres";
 import { MovieSearch } from "@/app/components/MovieSearch";
 
 export async function generateStaticParams() {
-  return [{ movies: "1" }];
+ 
+  return [{ movies: "&**#@!_*" }];
 }
 
 export default async function MoviesPage({
   params,
 }: {
   params: { movies: string };
-}) {
+  }) {
+  
   const { movies } = params;
 
-  if (movies === "1") {
+  if (movies === "&**#@!_*") {
     return <div>Page</div>;
   }
 
   return (
     <main>
-      <MovieSearch movieTitle={movies} />
+      <MovieSearch movieTitle={movies}  />
       <Genres />
       <LinkToQuiz />
     </main>
