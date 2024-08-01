@@ -15,7 +15,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       setIsLoading(true);
       try {
         const traillerId = await fetchTrailerId(`${id}`);
-        // console.log("first", traillerId)
+
         if (!traillerId) throw new Error();
         setMovieId(traillerId);
       } catch (error) {

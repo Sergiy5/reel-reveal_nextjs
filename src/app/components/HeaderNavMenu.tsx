@@ -41,7 +41,7 @@ export const HeaderNavMenu: React.FC = () => {
           />
         </button>
         <Link
-          href={"/movies/movie"}
+          href={"/movies"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`link font-light leading-8 text-xl`}
         >

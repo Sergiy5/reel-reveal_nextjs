@@ -2,6 +2,7 @@ export const fetchMovieCast = async (movieId: string) => {
   try {
     const response = await fetch("/api/get-cast", {
       method: "POST",
+      cache: "force-cache",
       headers: {
         "Content-Type": "application/json",
       },
@@ -11,7 +12,7 @@ export const fetchMovieCast = async (movieId: string) => {
       throw new Error("Failed to fetch cast");
     }
     const data = await response.json();
-    
+
     return data.response;
   } catch (error) {
     console.error("Error fetching cast:", error);

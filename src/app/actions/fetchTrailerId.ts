@@ -2,6 +2,7 @@ export const fetchTrailerId = async (movieId: string): Promise<number> => {
   try {
     const response = await fetch("/api/get-trailer_id", {
       method: "POST",
+      cache: "force-cache",
       headers: {
         "Content-Type": "application/json",
       },
