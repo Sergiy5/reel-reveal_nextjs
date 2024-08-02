@@ -95,10 +95,10 @@ console.log("POPULAR", response)
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
     >
       {isActiveSearch ? (
-        <h1>
-          We found{" "}
-          <span className={` font-bold text-accentColor`}>{totalMovies}</span>{" "}
-          movies based on your search request
+       !isLoading && <h1>
+          Found{" "}
+          <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
+          movies based on your search &quot;{movieTitle}&quot;
         </h1>
       ) : (
         <h1>The most popular movies</h1>
