@@ -12,7 +12,7 @@ export const POST = async (req: Request): Promise<NextResponse> => {
       });
     }
 
-    return NextResponse.json({ response });
+    return NextResponse.json( response );
   } catch (error) {
       console.error("Error in POST /api/get-trailer_id:", error);
       

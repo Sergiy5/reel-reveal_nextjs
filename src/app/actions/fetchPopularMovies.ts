@@ -1,6 +1,6 @@
 import { Movie } from "@/typification";
 
-export const fetchPopularMovies = async (page: number): Promise<Movie[]> => {
+export const fetchPopularMovies = async (page: number) => {
   try {
     const response = await fetch("/api/get-popular_movies", {
       method: "POST",
@@ -15,7 +15,8 @@ export const fetchPopularMovies = async (page: number): Promise<Movie[]> => {
     }
 
     const data = await response.json();
-    return data.response;
+    
+    return data;
   } catch (error) {
     console.error("Error fetching popular movies:", error);
     return []; // or consider returning `null` or re-throwing the error

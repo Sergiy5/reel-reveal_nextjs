@@ -8,7 +8,6 @@ import { ListMovies } from "./ListMovies";
 import Link from "next/link";
 import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
-import { Movie } from "@/typification";
 import { fetchPopularMovies } from "../actions/fetchPopularMovies";
 
 export interface MovieSearchProps {
@@ -17,6 +16,8 @@ export interface MovieSearchProps {
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [totalMovies, setTotalMovies] = useState(0);
+  const [totalPages, setTotalPages] =useState(0)
   const [isActiveSearch, setisActiveSearch] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -38,12 +39,15 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
       try {
         const response = await fetchPopularMovies(page);
 
+console.log("POPULAR", response)
         if (!response) throw new Error();
-        if (page === 1) return (searchMoviesSignal.value = response);
+        setTotalMovies(response.total_results);
+        setTotalPages(response.total_pages);
+        if (page === 1) return (searchMoviesSignal.value = response.results);
         if (page > 1) {
           return (searchMoviesSignal.value = [
             ...searchMoviesSignal.value,
-            ...response,
+            ...response.results,
           ]);
         }
       } catch (error) {
@@ -68,9 +72,9 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
         
         const response = await fetchMoviesByTitle(title, page);
         if (!response) throw new Error();
-        if (response.results?.length === 0) {
-          toast.info(`We can't find any movie... Try again.`);
-        }
+
+        setTotalMovies(response.total_results);
+        setTotalPages(response.total_pages);
 
         searchMoviesSignal.value = [
           ...searchMoviesSignal.value,
@@ -86,19 +90,24 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
     getMovies(searchQuerySignal.value);
   }, [isActiveSearch, movieTitle, page]);
 
-  const incrementPage = () => {
-    setPage((prev) => prev + 1);
-  };
-
   return (
     <div
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
     >
+      {isActiveSearch ? (
+        <h1>
+          We found{" "}
+          <span className={` font-bold text-accentColor`}>{totalMovies}</span>{" "}
+          movies based on your search request
+        </h1>
+      ) : (
+        <h1>The most popular movies</h1>
+      )}
       <ListMovies movies={searchMoviesSignal.value} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <button
           className={`link-btn text-transparent w-[285px]`}
-          onClick={incrementPage}
+          onClick={() => setPage((prev) => prev + 1)}
         >
           load more
         </button>
@@ -107,7 +116,9 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
         </Link>
       </div>
       <Modal isOpen={isLoading}>
-        <Loader />
+        <div className={`flex items-center h-lvh`}>
+          <Loader />
+        </div>
       </Modal>
     </div>
   );

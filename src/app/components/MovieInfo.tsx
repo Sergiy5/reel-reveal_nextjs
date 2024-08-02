@@ -14,21 +14,20 @@ interface MovieInfoProps {
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-  
-  const listGenres = getGenres(movie && movie.genre_ids)
-  
+  const listGenres = getGenres(movie && movie.genre_ids);
+
   return (
     <>
       {movie && (
         <div
-          className={`relative w-screen h-[1024px] sm:h-[960px] sm:aspect-[3/4] md:h-auto md:aspect-[1440/810] lg:max-w-[1440px]`}
+          className={`relative w-screen h-[1160px] sm:h-[960px] sm:aspect-[3/4] md:h-auto md:aspect-[1440/810] lg:max-w-[1440px]`}
         >
           <div
-            className={`absolute flex flex-col items-center justify-center w-full h-full bg-movieGradient z-10`}
+            className={`absolute flex flex-col items-center justify-center w-full h-full px-[16px] bg-movieGradient md:px-[60px] xl:px-[120px] z-10`}
           >
             <h1 className={`block lg:hidden pb-6`}>{movie.title}</h1>
             <div
-              className={`flex flex-col-reverse items-center md:items-end px-4 gap-10 md:flex-row w-full md:px-[60px] lg:gap-[122px] xl:px-[120px]`}
+              className={`flex flex-col-reverse items-center md:items-end gap-10 md:flex-row w-full lg:gap-[122px]`}
             >
               <Image
                 src={generateUrlImage(movie.poster_path, "300")}
@@ -44,8 +43,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                   className={`flex gap-9 flex-col xl:justify-between lg:items-start xl:items-start xl:flex-row`}
                 >
                   <h1 className={`hidden lg:flex`}>{movie.title}</h1>
-                  <div className={`flex w-48 justify-between xl:pt-5`}>
-                    <h3 className={`flex max-w-32 `}>
+                  <div className={`flex justify-start gap-4 xl:pt-5`}>
+                    <h3 className={`max-w-32 `}>
                       IMBd {floorNumber(movie.vote_average)}
                     </h3>
                     <MovieCardHoverBtn
@@ -62,7 +61,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                     />
                   </div>
                 </div>
-                <ul className={`flex justify-between flex-wrap`}>
+                <ul className={`flex justify-start flex-wrap w-full`}>
                   <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
                     {yearFromDate(movie.release_date)}
                   </li>

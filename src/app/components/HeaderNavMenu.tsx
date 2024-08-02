@@ -48,7 +48,7 @@ export const HeaderNavMenu: React.FC = () => {
           Movie search
         </Link>
         <Link
-          href={"/"}
+          href={"/saved"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >

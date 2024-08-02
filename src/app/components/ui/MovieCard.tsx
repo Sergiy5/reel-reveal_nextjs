@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { MovieCardProps } from "@/typification";
+import { Movie, MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";
@@ -41,11 +41,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     return e.currentTarget.dataset.movie;
   };
 
-  const { poster_path, id, title } = movie;
+  const { poster_path, id, title} = movie;
 
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/w400/${poster_path}`
     : "/images/no-image.webp";
+
 
   return (
     <div

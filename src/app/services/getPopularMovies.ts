@@ -1,6 +1,5 @@
-import { Movie } from "@/typification";
 
-export const getPopularMovies = async (page: number = 1): Promise<Movie[]> => {
+export const getPopularMovies = async (page: number = 1) => {
   const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
 
@@ -18,7 +17,7 @@ export const getPopularMovies = async (page: number = 1): Promise<Movie[]> => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response.results;
+    return response;
   } catch (error) {
     console.error("Error in getTrailer:", error);
     throw error; // re-throw the error to be caught in the route handler

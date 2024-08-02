@@ -4,7 +4,7 @@ import { MovieSearch } from "@/app/components/MovieSearch";
 
 export async function generateStaticParams() {
  
-  return [{ movies: "&**#@!_*" }];
+  return [{ movies: "&#@!_" }];
 }
 
 export default async function MoviesPage({
@@ -15,7 +15,7 @@ export default async function MoviesPage({
   
   const { movies } = params;
 
-  if (movies === "&**#@!_*") {
+  if (movies === "&#@!_") {
     return <div>Page</div>;
   }
 
