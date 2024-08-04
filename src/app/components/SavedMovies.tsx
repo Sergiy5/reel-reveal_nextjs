@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export const SavedMovies: React.FC = () => {
   return (
@@ -18,15 +19,15 @@ export const SavedMovies: React.FC = () => {
         something interesting!
       </p>
       <div className={`flex flex-col justify-center w-full md:flex-row gap-4`}>
-        <Link
+        <ButtonOrLink
           href={"/movies"}
-          className={`link-btn border-2 rounded-lg text-transparent w-[285px]`}
+          transparent
         >
           search movie
-        </Link>
-        <Link href={"/quiz"} className={`link-btn text-accentColor w-[285px]`}>
+        </ButtonOrLink>
+        <ButtonOrLink href={"/quiz"}>
           start quiz
-        </Link>
+        </ButtonOrLink>
       </div>
     </div>
   );

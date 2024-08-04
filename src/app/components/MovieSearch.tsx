@@ -9,6 +9,7 @@ import Link from "next/link";
 import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
 import { fetchPopularMovies } from "../actions/fetchPopularMovies";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export interface MovieSearchProps {
   movieTitle: string;
@@ -95,25 +96,27 @@ console.log("POPULAR", response)
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
     >
       {isActiveSearch ? (
-       !isLoading && <h1>
-          Found{" "}
-          <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
-          movies based on your search &quot;{movieTitle}&quot;
-        </h1>
+        !isLoading && (
+          <h1>
+            Found{" "}
+            <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
+            movies based on your search &quot;{movieTitle}&quot;
+          </h1>
+        )
       ) : (
         <h1>The most popular movies</h1>
       )}
       <ListMovies movies={searchMoviesSignal.value} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
-        <button
-          className={`link-btn text-transparent w-[285px]`}
+        <ButtonOrLink
           onClick={() => setPage((prev) => prev + 1)}
+          transparent
         >
           load more
-        </button>
-        <Link href="/quiz" className={`link-btn w-[285px]`}>
+        </ButtonOrLink>
+        <ButtonOrLink href="/quiz" >
           take quiz
-        </Link>
+        </ButtonOrLink>
       </div>
       <Modal isOpen={isLoading}>
         <div className={`flex items-center h-lvh`}>

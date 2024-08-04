@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export const Hero: React.FC = () => {
 
@@ -20,9 +20,9 @@ export const Hero: React.FC = () => {
           finding the perfect movie match.
         </p>
 
-        <Link href="/quiz" className={`link-btn w-[285px] z-10`}>
+        <ButtonOrLink href="/quiz" className={`z-10`}>
           start quiz
-        </Link>
+        </ButtonOrLink>
       </article>
 
       <div

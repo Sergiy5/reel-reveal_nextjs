@@ -1,13 +1,13 @@
-import Link from "next/link";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export const LinkToQuiz: React.FC = () => {
   
   return (
-    <Link
+    <ButtonOrLink
       href={"/quiz"}
-      className={`link-btn w-[249px] mx-auto sm:w-[343px] md:w-[249px]`}
+      className={`w-[249px] mx-auto sm:w-[343px] md:w-[249px]`}
     >
       take a quiz
-    </Link>
+    </ButtonOrLink>
   );
 };
