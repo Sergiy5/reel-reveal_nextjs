@@ -9,54 +9,47 @@ import { fetchMovies } from "../actions/fetchMovies";
 import { Loader } from "./ui/Loader";
 import { fetchSimilarMovieFromOpenAI } from "../actions";
 
-interface SimilarMoviesProps {
+export interface SimilarMoviesProps {
   title: string;
 }
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
-  const [similarTitles, setSimilarTitles] = useState<string[]>([]);
   const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
-    const fetchSimilarTitles = async (title: string) => {
+    const fetchSimilarFilms = async () => {
       setIsLoading(true);
 
       try {
-        const result = await fetchSimilarMovieFromOpenAI(title);
+        /**
+         * Fetch data from OpenAI API
+         */
+        const similarTitles = await fetchSimilarMovieFromOpenAI(title);
 
-        if (!result) throw new Error();
-
-        setSimilarTitles(result);
-      } catch (error) {
-        toast.error(`Somthing went wrong, try again, ${error}`);
-        console.log(`Error on openai similar movies, ${error}`);
-      }
-    };
-    fetchSimilarTitles(title);
-  }, [title]);
-
-  useEffect(() => {
-    if (!similarTitles.length) return;
-    const getMovies = async (movies: string[]) => {
-      try {
-        const response = await fetchMovies(movies);
+        if (!similarTitles) throw new Error();
+        /**
+         * Fetch data from TMDB API
+         */
+        const response = await fetchMovies(similarTitles);
 
         if (!response || response.length === 0) {
-          toast.error("Something went wrong, try again...");
-          return;
+          throw new Error("Error fetching movies");
         }
+
         const result = firstElementsFromArray(response);
+
         if (result) setSimilarMovies(result);
       } catch (error) {
-        toast.error("Error... fetch data");
-        console.error("Error fetching data:", error);
+        toast.error(`Somthing went wrong... Try again`);
+        console.log(`Error on similar movies, ${error}`);
       } finally {
         setIsLoading(false);
       }
     };
-    getMovies(similarTitles);
-  }, [similarTitles]);
+
+    fetchSimilarFilms();
+  }, [title, reloadKey]);
 
   return (
     <>

@@ -21,20 +21,22 @@ export const Quiz: React.FC = () => {
       setIsLoading(true);
       
       try {
+        /**
+         * Fetch data from OpenAI API
+         */
         const result = await fetchQuizDataFromOpenAI(quizResult);
         
         if (!result || !isArray(result)) {
-          toast.info("Something went wrong... Try again.");
-          
-          throw new Error("Error fetching data from OpenAI");
+          throw new Error("Error fetching data from OpenAI... Try again.");
         }
-        
+        /**
+         * Fetch movies from TMDB API
+         */
         const movies = await fetchMovies(result);
         
         if (!movies || movies.length === 0) {
-          toast.info("Something went wrong... Try again.");
           
-          throw new Error("Error fetching movies");
+          throw new Error("Error fetching movies... Try again.");
         }
         setListMovies(firstElementsFromArray(movies));
         setIsQuizActive(false);
