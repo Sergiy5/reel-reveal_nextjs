@@ -1,10 +1,10 @@
-import Link from "next/link";
+import { ButtonOrLink } from "./components/ui/ButtonOrLink";
 
 export default function Page() {
   return (
     <main>
       <h2>Root Page</h2>
-      <Link href={"/home"} className={`link-btn  px-12`}> Link to home page...</Link>
+      <ButtonOrLink href={"/home"}> Link to home page...</ButtonOrLink>
     </main>
   );
 }

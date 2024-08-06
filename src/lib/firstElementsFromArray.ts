@@ -2,7 +2,7 @@ import { Movie } from "@/typification";
 
 export const firstElementsFromArray = (
   arrMovies: Movie[][]
-): Movie[] | undefined => {
+): Movie[] => {
   if (arrMovies.length) {
     const arrForListMovies = arrMovies
       .map((item: Movie[]) => {
@@ -17,5 +17,5 @@ export const firstElementsFromArray = (
 
     return arrForListMovies as Movie[];
   }
-  return undefined;
+  return [];
 };
