@@ -8,6 +8,7 @@ interface ButtonOrLinkProps {
   children: React.ReactNode;
   className?: string;
   transparent?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   href,
@@ -15,6 +16,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   children,
   transparent,
   className = "",
+  type,
   ...props
 }) => {
   const commonClasses = `flex items-center justify-center h-10 font-[var(--cera-pro)] font-bold
@@ -39,7 +41,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   }
 
   return (
-    <button onClick={onClick} className={commonClasses} {...props}>
+    <button onClick={onClick} type={type} className={commonClasses} {...props}>
       {children}
     </button>
   );

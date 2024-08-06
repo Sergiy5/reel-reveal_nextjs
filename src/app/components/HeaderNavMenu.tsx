@@ -58,8 +58,7 @@ export const HeaderNavMenu: React.FC = () => {
           <p className="lg:hidden">My library</p>
         </Link>
         <Link
-          href={"/"}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          href={"/signup"}
           className="link"
         >
           <UserIcon
