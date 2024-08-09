@@ -9,16 +9,27 @@ import { SharedInput } from "./ui/SharedInput";
 import { Loader } from "./ui/Loader";
 import { Modal } from "./ui/Modal";
 import { nanoid } from "nanoid";
+import { validateEmail } from "@/utils";
+import { toast } from "react-toastify";
 
 export const SignUp: React.FC = () => {
   const [userEmail, setUserEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { email } = Object.fromEntries(new FormData(event.currentTarget));
-    setUserEmail(email as string);
+    if (validateEmail(email as string)) {
+      setIsValidEmail(true);
+      setUserEmail(email as string)
+    };
+
+    if (!validateEmail(email as string)) {
+      toast.error('Invalid email')
+      setIsValidEmail(false)
+    };
   };
 
   useEffect(() => {
@@ -48,9 +59,15 @@ export const SignUp: React.FC = () => {
   }, [router, userEmail]);
 
   return (
-    <div className={`flex flex-col gap-6 w-[372px] z-20`}>
+    <div className={`flex flex-col gap-6 w-[372px] z-10`}>
       <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
-        <SharedInput label="Email" name="email" type="text" id="email" />
+        <SharedInput
+          label="Email"
+          name="email"
+          type="text"
+          id="email"
+          isValid={isValidEmail}
+        />
         <ButtonOrLink type="submit" onClick={() => null} className={`w-full`}>
           continue with email
         </ButtonOrLink>
