@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { capitalizeFirstLetter } from '@/lib';
+import { capitalizeFirstLetter } from "@/utils";
 
 
 export interface IconGenreProps {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Movie } from "@/typification";
-import { firstElementsFromArray } from "@/lib";
+import { firstElementsFromArray } from "@/utils";
 import { GetShowMovies } from "./GetShowMovies";
 import { fetchMovies } from "../actions/fetchMovies";
 import { Loader } from "./ui/Loader";

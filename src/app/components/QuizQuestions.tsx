@@ -3,7 +3,7 @@ import { QuizProgresBar } from "./QuizProgresBar";
 import { QuizButtons } from "./QuizButtons";
 import { quizDataList } from "../../../public/quiz-data/quizDataList";
 import { useResize } from "@/hooks";
-import { nextQuestion } from "@/lib";
+import { nextQuestion } from "@/utils";
 import { quizDataType, QuizQuestionsProps } from "@/typification";
 
 export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {

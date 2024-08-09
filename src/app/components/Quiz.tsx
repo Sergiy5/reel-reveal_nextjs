@@ -6,7 +6,7 @@ import { Loader } from "./ui/Loader";
 import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { firstElementsFromArray, isArray } from "@/lib";
+import { firstElementsFromArray } from "@/utils";
 import { fetchMovies, fetchQuizDataFromOpenAI } from "../actions";
  
 export const Quiz: React.FC = () => {
@@ -26,7 +26,7 @@ export const Quiz: React.FC = () => {
          */
         const result = await fetchQuizDataFromOpenAI(quizResult);
         
-        if (!result || !isArray(result)) {
+        if (!result || !result.length) {
           throw new Error("Error fetching data from OpenAI... Try again.");
         }
         /**

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { generateUrlImage } from "@/lib";
+import { generateUrlImage } from "@/utils";
 import { Actor } from "@/typification";
 
 interface MovieInfoCastCardProps {

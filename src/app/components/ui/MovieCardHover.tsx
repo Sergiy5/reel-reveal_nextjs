@@ -2,15 +2,12 @@ import React from "react";
 import { MovieCardHoverProps } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
-import { yearFromDate } from "@/lib";
 
 export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
   const { vote_average, release_date, title, id } = movie;
-
-  const releaseYear = yearFromDate(release_date);
 
   return (
     <div
@@ -27,7 +24,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
             </svg>
             {vote_average?.toFixed(1)}
           </div>
-          <span className="text-white">{releaseYear}</span>
+          <span className="text-white">{release_date.slice(0, 4)}</span>
         </div>
 
         <ul className="flex flex-col justify-between h-[119px]">

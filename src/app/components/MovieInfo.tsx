@@ -6,8 +6,7 @@ import {
   generateUrlImage,
   getGenres,
   hoursFromMinuts,
-  yearFromDate,
-} from "@/lib";
+} from "@/utils";
 import { nanoid } from "nanoid";
 interface MovieInfoProps {
   movie: Movie;
@@ -63,7 +62,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                 </div>
                 <ul className={`flex justify-start flex-wrap w-full`}>
                   <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-                    {yearFromDate(movie.release_date)}
+                    {movie.release_date.slice(0, 4)}
                   </li>
                   {listGenres.map((item: string) => {
                     return (

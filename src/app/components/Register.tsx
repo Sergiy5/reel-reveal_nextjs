@@ -53,7 +53,7 @@ export const Register: React.FC = () => {
       <div
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
       >
-        <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
+        <form onSubmit={handleSubmit} className={`flex flex-col gap-8 w-full`}>
           <SharedInput label="Name" type="text" name="name" id="name" />
           <SharedInput
             label="Email"

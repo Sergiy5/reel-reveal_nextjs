@@ -5,9 +5,10 @@ export { getFilNameFromPath } from "./getFilNameFromPath";
 export { nextQuestion } from "./nextQuestion";
 export { capitalizeFirstLetter } from "./capitalizeFirstLetter";
 export { getTmdbUrl } from "./getTmdbUrl";
-export { yearFromDate } from "./yearFromDate";
 export { generateUrlImage } from "./generateUrlImage";
 export { hoursFromMinuts } from "./hoursFromMinutes";
 export { floorNumber } from "./floorNumber";
-export { isArray } from "./isArray";
 export { getGenres } from "./getGenres";
+export { validateEmail } from "./validateEmail";
+export { validatePassword } from "./validatePassword";
+
