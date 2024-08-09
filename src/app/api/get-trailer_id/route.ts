@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export const POST = async (req: Request): Promise<NextResponse> => {
   try {
     const { movieId } = await req.json();
+    
     const response = await getTrailer(movieId);
 
     if (!response) {

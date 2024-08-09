@@ -1,10 +1,7 @@
-const { model, Schema } = require("mongoose");
+const { Schema, mongoose } = require("mongoose");
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
-require("colors");
-const userRolesEnum = require("../users/userRolesEnum");
+import { userRolesEnum } from "../roles/userRoles";
 
-// const { hashingPassword } = require('../services/passwordServices');
 /**
  * User Model
  */
@@ -12,18 +9,17 @@ const userSchema = new Schema(
   {
     password: {
       type: String,
-      required: [true, "Set password for user"],
-      select: false,
+      required: [false, "Set password for user"],
+      select: true,
     },
     email: {
       type: String,
       required: [true, "Email is required"],
       unique: true,
     },
-    subscription: {
+    name: {
       type: String,
-      enum: ["starter", "pro", "business"],
-      default: "starter",
+      required: [true, "Name is required"],
     },
     role: {
       type: String,
@@ -32,7 +28,7 @@ const userSchema = new Schema(
     },
     films: [
       {
-        filmId: String,
+        id: String,
         isChecked: Boolean,
       },
     ],
@@ -52,29 +48,29 @@ const userSchema = new Schema(
 /**
  * Pre save  hook. Fires on Create and Save.
  */
-userSchema.pre("save", async function (next) {
-  if (this.isNew) {
-    const emailHash = crypto.createHash("md5").update(this.email).digest("hex");
+userSchema.pre("save", async (next: (err?: Error) => void) => {
+  const user = mongoose.model("User", userSchema);
+  console.log("Fired_MIDLAWARE_ON SAVE_USER++++++++++++++++++++++++++++++++++++");
+  try {
+    if (!user.isModified("password")) return next();
 
-    this.avatarURL = `https:www.gravatar.com/avatar/${emailHash}.jpg?d=monsterid`;
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    next();
+  } catch (err) {
+    next(err as Error);
   }
-  if (!this.isModified("password")) return next();
-
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-
-  next();
 });
+
 /**
  * Custom method mongoose to validate password. Return promise boolean
  * @param {string} candidate
  * @param {string} hash
  * @returns {Promise<boolean>}
  */
-userSchema.methods.checkPassword = (candidate, hash) => {
+userSchema.methods.checkPassword = (candidate: string, hash: string) => {
   bcrypt.compare(candidate, hash);
 };
 
-const User = model("User", userSchema);
-
-module.exports = User;
+export default mongoose.models.User || mongoose.model("User", userSchema);
