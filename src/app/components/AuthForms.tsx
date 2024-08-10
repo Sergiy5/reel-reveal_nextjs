@@ -3,17 +3,25 @@
 import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
 import { isLoadingSignal } from "@/context/CommonContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Register } from "./Register";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 
-
 export const AuthForms: React.FC = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [statusUser, setStatusUser] = useState<"signin" | "register" | "signup">("signin");
-    const [title, setTitle] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [statusUser, setStatusUser] = useState<
+    "signin" | "register" | "signup"
+  >("signin");
+  const [title, setTitle] = useState("");
 
+  useEffect(() => {
+    if (statusUser === "signup") setTitle("Please enter email");
+    if (statusUser === "signin") setTitle("Please enter password");
+    if (statusUser === "register") setTitle("Please enter name, email, password");
+  }, [statusUser]);
+    
+    
   return (
     <div className={`flex flex-col items-center justify-center  gap-12 z-10`}>
       <h3>{title}</h3>
