@@ -11,10 +11,19 @@ import { Modal } from "./ui/Modal";
 import { nanoid } from "nanoid";
 import { validateEmail } from "@/utils";
 import { toast } from "react-toastify";
+import { isLoadingSignal } from "@/context/CommonContext";
 
-export const SignUp: React.FC = () => {
+interface SignUpProps {
+  setIsLoading: (isLoading: boolean) => void;
+  setStatusUser: (statusUser: "signin" | "register" | "signup") => void;
+}
+
+export const SignUp: React.FC<SignUpProps> = ({
+  setIsLoading,
+  setStatusUser,
+}) => {
   const [userEmail, setUserEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const router = useRouter();
 
@@ -23,13 +32,13 @@ export const SignUp: React.FC = () => {
     const { email } = Object.fromEntries(new FormData(event.currentTarget));
     if (validateEmail(email as string)) {
       setIsValidEmail(true);
-      setUserEmail(email as string)
-    };
+      setUserEmail(email as string);
+    }
 
     if (!validateEmail(email as string)) {
-      toast.error('Invalid email')
-      setIsValidEmail(false)
-    };
+      toast.error("Invalid email");
+      setIsValidEmail(false);
+    }
   };
 
   useEffect(() => {
@@ -41,11 +50,13 @@ export const SignUp: React.FC = () => {
 
         if (!data.user) {
           userEmailSignal.value = userEmail;
-          return router.push(`/register`);
+          return setStatusUser("register");
+          //  router.push(`/register`);
         }
 
         if (data) {
-          router.push(`/signin`);
+          setStatusUser("signup");
+          // router.push(`/signin`);
           userEmailSignal.value = data.email;
         }
       } catch (error) {
@@ -59,7 +70,7 @@ export const SignUp: React.FC = () => {
   }, [router, userEmail]);
 
   return (
-    <div className={`flex flex-col gap-6 w-[372px] z-10`}>
+    <>
       <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
         <SharedInput
           label="Email"
@@ -93,9 +104,6 @@ export const SignUp: React.FC = () => {
           </button>
         </li>
       </ul>
-      <Modal isOpen={isLoading}>
-        <Loader />{" "}
-      </Modal>
-    </div>
+    </>
   );
 };

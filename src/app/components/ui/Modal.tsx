@@ -1,4 +1,4 @@
-import React, { useEffect, ReactNode } from "react";
+import React, { useEffect, ReactNode} from "react";
 import { createPortal } from "react-dom";
 import CrossIcon from "../../../../public/icons/cross.svg";
 
@@ -9,6 +9,7 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";

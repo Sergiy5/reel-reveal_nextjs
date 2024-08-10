@@ -1,7 +1,14 @@
+import { AuthForms } from "@/app/components/AuthForms";
 import { SignUp } from "@/app/components/SignUp";
-import { ButtonOrLink } from "@/app/components/ui/ButtonOrLink";
 
 export default async function LoginEmailPage() {
 
-    return <main><SignUp /></main>;
+    return (
+      <main>
+        {" "}
+        <AuthForms title={"Sing in or create account"}>
+          <SignUp />
+        </AuthForms>
+      </main>
+    );
 }

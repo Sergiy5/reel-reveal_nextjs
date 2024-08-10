@@ -18,7 +18,7 @@ export const HeaderNavMenu: React.FC = () => {
   useEffect(() => {
     diviceSize === "desktop" ? setIsOpenMenu(true) : setIsOpenMenu(false);
   }, [diviceSize]);
-  
+
   return (
     <div id="nav" className={`relative flex`}>
       <div
@@ -58,7 +58,8 @@ export const HeaderNavMenu: React.FC = () => {
           <p className="lg:hidden">My library</p>
         </Link>
         <Link
-          href={"/signup"}
+          href={"/auth"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >
           <UserIcon
@@ -68,6 +69,7 @@ export const HeaderNavMenu: React.FC = () => {
         </Link>
         <Link
           href={"/quiz"}
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`header__link-btn flex items-center justify-center font-medium leading-8 text-xl
                w-[140px] h-[40px] text-bgColor bg-textColor rounded-[30px] shadow-0
                 transition duration-250 ease-in-out hover:bg-accentColor hover:shadow-hoverShadow

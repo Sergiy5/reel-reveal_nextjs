@@ -3,17 +3,26 @@
 import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
-import { nanoid } from "nanoid";
-import { Modal } from "./ui/Modal";
-import { Loader } from "./ui/Loader";
 import { useState } from "react";
+import { userEmailSignal } from "@/context/UserContext";
 
-export const SignIn: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+interface SignInProps {
+  setIsLoading: (isLoading: boolean) => void;
+}
+
+export const SignIn: React.FC<SignInProps> = ({ setIsLoading }) => {
+  const [dataUser, setDataUser] = useState(() => {
+    userEmailSignal.value;
+  });
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+  };
 
   return (
-    <div className={`flex flex-col gap-6 w-[372px] z-20`}>
-      <form onSubmit={() => null} className={`flex flex-col gap-6 w-full`}>
+    <>
+      <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
         <SharedInput label="Password" type="teext" id="password" />
 
         <ButtonOrLink type="submit" onClick={() => null} className={`w-full`}>
@@ -25,9 +34,6 @@ export const SignIn: React.FC = () => {
           <p>Forgot password?</p>
         </Link>
       </div>
-      <Modal isOpen={isLoading}>
-        <Loader />{" "}
-      </Modal>
-    </div>
+    </>
   );
 };
