@@ -16,8 +16,8 @@ export const AuthForms: React.FC = () => {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    if (statusUser === "signup") setTitle("Please enter email");
-    if (statusUser === "signin") setTitle("Please enter password");
+    if (statusUser === "signin") setTitle("Please enter email");
+    if (statusUser === "signup") setTitle("Please enter password");
     if (statusUser === "register") setTitle("Please enter name, email, password");
   }, [statusUser]);
     
