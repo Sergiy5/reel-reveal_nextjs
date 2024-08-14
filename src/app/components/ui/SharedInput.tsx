@@ -24,8 +24,8 @@ export const SharedInput: React.FC<CustomInputProps> = ({
   const [hasValue, setHasValue] = useState(() => (defaultValue ? true : false));
   const [isValidData, setIsValidData] = useState(true);
 
-console.log("first", isFocused, hasValue)
-  
+  console.log("first", isFocused, hasValue);
+
   const handleFocus = () => setIsFocused(true);
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
@@ -71,8 +71,8 @@ console.log("first", isFocused, hasValue)
       <label
         htmlFor={id}
         className={clsx(
-          "absolute left-5 top-2 transition-all duration-200 ease-in-out",
-          { " -top-5 left-4 bg-transparent text-accentColor": isFocused || hasValue }
+          "absolute bg-transparent left-5 top-2 text-accentColor transition-all duration-200 ease-in-out",
+          { "-top-6 left-4": isFocused || hasValue }
         )}
       >
         {label}
