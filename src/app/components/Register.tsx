@@ -70,7 +70,7 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
       setIsLoading(true);
       try {
         const response = await registerUser(userData);
-
+        
         if (response) {
 
           return toast.success(`User ${response.user.name} registered successfully`);

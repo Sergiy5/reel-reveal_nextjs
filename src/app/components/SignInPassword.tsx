@@ -40,7 +40,8 @@ export const SignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     const validPassword = async (email: string, password: string) => { 
       try {
         const user = await signInUser(email, password);
-        console.log("USER_SIGNED_IN", user);
+
+        if(user) toast.success(`User ${user.name} signed in successfully`);
       } catch (error) {
         console.log(error) 
       } finally {

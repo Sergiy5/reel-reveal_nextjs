@@ -62,7 +62,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                 </div>
                 <ul className={`flex justify-start flex-wrap w-full`}>
                   <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-                    {movie.release_date.slice(0, 4)}
+                    {movie.release_date.replaceAll("-", " ")}
                   </li>
                   {listGenres.map((item: string) => {
                     return (

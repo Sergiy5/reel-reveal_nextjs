@@ -13,7 +13,7 @@ import { qiuzMoviesSignal } from "@/context/MoviesContext";
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(()=>qiuzMoviesSignal.value ? false : true);
+  const [isQuizActive, setIsQuizActive] = useState(()=>qiuzMoviesSignal.value.length ? false : true);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
