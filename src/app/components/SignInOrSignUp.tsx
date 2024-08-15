@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { userEmailSignal } from "@/context/UserContext";
+import { userEmailSignal, userPasswordSignal } from "@/context/UserContext";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { useRouter } from "next/navigation";
 import { SharedInput } from "./ui/SharedInput";
 import { validateEmail } from "@/utils";
 import Google from "../../../public/icons/google.svg";
-import FaceBook from "../../../public/icons/facebook.svg";
+import { fetchUserByEmailResponse } from "@/typification";
+// import FaceBook from "../../../public/icons/facebook.svg";
 
 
 interface SignUpProps {
@@ -44,16 +45,17 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
     const getUser = async (email: string) => {
       setIsLoading(true);
       try {
-        const data = await fetchUserByEmail(email);
+        const data: fetchUserByEmailResponse = await fetchUserByEmail(email);
 
         if (!data.user) {
           userEmailSignal.value = userEmail;
+
           return setStatusUser("register");
         }
-
         if (data) {
           setStatusUser("signup");
-          userEmailSignal.value = data.email;
+          userEmailSignal.value = data.user.email;
+          userPasswordSignal.value = data.user.password;
         }
       } catch (error) {
         console.log(error);

@@ -2,7 +2,6 @@
 
 import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
-import { isLoadingSignal } from "@/context/CommonContext";
 import { useEffect, useState } from "react";
 import { Register } from "./Register";
 import { SignInPassword } from "./SignInPassword";
@@ -23,7 +22,7 @@ export const AuthForms: React.FC = () => {
   }, [statusUser]);
 
   return (
-    <div className={`relative flex flex-col items-center justify-center  gap-12 z-20`}>
+    <div className={`relative flex flex-col items-center justify-center  gap-12 z-10`}>
       <h3>{title}</h3>
       <div
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}

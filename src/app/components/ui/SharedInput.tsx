@@ -24,8 +24,6 @@ export const SharedInput: React.FC<CustomInputProps> = ({
   const [hasValue, setHasValue] = useState(() => (defaultValue ? true : false));
   const [isValidData, setIsValidData] = useState(true);
 
-  console.log("first", isFocused, hasValue);
-
   const handleFocus = () => setIsFocused(true);
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);

@@ -7,5 +7,6 @@ export const registerUser = async (userData: any) => {
     },
     body: JSON.stringify({ userData }),
   });
+  
   return res.json();
 };

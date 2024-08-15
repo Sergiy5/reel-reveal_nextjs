@@ -119,3 +119,20 @@ export interface QuizQuestionsProps {
 export interface VideoComponentProps {
   id: number;
 }
+
+export interface FilmInterface {
+  id: string;
+  isChecked: boolean;
+}
+
+export interface UserInterface {
+  email: string;
+  password: string;
+  token: string;
+  _id: string;
+  name: string;
+  role: string;
+  films: FilmInterface[];
+}
+
+export interface fetchUserByEmailResponse {message: string; user: UserInterface}

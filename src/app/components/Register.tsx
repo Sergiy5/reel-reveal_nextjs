@@ -25,12 +25,10 @@ interface UserData{
 export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
   const [userData, setUserData] = useState<UserData | {}>();
   const [isValidData, setIsValidData] = useState(true);
-//   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Remove spaces from all fields
     const formData = new FormData(event.currentTarget);
     formData.forEach((value, key) => {
       formData.set(key, String(value).trim());
@@ -47,13 +45,16 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
       });
     } else if (!validateEmail(email as string)) {
       setIsValidData(false);
+
       return toast.error("Invalid email");
     } else if (!validatePassword(password as string)) {
       setIsValidData(true);
+
       return toast.error(
         "Password must be at least 8 characters, with uppercase, lowercase, digit, and special character."
       );
     } else if (password !== confirmPassword) {
+
       return toast.error("Passwords do not match");
     } else {
       setUserData({ name, email, password });
@@ -62,14 +63,15 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
 
   useEffect(() => {
     if (!userData) return;
-    console.log("OnUseEffect_User_data:", userData);
+
     const regUser = async (userData: UserData | {}) => {
       setIsLoading(true);
       try {
         const response = await registerUser(userData);
 
         if (response) {
-          return console.log("Register response:", response);
+
+          return toast.success(`User ${response.user.name} registered successfully`);
         }
       } catch (error) {
         console.log(error);
@@ -78,7 +80,7 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
       }
     };
     regUser(userData);
-  }, [userData]);
+  }, [setIsLoading, userData]);
 
   return (
     <>

@@ -1,6 +1,17 @@
-const { Schema, mongoose } = require("mongoose");
+import mongoose, { Schema, Document } from "mongoose";
 const bcrypt = require("bcrypt");
 import { userRolesEnum } from "../roles/userRoles";
+
+interface IUser extends Document {
+  password: string;
+  email: string;
+  name: string;
+  role: string;
+  films: { id: string; isChecked: boolean }[];
+  avatarURL?: string;
+  token?: string;
+  isModified: (path: string) => boolean; // This is a Mongoose method available in documents.
+}
 
 /**
  * User Model
@@ -48,12 +59,14 @@ const userSchema = new Schema(
 /**
  * Pre save  hook. Fires on Create and Save.
  */
-userSchema.pre("save", async (next: (err?: Error) => void) => {
-  const user = mongoose.model("User", userSchema);
-  console.log("Fired_MIDLAWARE_ON SAVE_USER++++++++++++++++++++++++++++++++++++");
-  try {
-    if (!user.isModified("password")) return next();
+userSchema.pre<IUser>("save", async function (next: (err?: Error) => void) {
+  const user = this;
 
+  console.log("Middleware triggered before saving user");
+
+  if (!user.isModified("password")) return next();
+
+  try {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 

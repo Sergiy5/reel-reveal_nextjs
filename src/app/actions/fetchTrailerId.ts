@@ -14,6 +14,7 @@ export const fetchTrailerId = async (movieId: string): Promise<number> => {
     }
 
     const data = await response.json();
+
     return data.response;
   } catch (error) {
     console.error("Error fetching trailer id:", error);

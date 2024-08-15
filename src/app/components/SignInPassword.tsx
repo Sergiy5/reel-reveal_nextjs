@@ -1,24 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
-import { useState } from "react";
-import { userEmailSignal } from "@/context/UserContext";
+import { validatePassword } from "@/utils";
+import { toast } from "react-toastify";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
 export const SignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
-  const [dataUser, setDataUser] = useState(() => {
-    userEmailSignal.value;
-  });
+  const [userPassword, setUserPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
+    const { password } = Object.fromEntries(new FormData(event.currentTarget));
+    if(!validatePassword(password as string)) {
+      toast.error("Password should be at least 8 characters long")
+    }
+      if (validatePassword(password as string)) {
+      setUserPassword(password as string);
+      }
+    // setIsLoading(true);
   };
+
 
   return (
     <>

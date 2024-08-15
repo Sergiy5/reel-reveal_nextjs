@@ -1,5 +1,3 @@
-"use server";
-
 import { NextResponse } from "next/server";
 import User from "@/db/models/user";
 import { connectDB } from "@/db/db";
@@ -14,32 +12,37 @@ import { connectDB } from "@/db/db";
  * The status code of the response indicates the success or failure of the operation.
  */
 export async function POST(request: Request): Promise<NextResponse> {
-  // Connect to the database
-  const { email } = await request.json();
+  try {
+    // Connect to the database
     await connectDB();
-    
-  // Find a user with the provided email in the database
-  const existingUser = await User.findOne({ email });
 
-  // Extract the email and password from the request body
-  // If no user is found, return a JSON response with a message indicating that the user is not found
+    // Extract the email from the request body
+    const { email } = await request.json();
+
+    // Find a user with the provided email in the database
+    const existingUser = await User.findOne({ email });
+
+    // If no user is found, return a JSON response with a message indicating that the user is not found
     if (!existingUser) {
-      
+      return new NextResponse(
+        JSON.stringify({ message: "User not found", user: existingUser }),
+        {
+          status: 404,
+        }
+      );
+    }
+
+    // If a user is found, return a JSON response with a message indicating that the user exists
     return new NextResponse(
-      JSON.stringify({ message: "User not found", user: existingUser }),
+      JSON.stringify({ message: "User exists", user: existingUser }),
       {
-        status: 404,
+        status: 200,
       }
     );
+  } catch (error) {
+    // Return a JSON response with a message indicating a server error
+    return new NextResponse(JSON.stringify({ message: "Server error" }), {
+      status: 500,
+    });
   }
-
-  // If a user is found, return a JSON response with a message indicating that the user exists
-  return new NextResponse(
-    JSON.stringify({ message: "User exists", user: existingUser }),
-    {
-      status: 200,
-    }
-  );
-
-  // return new NextResponse(JSON.stringify({ message: "Serever error" }), { status: 500 });
 }

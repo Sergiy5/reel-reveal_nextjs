@@ -23,7 +23,7 @@ export const HeaderNavMenu: React.FC = () => {
     <div id="nav" className={`relative flex`}>
       <div
         className={clsx(
-          `absolute flex flex-col items-center justify-between w-screen bg-bgLightColor lg:bg-transparent z-30
+          `absolute flex flex-col items-center justify-between w-screen bg-bgLightColor lg:bg-transparent z-60
             transition-all duration-1000 ease-in-out pt-10 pb-5 h-80 -right-4 md:-right-16
            ${isOpenMenu ? "-top-2 md:-top-4 " : "-top-96"}
            lg:relative lg:top-0 lg:right-0 lg:w-[380px] lg:h-[40px] lg:flex-row lg:p-0 ,
