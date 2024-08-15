@@ -11,7 +11,6 @@ import Google from "../../../public/icons/google.svg";
 import { fetchUserByEmailResponse } from "@/typification";
 // import FaceBook from "../../../public/icons/facebook.svg";
 
-
 interface SignUpProps {
   setIsLoading: (isLoading: boolean) => void;
   setStatusUser: (statusUser: "signin" | "register" | "signup") => void;
@@ -45,17 +44,20 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
     const getUser = async (email: string) => {
       setIsLoading(true);
       try {
-        const data: fetchUserByEmailResponse = await fetchUserByEmail(email);
+        const response = await fetchUserByEmail(email).then((res) =>
+          res.json()
+        );
 
-        if (!data.user) {
+        if (!response.user) {
           userEmailSignal.value = userEmail;
 
           return setStatusUser("register");
         }
-        if (data) {
+
+        if (response.user) {
           setStatusUser("signup");
-          userEmailSignal.value = data.user.email;
-          userPasswordSignal.value = data.user.password;
+          userEmailSignal.value = response.user.email;
+          userPasswordSignal.value = response.user.password;
         }
       } catch (error) {
         console.log(error);
@@ -77,7 +79,7 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
           id="email"
           isValid={isValidEmail}
         />
-        <ButtonOrLink type="submit"  className={`w-full`}>
+        <ButtonOrLink type="submit" className={`w-full`}>
           continue with email
         </ButtonOrLink>
       </form>

@@ -1,4 +1,4 @@
-import {fetchUserByEmailResponse} from "@/typification";
+import { NextResponse } from "next/server";
 
 /**
  * Fetches a user by email.
@@ -6,10 +6,7 @@ import {fetchUserByEmailResponse} from "@/typification";
  * @param {string} email - The email of the user to fetch.
  * @returns {Promise<object>} A promise that resolves to the user object.
  */
-export const fetchUserByEmail = async (
-  email: string
-): Promise<fetchUserByEmailResponse | {}> => {
-
+export const fetchUserByEmail = async (email: string) => {
   try {
     const response = await fetch("/api/get-user_by-email", {
       method: "POST",
@@ -19,9 +16,15 @@ export const fetchUserByEmail = async (
       body: JSON.stringify({ email }),
     });
 
-    return response.json();
+    const { existingUser } = await response.json();
+
+    return NextResponse.json({ user: existingUser });
   } catch (error) {
     console.error("Error fetching user by email:", error);
-    return Response.json({ error: "Error fetching user by email" });
+
+    return NextResponse.json({
+      message: "Error fetching user by email",
+      error,
+    });
   }
 };

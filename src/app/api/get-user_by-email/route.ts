@@ -24,8 +24,8 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     // If no user is found, return a JSON response with a message indicating that the user is not found
     if (!existingUser) {
-      return new NextResponse(
-        JSON.stringify({ message: "User not found", user: existingUser }),
+      return NextResponse.json(
+        { message: "User not found" },
         {
           status: 404,
         }
@@ -33,16 +33,14 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     // If a user is found, return a JSON response with a message indicating that the user exists
-    return new NextResponse(
-      JSON.stringify({ message: "User exists", user: existingUser }),
-      {
-        status: 200,
-      }
-    );
+    return NextResponse.json({ existingUser });
   } catch (error) {
     // Return a JSON response with a message indicating a server error
-    return new NextResponse(JSON.stringify({ message: "Server error" }), {
-      status: 500,
-    });
+    return NextResponse.json(
+      { message: "Server error" },
+      {
+        status: 500,
+      }
+    );
   }
 }

@@ -1,9 +1,8 @@
 const bcrypt = require("bcrypt");
-import User, { IUser } from "@/db/models/user";
+import User from "@/db/models/user";
 import { signToken } from "@/db/utils/signToken";
-import { NextResponse } from "next/server";
 
-export const POST = async (req: Request): Promise<IUser | NextResponse> => {
+export const POST = async (req: Request): Promise<Response> => {
   const { email, password } = await req.json();
 
   try {
@@ -14,17 +13,17 @@ export const POST = async (req: Request): Promise<IUser | NextResponse> => {
     const passwordIsValid = await bcrypt.compare(password, user.password);
 
     if (!passwordIsValid) {
-      return NextResponse.json({ error: "Wrong password" }, { status: 400 });
+      return Response.json({ error: "Wrong password" }, { status: 400 });
     }
 
     user.token = signToken(user.id);
 
     await user.save();
 
-    return NextResponse.json(user);
+    return Response.json(user);
   } catch (error) {
     console.log(" Error in signin", error);
-    return NextResponse.json(
+    return Response.json(
       { error: "Something went wrong" },
       { status: 500 }
     );
