@@ -1,29 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { userEmailSignal } from "@/context/UserContext";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SharedInput } from "./ui/SharedInput";
-import { Loader } from "./ui/Loader";
-import { Modal } from "./ui/Modal";
-import { nanoid } from "nanoid";
 import { validateEmail } from "@/utils";
-import { toast } from "react-toastify";
-import { isLoadingSignal } from "@/context/CommonContext";
+import Google from "../../../public/icons/google.svg";
+import FaceBook from "../../../public/icons/facebook.svg";
+
 
 interface SignUpProps {
   setIsLoading: (isLoading: boolean) => void;
   setStatusUser: (statusUser: "signin" | "register" | "signup") => void;
 }
 
-export const SignUp: React.FC<SignUpProps> = ({
+export const SignInOrSignUp: React.FC<SignUpProps> = ({
   setIsLoading,
   setStatusUser,
 }) => {
   const [userEmail, setUserEmail] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const router = useRouter();
 
@@ -51,12 +49,10 @@ export const SignUp: React.FC<SignUpProps> = ({
         if (!data.user) {
           userEmailSignal.value = userEmail;
           return setStatusUser("register");
-          //  router.push(`/register`);
         }
 
         if (data) {
           setStatusUser("signup");
-          // router.push(`/signin`);
           userEmailSignal.value = data.email;
         }
       } catch (error) {
@@ -67,10 +63,10 @@ export const SignUp: React.FC<SignUpProps> = ({
       }
     };
     getUser(userEmail);
-  }, [router, userEmail]);
+  }, [setIsLoading, setStatusUser, userEmail]);
 
   return (
-    <>
+    <div className="flex flex-col items-center gap-6 justify-center">
       <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
         <SharedInput
           label="Email"
@@ -90,20 +86,24 @@ export const SignUp: React.FC<SignUpProps> = ({
       </div>
       <ul className={`flex items-center justify-center gap-5 `}>
         <li>
-          <button className={`size-44 rounded-2xl bg-bgLightColor`}>
-            {/* <svg width={32} height={32}>
-              <use xlinkHref={`${Sprite}#icon-google-sign_in`} />
-            </svg> */}
+          <button
+            className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
+          >
+            <Google className={`mx-auto size-12 stroke-textColor fill-none`} />
+            Google
           </button>
         </li>
-        <li>
-          <button className={`size-44 rounded-2xl bg-bgLightColor`}>
-            {/* <svg width={32} height={32}>
-              <use xlinkHref={`${Sprite}#icon-google-sign_in`} />
-            </svg> */}
+        {/* <li>
+          <button
+            className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
+          >
+            <FaceBook
+              className={`mx-auto size-12 stroke-textColor fill-none`}
+            />
+            Facebook
           </button>
-        </li>
+        </li> */}
       </ul>
-    </>
+    </div>
   );
 };

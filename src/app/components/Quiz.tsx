@@ -8,11 +8,12 @@ import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { firstElementsFromArray } from "@/utils";
 import { fetchMovies, fetchQuizDataFromOpenAI } from "../actions";
+import { qiuzMoviesSignal } from "@/context/MoviesContext";
  
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [listMovies, setListMovies] = useState<Movie[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(true);
+  const [isQuizActive, setIsQuizActive] = useState(()=>qiuzMoviesSignal.value ? false : true);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -38,7 +39,9 @@ export const Quiz: React.FC = () => {
           
           throw new Error("Error fetching movies... Try again.");
         }
-        setListMovies(firstElementsFromArray(movies));
+        const arrMovies = firstElementsFromArray(movies);
+        setListMovies(arrMovies);
+        qiuzMoviesSignal.value = arrMovies;
         setIsQuizActive(false);
       } catch (error: any) {
         toast.error(error.message);
@@ -63,7 +66,7 @@ export const Quiz: React.FC = () => {
       ) : (
         <QuizListMovies
           clearPrevQuiz={() => setIsQuizActive(true)}
-          arrMovies={listMovies}
+          arrMovies={qiuzMoviesSignal.value ?? listMovies}
         />
       )}
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>

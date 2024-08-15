@@ -5,8 +5,8 @@ import { Loader } from "./ui/Loader";
 import { isLoadingSignal } from "@/context/CommonContext";
 import { useEffect, useState } from "react";
 import { Register } from "./Register";
-import { SignIn } from "./SignIn";
-import { SignUp } from "./SignUp";
+import { SignInPassword } from "./SignInPassword";
+import { SignInOrSignUp } from "./SignInOrSignUp";
 
 export const AuthForms: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,22 +18,25 @@ export const AuthForms: React.FC = () => {
   useEffect(() => {
     if (statusUser === "signin") setTitle("Please enter email");
     if (statusUser === "signup") setTitle("Please enter password");
-    if (statusUser === "register") setTitle("Please enter name, email, password");
+    if (statusUser === "register")
+      setTitle("Please enter name, email, password");
   }, [statusUser]);
-    
-    
+
   return (
-    <div className={`flex flex-col items-center justify-center  gap-12 z-10`}>
+    <div className={`relative flex flex-col items-center justify-center  gap-12 z-20`}>
       <h3>{title}</h3>
       <div
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
       >
         {statusUser === "signin" ? (
-          <SignUp setIsLoading={setIsLoading} setStatusUser={setStatusUser} />
+          <SignInOrSignUp
+            setIsLoading={setIsLoading}
+            setStatusUser={setStatusUser}
+          />
         ) : statusUser === "register" ? (
           <Register setIsLoading={setIsLoading} />
         ) : (
-          <SignIn setIsLoading={setIsLoading} />
+          <SignInPassword setIsLoading={setIsLoading} />
         )}
       </div>
       <p className={`text-lg`}>

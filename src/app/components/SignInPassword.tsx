@@ -10,7 +10,7 @@ interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
-export const SignIn: React.FC<SignInProps> = ({ setIsLoading }) => {
+export const SignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [dataUser, setDataUser] = useState(() => {
     userEmailSignal.value;
   });
