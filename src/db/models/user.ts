@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 const bcrypt = require("bcrypt");
-import { userRolesEnum } from "../roles/userRoles";
+import { userRolesEnum } from "../roles/userRoles"; 
 
-interface IUser extends Document {
+export interface IUser extends Document {
   password: string;
   email: string;
   name: string;

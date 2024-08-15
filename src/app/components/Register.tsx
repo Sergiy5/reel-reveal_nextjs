@@ -30,11 +30,13 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
     formData.forEach((value, key) => {
       formData.set(key, String(value).trim());
     });
 
     const data = Object.fromEntries(formData);
+    
     const { email, password, name, "confirm password": confirmPassword } = data;
 
     const emptyFields = Object.keys(data).filter((key) => data[key] === "");

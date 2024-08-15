@@ -8,7 +8,7 @@ import {fetchUserByEmailResponse} from "@/typification";
  */
 export const fetchUserByEmail = async (
   email: string
-): Promise<fetchUserByEmailResponse> => {
+): Promise<fetchUserByEmailResponse | {}> => {
 
   try {
     const response = await fetch("/api/get-user_by-email", {
@@ -22,5 +22,6 @@ export const fetchUserByEmail = async (
     return response.json();
   } catch (error) {
     console.error("Error fetching user by email:", error);
+    return Response.json({ error: "Error fetching user by email" });
   }
 };

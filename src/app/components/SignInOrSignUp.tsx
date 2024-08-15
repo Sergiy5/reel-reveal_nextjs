@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { userEmailSignal, userPasswordSignal } from "@/context/UserContext";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-import { useRouter } from "next/navigation";
 import { SharedInput } from "./ui/SharedInput";
 import { validateEmail } from "@/utils";
 import Google from "../../../public/icons/google.svg";
@@ -24,11 +23,12 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
 }) => {
   const [userEmail, setUserEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
-  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const { email } = Object.fromEntries(new FormData(event.currentTarget));
+
     if (validateEmail(email as string)) {
       setIsValidEmail(true);
       setUserEmail(email as string);
@@ -77,7 +77,7 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
           id="email"
           isValid={isValidEmail}
         />
-        <ButtonOrLink type="submit" onClick={() => null} className={`w-full`}>
+        <ButtonOrLink type="submit"  className={`w-full`}>
           continue with email
         </ButtonOrLink>
       </form>
