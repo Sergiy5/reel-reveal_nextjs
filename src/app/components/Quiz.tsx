@@ -34,7 +34,7 @@ export const Quiz: React.FC = () => {
          * Fetch movies from TMDB API
          */
         const movies = await fetchMovies(result);
-        
+        console.log("MOVIES_QUIZ",movies)
         if (!movies || movies.length === 0) {
           
           throw new Error("Error fetching movies... Try again.");
