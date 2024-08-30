@@ -1,12 +1,10 @@
-import { AuthForms } from "@/app/components/AuthForms";
-import { Register } from "@/app/components/Register";
-
+import { Auth } from "@/app/components/Auth";
+import { AuthRegister } from "@/app/components/AuthRegister";
 
 export default async function RegisterPage() {
-
-    return (
-      <main>
-        <AuthForms />
-      </main>
-    );
+  return (
+    <main>
+      <Auth />
+    </main>
+  );
 }

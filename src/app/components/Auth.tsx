@@ -3,11 +3,11 @@
 import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
 import { useEffect, useState } from "react";
-import { Register } from "./Register";
-import { SignInPassword } from "./SignInPassword";
-import { SignInOrSignUp } from "./SignInOrSignUp";
+import { AuthRegister } from "./AuthRegister";
+import { AuthSignInPassword } from "./AuthSignInPassword";
+import { AuthSignInOrSignUp } from "./AuthSignInOrSignUp";
 
-export const AuthForms: React.FC = () => {
+export const Auth: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [statusUser, setStatusUser] = useState<
     "signin" | "register" | "signup"
@@ -22,20 +22,22 @@ export const AuthForms: React.FC = () => {
   }, [statusUser]);
 
   return (
-    <div className={`relative flex flex-col items-center justify-center  gap-12 z-10`}>
+    <div
+      className={`relative flex flex-col items-center justify-center  gap-12 z-10`}
+    >
       <h3>{title}</h3>
       <div
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
       >
         {statusUser === "signin" ? (
-          <SignInOrSignUp
+          <AuthSignInOrSignUp
             setIsLoading={setIsLoading}
             setStatusUser={setStatusUser}
           />
         ) : statusUser === "register" ? (
-          <Register setIsLoading={setIsLoading} />
+          <AuthRegister setIsLoading={setIsLoading} />
         ) : (
-          <SignInPassword setIsLoading={setIsLoading} />
+          <AuthSignInPassword setIsLoading={setIsLoading} />
         )}
       </div>
       <p className={`text-lg`}>

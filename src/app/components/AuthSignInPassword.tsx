@@ -14,52 +14,54 @@ interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
-export const SignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
+export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [userPassword, setUserPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-     const formData = new FormData(event.currentTarget);
-     formData.forEach((value, key) => {
-       formData.set(key, String(value).trim());
-     });
+    const formData = new FormData(event.currentTarget);
+    formData.forEach((value, key) => {
+      formData.set(key, String(value).trim());
+    });
 
-     const { password } = Object.fromEntries(formData);
+    const { password } = Object.fromEntries(formData);
 
-    if(!validatePassword(password as string)) {
-      toast.error("Password should be at least 8 characters long")
+    if (!validatePassword(password as string)) {
+      toast.error("Password should be at least 8 characters long");
     }
-      if (validatePassword(password as string)) {
+    if (validatePassword(password as string)) {
       setUserPassword(password as string);
-      }
+    }
   };
 
   useEffect(() => {
     if (!userPassword.length) return;
-    const validPassword = async (email: string, password: string) => { 
+    const validPassword = async (email: string, password: string) => {
       try {
         const user = await signInUser(email, password);
 
-        if(user) toast.success(`User ${user.name} signed in successfully`);
+        if (user) toast.success(`User ${user.name} signed in successfully`);
       } catch (error) {
-        console.log(error) 
+        console.log(error);
       } finally {
         setUserPassword("");
       }
-    }
-  
-  validPassword(userEmailSignal.value, userPassword);
+    };
 
-  }, [userPassword])
-  
-
+    validPassword(userEmailSignal.value, userPassword);
+  }, [userPassword]);
 
   return (
     <>
       <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
-        <SharedInput label="Password" name="password" type="text" id="password" />
-        
+        <SharedInput
+          label="Password"
+          name="password"
+          type="text"
+          id="password"
+        />
+
         <ButtonOrLink type="submit" className={`w-full`}>
           sign in
         </ButtonOrLink>

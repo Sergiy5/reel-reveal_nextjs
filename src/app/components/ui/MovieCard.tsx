@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Movie, MovieCardProps } from "@/typification";
+import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";

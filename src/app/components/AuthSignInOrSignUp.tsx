@@ -16,7 +16,7 @@ interface SignUpProps {
   setStatusUser: (statusUser: "signin" | "register" | "signup") => void;
 }
 
-export const SignInOrSignUp: React.FC<SignUpProps> = ({
+export const AuthSignInOrSignUp: React.FC<SignUpProps> = ({
   setIsLoading,
   setStatusUser,
 }) => {
@@ -85,7 +85,7 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
       </form>
       <div className={`w-full flex items-center justify-center gap-2`}>
         <div className={`w-10 h-[1px] bg-gray-400 `}></div>
-        <p>or use one of these services </p>
+        <p>or use Google </p>
         <div className={`w-10 h-[1px] bg-gray-400 `}></div>
       </div>
       <ul className={`flex items-center justify-center gap-5 `}>
@@ -97,16 +97,6 @@ export const SignInOrSignUp: React.FC<SignUpProps> = ({
             Google
           </button>
         </li>
-        {/* <li>
-          <button
-            className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
-          >
-            <FaceBook
-              className={`mx-auto size-12 stroke-textColor fill-none`}
-            />
-            Facebook
-          </button>
-        </li> */}
       </ul>
     </div>
   );

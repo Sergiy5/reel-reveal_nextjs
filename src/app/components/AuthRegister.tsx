@@ -15,14 +15,14 @@ import { isLoadingSignal } from "@/context/CommonContext";
 export interface RegisterProps {
   setIsLoading: (isLoading: boolean) => void;
 }
-interface UserData{
+interface UserData {
   email: string;
   password: string;
   name: string;
   "confirm password": string;
 }
 
-export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
+export const AuthRegister: React.FC<RegisterProps> = ({ setIsLoading }) => {
   const [userData, setUserData] = useState<UserData | {}>();
   const [isValidData, setIsValidData] = useState(true);
 
@@ -36,7 +36,7 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
     });
 
     const data = Object.fromEntries(formData);
-    
+
     const { email, password, name, "confirm password": confirmPassword } = data;
 
     const emptyFields = Object.keys(data).filter((key) => data[key] === "");
@@ -56,7 +56,6 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
         "Password must be at least 8 characters, with uppercase, lowercase, digit, and special character."
       );
     } else if (password !== confirmPassword) {
-
       return toast.error("Passwords do not match");
     } else {
       setUserData({ name, email, password });
@@ -70,10 +69,11 @@ export const Register: React.FC<RegisterProps> = ({setIsLoading}) => {
       setIsLoading(true);
       try {
         const response = await registerUser(userData);
-        
-        if (response) {
 
-          return toast.success(`User ${response.user.name} registered successfully`);
+        if (response) {
+          return toast.success(
+            `User ${response.user.name} registered successfully`
+          );
         }
       } catch (error) {
         console.log(error);
