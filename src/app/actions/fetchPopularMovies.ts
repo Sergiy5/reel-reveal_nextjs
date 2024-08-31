@@ -2,7 +2,7 @@ import { Movie } from "@/typification";
 
 export const fetchPopularMovies = async (page: number) => {
   try {
-    const response = await fetch("/api/get-popular_movies", {
+    const response = await fetch("/api/movies/popular", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

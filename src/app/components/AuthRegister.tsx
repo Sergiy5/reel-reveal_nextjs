@@ -15,7 +15,7 @@ import { isLoadingSignal } from "@/context/CommonContext";
 export interface RegisterProps {
   setIsLoading: (isLoading: boolean) => void;
 }
-interface UserData {
+export interface UserData {
   email: string;
   password: string;
   name: string;

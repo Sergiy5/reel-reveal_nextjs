@@ -1,6 +1,6 @@
 import { OpenAiResponse } from "@/typification";
 
-const Back_END_URL = "/api/postOpenAI";
+const Back_END_URL = "/api/openAI";
 
 export const fetchQuizDataFromOpenAI = async (
   requestArray: string[]

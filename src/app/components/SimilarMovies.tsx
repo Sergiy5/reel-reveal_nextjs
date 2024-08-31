@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Movie } from "@/typification";
 import { firstElementsFromArray } from "@/utils";
 import { GetShowMovies } from "./GetShowMovies";
-import { fetchMovies } from "../actions/fetchMovies";
+import { fetchMoviesByTitle } from "../actions/fetchMoviesByTitle";
 import { Loader } from "./ui/Loader";
 import { fetchSimilarMovieFromOpenAI } from "../actions";
 
@@ -31,7 +31,7 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
         /**
          * Fetch data from TMDB API
          */
-        const response = await fetchMovies(similarTitles);
+        const response = await fetchMoviesByTitle(similarTitles);
 
         if (!response || response.length === 0) {
           throw new Error("Error fetching movies");

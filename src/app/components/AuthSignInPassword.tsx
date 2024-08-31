@@ -6,8 +6,7 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import { userEmailSignal, userPasswordSignal } from "@/context/UserContext";
-import user from "@/db/models/user";
+import { userEmailSignal} from "@/context/UserContext";
 import { signInUser } from "../actions/signinUser";
 
 interface SignInProps {

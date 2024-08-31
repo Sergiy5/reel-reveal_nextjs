@@ -1,6 +1,6 @@
 export const fetchMovieCast = async (movieId: string) => {
   try {
-    const response = await fetch("/api/get-cast", {
+    const response = await fetch("/api/movies/cast", {
       method: "POST",
       cache: "force-cache",
       headers: {

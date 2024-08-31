@@ -19,9 +19,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
         if (!traillerId) throw new Error();
         setMovieId(traillerId);
       } catch (error) {
-        toast.error("Failed to load trailer...", {
-          toastId: "success1",
-        });
+        console.log(error);
       } finally {
         setIsLoading(false);
       }

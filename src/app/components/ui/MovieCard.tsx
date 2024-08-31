@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
+import ContentLoader from "react-content-loader";
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [placeholderBlur, setPlaceholderBlur] = useState<string>("");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -41,12 +43,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     return e.currentTarget.dataset.movie;
   };
 
-  const { poster_path, id, title} = movie;
+  const { poster_path, id, title } = movie;
 
-  const poster = poster_path
-    ? `https://image.tmdb.org/t/p/w400/${poster_path}`
-    : "/images/no-image.webp";
-
+  const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
+  // poster_path
+  // ? `https://image.tmdb.org/t/p/w400/${poster_path}`
+  // : "/images/no-image.webp";
 
   return (
     <div
@@ -62,16 +64,30 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         {isShowHover ? (
           <MovieCardHover movie={movie} handleMovie={handleMovie} />
         ) : null}
-        <Image
-          id={`${id}`}
-          src={poster}
-          alt={title}
-          width={285}
-          height={428}
-          quality={75}
-          priority={true}
-          className={`w-full h-full rounded-[18px]`}
-        />
+        {poster_path ? (
+          <Image
+            id={`${id}`}
+            src={poster}
+            alt={title}
+            width={285}
+            height={428}
+            quality={75}
+            loading="lazy"
+            decoding="async"
+            className={`w-full h-full rounded-[18px]`}
+          />
+        ) : (
+          <ContentLoader
+            animate={true}
+            viewBox="0 0 285 428"
+            backgroundColor="#20263D"
+              foregroundColor="#318b83"
+              
+            className={`w-full h-full rounded-[18px]`}
+          >
+            <rect x="0" y="0" rx="18" ry="18" width="285" height="428" />
+          </ContentLoader>
+        )}
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>

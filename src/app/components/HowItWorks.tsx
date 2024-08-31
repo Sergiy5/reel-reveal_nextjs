@@ -3,9 +3,11 @@ import TakeQuizIcon from "../../../public/icons/take-quiz.svg";
 import ExploreAndEnjoyIcon from "../../../public/icons/explore-and-enjoy.svg";
 import HowItWorksBgEllips from "../../../public/icons/how-it-works_bg-ellips.svg";
 
+
 export const HowItWorks = () => {
 
   return (
+   
     <article
       id="how it work"
       className={` relative flex items-start flex-col w-full gap-6 text-textColor md:items-center xl:gap-[38px] xl:gap-22 `}
