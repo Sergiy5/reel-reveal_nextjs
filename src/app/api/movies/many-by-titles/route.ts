@@ -12,7 +12,7 @@ export const POST = async (req: Request) => {
         status: 404,
       });
     }
-
+    
     return NextResponse.json({ movies });
   } catch (error) {
     NextResponse.json({ error: "Failed to fetch movies" });

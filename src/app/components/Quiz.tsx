@@ -7,7 +7,7 @@ import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { firstElementsFromArray } from "@/utils";
-import { fetchMovies, fetchQuizDataFromOpenAI } from "../actions";
+import { fetchMoviesByTitle, fetchQuizDataFromOpenAI } from "../actions";
 import { qiuzMoviesSignal } from "@/context/MoviesContext";
  
 export const Quiz: React.FC = () => {
@@ -33,10 +33,9 @@ export const Quiz: React.FC = () => {
         /**
          * Fetch movies from TMDB API
          */
-        const movies = await fetchMovies(result);
+        const movies = await fetchMoviesByTitle(result);
         
         if (!movies || movies.length === 0) {
-          console.log("arrMovies+++++++++++++++++", movies);
           
           throw new Error("Error fetching movies... Try again.");
         }
@@ -45,6 +44,7 @@ export const Quiz: React.FC = () => {
         qiuzMoviesSignal.value = arrMovies;
         setIsQuizActive(false);
       } catch (error: any) {
+        
         toast.error(error.message);
         console.error(error);
       } finally {

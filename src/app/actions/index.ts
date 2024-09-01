@@ -1,4 +1,4 @@
-export { fetchMoviesByTitle as fetchMovies } from "./fetchMoviesByTitle";
+export { fetchMoviesByTitle } from "./fetchMoviesByTitle";
 export { fetchPaths } from "./fetchPaths";
 export { fetchSimilarMovieFromOpenAI } from "./fetchSimilarMovieFromOpenAI";
 export { fetchQuizDataFromOpenAI } from "./fetchQuizDataFromOpenAI";
