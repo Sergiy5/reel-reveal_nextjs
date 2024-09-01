@@ -37,7 +37,7 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = ({
             !isActive,
           "focus:outline-2": !isActive,
         },
-        prev_style ? "-left-7" : "-right-8"
+        prev_style ? "-left-7" : "-right-7"
       )}
     >
       <ArrowIcon

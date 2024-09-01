@@ -32,9 +32,8 @@ export const SliderCarousel: React.FC = () => {
     pauseOnHover: false,
     responsive: [
       {
-        breakpoint: 375,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -44,23 +43,14 @@ export const SliderCarousel: React.FC = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
+      }
     ],
   };
 
   return (
-    <div className={` flex flex-col max-w-[3168px] gap-12 w-lvw xl:full z-20 `}>
-      <h2 className={`mx-auto w-auto px-3`}>Stuck on Movie Choices?</h2>
-      <div
-        className={` flex flex-col mx-auto w-[576px] h-auto sm:w-full md:w-full`}
-      >
+    <div className={` flex flex-col max-w-[3168px] gap-12 z-20 `}>
+      <h2 className={`mx-auto px-3`}>Stuck on Movie Choices?</h2>
+      <div className={` flex flex-col mx-auto w-[864px] h-auto md:w-full`}>
         <MySlider
           arraySlides={images}
           SlideComponent={SliderCarouselSlide}

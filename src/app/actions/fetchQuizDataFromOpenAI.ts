@@ -21,6 +21,7 @@ export const fetchQuizDataFromOpenAI = async (
       },
       body: JSON.stringify({ prompt }),
     }).then((res) => res.json());
+      console.log("OPEN_AI+++++++++++++++++++++++++", response);
 
     return JSON.parse(response);
   } catch (error: any) {
@@ -28,15 +29,3 @@ export const fetchQuizDataFromOpenAI = async (
     throw new Error("Failed to fetch quiz data from OpenAI");
   }
 };
-
-//**An old promt */
-
-// const prompt = `
-// - You are a connoisseur of films and everything related to them, music, actors, genres, the year the film was released, what film genres the actor is associated with.
-// - Find 8 movies, one for each element from the array ${requestArray}.
-// - Search for lesser-known films.
-// - Temperature 2
-// - Return structured valid JSON with eight titles of movies.
-// - First offer with the highest rating, in the next similar request gradually lower the rating
-// - The result in JSON format like this: ""["title", "title", "title", "title", "title", "title", "title", "title"]"" without any additional text
-// `;

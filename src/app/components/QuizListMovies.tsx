@@ -4,6 +4,7 @@ import { MySlider } from "./ui/MySlider";
 import { QuizListMoviesProps } from "@/typification";
 import { MovieCard } from "./ui/MovieCard";
 import { Settings } from "react-slick";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   arrMovies,
@@ -57,9 +58,9 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
           />
         </div>
       )}
-      <button onClick={clearPrevQuiz} className={`link-btn w-[285px]`}>
+      <ButtonOrLink onClick={clearPrevQuiz} className={``}>
         retake quiz
-      </button>
+      </ButtonOrLink>
     </div>
   );
 };

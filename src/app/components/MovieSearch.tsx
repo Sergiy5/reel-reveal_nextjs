@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Loader } from "./ui/Loader";
-import { fetchMoviesByTitle } from "../actions";
+import { fetchMoviesByOneTitle} from "../actions";
 import { ListMovies } from "./ListMovies";
 import Link from "next/link";
 import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
@@ -40,7 +40,6 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
       try {
         const response = await fetchPopularMovies(page);
 
-console.log("POPULAR", response)
         if (!response) throw new Error();
         setTotalMovies(response.total_results);
         setTotalPages(response.total_pages);
@@ -71,7 +70,7 @@ console.log("POPULAR", response)
       setIsLoading(true);
       try {
         
-        const response = await fetchMoviesByTitle(title, page);
+        const response = await fetchMoviesByOneTitle(title, page);
         if (!response) throw new Error();
 
         setTotalMovies(response.total_results);

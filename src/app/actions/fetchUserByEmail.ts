@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
  */
 export const fetchUserByEmail = async (email: string) => {
   try {
-    const response = await fetch("/api/get-user_by-email", {
+    const response = await fetch("/api/auth/get-user_by-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export const fetchUserByEmail = async (email: string) => {
     });
 
     const { existingUser } = await response.json();
-
+console.log(existingUser);
     return NextResponse.json({ user: existingUser });
   } catch (error) {
     console.error("Error fetching user by email:", error);

@@ -19,7 +19,7 @@ export const HeaderSearchBar: React.FC = () => {
     }
     const clearValue = inputValue.trim().toLowerCase();
     searchMoviesSignal.value = [];
-     searchQuerySignal.value = "";
+    //  searchQuerySignal.value = "";
     router.push(`/${clearValue}`);
     setInputValue("");
   };

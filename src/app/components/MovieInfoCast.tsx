@@ -41,10 +41,8 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
         breakpoint: 768,
         settings: {
           arrows: false,
-          centerMode: true,
-          centerPadding: "10%",
-          slidesToShow: 1.9,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
       {
@@ -52,7 +50,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: "10%",
+          centerPadding: "1%",
           slidesToShow: 1.8,
           slidesToScroll: 1,
         },
@@ -78,7 +76,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="container w-full md:-mx-2.5">
+        <div className="container">
           {" "}
           <MySlider
             arraySlides={data as Actor[]}

@@ -189,55 +189,5 @@ a {
   font-family: var(--cera-pro);
   font-weight: 500;
   font-size: 20px;
-
-  // line-height: 30px;
   line-height: 150%;
 }
-
-.link-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  font-family: var(--cera-pro);
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 333%;
-  text-transform: uppercase;
-  color: theme("colors.bgColor");
-  border-radius: 30px;
-  background-color: theme("colors.accentColor");
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-
-  transition-property: box-shadow, outline, background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    box-shadow: 1px 2px 24px 0 rgba(32, 232, 218, 0.3);
-    background-color: theme("colors.accentColor");
-  }
-
-  &:focus {
-    box-shadow: 1px 2px 24px 0 rgba(32, 232, 218, 0.5);
-  }
-  &:active {
-    background-color: theme("colors.clickedColor");
-  }
-}
-
-.slick-track {
-  display: flex !important;
-  left: -14% !important;
-}
-
-@media screen and (min-width: 768px) {
-  .slick-track {
-    left: 0 !important;
-  }
-}
-
-.slick-slide{
-  width: 100%  !important;
-}
-

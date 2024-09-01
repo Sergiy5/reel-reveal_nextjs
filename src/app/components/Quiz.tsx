@@ -36,6 +36,7 @@ export const Quiz: React.FC = () => {
         const movies = await fetchMovies(result);
         
         if (!movies || movies.length === 0) {
+          console.log("arrMovies+++++++++++++++++", movies);
           
           throw new Error("Error fetching movies... Try again.");
         }

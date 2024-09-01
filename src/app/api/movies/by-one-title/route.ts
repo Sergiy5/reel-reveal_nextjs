@@ -2,9 +2,9 @@ import { getMovieByTitle } from "@/app/services";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
-  const { title, page } = await req.json();
 
   try {
+    const { title, page } = await req.json();
     const response = await getMovieByTitle(title, page);
     
     if (!response) {

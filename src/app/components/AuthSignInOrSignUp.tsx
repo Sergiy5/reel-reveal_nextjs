@@ -70,7 +70,7 @@ export const AuthSignInOrSignUp: React.FC<SignUpProps> = ({
   }, [setIsLoading, setStatusUser, userEmail]);
 
   return (
-    <div className="flex flex-col items-center gap-6 justify-center">
+    <div className="flex flex-col items-center w-[387px] gap-6 justify-center">
       <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
         <SharedInput
           label="Email"
