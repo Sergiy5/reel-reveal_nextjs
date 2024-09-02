@@ -64,7 +64,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         {isShowHover ? (
           <MovieCardHover movie={movie} handleMovie={handleMovie} />
         ) : null}
-        {poster_path ? (
+        {
+          poster_path ? (
           <Image
             id={`${id}`}
             src={poster}

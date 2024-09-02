@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Loader } from "./ui/Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
 import { VideoComponentProps } from "@/typification";
+import ContentLoader from "react-content-loader";
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [movieId, setMovieId] = useState<number>(0);
@@ -30,7 +31,15 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   return (
     <div className={`flex items-center w-full justify-center lg:px-16`}>
       {isLoading ? (
-        <Loader />
+        <ContentLoader
+          animate={true}
+          viewBox="0 0 480 270"
+          backgroundColor="#20263D"
+          foregroundColor="#318b83"
+          className={`w-full h-full rounded-[18px]`}
+        >
+          <rect x="0" y="0" rx="18" ry="18" width="480" height="270" />
+        </ContentLoader>
       ) : (
         <div className={`flex justify-center w-full h-auto`}>
           <div

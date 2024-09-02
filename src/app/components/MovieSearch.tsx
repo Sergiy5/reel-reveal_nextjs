@@ -5,8 +5,7 @@ import { toast } from "react-toastify";
 import { Loader } from "./ui/Loader";
 import { fetchMoviesByOneTitle} from "../actions";
 import { ListMovies } from "./ListMovies";
-import Link from "next/link";
-import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
+import { searchMoviesSignal, searchQuerySignal, totalSearchMoviesSignal } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
 import { fetchPopularMovies } from "../actions/fetchPopularMovies";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
@@ -17,20 +16,17 @@ export interface MovieSearchProps {
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [totalMovies, setTotalMovies] = useState(0);
-  const [totalPages, setTotalPages] =useState(0)
+  const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
+  const [totalPages, setTotalPages] = useState(searchMoviesSignal.value.length/20);
   const [isActiveSearch, setisActiveSearch] = useState(false);
   const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    searchMoviesSignal.value = [];
-    
-}, [movieTitle])
   
   
+  // On first render show popular movies
   useEffect(() => {
+    console.log("totalSearchMoviesSignal.value", totalSearchMoviesSignal.value);
      if (movieTitle !== "movies") {
-       setPage(1);
+    
     return   setisActiveSearch(true);
      }
    
@@ -41,9 +37,13 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
         const response = await fetchPopularMovies(page);
 
         if (!response) throw new Error();
+
+        totalSearchMoviesSignal.value = response.total_results;
         setTotalMovies(response.total_results);
         setTotalPages(response.total_pages);
+
         if (page === 1) return (searchMoviesSignal.value = response.results);
+
         if (page > 1) {
           return (searchMoviesSignal.value = [
             ...searchMoviesSignal.value,
@@ -59,7 +59,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
     getPopular(page);
   }, [isActiveSearch, movieTitle, page]);
 
-
+// On searching movies
   useEffect(() => {
     if (!isActiveSearch) return;
 
@@ -72,7 +72,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
         
         const response = await fetchMoviesByOneTitle(title, page);
         if (!response) throw new Error();
-
+totalSearchMoviesSignal.value = response.total_results;
         setTotalMovies(response.total_results);
         setTotalPages(response.total_pages);
 
@@ -107,15 +107,10 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ movieTitle }) => {
       )}
       <ListMovies movies={searchMoviesSignal.value} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
-        <ButtonOrLink
-          onClick={() => setPage((prev) => prev + 1)}
-          transparent
-        >
+        <ButtonOrLink onClick={() => setPage((prev) => prev + 1)} transparent>
           load more
         </ButtonOrLink>
-        <ButtonOrLink href="/quiz" >
-          take quiz
-        </ButtonOrLink>
+        <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
       </div>
       <Modal isOpen={isLoading}>
         <div className={`flex items-center h-lvh`}>

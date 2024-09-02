@@ -31,11 +31,11 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
     <>
       {movie && (
         <div
-          className={`relative flex w-screen h-[1160px] sm:h-[960px] sm:aspect-[3/4] md:h-auto md:aspect-[1440/1024] lg:max-w-[1440px]`}
+          className={`relative flex w-screen h-[1160px] sm:h-[960px] sm:aspect-[150/400] md:aspect-[1040/1024] lg:aspect-[1440/1024] lg:max-w-[1440px]`}
         >
           <div id="children" className={`absolute flex w-full h-full`}>
             <div
-              className={` flex flex-col items-center justify-center w-full px-[16px]
+              className={`flex flex-col items-center justify-center w-full px-[16px]
                bg-movieGradient md:px-[60px] xl:px-[120px] z-10`}
             >
               <h1 className={`block lg:hidden sm:text-7xl pb-6`}>{title}</h1>
@@ -57,7 +57,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                   >
                     <h1 className={`hidden lg:flex`}>{title}</h1>
                     <div
-                      className={`flex justify-start min-w-[186px] gap-4 xl:pt-5`}
+                      className={`flex justify-start min-w-[210px] gap-4 xl:pt-5`}
                     >
                       <h3 className={`max-w-32 `}>
                         IMBd {floorNumber(movie.vote_average)}

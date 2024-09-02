@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export const SavedMovies: React.FC = () => {
+
+
   return (
     <div
       className={`flex items-center flex-col justify-center gap-20 w-full z-20`}
@@ -19,15 +22,10 @@ export const SavedMovies: React.FC = () => {
         something interesting!
       </p>
       <div className={`flex flex-col justify-center w-full md:flex-row gap-4`}>
-        <ButtonOrLink
-          href={"/movies"}
-          transparent
-        >
+        <ButtonOrLink href={"/movies"} transparent>
           search movie
         </ButtonOrLink>
-        <ButtonOrLink href={"/quiz"}>
-          start quiz
-        </ButtonOrLink>
+        <ButtonOrLink href={"/quiz"}>start quiz</ButtonOrLink>
       </div>
     </div>
   );

@@ -8,3 +8,5 @@ export const searchQuerySignal = signal<string>("");
 export const searchMoviesSignal = signal<Movie[]>([]);
 
 export const favoriteMoviesSignal = signal<Movie[]>([]);
+
+export const totalSearchMoviesSignal = signal<number>(0);

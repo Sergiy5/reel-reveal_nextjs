@@ -18,7 +18,7 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    console.log("first");
     const formData = new FormData(event.currentTarget);
     formData.forEach((value, key) => {
       formData.set(key, String(value).trim());
@@ -36,11 +36,15 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
 
   useEffect(() => {
     if (!userPassword.length) return;
-    const validPassword = async (email: string, password: string) => {
+    const signInUserPassword = async (email: string, password: string) => {
       try {
         const user = await signInUser(email, password);
 
-        if (user) toast.success(`User ${user.name} signed in successfully`);
+        console.log("USER", user.response);
+
+        if (user.response !== "OK") return toast.error(`Wrong password`);
+        toast.success(`User ${user.name} signed in successfully`);
+
       } catch (error) {
         console.log(error);
       } finally {
@@ -48,19 +52,23 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
       }
     };
 
-    validPassword(userEmailSignal.value, userPassword);
+    signInUserPassword(userEmailSignal.value, userPassword);
   }, [userPassword]);
+
+
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`flex flex-col gap-6 w-full`}>
+      <form
+        onSubmit={handleSubmit}
+        className={`flex flex-col gap-6 w-full pb-6 `}
+      >
         <SharedInput
           label="Password"
           name="password"
           type="text"
           id="password"
         />
-
         <ButtonOrLink type="submit" className={`w-full`}>
           sign in
         </ButtonOrLink>
