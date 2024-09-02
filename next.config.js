@@ -2,6 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  matcher: ["/saved/:path*", "/profile/:path*"],
   // async redirects() {
   //   return [
   //     {

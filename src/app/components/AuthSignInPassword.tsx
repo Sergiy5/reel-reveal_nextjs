@@ -17,9 +17,10 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [userPassword, setUserPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault();
-    console.log("first");
     const formData = new FormData(event.currentTarget);
+
     formData.forEach((value, key) => {
       formData.set(key, String(value).trim());
     });
@@ -43,6 +44,7 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
         console.log("USER", user.response);
 
         if (user.response !== "OK") return toast.error(`Wrong password`);
+        
         toast.success(`User ${user.name} signed in successfully`);
 
       } catch (error) {
@@ -54,8 +56,6 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
 
     signInUserPassword(userEmailSignal.value, userPassword);
   }, [userPassword]);
-
-
 
   return (
     <>
