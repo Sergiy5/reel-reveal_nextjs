@@ -9,6 +9,7 @@ import { SharedInput } from "./ui/SharedInput";
 import { validateEmail } from "@/utils";
 import Google from "../../../public/icons/google.svg";
 import { fetchUserByEmailResponse } from "@/typification";
+import { socialLogin } from "../actions/socialLogin";
 // import FaceBook from "../../../public/icons/facebook.svg";
 
 interface SignUpProps {
@@ -90,12 +91,19 @@ export const AuthSignInOrSignUp: React.FC<SignUpProps> = ({
       </div>
       <ul className={`flex items-center justify-center gap-5 `}>
         <li>
-          <button
-            className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
-          >
-            <Google className={`mx-auto size-12 stroke-textColor fill-none`} />
-            Google
-          </button>
+          <form action={socialLogin}>
+            <button
+              type="submit"
+              name="action"
+              value="google"
+              className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
+            >
+              <Google
+                className={`mx-auto size-12 stroke-textColor fill-none`}
+              />
+              Google
+            </button>
+          </form>
         </li>
       </ul>
     </div>

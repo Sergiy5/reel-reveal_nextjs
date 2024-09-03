@@ -7,6 +7,7 @@ import { Genres } from "@/app/components/Genres";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 
+
 const DynamicQuiz = dynamic(
   () => import("../../components/Quiz").then((mod) => mod.Quiz),
   { ssr: false }
@@ -16,6 +17,8 @@ const DynamicQuiz = dynamic(
 export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
+
+ 
 
   return (
     <main>
