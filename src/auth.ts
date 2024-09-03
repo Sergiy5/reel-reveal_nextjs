@@ -7,8 +7,6 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-
-
     
   providers: [
     GoogleProvider({
