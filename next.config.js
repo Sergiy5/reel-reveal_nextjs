@@ -2,16 +2,15 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  matcher: ["/saved/:path*", "/profile/:path*"],
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/",
-  //       destination: "/home",
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: true,
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
