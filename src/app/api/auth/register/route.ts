@@ -6,14 +6,13 @@ import User from "@/db/models/user";
 
 
 export const POST = async (req: Request): Promise<NextResponse> => {
+  
   if (!req.body) {
     return new NextResponse(
       JSON.stringify({ error: "Request body is missing" })
     );
   }
   const { userData } = await req.json();
-
-  console.log("userData_IN_ROUTE_REQUEST____________________", userData);
 
   const newUserData = {
     ...userData,

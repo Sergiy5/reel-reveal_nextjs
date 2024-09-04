@@ -23,7 +23,7 @@ export const Auth: React.FC = () => {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center  gap-12 z-10`}
+      className={`relative flex flex-col items-center justify-center pb-32 gap-12 z-10`}
     >
       <h3>{title}</h3>
       <div
