@@ -2,7 +2,6 @@
 
 
 const nextConfig = {
-  experimental:{serverActions:false},
   // async redirects() {
   //   return [
   //     {
