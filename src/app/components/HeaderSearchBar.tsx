@@ -4,7 +4,10 @@ import { useState } from "react";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
 import { useRouter } from "next/navigation";
-import { searchMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
+import {
+  popularMoviesSignal,
+  searchQuerySignal,
+} from "@/context/MoviesContext";
 import { toast } from "react-toastify";
 
 export const HeaderSearchBar: React.FC = () => {
@@ -18,8 +21,8 @@ export const HeaderSearchBar: React.FC = () => {
       return toast.info("Please enter a movie title.");
     }
     const clearValue = inputValue.trim().toLowerCase();
-    searchMoviesSignal.value = [];
-     searchQuerySignal.value = "";
+    popularMoviesSignal.value = [];
+    searchQuerySignal.value = "";
     router.push(`/${clearValue}`);
     setInputValue("");
   };

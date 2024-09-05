@@ -6,7 +6,7 @@ export function middleware(req: NextRequest) {
     console.log("MIDDLEWARE ========================")
   // Extract the token from cookies
   const token = req.cookies.get("token");
-console.log("TOKEN_Name=================", token)
+console.log("TOKEN_Name_IN_MIDDLEWARE=================", token)
   // Define the path where middleware should apply
   const protectedPaths = ["/profile", "/saved"];
   const pathname = req.nextUrl.pathname;
