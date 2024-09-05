@@ -22,13 +22,13 @@ console.log("User created",email, password)
     
     await user.save();
     
-    const response = NextResponse.json({ message: "Logged in successfully", response: "OK" });
+    const response = NextResponse.json({ message: `User ${user.name} logged in successfully`, response: "OK" });
     response.cookies.set("token", user.token, {
-      // maxAge: 3600,
-      // httpOnly: true,
-      // secure: true,
-      // sameSite: "strict",
-      // path: "/auth",
+      maxAge: 3600,
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
     });
 
     return response;

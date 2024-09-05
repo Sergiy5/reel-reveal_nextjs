@@ -2,11 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-
-    console.log("MIDDLEWARE ========================")
   // Extract the token from cookies
   const token = req.cookies.get("token");
-console.log("TOKEN_Name_IN_MIDDLEWARE=================", token)
   // Define the path where middleware should apply
   const protectedPaths = ["/profile", "/saved"];
   const pathname = req.nextUrl.pathname;
@@ -18,6 +15,7 @@ console.log("TOKEN_Name_IN_MIDDLEWARE=================", token)
       const url = req.nextUrl.clone();
       url.pathname = "/auth";
       url.searchParams.set("from", pathname); // Optional: To redirect back after login
+      
       return NextResponse.redirect(url);
     }
 

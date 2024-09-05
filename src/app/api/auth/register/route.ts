@@ -27,5 +27,4 @@ export const POST = async (req: Request): Promise<NextResponse> => {
       user: newUser,
     })
   );
-    // const {user} = await registerUser(userData);
 };

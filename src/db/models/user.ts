@@ -18,20 +18,21 @@ export interface IUser extends Document {
  */
 const userSchema = new Schema(
   {
-    password: {
+    name: {
       type: String,
-      required: [false, "Set password for user"],
-      select: true,
+      required: [true, "Name is required"],
     },
     email: {
       type: String,
       required: [true, "Email is required"],
       unique: true,
     },
-    name: {
+    password: {
       type: String,
-      required: [true, "Name is required"],
+      select: true,
     },
+    image: { type: String },
+    googleId: { type: String, unique: true, sparse: true },
     role: {
       type: String,
       enum: Object.values(userRolesEnum),
@@ -43,7 +44,6 @@ const userSchema = new Schema(
         isChecked: Boolean,
       },
     ],
-    avatarURL: String,
     token: String,
   },
   {
