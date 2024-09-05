@@ -1,11 +1,9 @@
 import { MovieInfo } from "@/app/components/MovieInfo";
+import dynamic from "next/dynamic";
 import SliderCarousel from "@/app/components/SliderCarousel";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
-import dynamic from "next/dynamic";
-import { getUpcomingMovies } from "@/app/services";
-import { Movie } from "@/typification";
 
 const DynamicSimilarMovies = dynamic(
   () =>
@@ -13,10 +11,10 @@ const DynamicSimilarMovies = dynamic(
   { ssr: false }
 );
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
  
-    return [{ movie: "3", movies: "1" }]; 
-}
+//     return [{ movie: "3", movies: "1" }]; 
+// }
 
 export default async function OneMoviePage({
   params,
@@ -31,6 +29,7 @@ export default async function OneMoviePage({
   const decodedMovie = JSON.parse(decodeURIComponent(movie));
 
   const { id, title, original_title } = decodedMovie;
+  
   return (
     <main className={`pt-0 gap-0`}>
       <MovieInfo movie={decodedMovie} />
