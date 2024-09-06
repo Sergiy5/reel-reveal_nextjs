@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { ceraPro } from "./fonts";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import getServerSession from "next-auth"; 
+// import { AuthSessionPovider } from "./components/AuthSessionProvider";
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -32,11 +34,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  // const session = await getServerSession();
+
   return (
     <html lang="en">
       <head>
@@ -44,10 +49,12 @@ export default function RootLayout({
       </head>
 
       <body className={ceraPro.className}>
-        {children}
-        <ToastContainer />
-        <SpeedInsights />
-        <div id="modal" />
+        {/* <AuthSessionPovider session={session}> */}
+          {children}
+          <ToastContainer />
+          <SpeedInsights />
+          <div id="modal" />
+        {/* </AuthSessionPovider> */}
       </body>
     </html>
   );

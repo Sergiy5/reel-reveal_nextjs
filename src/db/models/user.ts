@@ -62,8 +62,6 @@ const userSchema = new Schema(
 userSchema.pre<IUser>("save", async function (next: (err?: Error) => void) {
   const user = this;
 
-  console.log("Middleware triggered before saving user");
-
   if (!user.isModified("password")) return next();
 
   try {

@@ -16,6 +16,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "joi": "^17.13.3",
+    "jose": "^5.8.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.2",
     "nanoid": "^5.0.7",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
     "@types/react": "^18",

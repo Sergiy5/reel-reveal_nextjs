@@ -6,8 +6,9 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import { userEmailSignal} from "@/context/UserContext";
+import { userEmailSignal } from "@/context/UserContext";
 import { signInUser } from "../actions/signinUser";
+import { useRouter } from "next/navigation";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -15,9 +16,9 @@ interface SignInProps {
 
 export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [userPassword, setUserPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
@@ -42,9 +43,10 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
         const user = await signInUser(email, password);
 
         if (user.response !== "OK") return toast.error(`Wrong password`);
-        
+
         toast.success(user.message);
 
+        router.replace("/saved");
       } catch (error) {
         console.log(error);
       } finally {
@@ -53,7 +55,7 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     };
 
     signInUserPassword(userEmailSignal.value, userPassword);
-  }, [userPassword]);
+  }, [router, userPassword]);
 
   return (
     <>
