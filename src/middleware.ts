@@ -25,7 +25,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
   }
    
-    // return NextResponse.next();
+    return NextResponse.next();
   }
 
 // Apply middleware to specific paths or the entire app

@@ -40,26 +40,21 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
 
   useEffect(() => {
     if (!userPassword.length) return;
+
     const signInUserPassword = async (email: string, password: string) => {
       try {
         const response = await doCredentialLogin({ email, password });
-        console.log("RESPONSE_>>>>>>>>>>>", response)
-        
+
+        // console.log("RESPONSE_>>>>>>>>>>>", response);
+
         if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
 
-        const from = new URLSearchParams(window.location.search).get("from");
-        if (from) {
-          const decodedFrom = decodeURIComponent(from);
-          console.log("decodedFrom_>>>>>>>>>>>", decodedFrom);
+        // const from = new URLSearchParams(window.location.search).get("from");
+        // const decodedFrom = from ? decodeURIComponent(from) : "/saved";
 
-          router.replace("/saved");
-          // router.replace(`${decodedFrom}`);
-          // router.push(decodedFrom); // Navigate to the "from" page after login
-        }
-      
         toast.success(`User logged in successfully`);
-        router.back();
-// router.push(redirectTo);
+        router.replace("/home");
+
       } catch (error) {
         console.log(error);
       } finally {

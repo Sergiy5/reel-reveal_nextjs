@@ -1,8 +1,8 @@
-"use user";
+// "use user";
 
 import { SavedMovies } from "@/app/components/SavedMovies";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+// import { auth } from "@/auth";
+// import { redirect } from "next/navigation";
 // import { useSession } from "next-auth/react";
 
 export default async function Saved() {
@@ -12,8 +12,8 @@ export default async function Saved() {
   //   return <p>Loading...</p>;
   // }
 
-  const session = await auth();
-  if (!session?.user) redirect("/auth");
+  // const session = await auth();
+  // if (!session?.user) redirect("/auth");
 
   return (
     <main>
