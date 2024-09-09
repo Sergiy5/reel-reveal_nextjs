@@ -1,6 +1,8 @@
+import { useRouter } from "next/navigation";
 import { ButtonOrLink } from "./components/ui/ButtonOrLink";
 
 export default function Page() {
+
   return (
     <main>
       <h2>Root Page</h2>

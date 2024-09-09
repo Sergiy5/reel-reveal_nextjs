@@ -17,7 +17,7 @@ export const fetchUserByEmail = async (email: string) => {
     });
 
     const { existingUser } = await response.json();
-console.log(existingUser);
+    
     return NextResponse.json({ user: existingUser });
   } catch (error) {
     console.error("Error fetching user by email:", error);

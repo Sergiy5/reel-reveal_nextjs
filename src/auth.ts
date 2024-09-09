@@ -7,7 +7,6 @@ import User from "@/db/models/user";
 import { signToken } from "@/db/utils";
 import { authConfig } from "@/auth.config";
 
-
 interface UserType {
   name: string;
   email: string;
@@ -40,22 +39,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             email: credentials.email,
           }).lean();
 
-          // console.log(user);
           if (user) {
             const isMatch = await bcrypt.compare(
               credentials.password,
               user.password
             );
-
+            
             if (isMatch) {
+              
+              // console.log("USER_IN_AUTH_IS_MATCH_>>>>>>>>>>>>>>>>>", user);
               return user;
             } else {
-              throw new Error("Email or Password is not correct");
+              throw new Error("Password is not correct");
             }
           } else {
             throw new Error("User not found");
           }
         } catch (error: any) {
+          console.log("AUTH_ERROR_>>>>>>>>>>>>>>", error);
           throw new Error(error);
         }
       },

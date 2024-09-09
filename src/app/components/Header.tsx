@@ -2,8 +2,11 @@ import Image from "next/image";
 import { HeaderSearchBar } from "./HeaderSearchBar";
 import { MainLogo } from "./ui/MainLogo";
 import { HeaderNavMenu } from "./HeaderNavMenu";
+import { auth } from "@/auth";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = async () => {
+  const session = await auth();
+
   return (
     <div className={`flex justify-center items-center w-full `}>
       <div
@@ -15,7 +18,7 @@ export const Header: React.FC = () => {
         >
           <MainLogo />
           <HeaderSearchBar />
-          <HeaderNavMenu />
+          <HeaderNavMenu isAuth={!!session} />
         </div>
       </div>
       <Image

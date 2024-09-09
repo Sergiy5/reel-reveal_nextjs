@@ -10,9 +10,12 @@ import CrossIcon from "../../../public/icons/cross.svg";
 import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/typification";
 
-export const HeaderNavMenu: React.FC = () => {
+interface HeaderNavMenuProps {
+  isAuth: boolean;
+}
+export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({ isAuth }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
+  
   const diviceSize: DeviceType = useDeviceType();
 
   useEffect(() => {
@@ -58,12 +61,17 @@ export const HeaderNavMenu: React.FC = () => {
           <p className="lg:hidden">My library</p>
         </Link>
         <Link
-          href={"/auth"}
+          href={isAuth ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >
           <UserIcon
-            className={`hidden w-[18px] h-[20px] fill-textColor transition hover:fill-accentColor lg:block`}
+            className={`hidden w-[18px] h-[20px] transition hover:fill-accentColor lg:block
+             ${
+               isAuth
+                 ? "fill-accentColor hover:fill-clickedColor"
+                 : "fill-textColor hover:fill-accentColor"
+             }`}
           />
           <p className="lg:hidden">Login</p>
         </Link>

@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { ceraPro } from "./fonts";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
 // import getServerSession from "next-auth"; 
 // import { AuthSessionPovider } from "./components/AuthSessionProvider";
 
@@ -34,14 +36,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-
-  // const session = await getServerSession();
-
+export default async function RootLayout({ children }: {children: React.ReactNode}) {
+  
   return (
     <html lang="en">
       <head>
@@ -49,12 +45,12 @@ export default async function RootLayout({
       </head>
 
       <body className={ceraPro.className}>
-        {/* <AuthSessionPovider session={session}> */}
+        <SessionProvider >
           {children}
+          <div id="modal" />
+        </SessionProvider>
           <ToastContainer />
           <SpeedInsights />
-          <div id="modal" />
-        {/* </AuthSessionPovider> */}
       </body>
     </html>
   );

@@ -8,7 +8,8 @@ import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
 import { userEmailSignal } from "@/context/UserContext";
 import { signInUser } from "../actions/signinUser";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { doCredentialLogin } from "../actions/socialLogin";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -16,6 +17,7 @@ interface SignInProps {
 
 export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [userPassword, setUserPassword] = useState("");
+  const [redirectTo, setRedirectTo] = useState("/"); // Default redirect
   const router = useRouter();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -40,13 +42,24 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     if (!userPassword.length) return;
     const signInUserPassword = async (email: string, password: string) => {
       try {
-        const user = await signInUser(email, password);
+        const response = await doCredentialLogin({ email, password });
+        console.log("RESPONSE_>>>>>>>>>>>", response)
+        
+        if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
 
-        if (user.response !== "OK") return toast.error(`Wrong password`);
+        const from = new URLSearchParams(window.location.search).get("from");
+        if (from) {
+          const decodedFrom = decodeURIComponent(from);
+          console.log("decodedFrom_>>>>>>>>>>>", decodedFrom);
 
-        toast.success(user.message);
-
-        router.replace("/saved");
+          router.replace("/saved");
+          // router.replace(`${decodedFrom}`);
+          // router.push(decodedFrom); // Navigate to the "from" page after login
+        }
+      
+        toast.success(`User logged in successfully`);
+        router.back();
+// router.push(redirectTo);
       } catch (error) {
         console.log(error);
       } finally {
@@ -55,7 +68,7 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     };
 
     signInUserPassword(userEmailSignal.value, userPassword);
-  }, [router, userPassword]);
+  }, [redirectTo, router, userPassword]);
 
   return (
     <>
