@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HeaderSearchBar } from "./HeaderSearchBar";
 import { MainLogo } from "./ui/MainLogo";
-import { HeaderNavMenu } from "./HeaderNavMenu";
+import { HeaderNav } from "./HeaderNav";
 import { auth } from "@/auth";
 
 export const Header: React.FC = async () => {
@@ -18,7 +18,7 @@ export const Header: React.FC = async () => {
         >
           <MainLogo />
           <HeaderSearchBar />
-          <HeaderNavMenu isAuth={!!session} />
+          <HeaderNav isAuth={!!session} />
         </div>
       </div>
       <Image

@@ -74,7 +74,7 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
         <SharedInput
           label="Password"
           name="password"
-          type="text"
+          type="password"
           id="password"
         />
         <ButtonOrLink type="submit" className={`w-full`}>

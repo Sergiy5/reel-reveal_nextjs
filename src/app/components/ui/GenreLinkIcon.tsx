@@ -15,7 +15,7 @@ export const GenreLinkIcon: React.FC<IconGenreProps> = ({
         <svg className={` w-12 h-12 text-current`}>
           <use xlinkHref={`/icons/genres-sprite.svg#${iconID}`} />
         </svg>
-        <h5>{capitalizeFirstLetter(iconID)}</h5>
+        <p>{capitalizeFirstLetter(iconID)}</p>
       </div>
     </Link>
   );

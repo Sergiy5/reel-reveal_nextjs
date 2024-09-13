@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const FooterMenu:React.FC = () => {
   return (
-    <ul className={`flex flex-col gap-6 font-[20px] leading-4 text-xl`}>
+    <ul className={`flex flex-col justify-between font-[20px] leading-4 text-xl`}>
       <li>
         <Link href={`#how it work`} className={`link`}>
           How it works

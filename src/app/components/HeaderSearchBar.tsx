@@ -43,6 +43,7 @@ export const HeaderSearchBar: React.FC = () => {
         />
         <button
           type="submit"
+          aria-label="Search"
           className={clsx(
             "absolute w-[42px] h-[38px] right-0 border-r-round bg-tansparent transition duration-200",
             isFocused && "bg-accentColor"
