@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 export async function socialLogin(formData: FormData) {
     const action = formData.get("action") as string;
     
-  await signIn(action, { redirectTo: "/home" });  
+  const response = await signIn(action, { redirectTo: "/home" });
 }
 
 export async function doCredentialLogin(userData: {email:string, password:string}) {
@@ -17,11 +17,11 @@ export async function doCredentialLogin(userData: {email:string, password:string
       password: userData.password,
       redirect: false,
     });
-        
+        console.log("doCredentialsLogin_>>>>>>>>>>>>>>>", response)
     revalidatePath("/");
     return response;
   } catch (err) {
-    throw err;
+    console.log(err) ;
   }
 }
 

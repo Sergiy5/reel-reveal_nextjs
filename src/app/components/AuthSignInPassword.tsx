@@ -7,9 +7,9 @@ import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
 import { userEmailSignal } from "@/context/UserContext";
-import { signInUser } from "../actions/signinUser";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
+import { useForm } from "react-hook-form";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -20,15 +20,17 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [redirectTo, setRedirectTo] = useState("/"); // Default redirect
   const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm<{ password: string }>({
+    mode: "onChange",
+  });
 
-    formData.forEach((value, key) => {
-      formData.set(key, String(value).trim());
-    });
+  const onSubmit = (data: { password: string }) => {
 
-    const { password } = Object.fromEntries(formData);
+    const { password } = data;
 
     if (!validatePassword(password as string)) {
       toast.error("Password should be at least 8 characters long");
@@ -44,13 +46,8 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     const signInUserPassword = async (email: string, password: string) => {
       try {
         const response = await doCredentialLogin({ email, password });
-
-        // console.log("RESPONSE_>>>>>>>>>>>", response);
-
+console.log("response-on-login-password", response);
         if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
-
-        // const from = new URLSearchParams(window.location.search).get("from");
-        // const decodedFrom = from ? decodeURIComponent(from) : "/saved";
 
         toast.success(`User logged in successfully`);
         router.replace("/home");
@@ -68,16 +65,19 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   return (
     <>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className={`flex flex-col gap-6 w-full pb-6 `}
       >
         <SharedInput
+          id="password"
           label="Password"
           name="password"
           type="password"
-          id="password"
+          register={register}
+          validation={{ required: true, validate: validatePassword }}
+          errors={errors}
         />
-        <ButtonOrLink type="submit" className={`w-full`}>
+        <ButtonOrLink type="submit" disabled={!isValid} className={`w-full`}>
           sign in
         </ButtonOrLink>
       </form>

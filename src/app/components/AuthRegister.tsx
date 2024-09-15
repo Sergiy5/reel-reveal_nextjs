@@ -4,113 +4,107 @@ import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { useEffect, useState } from "react";
-import { Modal } from "./ui/Modal";
-import { Loader } from "./ui/Loader";
 import { userEmailSignal } from "@/context/UserContext";
 import { registerUser } from "../actions/registerUser";
 import { toast } from "react-toastify";
 import { validateEmail, validatePassword } from "@/utils";
 import { isLoadingSignal } from "@/context/CommonContext";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
-export interface RegisterProps {
-  setIsLoading: (isLoading: boolean) => void;
-}
 export interface UserData {
+  name: string;
   email: string;
   password: string;
-  name: string;
   "confirm password": string;
 }
 
-export const AuthRegister: React.FC<RegisterProps> = ({ setIsLoading }) => {
+export const AuthRegister: React.FC = () => {
+  // States =============================================
   const [userData, setUserData] = useState<UserData | {}>();
-  const [isValidData, setIsValidData] = useState(true);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const router = useRouter();
+  // useForm ============================================
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isValid, errors },
+  } = useForm<UserData>({
+    mode: "onChange",
+  });
 
-    const formData = new FormData(event.currentTarget);
-
-    formData.forEach((value, key) => {
-      formData.set(key, String(value).trim());
-    });
-
-    const data = Object.fromEntries(formData);
-
+  const onSubmit = (data: UserData) => {
     const { email, password, name, "confirm password": confirmPassword } = data;
-
-    const emptyFields = Object.keys(data).filter((key) => data[key] === "");
-
-    if (emptyFields.length > 0) {
-      emptyFields.forEach((field) => {
-        return toast.error(`${field} is required`);
-      });
-    } else if (!validateEmail(email as string)) {
-      setIsValidData(false);
-
-      return toast.error("Invalid email");
-    } else if (!validatePassword(password as string)) {
-      setIsValidData(true);
-
-      return toast.error(
-        "Password must be at least 8 characters, with uppercase, lowercase, digit, and special character."
-      );
-    } else if (password !== confirmPassword) {
-      return toast.error("Passwords do not match");
-    } else {
-      setUserData({ name, email, password });
-    }
+    setUserData({ name, email, password });
   };
 
   useEffect(() => {
     if (!userData) return;
 
     const regUser = async (userData: UserData | {}) => {
-      setIsLoading(true);
       try {
         const response = await registerUser(userData);
 
         if (response) {
+          router.replace("/home");
           return toast.success(
-            `User ${response.user.name} registered successfully`
+            `User ${response.user.name} registered successfully` //Need to check email send latter!!!!==========
           );
         }
       } catch (error) {
         console.log(error);
-      } finally {
-        setIsLoading(false);
       }
     };
     regUser(userData);
-  }, [setIsLoading, userData]);
+  }, [router, userData]);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={`flex flex-col gap-10 w-full`}>
-        <SharedInput label="Name" type="text" name="name" id="name" />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`flex flex-col gap-10 w-full`}
+      >
+        <SharedInput
+          label="Name"
+          type="text"
+          name="name"
+          id="name"
+          register={register}
+          validation={{ required: true }}
+          errors={errors}
+        />
         <SharedInput
           label="Email"
           type="text"
           name="email"
           id="email"
-          isValid={isValidData}
           defaultValue={`${userEmailSignal.value ?? ""}`}
+          register={register}
+          validation={{ required: true, validate: validateEmail }}
+          errors={errors}
         />
         <SharedInput
-          label="Password"
-          type="text"
-          name="password"
-          isValid={isValidData}
           id="password"
+          label="Password"
+          type="password"
+          register={register}
+          validation={{ required: true, validate: validatePassword }}
+          errors={errors}
         />
         <SharedInput
           label="Confirm password"
-          type="text"
-          name="confirm password"
-          id="Confirm password"
+          type="password"
+          id="confirmPassword"
+          register={register}
+          validation={{
+            required: true,
+            validate: (value) => value === watch("password"),
+          }}
+          errors={errors}
         />
 
-        <ButtonOrLink type="submit" onClick={() => null} className={`w-full`}>
+        <ButtonOrLink type="submit" disabled={!isValid} className={`w-full`}>
           create account
         </ButtonOrLink>
       </form>

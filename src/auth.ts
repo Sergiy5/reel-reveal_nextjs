@@ -7,7 +7,7 @@ import User from "@/db/models/user";
 import { signToken } from "@/db/utils";
 import { authConfig } from "@/auth.config";
 
-interface UserType {
+export interface IUserType {
   name: string;
   email: string;
   password: string;
@@ -35,7 +35,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         try {
           await connectDB();
 
-          const user: UserType | null = await User.findOne({
+          const user: IUserType | null = await User.findOne({
             email: credentials.email,
           }).lean();
 

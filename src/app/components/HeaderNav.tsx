@@ -5,7 +5,6 @@ import { useDeviceType } from "@/hooks";
 import { DeviceType } from "@/typification";
 import { HeaderNavMenuMobile } from "./HeaderNavMenuMobile";
 import { HeaderNavMenu } from "./HeaderNavMenu";
-import dynamic from "next/dynamic";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -16,7 +15,6 @@ export const HeaderNav: React.FC<HeaderNavMenuProps> = ({ isAuth }) => {
   const diviceSize: DeviceType = useDeviceType();
 
   useEffect(() => {
-
     diviceSize !== "desktop" && setIsOpenMenu(false);
   }, [diviceSize]);
 

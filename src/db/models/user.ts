@@ -1,4 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document} from "mongoose";
+
+// import { Schema, Document } from "mongoose";
 const bcrypt = require("bcrypt");
 import { userRolesEnum } from "../roles/userRoles"; 
 
@@ -9,6 +11,7 @@ export interface IUser extends Document {
   role: string;
   films: { id: string; isChecked: boolean }[];
   avatarURL?: string;
+  googleId: string;
   token?: string;
   isModified: (path: string) => boolean; // This is a Mongoose method available in documents.
 }
@@ -31,8 +34,13 @@ const userSchema = new Schema(
       type: String,
       select: true,
     },
-    image: { type: String },
     googleId: { type: String, unique: true, sparse: true },
+    avatarURL: { type: String },
+    authMethod: {
+      type: String,
+      enum: ["credentials", "google"],
+      default: "credentials",
+    },
     role: {
       type: String,
       enum: Object.values(userRolesEnum),
@@ -40,11 +48,10 @@ const userSchema = new Schema(
     },
     films: [
       {
-        id: String,
-        isChecked: Boolean,
+        id: { type: String },
+        isChecked: { type: Boolean },
       },
     ],
-    token: String,
   },
   {
     /**
@@ -73,6 +80,20 @@ userSchema.pre<IUser>("save", async function (next: (err?: Error) => void) {
     next(err as Error);
   }
 });
+
+// userSchema.pre<IUser>("save", function (next) {
+//   const user = this;
+
+//   if (!user.password && !user.googleId) {
+//     return next(new Error("Either password or googleAuthId is required"));
+//   }
+
+//   if (user.password && user.googleId) {
+//     return next(new Error("Both password and googleAuthId cannot be present"));
+//   }
+
+//   next();
+// });
 
 /**
  * Custom method mongoose to validate password. Return promise boolean

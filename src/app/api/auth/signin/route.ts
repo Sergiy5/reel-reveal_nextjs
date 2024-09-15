@@ -5,11 +5,11 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req: Request): Promise<NextResponse> => {
   const { email, password } = await req.json();
-console.log("User created",email, password)
+
   try {
     const user = await User.findOne({ email }).select("+password");
 
-    if (!user) throw new Error("Something went wrong");
+    if (!user) throw new Error(`User ${email} not found`);
 
     const passwordIsValid = await bcrypt.compare(password, user.password);
 

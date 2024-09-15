@@ -5,7 +5,8 @@ import { Loader } from "./ui/Loader";
 import { useEffect, useState } from "react";
 import { AuthRegister } from "./AuthRegister";
 import { AuthSignInPassword } from "./AuthSignInPassword";
-import { AuthSignInOrSignUp } from "./AuthSignInOrSignUp";
+// import { AuthSignInOrSignUp } from "./AuthSignInOrSignUp";
+import { AuthLogin } from "./AuthLogin";
 
 export const Auth: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,12 +31,13 @@ export const Auth: React.FC = () => {
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
       >
         {statusUser === "signin" ? (
-          <AuthSignInOrSignUp
-            setIsLoading={setIsLoading}
-            setStatusUser={setStatusUser}
-          />
-        ) : statusUser === "register" ? (
-          <AuthRegister setIsLoading={setIsLoading} />
+          <AuthLogin setIsLoading={setIsLoading} setStatusUser={setStatusUser}/>
+        ) : // <AuthSignInOrSignUp
+        //   setIsLoading={setIsLoading}
+        //   setStatusUser={setStatusUser}
+        // />
+        statusUser === "register" ? (
+          <AuthRegister  />
         ) : (
           <AuthSignInPassword setIsLoading={setIsLoading} />
         )}
