@@ -18,8 +18,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
  useEffect(() => {
    setIsClient(true);
  }, []);
-  
-  console.log("isAuth_header_nav_>>>>>>>>", isAuth);
 
  if (!isClient) return null;
   return (
