@@ -16,12 +16,11 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
   setStatusUser,
   setIsLoading,
 }) => {
-    
   const {
     register,
     handleSubmit,
     formState: { isValid, errors },
-  } = useForm<{email: string}>({
+  } = useForm<{ email: string }>({
     mode: "onChange",
   });
 
@@ -29,8 +28,10 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await fetchUserByEmail(data.email).then((res) => res.json());
-console.log("response_on_login_email_>>>>>>>>>>>>", response);
+      const response = await fetchUserByEmail(data.email).then((res) =>
+        res.json()
+      );
+
       if (!response.user) {
         userEmailSignal.value = data.email;
 
@@ -63,10 +64,13 @@ console.log("response_on_login_email_>>>>>>>>>>>>", response);
           errors={errors}
         />
 
-        <ButtonOrLink type="submit" disabled={!isValid} className={`w-full disabled:opacity-75`}>
+        <ButtonOrLink
+          type="submit"
+          disabled={!isValid}
+          className={`w-full disabled:opacity-75`}
+        >
           continue with email
         </ButtonOrLink>
-
       </form>
       <div className={`w-full flex items-center justify-center gap-2`}>
         <div className={`w-10 h-[1px] bg-gray-400 `}></div>
@@ -75,7 +79,6 @@ console.log("response_on_login_email_>>>>>>>>>>>>", response);
       </div>
       <ul className={`flex items-center justify-center gap-5 `}>
         <li>
-          
           <form action={socialLogin}>
             <button
               type="submit"
@@ -89,7 +92,6 @@ console.log("response_on_login_email_>>>>>>>>>>>>", response);
               Google
             </button>
           </form>
-
         </li>
       </ul>
     </div>
