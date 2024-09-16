@@ -4,6 +4,7 @@ import clsx from "clsx";
 import BurgerIcon from "../../../public/icons/burger.svg";
 import CrossIcon from "../../../public/icons/cross.svg";
 import { nanoid } from "nanoid";
+import { statusUserSignal } from "@/context/UserContext";
 
 
 interface HeaderNavMenuProps {
@@ -28,7 +29,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
     <>
       <div
         className={clsx(
-          `absolute flex flex-col items-center justify-between w-screen bg-bgLightColor  z-60
+          `absolute flex flex-col items-center justify-between w-screen bg-bgLightColor lg:hidden z-60
             transition-all duration-1000 ease-in-out pt-10 pb-5 h-80 -right-4 md:-right-16
             
            ${isOpenMenu ? "-top-6 md:-top-8" : "-top-96"}
@@ -41,7 +42,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           aria-label="Close nav menu"
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`absolute right-4 flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgLightColor
-                     transition-all duration-300 lg:hidden`}
+                     transition-all duration-300`}
         >
           <CrossIcon
             className={` w-[30px] h-[30px] stroke-textColor transition duration-300`}
@@ -62,7 +63,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           <p className="">My library</p>
         </Link>
         <Link
-          href={isAuth ? "/profile" : "/auth"}
+          href={isAuth || statusUserSignal.value ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >

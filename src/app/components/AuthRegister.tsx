@@ -12,52 +12,52 @@ import { isLoadingSignal } from "@/context/CommonContext";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-export interface UserData {
+export interface IUserData {
   name: string;
   email: string;
   password: string;
   "confirm password": string;
 }
 
-export const AuthRegister: React.FC = () => {
-  // States =============================================
-  const [userData, setUserData] = useState<UserData | {}>();
+interface AuthRegisterProps {
+  setIsLoading: (isLoading: boolean) => void;
+}
 
+export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
+  // useRouter =============================================
   const router = useRouter();
-  // useForm ============================================
+  // useForm ===============================================
   const {
     register,
     handleSubmit,
     watch,
     formState: { isValid, errors },
-  } = useForm<UserData>({
+  } = useForm<IUserData>({
     mode: "onChange",
   });
+  // Submit form ============================================
+  const onSubmit = async (data: IUserData) => {
+    setIsLoading(true);
+    const { email, password, name } = data;
+    try {
+      const response = await registerUser({
+        name,
+        email,
+        password,
+      });
 
-  const onSubmit = (data: UserData) => {
-    const { email, password, name, "confirm password": confirmPassword } = data;
-    setUserData({ name, email, password });
-  };
-
-  useEffect(() => {
-    if (!userData) return;
-
-    const regUser = async (userData: UserData | {}) => {
-      try {
-        const response = await registerUser(userData);
-
-        if (response) {
-          router.replace("/home");
-          return toast.success(
-            `User ${response.user.name} registered successfully` //Need to check email send latter!!!!==========
-          );
-        }
-      } catch (error) {
-        console.log(error);
+      if (response.user) {
+        router.replace("/home");
+        return toast.success(
+          `User ${response.user.name} registered successfully` //Need to check email send latter!!!!==========
+        );
       }
-    };
-    regUser(userData);
-  }, [router, userData]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -68,7 +68,6 @@ export const AuthRegister: React.FC = () => {
         <SharedInput
           label="Name"
           type="text"
-          name="name"
           id="name"
           register={register}
           validation={{ required: true }}
@@ -77,7 +76,6 @@ export const AuthRegister: React.FC = () => {
         <SharedInput
           label="Email"
           type="text"
-          name="email"
           id="email"
           defaultValue={`${userEmailSignal.value ?? ""}`}
           register={register}
@@ -103,7 +101,6 @@ export const AuthRegister: React.FC = () => {
           }}
           errors={errors}
         />
-
         <ButtonOrLink type="submit" disabled={!isValid} className={`w-full`}>
           create account
         </ButtonOrLink>

@@ -10,7 +10,6 @@ interface CustomInputProps {
   label: string;
   type?: string;
   id: string;
-  name?: string;
   defaultValue?: string;
   onInput?: (value: string) => void;
   register: UseFormReturn<any, any>["register"];
@@ -29,32 +28,32 @@ export const SharedInput: React.FC<CustomInputProps> = ({
   label,
   id,
   type = "text",
-  name,
   defaultValue,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hasValue, setHasValue] = useState(() => (defaultValue ? true : false));
   const [passwordVisible, setPasswordVisible] = useState(false);
-
+// For change color border input ===================================================
   const handleFocus = () => {
     setIsFocused((prev) => !prev);
   };
-
-  // Show password =================================================================
-  
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-  
+  // Input handler (if need) =================================================================
   const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInput && onInput(e.target.value);
-    
+
     if (e.target.value.length > 1) setHasValue(true);
     else setHasValue(false);
   };
-  
+
+  // Show password =================================================================
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   useEffect(() => {
-    const passwordInput = document.getElementById("password") as HTMLInputElement;
+    const passwordInput = document.getElementById(
+      "password"
+    ) as HTMLInputElement;
     const confirmPasswordInput = document.getElementById(
       "confirmPassword"
     ) as HTMLInputElement;
@@ -73,12 +72,11 @@ export const SharedInput: React.FC<CustomInputProps> = ({
         id={id}
         type={type}
         defaultValue={defaultValue ?? ""}
+        onFocus={handleFocus}
+        {...register(id, { ...validation, onBlur: handleFocus })}
         autoComplete={
           ["password", "confirmPassword"].includes(id) ? "off" : "on"
         }
-        onFocus={handleFocus}
-        // onBlur={handleBlur}
-        {...register(id, { ...validation, onBlur: handleFocus })}
         className={clsx(
           `flex-grow w-full font-light h-10 text-light text-xl text-textColor bg-inputColor tracking-widest font-mono
            rounded-[18px] px-5 focus:outline-none transition-all duration-200 ease-in-out autofill:bg-yellow-300
@@ -114,53 +112,3 @@ export const SharedInput: React.FC<CustomInputProps> = ({
     </div>
   );
 };
-
-// const [isFocused, setIsFocused] = useState(false);
-// const [hasValue, setHasValue] = useState(() => (defaultValue ? true : false));
-// const [isValidData, setIsValidData] = useState(true);
-// const [passwordVisible, setPasswordVisible] = useState(false);
-
-// const handleFocus = () => setIsFocused(true);
-// const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-//   setIsFocused(false);
-//   setHasValue(e.target.value !== "");
-// };
-
-// const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//   if (!isValid && isValid !== undefined) {
-//     if (e.target.name === "email") {
-//       validateEmail(e.target.value)
-//         ? setIsValidData(true)
-//         : setIsValidData(false);
-//     }
-//     if (e.target.name === "password") {
-//       validatePassword(e.target.value)
-//         ? setIsValidData(true)
-//         : setIsValidData(false);
-//     }
-//   }
-// };
-
-// // Show or hide password =================================================================
-
-// const togglePasswordVisibility = () => {
-//   console.log("PASSWORD_VISIBLE", passwordVisible);
-//   setPasswordVisible(!passwordVisible);
-// };
-
-// useEffect(() => {
-//   const passwordInput = document.getElementById(
-//     "password"
-//   ) as HTMLInputElement;
-//   const confirmPasswordInput = document.getElementById(
-//     "confirmPassword"
-//   ) as HTMLInputElement;
-
-//   if (id === "password" && passwordInput) {
-//     passwordInput.type = passwordVisible ? "text" : "password";
-//   }
-
-//   if (id === "confirmPassword" && confirmPasswordInput) {
-//     confirmPasswordInput.type = passwordVisible ? "text" : "password";
-//   }
-// }, [id, passwordVisible]);

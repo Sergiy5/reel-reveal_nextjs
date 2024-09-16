@@ -6,7 +6,7 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import { userEmailSignal } from "@/context/UserContext";
+import { statusUserSignal, userEmailSignal } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
@@ -15,11 +15,10 @@ interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
-export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
-  const [userPassword, setUserPassword] = useState("");
-  const [redirectTo, setRedirectTo] = useState("/"); // Default redirect
+export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
+  // useRouter ===========================================
   const router = useRouter();
-
+  // useForm ===============================================
   const {
     register,
     handleSubmit,
@@ -27,40 +26,27 @@ export const AuthSignInPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   } = useForm<{ password: string }>({
     mode: "onChange",
   });
-
-  const onSubmit = (data: { password: string }) => {
-
+  // Submit form ============================================
+  const onSubmit = async (data: { password: string }) => {
+    setIsLoading(true);
     const { password } = data;
+    const email = userEmailSignal.value;
+    try {
+      const response = await doCredentialLogin({ email, password });
 
-    if (!validatePassword(password as string)) {
-      toast.error("Password should be at least 8 characters long");
-    }
-    if (validatePassword(password as string)) {
-      setUserPassword(password as string);
+      // console.log("response-on-login-password", response);
+
+      if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
+
+      statusUserSignal.value = true;
+      toast.success(`User logged in successfully`);
+      router.replace("/home");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (!userPassword.length) return;
-
-    const signInUserPassword = async (email: string, password: string) => {
-      try {
-        const response = await doCredentialLogin({ email, password });
-console.log("response-on-login-password", response);
-        if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
-
-        toast.success(`User logged in successfully`);
-        router.replace("/home");
-
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setUserPassword("");
-      }
-    };
-
-    signInUserPassword(userEmailSignal.value, userPassword);
-  }, [redirectTo, router, userPassword]);
 
   return (
     <>
@@ -71,7 +57,6 @@ console.log("response-on-login-password", response);
         <SharedInput
           id="password"
           label="Password"
-          name="password"
           type="password"
           register={register}
           validation={{ required: true, validate: validatePassword }}

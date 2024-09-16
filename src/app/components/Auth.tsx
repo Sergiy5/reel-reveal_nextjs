@@ -4,8 +4,7 @@ import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
 import { useEffect, useState } from "react";
 import { AuthRegister } from "./AuthRegister";
-import { AuthSignInPassword } from "./AuthSignInPassword";
-// import { AuthSignInOrSignUp } from "./AuthSignInOrSignUp";
+import { AuthLoginPassword } from "./AuthLoginPassword";
 import { AuthLogin } from "./AuthLogin";
 
 export const Auth: React.FC = () => {
@@ -31,15 +30,14 @@ export const Auth: React.FC = () => {
         className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
       >
         {statusUser === "signin" ? (
-          <AuthLogin setIsLoading={setIsLoading} setStatusUser={setStatusUser}/>
-        ) : // <AuthSignInOrSignUp
-        //   setIsLoading={setIsLoading}
-        //   setStatusUser={setStatusUser}
-        // />
-        statusUser === "register" ? (
-          <AuthRegister  />
+          <AuthLogin
+            setIsLoading={setIsLoading}
+            setStatusUser={setStatusUser}
+          />
+        ) : statusUser === "register" ? (
+          <AuthRegister setIsLoading={setIsLoading} />
         ) : (
-          <AuthSignInPassword setIsLoading={setIsLoading} />
+          <AuthLoginPassword setIsLoading={setIsLoading} />
         )}
       </div>
       <p className={`text-lg`}>

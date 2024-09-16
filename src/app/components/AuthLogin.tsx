@@ -8,9 +8,10 @@ import { SharedInput } from "./ui/SharedInput";
 import { validateEmail } from "@/utils";
 
 interface AuthLoginProps {
-  setStatusUser: (statusUser: "signin" | "register" | "signup") => void;
+  setStatusUser: (statusUser: "register" | "signup") => void;
   setIsLoading: (isLoading: boolean) => void;
 }
+
 export const AuthLogin: React.FC<AuthLoginProps> = ({
   setStatusUser,
   setIsLoading,
@@ -24,14 +25,14 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
     mode: "onChange",
   });
 
-  const onSubmit = async (data: {email: string}) => {
-    const email = data.email;
+  const onSubmit = async (data: { email: string }) => {
+    setIsLoading(true);
 
     try {
-      const response = await fetchUserByEmail(email).then((res) => res.json());
+      const response = await fetchUserByEmail(data.email).then((res) => res.json());
 
       if (!response.user) {
-        userEmailSignal.value = email;
+        userEmailSignal.value = data.email;
 
         return setStatusUser("register");
       }
@@ -61,9 +62,11 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
           validation={{ required: true, validate: validateEmail }}
           errors={errors}
         />
+
         <ButtonOrLink type="submit" disabled={!isValid} className={`w-full disabled:opacity-75`}>
           continue with email
         </ButtonOrLink>
+
       </form>
       <div className={`w-full flex items-center justify-center gap-2`}>
         <div className={`w-10 h-[1px] bg-gray-400 `}></div>
@@ -72,6 +75,7 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
       </div>
       <ul className={`flex items-center justify-center gap-5 `}>
         <li>
+          
           <form action={socialLogin}>
             <button
               type="submit"
@@ -85,6 +89,7 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
               Google
             </button>
           </form>
+          
         </li>
       </ul>
     </div>
