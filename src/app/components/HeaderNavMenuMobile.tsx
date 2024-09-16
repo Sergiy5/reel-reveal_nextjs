@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import BurgerIcon from "../../../public/icons/burger.svg";
 import CrossIcon from "../../../public/icons/cross.svg";
-import { nanoid } from "nanoid";
 import { statusUserSignal } from "@/context/UserContext";
-
 
 interface HeaderNavMenuProps {
   isOpenMenu: boolean;
@@ -17,13 +14,6 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
   isAuth,
   setIsOpenMenu,
 }) => {
-  // const [isClient, setIsClient] = useState(false);
-
-  // useEffect(() => {
-  //   setIsClient(true);
-  // }, []);
-
-  // if (!isClient) return null
   
   return (
     <>
@@ -37,7 +27,6 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
         )}
       >
         <button
-          id={nanoid()}
           type="button"
           aria-label="Close nav menu"
           onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -81,7 +70,6 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
         </Link>
       </div>
       <button
-        id={nanoid()}
         type="button"
         aria-label="Open nav menu"
         onClick={() => setIsOpenMenu(!isOpenMenu)}
