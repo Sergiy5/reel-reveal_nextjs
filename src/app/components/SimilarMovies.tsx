@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { Movie } from "@/typification";
 import { firstElementsFromArray } from "@/utils";
 import { GetShowMovies } from "./GetShowMovies";
 import { fetchMoviesByTitle } from "../actions/fetchMoviesByTitle";
 import { Loader } from "./ui/Loader";
 import { fetchSimilarMovieFromOpenAI } from "../actions";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 export interface SimilarMoviesProps {
   title: string;
@@ -22,15 +22,12 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
       setIsLoading(true);
 
       try {
-        /**
-         * Fetch data from OpenAI API
-         */
+        // Fetch data from OpenAI API =================================
         const similarTitles = await fetchSimilarMovieFromOpenAI(title);
 
         if (!similarTitles) throw new Error();
-        /**
-         * Fetch data from TMDB API
-         */
+
+        // Fetch data from TMDB API ===================================
         const response = await fetchMoviesByTitle(similarTitles);
 
         if (!response || response.length === 0) {
@@ -41,7 +38,6 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
 
         if (result) setSimilarMovies(result);
       } catch (error) {
-        toast.error(`Somthing went wrong... Try again`);
         console.log(`Error on similar movies, ${error}`);
       } finally {
         setIsLoading(false);
@@ -58,12 +54,12 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
       ) : similarMovies.length ? (
         <GetShowMovies title={"Similar movies"} movies={similarMovies} />
       ) : (
-        <button
+        <ButtonOrLink
           onClick={() => setReloadKey((key) => key + 1)}
-          className={`link-btn w-[285px]`}
+          className={``}
         >
-          Reload
-        </button>
+          Reload Similar Movies
+        </ButtonOrLink>
       )}
     </>
   );

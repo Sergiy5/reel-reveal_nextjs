@@ -21,7 +21,6 @@ export const fetchQuizDataFromOpenAI = async (
       },
       body: JSON.stringify({ prompt }),
     }).then((res) => res.json());
-      console.log("OPEN_AI+++++++++++++++++++++++++", response);
 
     return JSON.parse(response);
   } catch (error: any) {
