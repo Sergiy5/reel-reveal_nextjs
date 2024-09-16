@@ -30,7 +30,7 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
 
     try {
       const response = await fetchUserByEmail(data.email).then((res) => res.json());
-
+console.log("response_on_login_email_>>>>>>>>>>>>", response);
       if (!response.user) {
         userEmailSignal.value = data.email;
 
@@ -89,7 +89,7 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
               Google
             </button>
           </form>
-          
+
         </li>
       </ul>
     </div>

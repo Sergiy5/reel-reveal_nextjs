@@ -17,13 +17,13 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
   isAuth,
   setIsOpenMenu,
 }) => {
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
 
-  if (!isClient) return null
+  // if (!isClient) return null
   
   return (
     <>
