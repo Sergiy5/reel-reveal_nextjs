@@ -1,8 +1,6 @@
 import { Movie } from "@/typification";
 
-export const firstElementsFromArray = (
-  arrMovies: Movie[][]
-): Movie[] => {
+export const firstElementsFromArrays = (arrMovies: Movie[][]): Movie[] => {
   if (arrMovies.length) {
     const arrForListMovies = arrMovies
       .map((item: Movie[]) => {

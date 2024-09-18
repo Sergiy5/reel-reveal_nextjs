@@ -1,75 +1,68 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useSWR from "swr";
 import { Loader } from "./ui/Loader";
-import { Movie } from "@/typification";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { firstElementsFromArray } from "@/utils";
-import { fetchMoviesByTitle, fetchQuizDataFromOpenAI } from "../actions";
 import { qiuzMoviesSignal } from "@/context/MoviesContext";
- 
+import { useState } from "react";
+import { fetchQuizMovies } from "../actions/fetchQuizMovies";
+
 export const Quiz: React.FC = () => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [listMovies, setListMovies] = useState<Movie[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(()=>qiuzMoviesSignal.value.length ? false : true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isQuizActive, setIsQuizActive] = useState(() =>
+    qiuzMoviesSignal.value.length ? false : true
+  );
 
-  useEffect(() => {
-     if (quizResult.length < 7) return;
-    const fetchData = async () => {
-      setIsLoading(true);
-      
-      try {
-        /**
-         * Fetch data from OpenAI API
-         */
-        const result = await fetchQuizDataFromOpenAI(quizResult);
-        
-        if (!result || !result.length) {
-          throw new Error("Error fetching data from OpenAI... Try again.");
-        }
-        /**
-         * Fetch movies from TMDB API
-         */
-        const movies = await fetchMoviesByTitle(result);
-        
-        if (!movies || movies.length === 0) {
-          
-          throw new Error("Error fetching movies... Try again.");
-        }
-        const arrMovies = firstElementsFromArray(movies);
-        setListMovies(arrMovies);
-        qiuzMoviesSignal.value = arrMovies;
+  // Fetcher function to get quiz data from OpenAI and movies from TMDB
+  const getQuizMovies = async (quizResult: string[]) => {
+    if (quizResult.length < 7) return null;
+
+    const movies = await fetchQuizMovies(quizResult);
+
+    return movies;
+  };
+
+  // Use SWR to fetch quiz movies based on quizResult
+  const {
+    data: listMovies,
+    error,
+    isValidating,
+  } = useSWR(
+    quizResult.length >= 7 ? ["quizMovies", quizResult] : null,
+    () => getQuizMovies(quizResult),
+    {
+      revalidateOnFocus: false,
+      onSuccess: (movies) => {
+        qiuzMoviesSignal.value = movies ?? [];
         setIsQuizActive(false);
-      } catch (error: any) {
-        
+      },
+      onError: (error: any) => {
         toast.error(error.message);
         console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (quizResult.length >= 7) {
-      fetchData();
+      },
     }
-  }, [quizResult]);
+  );
 
   return (
     <div className="relative flex items-center justify-center py-[131px] w-full gap-12">
       <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
-      {isLoading ? (
+
+      {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
         <QuizQuestions quizData={setQuizResult} />
       ) : (
         <QuizListMovies
-          clearPrevQuiz={() => setIsQuizActive(true)}
+          clearPrevQuiz={() => {
+            setQuizResult([]);
+            setIsQuizActive(true);
+          }}
           arrMovies={qiuzMoviesSignal.value ?? listMovies}
         />
       )}
+
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
     </div>
   );

@@ -1,5 +1,5 @@
 export { arrayFromString } from "./arrayFromString";
-export { firstElementsFromArray } from "./firstElementsFromArray";
+export { firstElementsFromArrays } from "./firstElementsFromArrays";
 export { scrollToY } from "./scrollToY";
 export { getFilNameFromPath } from "./getFilNameFromPath";
 export { nextQuestion } from "./nextQuestion";
@@ -11,4 +11,3 @@ export { floorNumber } from "./floorNumber";
 export { getGenres } from "./getGenres";
 export { validateEmail } from "./validateEmail";
 export { validatePassword } from "./validatePassword";
-

@@ -1,66 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Movie } from "@/typification";
-import { firstElementsFromArray } from "@/utils";
 import { GetShowMovies } from "./GetShowMovies";
-import { fetchMoviesByTitle } from "../actions/fetchMoviesByTitle";
 import { Loader } from "./ui/Loader";
-import { fetchSimilarMovieFromOpenAI } from "../actions";
+import { fetchSimilarMovies } from "../actions";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
+import useSWR from "swr";
 
 export interface SimilarMoviesProps {
   title: string;
 }
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
-  const [similarMovies, setSimilarMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
+  const {
+    data: similarMovies,
+    error,
+    isValidating,
+    mutate,
+  } = useSWR(
+    title ? [`similarMovies`, title] : null,
+    () => fetchSimilarMovies(title),
+    {
+      revalidateOnFocus: false,
+    }
+  );
 
-  useEffect(() => {
-    const fetchSimilarFilms = async () => {
-      setIsLoading(true);
+  if (isValidating) return <Loader />;
 
-      try {
-        // Fetch data from OpenAI API =================================
-        const similarTitles = await fetchSimilarMovieFromOpenAI(title);
-
-        if (!similarTitles) throw new Error();
-
-        // Fetch data from TMDB API ===================================
-        const response = await fetchMoviesByTitle(similarTitles);
-
-        if (!response || response.length === 0) {
-          throw new Error("Error fetching movies");
-        }
-
-        const result = firstElementsFromArray(response);
-
-        if (result) setSimilarMovies(result);
-      } catch (error) {
-        console.log(`Error on similar movies, ${error}`);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchSimilarFilms();
-  }, [title, reloadKey]);
+  if (error) {
+    return (
+      <ButtonOrLink onClick={() => mutate()} className="">
+        Reload Similar Movies
+      </ButtonOrLink>
+    );
+  }
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : similarMovies.length ? (
+      {similarMovies && similarMovies.length &&
         <GetShowMovies title={"Similar movies"} movies={similarMovies} />
-      ) : (
-        <ButtonOrLink
-          onClick={() => setReloadKey((key) => key + 1)}
-          className={``}
-        >
-          Reload Similar Movies
-        </ButtonOrLink>
-      )}
+      }
     </>
   );
 };

@@ -1,7 +1,8 @@
 import { Movie } from "@/typification";
 
-export async function fetchMoviesByTitle(titles: string[]): Promise<Movie[][]> {
-
+export async function fetchMoviesByTitles(
+  titles: string[]
+): Promise<Movie[][]> {
   try {
     const response = await fetch("/api/movies/many-by-titles", {
       method: "POST",
