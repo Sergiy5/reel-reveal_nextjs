@@ -2,17 +2,20 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { MovieCardProps } from "@/typification";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
 import ContentLoader from "react-content-loader";
+import { Movie } from "@/typification";
+
+interface MovieCardProps {
+  movie: Movie;
+}
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [placeholderBlur, setPlaceholderBlur] = useState<string>("");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -22,9 +25,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
     e.stopPropagation();
-    const clickeTtarget = e.currentTarget.dataset.movie;
+    const clickedTarget = e.currentTarget.dataset.movie;
+    console.log("EVENT_IN_CARD_>>>>", e.target)
+    console.log("EVENT_CURRENT_TARGETIN_CARD_>>>>", e.currentTarget.dataset);
 
-    if (clickeTtarget === "movie") {
+    if (clickedTarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
 
       const url = `/movies/${stringifyMovie}`;
@@ -34,9 +39,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         router.push(url);
       }
     }
-    if (clickeTtarget === "saw it") console.log("saw it", movie.id);
-    if (clickeTtarget === "save it") console.log("save it", movie.id);
-    if (clickeTtarget === "trailer") {
+    if (clickedTarget === "sawIt") console.log("saw it", movie.id);
+    if (clickedTarget === "saveIt") console.log("save it", movie.id);
+    if (clickedTarget === "trailer") {
       openModal();
     }
 

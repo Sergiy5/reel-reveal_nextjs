@@ -34,24 +34,6 @@ export interface Movie {
   vote_count: number;
   runtime: number;
 }
-export interface MovieCardHoverBtnProps {
-  iconId: string;
-  text: string;
-  isChecked: boolean;
-  dataMovie: string;
-  onClick?: (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
-  hoverd?: boolean;
-}
-export interface MovieCardProps {
-  movie: Movie;
-}
-
-export interface MovieCardHoverProps {
-  movie: Movie;
-  handleMovie: (
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-  ) => string | undefined;
-}
 
 export interface ListMoviesProps {
   movies: Movie[];

@@ -1,7 +1,14 @@
 import React from "react";
-import { MovieCardHoverProps } from "@/typification";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
+import { Movie } from "@/typification";
+
+ interface MovieCardHoverProps {
+  movie: Movie;
+  handleMovie: (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+  ) => string | undefined;
+}
 
 export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
@@ -31,7 +38,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           <li key={nanoid()}>
             <MovieCardHoverBtn
               iconId="icon-heart_btn"
-              dataMovie={"save it"}
+              dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"
               isChecked={false}
@@ -41,7 +48,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           <li key={nanoid()}>
             <MovieCardHoverBtn
               iconId="icon-checked"
-              dataMovie={"saw it"}
+              dataMovie={"sawIt"}
               onClick={handleMovie}
               text="saw it"
               isChecked={false}
