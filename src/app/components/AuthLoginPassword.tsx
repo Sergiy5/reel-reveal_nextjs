@@ -6,10 +6,12 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import { statusUserSignal, userEmailSignal } from "@/context/UserContext";
+import { isAuthUserSignal, sessionUserSignal, userEmailSignal } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
+import { getSession } from "next-auth/react";
+import { savedMoviesSignal } from "@/context/MoviesContext";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -31,15 +33,19 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     setIsLoading(true);
     const { password } = data;
     const email = userEmailSignal.value;
+    
     try {
       const response = await doCredentialLogin({ email, password });
 
-      // console.log("response-on-login-password", response);
-
       if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
 
-      statusUserSignal.value = true;
+      isAuthUserSignal.value = true;
       toast.success(`User logged in successfully`);
+
+      const session = await getSession()
+
+      sessionUserSignal.value = session?.user
+      
       router.replace("/home");
     } catch (error) {
       console.log(error);

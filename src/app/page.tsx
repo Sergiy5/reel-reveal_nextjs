@@ -1,7 +1,8 @@
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { ButtonOrLink } from "./components/ui/ButtonOrLink";
 
 export default function Page() {
+  redirect("/home");
 
   return (
     <main>

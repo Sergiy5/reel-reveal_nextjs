@@ -1,6 +1,3 @@
-import user from "@/db/models/user";
-import { signToken } from "@/db/utils/signToken";
-
 export const signInUser = async (
     email: string,
     password: string

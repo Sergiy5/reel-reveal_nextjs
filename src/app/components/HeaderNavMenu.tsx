@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
 import HeartIcon from "../../../public/icons/heart.svg";
 import UserIcon from "../../../public/icons/user.svg";
-import { statusUserSignal } from "@/context/UserContext";
+import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
+import { useSession } from "next-auth/react";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -16,11 +17,12 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
 }) => {
   const [isClient, setIsClient] = useState(false);
 
- useEffect(() => {
-   setIsClient(true);
- }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
- if (!isClient) return null;
+  if (!isClient) return null;
+
   return (
     <div
       className={`hidden items-center justify-between relative w-[380px] h-[40px] flex-row lg:flex            
@@ -43,14 +45,18 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         />
       </Link>
       <Link
-        href={isAuth || statusUserSignal.value ? "/profile" : "/auth"}
+        href={
+          isAuth || isAuthUserSignal.value
+            ? "/profile"
+            : "/auth"
+        }
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className="link"
       >
         <UserIcon
           className={`hidden w-[18px] h-[20px] transition hover:fill-accentColor lg:block
              ${
-               isAuth || statusUserSignal.value
+               isAuth || isAuthUserSignal.value
                  ? "fill-accentColor hover:fill-clickedColor"
                  : "fill-textColor hover:fill-accentColor"
              }`}

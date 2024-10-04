@@ -15,15 +15,6 @@ export const Quiz: React.FC = () => {
     qiuzMoviesSignal.value.length ? false : true
   );
 
-  // Fetcher function to get quiz data from OpenAI and movies from TMDB
-  const getQuizMovies = async (quizResult: string[]) => {
-    if (quizResult.length < 7) return null;
-
-    const movies = await fetchQuizMovies(quizResult);
-
-    return movies;
-  };
-
   // Use SWR to fetch quiz movies based on quizResult
   const {
     data: listMovies,
@@ -31,7 +22,7 @@ export const Quiz: React.FC = () => {
     isValidating,
   } = useSWR(
     quizResult.length >= 7 ? ["quizMovies", quizResult] : null,
-    () => getQuizMovies(quizResult),
+    () => fetchQuizMovies(quizResult),
     {
       revalidateOnFocus: false,
       onSuccess: (movies) => {

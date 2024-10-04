@@ -3,9 +3,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ceraPro } from "./fonts";
 import { ToastContainer} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
-import type { AppProps } from "next/app";
 // import getServerSession from "next-auth"; 
 // import { AuthSessionPovider } from "./components/AuthSessionProvider";
 

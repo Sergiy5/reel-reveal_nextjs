@@ -1,6 +1,6 @@
-import { ErrorComponentProp } from "@/typification";
+import { ErrorComponentProps } from "@/typification";
 
-export const ErrorComponent: React.FC<ErrorComponentProp> = ({
+export const ErrorComponent: React.FC<ErrorComponentProps> = ({
   error,
   reset,
   from,

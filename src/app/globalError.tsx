@@ -1,10 +1,10 @@
 "use client";
 
 import { ceraPro } from "./fonts";
-import { ErrorComponentProp } from "@/typification";
-import { ErrorComponent } from "@/app/components/errorComponent";
+import { ErrorComponentProps } from "@/typification";
+import { ErrorComponent } from "@/app/components/ErrorComponent";
 
-export default function GlobalError({ error, reset }: ErrorComponentProp) {
+export default function GlobalError({ error, reset }: ErrorComponentProps) {
   return (
     <html lang="en">
       <head>

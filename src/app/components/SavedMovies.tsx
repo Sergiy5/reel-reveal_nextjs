@@ -8,7 +8,7 @@ export const SavedMovies: React.FC = () => {
 
   return (
     <div
-      className={`flex items-center flex-col justify-center gap-20 w-full z-20`}
+      className={`flex items-center flex-col justify-center gap-20 w-full mb-20`}
     >
       <Image
         src={"/images/popcorn.png"}

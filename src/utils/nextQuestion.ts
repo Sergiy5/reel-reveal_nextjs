@@ -1,6 +1,6 @@
-import { quizDataType } from "@/typification";
+import { IQuizData } from "@/typification";
 
-export const nextQuestion = (listData: quizDataType[], currentPage: number) => {
+export const nextQuestion = (listData: IQuizData[], currentPage: number) => {
   if (currentPage < 8) {
     const currentQuiz = listData.filter(
       (item) => item.page === currentPage + 1

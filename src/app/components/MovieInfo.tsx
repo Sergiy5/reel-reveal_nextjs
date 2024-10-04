@@ -59,8 +59,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                     <div
                       className={`flex justify-start min-w-[210px] gap-4 xl:pt-5`}
                     >
-                      <h3 className={`max-w-32 `}>
-                        IMBd {floorNumber(movie.vote_average)}
+                      <h3 className={`max-w-34 `}>
+                        TMDB {floorNumber(movie.vote_average)}
                       </h3>
                       <MovieCardHoverBtn
                         iconId="icon-heart_btn"

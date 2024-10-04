@@ -46,10 +46,15 @@ const userSchema = new Schema(
       enum: Object.values(userRolesEnum),
       default: userRolesEnum.USER,
     },
-    films: [
+    movies: [
       {
-        id: { type: String },
-        isChecked: { type: Boolean },
+        movieId: {
+          type: Number,
+          required: true,
+        },
+        watched: {
+          type: Boolean,
+        },
       },
     ],
   },

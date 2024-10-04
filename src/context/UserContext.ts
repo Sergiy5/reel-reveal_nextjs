@@ -1,10 +1,9 @@
-import { signal } from "@preact/signals-react";
-
-type StatusUserType = boolean;
+import { Signal, signal } from "@preact/signals-react";
 
 export const userEmailSignal = signal<string>("");
 
 export const userPasswordSignal = signal<string>("");
 
-export const statusUserSignal = signal<StatusUserType>(false);
+export const isAuthUserSignal = signal<boolean>();
 
+export const sessionUserSignal: Signal<any> = signal<any>(null);

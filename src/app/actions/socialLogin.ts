@@ -17,7 +17,6 @@ export async function doCredentialLogin(userData: {email:string, password:string
       password: userData.password,
       redirect: false,
     });
-        console.log("doCredentialsLogin_>>>>>>>>>>>>>>>", response)
     revalidatePath("/");
     return response;
   } catch (err) {

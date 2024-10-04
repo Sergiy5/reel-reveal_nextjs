@@ -11,13 +11,13 @@ import { connectDB } from "@/db/db";
  * The response object contains a JSON object with a message indicating whether the user exists or not.
  * The status code of the response indicates the success or failure of the operation.
  */
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(req: Request): Promise<NextResponse> {
   try {
     // Connect to the database
     await connectDB();
 
     // Extract the email from the request body
-    const { email } = await request.json();
+    const { email } = await req.json();
 
     // Find a user with the provided email in the database
     const existingUser = await User.findOne({ email });

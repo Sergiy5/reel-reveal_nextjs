@@ -1,13 +1,21 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import ContentLoader from "react-content-loader";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
-import ContentLoader from "react-content-loader";
 import { Movie } from "@/typification";
+import { saveMovie } from "@/app/actions/saveMovie";
+
+interface IMovieForSaving {
+  movieId: number;
+  watched: boolean;
+}
 
 interface MovieCardProps {
   movie: Movie;
@@ -16,39 +24,69 @@ interface MovieCardProps {
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [clickedTarget, setClickedTarget] = useState<string | undefined>();
+  
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  // const closeModal = () => setIsModalOpen(false);
   const router = useRouter();
+  const session = useSession();
+  
+  const { poster_path, id, title } = movie;
 
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
     e.stopPropagation();
     const clickedTarget = e.currentTarget.dataset.movie;
-    console.log("EVENT_IN_CARD_>>>>", e.target)
-    console.log("EVENT_CURRENT_TARGETIN_CARD_>>>>", e.currentTarget.dataset);
+
+    setClickedTarget(clickedTarget);
 
     if (clickedTarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
-
       const url = `/movies/${stringifyMovie}`;
+      
       if (e.ctrlKey || e.metaKey) {
         window.open(url, "_blank"); // Open the URL in a new tab if Ctrl or Meta key is pressed
       } else {
         router.push(url);
       }
     }
-    if (clickedTarget === "sawIt") console.log("saw it", movie.id);
-    if (clickedTarget === "saveIt") console.log("save it", movie.id);
-    if (clickedTarget === "trailer") {
-      openModal();
-    }
 
-    return e.currentTarget.dataset.movie;
+    if (clickedTarget === "trailer") toggleModal();
   };
+  useEffect(() => {
 
-  const { poster_path, id, title } = movie;
+    if(clickedTarget !== "sawIt" && clickedTarget !== "saveIt") return;
+    const { status, data: user } = session;
+    if (status === "unauthenticated") {
+      toast.error("You need to be logged in to save movies");
+      return;
+    }
+    if (status !== "authenticated") return;
+
+    let watched = false;
+    
+    if (clickedTarget === "sawIt")
+       watched = true ;
+    if (clickedTarget === "saveIt")
+       watched = false ;
+    
+    const onSaveMovie = async () => {
+      try {
+        const result = await saveMovie(
+          user.user?.email as string,
+          { movieId: id, watched } as IMovieForSaving
+        );
+
+        if (result) console.log("RESULT_SAVE_MOVIE", result);
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    onSaveMovie();
+  }, [clickedTarget, id, session]);
+
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
   // poster_path
@@ -69,8 +107,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         {isShowHover ? (
           <MovieCardHover movie={movie} handleMovie={handleMovie} />
         ) : null}
-        {
-          poster_path ? (
+        {poster_path ? (
           <Image
             id={`${id}`}
             src={poster}
@@ -87,8 +124,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             animate={true}
             viewBox="0 0 285 428"
             backgroundColor="#20263D"
-              foregroundColor="#318b83"
-              
+            foregroundColor="#318b83"
             className={`w-full h-full rounded-[18px]`}
           >
             <rect x="0" y="0" rx="18" ry="18" width="285" height="428" />
@@ -96,7 +132,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         )}
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
         <MovieInfoTrailer id={movie.id} />
       </Modal>
     </div>

@@ -7,7 +7,7 @@ import { Movie } from "@/typification";
   movie: Movie;
   handleMovie: (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-  ) => string | undefined;
+  ) => void;
 }
 
 export const MovieCardHover: React.FC<MovieCardHoverProps> = ({

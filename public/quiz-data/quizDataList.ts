@@ -1,6 +1,6 @@
-import { quizDataType } from "@/typification";
+import { IQuizData } from "@/typification";
 
-export const quizDataList: quizDataType[] = [
+export const quizDataList: IQuizData[] = [
   {
     quiz: "Q1/8",
     title: ": How are you feeling today?",

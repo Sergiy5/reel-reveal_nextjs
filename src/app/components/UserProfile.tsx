@@ -5,17 +5,15 @@ import { doLogout } from "../actions/socialLogin";
 import DeleteAccount from "../../../public/icons/delete-account.svg";
 import Signout from "../../../public/icons/signout.svg";
 import EditAccaount from "../../../public/icons/edit-account.svg";
-import { statusUserSignal } from "@/context/UserContext";
-
+import { isAuthUserSignal } from "@/context/UserContext";
 
 export const UserProfile: React.FC = () => {
   const srcImage = "";
 
   const signOut = () => {
+    isAuthUserSignal.value = false;
 
-    statusUserSignal.value = false;
-    
-    doLogout()
+    doLogout();
   };
 
   return (

@@ -3,7 +3,7 @@ import { CustomArrowProps, Settings } from "react-slick";
 export interface LayoutProps {
   children: React.ReactNode;
 }
-export interface ViewWidth {
+export interface IViewWidth {
   viewWidth: number;
 }
 export interface TypeDevice {
@@ -53,11 +53,11 @@ export interface GetShowMoviesProps {
   movies: Movie[];
 }
 
-export interface ResponsDataTMbD {
+export interface IResponsDataTMbD {
   results: Movie[];
 }
 
-export interface LoadMoreCard {
+export interface ILoadMoreCard {
   id: "load_more";
   textBtn: string;
 }
@@ -77,17 +77,11 @@ export interface MySliderBtnProps extends CustomArrowProps {
   prev_style?: string;
 }
 
-export interface quizDataType {
+export interface IQuizData {
   quiz: string;
   title: string;
   options: { answer: string; value: string }[];
   page: number;
-}
-
-export interface ErrorComponentProp {
-  error: Error;
-  reset: () => void;
-  from: string;
 }
 
 export interface MovieInfoProps {
@@ -102,19 +96,34 @@ export interface VideoComponentProps {
   id: number;
 }
 
-export interface FilmInterface {
+export interface IFilm {
   id: string;
   isChecked: boolean;
 }
 
-export interface UserInterface {
+export interface IUser {
   email: string;
   password: string;
   token: string;
   _id: string;
   name: string;
   role: string;
-  films: FilmInterface[];
+  films: IFilm[];
 }
 
-export interface fetchUserByEmailResponse {message: string; user: UserInterface}
+export interface fetchUserByEmailResponse {
+  message: string;
+  user: IUser;
+}
+
+export interface IStoredMovie {
+  movieId: number;
+  watched: boolean;
+  _id: string;
+}
+
+export interface ErrorComponentProps {
+  error: Error;
+  reset: () => void;
+  from: string;
+}

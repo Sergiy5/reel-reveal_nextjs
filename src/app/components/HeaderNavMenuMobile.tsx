@@ -2,7 +2,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import BurgerIcon from "../../../public/icons/burger.svg";
 import CrossIcon from "../../../public/icons/cross.svg";
-import { statusUserSignal } from "@/context/UserContext";
+import { isAuthUserSignal } from "@/context/UserContext";
 
 interface HeaderNavMenuProps {
   isOpenMenu: boolean;
@@ -14,7 +14,6 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
   isAuth,
   setIsOpenMenu,
 }) => {
-  
   return (
     <>
       <div
@@ -52,7 +51,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           <p className="">My library</p>
         </Link>
         <Link
-          href={isAuth || statusUserSignal.value ? "/profile" : "/auth"}
+          href={isAuth || isAuthUserSignal.value ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >

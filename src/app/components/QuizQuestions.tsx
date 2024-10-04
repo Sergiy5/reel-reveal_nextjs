@@ -4,10 +4,10 @@ import { QuizButtons } from "./QuizButtons";
 import { quizDataList } from "../../../public/quiz-data/quizDataList";
 import { useResize } from "@/hooks";
 import { nextQuestion } from "@/utils";
-import { quizDataType, QuizQuestionsProps } from "@/typification";
+import { IQuizData, QuizQuestionsProps } from "@/typification";
 
 export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
-  const [currentQuiz, setCurrentQuiz] = useState<quizDataType>(quizDataList[0]);
+  const [currentQuiz, setCurrentQuiz] = useState<IQuizData>(quizDataList[0]);
   const [currentPageForProgresBar, setCurrentPageForProgresBar] = useState(1);
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(false);

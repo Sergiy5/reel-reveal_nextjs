@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
  * @returns {Promise<object>} A promise that resolves to the user object.
  */
 export const fetchUserByEmail = async (email: string) => {
+  
   try {
     const response = await fetch("/api/auth/get-user_by-email", {
       method: "POST",
