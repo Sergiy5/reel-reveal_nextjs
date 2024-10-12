@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { Loader } from "./ui/Loader";
 import { fetchTrailerId } from "../actions/fetchTrailerId";
 import { VideoComponentProps } from "@/typification";
 import ContentLoader from "react-content-loader";
