@@ -31,11 +31,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   /**
    * Fetch and save movies ================
    */
-  const {
-    data: movies,
-    error,
-    mutate,
-  } = useMovies(user?.user?.email as string);
+  // const {
+  //   data: movies,
+  //   error,
+  //   mutate,
+  // } = useMovies(user?.user?.email as string);
 
   const router = useRouter();
 
