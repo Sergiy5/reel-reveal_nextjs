@@ -91,7 +91,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       }
     };
     onSaveMovie();
-  }, [clickedTarget, id, session]);
+  }, [clickedTarget, id, session, status, user?.user?.email]);
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
 
