@@ -5,7 +5,7 @@ import { Settings, default as Slider } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { nanoid } from "nanoid";
-import { MySliderProps } from "@/typification";
+// import { MySliderProps } from "@/typification";
 import { MySliderBtn } from "./MySliderBtn";
 
 export const settings: Settings = {
@@ -40,6 +40,12 @@ export const settings: Settings = {
     },
   ],
 };
+
+export interface MySliderProps<T> {
+  arraySlides: T[];
+  settings: Settings;
+  SlideComponent: React.ComponentType<{ movie: T }>;
+}
 
 export const MySlider = <T,>({
   arraySlides,

@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 import ContentLoader from "react-content-loader";
 import { Modal } from "./Modal";
 import { MovieInfoTrailer } from "../MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
 import { Movie } from "@/typification";
-import { saveMovie } from "@/app/actions/saveMovie";
+import { likedMovieSave } from "@/app/actions/likedMovieSave";
+import { useMovies } from "@/hooks/useMovies";
 
 interface IMovieForSaving {
   movieId: number;
@@ -25,12 +26,21 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedTarget, setClickedTarget] = useState<string | undefined>();
-  
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
-  // const closeModal = () => setIsModalOpen(false);
-  const router = useRouter();
   const session = useSession();
-  
+  const { status, data: user } = session;
+  /**
+   * Fetch and save movies ================
+   */
+  const {
+    data: movies,
+    error,
+    mutate,
+  } = useMovies(user?.user?.email as string);
+
+  const router = useRouter();
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   const { poster_path, id, title } = movie;
 
   const handleMovie = (
@@ -44,9 +54,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (clickedTarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
       const url = `/movies/${stringifyMovie}`;
-      
+
+      // Open the URL in a new tab if Ctrl or Meta key is pressed
       if (e.ctrlKey || e.metaKey) {
-        window.open(url, "_blank"); // Open the URL in a new tab if Ctrl or Meta key is pressed
+        window.open(url, "_blank");
       } else {
         router.push(url);
       }
@@ -55,9 +66,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (clickedTarget === "trailer") toggleModal();
   };
   useEffect(() => {
-
-    if(clickedTarget !== "sawIt" && clickedTarget !== "saveIt") return;
-    const { status, data: user } = session;
+    if (clickedTarget !== "sawIt" && clickedTarget !== "saveIt") return;
     if (status === "unauthenticated") {
       toast.error("You need to be logged in to save movies");
       return;
@@ -65,21 +74,18 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (status !== "authenticated") return;
 
     let watched = false;
-    
-    if (clickedTarget === "sawIt")
-       watched = true ;
-    if (clickedTarget === "saveIt")
-       watched = false ;
-    
+
+    if (clickedTarget === "sawIt") watched = true;
+    if (clickedTarget === "saveIt") watched = false;
+
     const onSaveMovie = async () => {
       try {
-        const result = await saveMovie(
+        const result = await likedMovieSave(
           user.user?.email as string,
           { movieId: id, watched } as IMovieForSaving
         );
 
         if (result) console.log("RESULT_SAVE_MOVIE", result);
-
       } catch (error) {
         console.log(error);
       }
@@ -87,11 +93,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     onSaveMovie();
   }, [clickedTarget, id, session]);
 
-
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
-  // poster_path
-  // ? `https://image.tmdb.org/t/p/w400/${poster_path}`
-  // : "/images/no-image.webp";
 
   return (
     <div

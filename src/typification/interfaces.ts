@@ -39,18 +39,14 @@ export interface ListMoviesProps {
   movies: Movie[];
 }
 
-export interface MySliderProps<T> {
-  arraySlides: T[];
-  settings: Settings;
-  SlideComponent: React.ComponentType<{ movie: T }>;
-}
+// export interface MySliderProps<T> {
+//   arraySlides: T[];
+//   settings: Settings;
+//   SlideComponent: React.ComponentType<{ movie: T }>;
+// }
 
 export interface SliderCarouselSlideProps {
   movie: string;
-}
-export interface GetShowMoviesProps {
-  title: string;
-  movies: Movie[];
 }
 
 export interface IResponsDataTMbD {

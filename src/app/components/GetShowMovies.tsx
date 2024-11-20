@@ -1,10 +1,15 @@
 "use client";
 
 import React from "react";
-import { GetShowMoviesProps } from "@/typification";
+import { Movie } from "@/typification";
 import { MySlider } from "./ui/MySlider";
 import { MovieCard } from "./ui/MovieCard";
 import { settings } from "./ui/MySlider";
+
+export interface GetShowMoviesProps {
+  title: string;
+  movies: Movie[];
+}
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,

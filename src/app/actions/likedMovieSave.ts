@@ -1,4 +1,4 @@
-export const saveMovie = async (
+export const likedMovieSave = async (
   email: string,
   movie: { movieId: number; watched: boolean }
 ) => {
@@ -11,7 +11,7 @@ export const saveMovie = async (
       body: JSON.stringify({ email, movie }),
     });
 
-    console.log("RES_IN_SAVE_MOVIE_>>>>>>>>>>>>>>>>>>>>>>>>>>>",res)
+    // console.log("RES_IN_SAVE_MOVIE_>>>>>>>>>>>>>>>>>>>>>>>>>>>",res)
     if (!res.ok) {
       throw new Error("Failed to save movie");
     }
