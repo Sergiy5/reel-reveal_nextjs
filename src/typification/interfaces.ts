@@ -117,9 +117,3 @@ export interface IStoredMovie {
   watched: boolean;
   _id: string;
 }
-
-export interface ErrorComponentProps {
-  error: Error;
-  reset: () => void;
-  from: string;
-}

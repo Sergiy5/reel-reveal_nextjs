@@ -1,7 +1,6 @@
 "use client";
 
-import { ErrorComponent } from "@/app/components/ErrorComponent";
-import { ErrorComponentProps } from "@/typification";
+import { ErrorComponent, ErrorComponentProps } from "@/app/components/ErrorComponent";
 
 export default function Error({ error, reset }: ErrorComponentProps) {
   return <ErrorComponent error={error} reset={reset} from={"user"} />;

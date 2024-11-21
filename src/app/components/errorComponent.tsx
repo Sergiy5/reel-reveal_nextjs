@@ -1,6 +1,8 @@
-"use client";
-
-import { ErrorComponentProps } from "@/typification";
+export interface ErrorComponentProps {
+  error: Error;
+  reset: () => void;
+  from: string;
+}
 
 export const ErrorComponent: React.FC<ErrorComponentProps> = ({
   error,
