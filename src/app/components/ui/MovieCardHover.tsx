@@ -3,18 +3,27 @@ import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
 import { Movie } from "@/typification";
 
- interface MovieCardHoverProps {
-  movie: Movie;
-  handleMovie: (
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-  ) => void;
+interface IMovieForHover {
+  voteAverage: number;
+  releaseDate: string;
+  title: string;
+  id: number;
+  isSaved: boolean;
+  isWatched: boolean;
 }
+
+ interface MovieCardHoverProps {
+   movie: IMovieForHover;
+   handleMovie: (
+     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+   ) => void;
+ }
 
 export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
-  const { vote_average, release_date, title, id } = movie;
+  const { voteAverage, releaseDate, title, id, isSaved, isWatched } = movie;
 
   return (
     <div
@@ -29,9 +38,9 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
             <svg width="19" height="19" className="mr-1">
               <use xlinkHref={`/icons/sprite.svg#icon-star`} />
             </svg>
-            {vote_average?.toFixed(1)}
+            {voteAverage?.toFixed(1)}
           </div>
-          <span className="text-white">{release_date.slice(0, 4)}</span>
+          <span className="text-white">{releaseDate.slice(0, 4)}</span>
         </div>
 
         <ul className="flex flex-col justify-between h-[119px]">
@@ -41,7 +50,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"
-              isChecked={false}
+              isChecked={isSaved}
               hoverd={true}
             />
           </li>
@@ -51,7 +60,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               dataMovie={"sawIt"}
               onClick={handleMovie}
               text="saw it"
-              isChecked={false}
+              isChecked={isWatched}
               hoverd={true}
             />
           </li>
@@ -61,7 +70,6 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               dataMovie={"trailer"}
               onClick={handleMovie}
               text="trailer"
-              isChecked={false}
               hoverd={true}
             />
           </li>

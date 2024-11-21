@@ -11,3 +11,4 @@ export { floorNumber } from "./floorNumber";
 export { getGenres } from "./getGenres";
 export { validateEmail } from "./validateEmail";
 export { validatePassword } from "./validatePassword";
+export { optimisticMutate } from "./optimisticMutate";

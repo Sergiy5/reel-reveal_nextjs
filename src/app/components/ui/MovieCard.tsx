@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
@@ -14,6 +13,7 @@ import { likedMovieSave } from "@/app/actions/likedMovieSave";
 import { useMovies } from "@/hooks/useMovies";
 import { useOpenUrl } from "@/hooks";
 import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
+import { optimisticMutate } from "@/utils";
 
 interface IMovieForSaving {
   movieId: number;
@@ -44,6 +44,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const { poster_path, id, title } = movie;
+  const movieForHover = {
+    voteAverage: movie.vote_average,
+    releaseDate: movie.release_date,
+    title: movie.title,
+    id: movie.id,
+    isSaved: movies?.some((movie: IMovieForSaving) => movie.movieId === id),
+    isWatched: movies?.some(
+      (movie: IMovieForSaving) => movie.watched && movie.movieId === id
+    ),
+  };
 
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
@@ -73,22 +83,44 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         const ifMovieSaved = movies?.some(
           (movie: IMovieForSaving) => movie.movieId === id
         );
-        console.log(" ifMovieSaved ", ifMovieSaved);
-        console.log("ID_MOVIE", id);
 
-        if (ifMovieSaved) setMovieToRemove({ movieId: id }); // Remove movie from DB
-        if (!ifMovieSaved) setMovieToSave({ movieId: id, watched }); // Save movie to DB
-
+        // Remove movie from DB
+        if (ifMovieSaved) {
+          mutate((currentMovies: IMovieForSaving[]) =>
+            currentMovies.filter(
+              (movie: IMovieForSaving) => movie.movieId !== id
+            )
+          );
+            setMovieToRemove({ movieId: id });
+        }
+        // Save movie to DB
+        if (!ifMovieSaved) {
+          optimisticMutate(mutate, { movieId: id, watched: false });
+          setTimeout(function () {
+            setMovieToSave({ movieId: id, watched });
+          }, 2000);
+        }
       }
 
       if (clickedTarget === "sawIt") {
         const ifMovieWatched = movies?.some(
           (movie: IMovieForSaving) => movie.watched === watched
         );
-        if (ifMovieWatched) setMovieToSave({ movieId: id, watched: false }); // Save not watched movie to DB
-        if (!ifMovieWatched) setMovieToSave({ movieId: id, watched: true }); // Save watched movie to DB
+        // Unchecked movie from watched movie in DB
+        if (ifMovieWatched) {
+          optimisticMutate(mutate, { movieId: id, watched: true });
+          setTimeout(function () {
+            setMovieToSave({ movieId: id, watched: true });
+          }, 2000);
+        }
+        // Save watched movie to DB
+        if (!ifMovieWatched) {
+          optimisticMutate(mutate, { movieId: id, watched: false });
+          setTimeout(function () {
+            setMovieToSave({ movieId: id, watched: false });
+          }, 2000);
+        }
       }
-
     }
   };
 
@@ -102,8 +134,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           movieToSave as IMovieForSaving
         );
 
-        if (result)  mutate();
-;
+        if (result) mutate();
       } catch (error) {
         console.log(error);
       }
@@ -125,9 +156,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         console.log(error);
       }
     };
+    
     onRemoveMovie();
   }, [movieToRemove, mutate, userId]);
-
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
 
@@ -143,7 +174,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     >
       <div className=" relative w-full">
         {isShowHover ? (
-          <MovieCardHover movie={movie} handleMovie={handleMovie} />
+          <MovieCardHover movie={movieForHover} handleMovie={handleMovie} />
         ) : null}
         {poster_path ? (
           <Image

@@ -3,7 +3,7 @@ import clsx from "clsx";
  interface MovieCardHoverBtnProps {
   iconId: string;
   text: string;
-  isChecked: boolean;
+  isChecked?: boolean;
   dataMovie: string;
   onClick?:((
         e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
