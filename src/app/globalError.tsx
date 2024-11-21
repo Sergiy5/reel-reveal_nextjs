@@ -1,7 +1,7 @@
 "use client";
 
+import { ErrorComponent, ErrorComponentProps } from "./components/ui/ErrorComponent";
 import { ceraPro } from "./fonts";
-import { ErrorComponent, ErrorComponentProps } from "@/app/components/ErrorComponent";
 
 export default function GlobalError({ error, reset }: ErrorComponentProps) {
   return (
