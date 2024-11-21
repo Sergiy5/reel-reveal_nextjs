@@ -1,7 +1,7 @@
-import { connectDB } from "@/db/db";
-import User from "@/db/models/user";
-import { IStoredMovie } from "@/typification";
 import { NextResponse } from "next/server";
+import User from "@/db/models/user";
+import { connectDB } from "@/db/db";
+import { IStoredMovie } from "@/typification";
 
 export const POST = async (req: Request) => {
   const { movie, email } = await req.json();

@@ -12,6 +12,7 @@ import { MovieCardHover } from "./MovieCardHover";
 import { Movie } from "@/typification";
 import { likedMovieSave } from "@/app/actions/likedMovieSave";
 import { useMovies } from "@/hooks/useMovies";
+import { useOpenUrl } from "@/hooks";
 
 interface IMovieForSaving {
   movieId: number;
@@ -27,16 +28,19 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedTarget, setClickedTarget] = useState<string | undefined>();
   const session = useSession();
+  const openUrl = useOpenUrl();
   const { status, data: user } = session;
+  const { email } = user?.user || {};
   /**
    * Fetch and save movies ================
    */
-  // const {
-  //   data: movies,
-  //   error,
-  //   mutate,
-  // } = useMovies(user?.user?.email as string);
+  const {
+    data: movies,
+    error,
+    mutate,
+  } = useMovies(email as string);
 
+// console.log("MOVIES_FROM_DB_OR_LOCAL_STPRAGE",movies)
   const router = useRouter();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -56,22 +60,22 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       const url = `/movies/${stringifyMovie}`;
 
       // Open the URL in a new tab if Ctrl or Meta key is pressed
-      if (e.ctrlKey || e.metaKey) {
-        window.open(url, "_blank");
-      } else {
-        router.push(url);
-      }
+      openUrl(url, e);
+     
     }
 
     if (clickedTarget === "trailer") toggleModal();
+
+      
   };
+
   useEffect(() => {
     if (clickedTarget !== "sawIt" && clickedTarget !== "saveIt") return;
+
     if (status === "unauthenticated") {
       toast.error("You need to be logged in to save movies");
       return;
     }
-    if (status !== "authenticated") return;
 
     let watched = false;
 
@@ -81,7 +85,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     const onSaveMovie = async () => {
       try {
         const result = await likedMovieSave(
-          user.user?.email as string,
+          email as string,
           { movieId: id, watched } as IMovieForSaving
         );
 
@@ -91,7 +95,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       }
     };
     onSaveMovie();
-  }, [clickedTarget, id, session, status, user?.user?.email]);
+  }, [clickedTarget, id, status, email]);
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
 
