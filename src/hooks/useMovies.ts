@@ -3,10 +3,9 @@ import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export const useMovies = (email: string) => {
-  
+export const useMovies = (userId: string) => {
   const { data, error, mutate } = useSWR(
-    email ? `/api/get-all-liked_movies?userEmail=${email}` : null,
+    userId ? `/api/get-all-liked_movies?userId=${userId}` : null,
     fetcher,
     {
       fallbackData: JSON.parse(localStorage.getItem("movies") || "[]"),
@@ -14,7 +13,6 @@ export const useMovies = (email: string) => {
         // Save fetched data to localStorage
         localStorage.setItem("movies", JSON.stringify(data));
       },
-      onError: (error) => {},
     }
   );
 

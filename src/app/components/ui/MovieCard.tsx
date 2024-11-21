@@ -13,6 +13,7 @@ import { Movie } from "@/typification";
 import { likedMovieSave } from "@/app/actions/likedMovieSave";
 import { useMovies } from "@/hooks/useMovies";
 import { useOpenUrl } from "@/hooks";
+import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
 
 interface IMovieForSaving {
   movieId: number;
@@ -26,22 +27,19 @@ interface MovieCardProps {
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [clickedTarget, setClickedTarget] = useState<string | undefined>();
+  const [movieToSave, setMovieToSave] = useState<IMovieForSaving | null>(null);
+  const [movieToRemove, setMovieToRemove] = useState<{
+    movieId: number;
+  } | null>(null);
+
   const session = useSession();
   const openUrl = useOpenUrl();
   const { status, data: user } = session;
-  const { email } = user?.user || {};
+  const { id: userId } = user?.user || {};
   /**
-   * Fetch and save movies ================
+   * Fetch saved movies from database ================
    */
-  const {
-    data: movies,
-    error,
-    mutate,
-  } = useMovies(email as string);
-
-// console.log("MOVIES_FROM_DB_OR_LOCAL_STPRAGE",movies)
-  const router = useRouter();
+  const { data: movies, error, mutate } = useMovies(userId as string);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -53,49 +51,83 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     e.stopPropagation();
     const clickedTarget = e.currentTarget.dataset.movie;
 
-    setClickedTarget(clickedTarget);
-
     if (clickedTarget === "movie") {
       const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
       const url = `/movies/${stringifyMovie}`;
 
       // Open the URL in a new tab if Ctrl or Meta key is pressed
       openUrl(url, e);
-     
     }
 
     if (clickedTarget === "trailer") toggleModal();
 
-      
+    if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
+      if (status === "unauthenticated") {
+        toast.error("You need to be logged in to save movies");
+        return;
+      }
+
+      let watched = false;
+
+      if (clickedTarget === "saveIt") {
+        const ifMovieSaved = movies?.some(
+          (movie: IMovieForSaving) => movie.movieId === id
+        );
+        console.log(" ifMovieSaved ", ifMovieSaved);
+        console.log("ID_MOVIE", id);
+
+        if (ifMovieSaved) setMovieToRemove({ movieId: id }); // Remove movie from DB
+        if (!ifMovieSaved) setMovieToSave({ movieId: id, watched }); // Save movie to DB
+
+      }
+
+      if (clickedTarget === "sawIt") {
+        const ifMovieWatched = movies?.some(
+          (movie: IMovieForSaving) => movie.watched === watched
+        );
+        if (ifMovieWatched) setMovieToSave({ movieId: id, watched: false }); // Save not watched movie to DB
+        if (!ifMovieWatched) setMovieToSave({ movieId: id, watched: true }); // Save watched movie to DB
+      }
+
+    }
   };
 
   useEffect(() => {
-    if (clickedTarget !== "sawIt" && clickedTarget !== "saveIt") return;
-
-    if (status === "unauthenticated") {
-      toast.error("You need to be logged in to save movies");
-      return;
-    }
-
-    let watched = false;
-
-    if (clickedTarget === "sawIt") watched = true;
-    if (clickedTarget === "saveIt") watched = false;
+    if (movieToSave === null) return;
 
     const onSaveMovie = async () => {
       try {
         const result = await likedMovieSave(
-          email as string,
-          { movieId: id, watched } as IMovieForSaving
+          userId as string,
+          movieToSave as IMovieForSaving
         );
 
-        if (result) console.log("RESULT_SAVE_MOVIE", result);
+        if (result)  mutate();
+;
       } catch (error) {
         console.log(error);
       }
     };
+
     onSaveMovie();
-  }, [clickedTarget, id, status, email]);
+  }, [userId, movieToSave, mutate]);
+
+  useEffect(() => {
+    if (movieToRemove === null || userId === undefined) return;
+    const onRemoveMovie = async () => {
+      try {
+        const result = await removeLikedMovie(
+          userId as string,
+          movieToRemove?.movieId
+        );
+        if (result) mutate();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    onRemoveMovie();
+  }, [movieToRemove, mutate, userId]);
+
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
 

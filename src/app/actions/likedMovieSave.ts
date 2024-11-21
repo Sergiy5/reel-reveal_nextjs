@@ -1,5 +1,5 @@
 export const likedMovieSave = async (
-  email: string,
+  userId: string,
   movie: { movieId: number; watched: boolean }
 ) => {
   try {
@@ -8,7 +8,7 @@ export const likedMovieSave = async (
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, movie }),
+      body: JSON.stringify({ userId, movie }),
     });
 
     // console.log("RES_IN_SAVE_MOVIE_>>>>>>>>>>>>>>>>>>>>>>>>>>>",res)
