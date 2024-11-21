@@ -2,11 +2,10 @@ import { connectDB } from "@/db/db";
 import User from "@/db/models/user";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
+  const userId = await req.json();
   try {
-    const searchParams = request.nextUrl.searchParams;
-    const userId = searchParams.get("userId");
-
+    // const userId = "1231231231"
     if (!userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
     }
@@ -24,7 +23,6 @@ export async function GET(request: NextRequest) {
     const user = await User.findById(userId)
       .then((user) => {
         if (user) {
-          
           return user;
         } else {
           console.log("User not found");

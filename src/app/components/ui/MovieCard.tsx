@@ -91,12 +91,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
               (movie: IMovieForSaving) => movie.movieId !== id
             )
           );
-            setMovieToRemove({ movieId: id });
+          return  setMovieToRemove({ movieId: id });
         }
         // Save movie to DB
         if (!ifMovieSaved) {
           optimisticMutate(mutate, { movieId: id, watched: false });
-          setTimeout(function () {
+          return setTimeout(function () {
             setMovieToSave({ movieId: id, watched });
           }, 2000);
         }
@@ -104,21 +104,24 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
       if (clickedTarget === "sawIt") {
         const ifMovieWatched = movies?.some(
-          (movie: IMovieForSaving) => movie.watched === watched
+          (movie: IMovieForSaving) => movie.watched === true
         );
         // Unchecked movie from watched movie in DB
         if (ifMovieWatched) {
-          optimisticMutate(mutate, { movieId: id, watched: true });
-          setTimeout(function () {
-            setMovieToSave({ movieId: id, watched: true });
-          }, 2000);
+          console.log("ifMovieWatched", ifMovieWatched);
+
+          optimisticMutate(mutate, { movieId: id, watched: false });
+        return setTimeout(function () {
+          setMovieToSave({ movieId: id, watched: false });
+        }, 2000);
         }
         // Save watched movie to DB
         if (!ifMovieWatched) {
-          optimisticMutate(mutate, { movieId: id, watched: false });
-          setTimeout(function () {
-            setMovieToSave({ movieId: id, watched: false });
-          }, 2000);
+          console.log(!ifMovieWatched);
+          optimisticMutate(mutate, { movieId: id, watched: true });
+         return setTimeout(function () {
+           setMovieToSave({ movieId: id, watched: false });
+         }, 2000);
         }
       }
     }
