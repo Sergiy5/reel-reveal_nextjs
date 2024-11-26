@@ -62,8 +62,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     const clickedTarget = e.currentTarget.dataset.movie;
 
     if (clickedTarget === "movie") {
-      const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
-      const url = `/movies/${stringifyMovie}`;
+      // const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
+      const url = `/movies/${id}`;
 
       // Open the URL in a new tab if Ctrl or Meta key is pressed
       openUrl(url, e);

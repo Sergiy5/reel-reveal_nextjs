@@ -1,8 +1,6 @@
 import { Movie } from "@/typification";
 
-export const getMovieById = async (
-  id: string | string[] | null
-): Promise<Movie> => {
+export const getMovieById = async (id: number): Promise<Movie> => {
   const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/movie/${id}`;
 

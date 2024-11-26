@@ -18,10 +18,11 @@ export interface LayoutProviderProps {
 }
 
 export interface Movie {
+  id: number;
   adult: boolean;
   backdrop_path: string | null;
   genre_ids: number[];
-  id: number;
+  genres?: { id: number; name: string }[];
   original_language: string;
   original_title: string;
   overview: string;

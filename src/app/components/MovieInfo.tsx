@@ -1,23 +1,19 @@
-"use client";
-
 import Image from "next/image";
 import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./ui/MovieCardHoverBtn";
 import {
   floorNumber,
   generateUrlImage,
-  getGenres,
   hoursFromMinuts,
 } from "@/utils";
 import { nanoid } from "nanoid";
-import { useEffect } from "react";
 interface MovieInfoProps {
   movie: Movie;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
 
-  const listGenres = getGenres(movie && movie.genre_ids);
+  const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
   
   const cutingString = (title: string, max: number) => {
     if (title.length > max) {
@@ -80,7 +76,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                     <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
                       {movie.release_date.replaceAll("-", " ")}
                     </li>
-                    {listGenres.map((item: string) => {
+                    {listGenres?.map((item: string) => {
                       return (
                         <li
                           key={nanoid()}
@@ -103,7 +99,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
           </div>
           <div />
           <Image
-            src={generateUrlImage(movie.backdrop_path, "500")}
+            src={generateUrlImage(movie.backdrop_path, "1280")}
             alt={"Movie image"}
             width={600}
             height={380}

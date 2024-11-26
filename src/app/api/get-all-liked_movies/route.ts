@@ -5,7 +5,6 @@ import { NextResponse, type NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   const userId = await req.json();
   try {
-    // const userId = "1231231231"
     if (!userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
     }

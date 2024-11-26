@@ -1,4 +1,4 @@
-export const getMovieCast = async (id: string) => {
+export const getMovieCast = async (id: number) => {
   const API_KEY = process.env.TMDB_API_KEY;
 
   try {
