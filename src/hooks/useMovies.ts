@@ -1,25 +1,40 @@
 import useSWR from "swr";
 
-const fetcher = (url: string, userId?: string) =>
-  fetch(url, {
-    method: "GET",
+const fetcher = async (url: string, userId?: string) => {
+
+  const response = await fetch(url, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      userId,
-    }),
-  }).then((res) => res.json());
+    body: JSON.stringify({ userId }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+};
 
 export const useMovies = (userId: string) => {
+  const fallbackData =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("movies") || "[]")
+      : [];
+
   const { data, error, mutate } = useSWR(
-    userId ? `/api/get-all-liked_movies` : null,
+    userId ? `/api/get-all-liked_movies?${userId}` : null,
     () => fetcher(`/api/get-all-liked_movies`, userId),
     {
-      fallbackData: JSON.parse(localStorage.getItem("movies") || "[]"),
+      fallbackData,
       onSuccess: (data) => {
-        // Save fetched data to localStorage
-        localStorage.setItem("movies", JSON.stringify(data));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("movies", JSON.stringify(data));
+        }
+      },
+      onError: (error) => {
+        console.error("Error fetching data:", error);
       },
     }
   );

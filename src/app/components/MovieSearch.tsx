@@ -32,7 +32,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
 
   // On first render show popular movies
   useEffect(() => {
-    console.log("totalSearchMoviesSignal.value", totalSearchMoviesSignal.value);
+    // console.log("totalSearchMoviesSignal.value", totalSearchMoviesSignal.value);
     if (movieTitle !== "movies") {
       return setisActiveSearch(true);
     }

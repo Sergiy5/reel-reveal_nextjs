@@ -2,8 +2,8 @@ import { connectDB } from "@/db/db";
 import User from "@/db/models/user";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const userId = await req.json();
+export async function POST(req: NextRequest) {
+  const { userId } = await req.json();
   try {
     if (!userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
@@ -28,8 +28,12 @@ export async function GET(req: NextRequest) {
         }
       })
       .catch((error) => {
-        console.error("Error finding user:", error);
+        console.error(
+          "Error finding user >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
+          error
+        );
       });
+
     return NextResponse.json(user.movies);
   } catch (error) {
     console.log(error);

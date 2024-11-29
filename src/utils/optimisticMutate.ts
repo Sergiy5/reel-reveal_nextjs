@@ -1,16 +1,12 @@
+import { IMovieInDB } from "@/app/components/ui/MovieCard";
 import { KeyedMutator } from "swr";
-
-interface IMovieForSaving {
-  movieId: number;
-  watched: boolean;
-}
 
 type OptimisticUpdateFn<T> = (
   mutate: KeyedMutator<T>,
-  newItem: IMovieForSaving
+  newItem: IMovieInDB
 ) => void;
 
-export const optimisticMutate: OptimisticUpdateFn<IMovieForSaving[]> = (
+export const optimisticMutate: OptimisticUpdateFn<IMovieInDB[]> = (
   mutate,
   newItem
 ) => {
@@ -20,6 +16,6 @@ export const optimisticMutate: OptimisticUpdateFn<IMovieForSaving[]> = (
       const updatedData = currentData ? [...currentData, newItem] : [newItem];
       return updatedData;
     },
-     false // Don't revalidate yet
+    // false // revalidate
   );
 };

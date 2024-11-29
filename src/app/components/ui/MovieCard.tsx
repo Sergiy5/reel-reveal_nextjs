@@ -15,9 +15,10 @@ import { useOpenUrl } from "@/hooks";
 import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
 import { optimisticMutate } from "@/utils";
 
-interface IMovieForSaving {
+export interface IMovieInDB {
   movieId: number;
   watched: boolean;
+  liked: boolean;
 }
 
 interface MovieCardProps {
@@ -27,7 +28,11 @@ interface MovieCardProps {
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [movieToSave, setMovieToSave] = useState<IMovieForSaving | null>(null);
+  const [movieToSave, setMovieToSave] = useState<IMovieInDB>({
+    movieId: 0,
+    watched: false,
+    liked: false,
+  });
   const [movieToRemove, setMovieToRemove] = useState<{
     movieId: number;
   } | null>(null);
@@ -41,17 +46,25 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
    */
   const { data: movies, error, mutate } = useMovies(userId as string);
 
+//   useEffect(() => { 
+//     console.log(error)
+// console.log("MOVIES",movies)
+//   }, [error])
+
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const { poster_path, id, title } = movie;
+
   const movieForHover = {
     voteAverage: movie.vote_average,
     releaseDate: movie.release_date,
     title: movie.title,
     id: movie.id,
-    isSaved: movies?.some((movie: IMovieForSaving) => movie.movieId === id),
+    isLiked: movies?.some(
+      (movie: IMovieInDB) => movie.liked && movie.movieId === id
+    ),
     isWatched: movies?.some(
-      (movie: IMovieForSaving) => movie.watched && movie.movieId === id
+      (movie: IMovieInDB) => movie.watched && movie.movieId === id
     ),
   };
 
@@ -62,7 +75,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     const clickedTarget = e.currentTarget.dataset.movie;
 
     if (clickedTarget === "movie") {
-      // const stringifyMovie = encodeURIComponent(JSON.stringify(movie));
       const url = `/movies/${id}`;
 
       // Open the URL in a new tab if Ctrl or Meta key is pressed
@@ -77,67 +89,73 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         return;
       }
 
-      let watched = false;
+      const ifMovieWatched = movies?.some(
+        (movie: IMovieInDB) => movie.watched && movie.movieId === id
+      );
+      const ifMovieLiked = movies?.some(
+        (movie: IMovieInDB) => movie.liked && movie.movieId === id
+      );
 
+      // If Clicked target is "saveIt" (add to liked movies)
       if (clickedTarget === "saveIt") {
-        const ifMovieSaved = movies?.some(
-          (movie: IMovieForSaving) => movie.movieId === id
-        );
-
-        // Remove movie from DB
-        if (ifMovieSaved) {
-          mutate((currentMovies: IMovieForSaving[]) =>
-            currentMovies.filter(
-              (movie: IMovieForSaving) => movie.movieId !== id
-            )
-          );
-          return  setMovieToRemove({ movieId: id });
-        }
-        // Save movie to DB
-        if (!ifMovieSaved) {
-          optimisticMutate(mutate, { movieId: id, watched: false });
-          return setTimeout(function () {
-            setMovieToSave({ movieId: id, watched });
-          }, 2000);
+// console.log("ifMovieLiked+>>>>>>", ifMovieLiked);
+        if (ifMovieLiked && !ifMovieWatched) {
+          // console.log("REMOVE_MOVIE")
+          setMovieToRemove({ movieId: id });
+        } else {
+          // 
+          optimisticMutate(mutate, {
+            movieId: id,
+            watched: ifMovieWatched,
+            liked: true,
+          });
+          // setTimeout(function () {
+          setMovieToSave({
+            movieId: id,
+            watched: ifMovieWatched,
+            liked: true,
+          });
+          // }, 2000);
         }
       }
 
       if (clickedTarget === "sawIt") {
-        const ifMovieWatched = movies?.some(
-          (movie: IMovieForSaving) => movie.watched === true
-        );
-        // Unchecked movie from watched movie in DB
-        if (ifMovieWatched) {
-          console.log("ifMovieWatched", ifMovieWatched);
 
-          optimisticMutate(mutate, { movieId: id, watched: false });
-        return setTimeout(function () {
-          setMovieToSave({ movieId: id, watched: false });
-        }, 2000);
+        if (!ifMovieLiked && ifMovieWatched) {
+          setMovieToRemove({ movieId: id });
+        } else {
+          // 
+          optimisticMutate(mutate, {
+            movieId: id,
+            watched: ifMovieWatched,
+            liked: ifMovieLiked,
+          });
+          // setTimeout(function () {
+          setMovieToSave({
+            movieId: id,
+            watched: ifMovieWatched,
+            liked: ifMovieLiked,
+          });
+          // }, 2000);
         }
-        // Save watched movie to DB
-        if (!ifMovieWatched) {
-          console.log(!ifMovieWatched);
-          optimisticMutate(mutate, { movieId: id, watched: true });
-         return setTimeout(function () {
-           setMovieToSave({ movieId: id, watched: false });
-         }, 2000);
-        }
-      }
+        
+      };
     }
   };
 
   useEffect(() => {
-    if (movieToSave === null) return;
-
+    if (movieToSave.movieId === 0) return;
+console.log("SAVE_MOVIE_IN_USEFFECT", movieToSave)
     const onSaveMovie = async () => {
       try {
         const result = await likedMovieSave(
           userId as string,
-          movieToSave as IMovieForSaving
+          movieToSave as IMovieInDB
         );
 
         if (result) mutate();
+          console.log("RESULT_ON_SAVE", result);
+
       } catch (error) {
         console.log(error);
       }
@@ -148,13 +166,16 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
   useEffect(() => {
     if (movieToRemove === null || userId === undefined) return;
+console.log("REMOVE_IN_USEFFECT", movieToRemove);
+
     const onRemoveMovie = async () => {
       try {
         const result = await removeLikedMovie(
           userId as string,
           movieToRemove?.movieId
         );
-        if (result) mutate();
+        if (result) mutate()
+          console.log("RESULT_ON_REMOVE", result);
       } catch (error) {
         console.log(error);
       }

@@ -8,7 +8,7 @@ interface IMovieForHover {
   releaseDate: string;
   title: string;
   id: number;
-  isSaved: boolean;
+  isLiked: boolean;
   isWatched: boolean;
 }
 
@@ -23,7 +23,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
-  const { voteAverage, releaseDate, title, id, isSaved, isWatched } = movie;
+  const { voteAverage, releaseDate, title, id, isLiked, isWatched } = movie;
 
   return (
     <div
@@ -50,7 +50,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
               dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"
-              isChecked={isSaved}
+              isChecked={isLiked}
               hoverd={true}
             />
           </li>

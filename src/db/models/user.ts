@@ -55,6 +55,9 @@ const userSchema = new Schema(
         watched: {
           type: Boolean,
         },
+        liked: {
+          type: Boolean,
+        }
       },
     ],
   },
