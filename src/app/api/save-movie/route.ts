@@ -14,6 +14,7 @@ export const POST = async (req: Request) => {
     }
 
     if (user.movies) {
+
       const filteredMovies = user.movies.filter(
         (m: IStoredMovie) => m.movieId !== movie.movieId
       );
@@ -21,7 +22,7 @@ export const POST = async (req: Request) => {
       user.movies = [...filteredMovies, movie];
 
       await user.save();
-      return NextResponse.json(user);
+      return NextResponse.json(user.movies);
     }
 
     user.movies.push(movie);

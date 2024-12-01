@@ -2,26 +2,22 @@ import Image from "next/image";
 import { Movie } from "@/typification";
 import { MovieCardHoverBtn } from "./ui/MovieCardHoverBtn";
 import {
+  cutingString,
   floorNumber,
   generateUrlImage,
   hoursFromMinuts,
 } from "@/utils";
-import { nanoid } from "nanoid";
+import { ListGenres } from "./ListGenres";
+import { DateGenresDurationList } from "./DateGenresDurationList";
+// import { nanoid } from "nanoid";
+// import { ListGenres } from "./ListGenres";
 interface MovieInfoProps {
   movie: Movie;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
 
-  const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
-  
-  const cutingString = (title: string, max: number) => {
-    if (title.length > max) {
-      return title.slice(0, max) + "...";
-    }
-    return title;
-  };
-  const title = cutingString(movie.title, 35);
+  // const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
 
   return (
     <>
@@ -34,7 +30,9 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
               className={`flex flex-col items-center justify-center w-full px-[16px]
                bg-movieGradient md:px-[60px] xl:px-[120px] z-10`}
             >
-              <h1 className={`block lg:hidden sm:text-7xl pb-6`}>{title}</h1>
+              <h1 className={`block lg:hidden sm:text-7xl pb-6`}>
+                {cutingString(movie.title, 35)}
+              </h1>
               <div
                 className={`flex flex-col-reverse items-center md:items-end gap-10 md:flex-row w-full lg:gap-[122px]`}
               >
@@ -51,7 +49,9 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                   <div
                     className={`flex gap-9 flex-col xl:justify-between lg:items-start xl:items-start xl:flex-row`}
                   >
-                    <h1 className={`hidden lg:flex`}>{title}</h1>
+                    <h1 className={`hidden lg:flex`}>
+                      {cutingString(movie.title, 35)}
+                    </h1>
                     <div
                       className={`flex justify-start min-w-[210px] gap-4 xl:pt-5`}
                     >
@@ -72,26 +72,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                       />
                     </div>
                   </div>
-                  <ul className={`flex justify-start flex-wrap w-full`}>
-                    <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-                      {movie.release_date.replaceAll("-", " ")}
-                    </li>
-                    {listGenres?.map((item: string) => {
-                      return (
-                        <li
-                          key={nanoid()}
-                          className={`rounded-2xl bg-bgColor m-2 px-2`}
-                        >
-                          {item}
-                        </li>
-                      );
-                    })}
-                    <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-                      {movie.runtime
-                        ? hoursFromMinuts(movie.runtime)
-                        : "Unknown duration"}
-                    </li>
-                  </ul>
+                  <DateGenresDurationList listGenres={movie.genres ?? []} runtime={movie.runtime} reliseDate={movie.release_date} />
+                  
                   <p className={`flex`}>{cutingString(movie.overview, 300)}</p>
                 </div>
               </div>

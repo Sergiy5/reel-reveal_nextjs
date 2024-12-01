@@ -17,6 +17,6 @@ export async function DELETE(req: NextRequest) {
 
     const response = await user.save();
 
-    return NextResponse.json(response, { status: 200 });
+    return NextResponse.json(response.movies, { status: 200 });
   } catch (error) {}
 }

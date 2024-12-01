@@ -22,7 +22,7 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   return (
     <div
       className={clsx(
-        "relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full border-solid border-[1px] transition-all duration-350 ease-in-out",
+        "relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full border-solid border transition-all duration-350 ease-in-out",
         {
           group: hoverd,
           "border-accentColor text-accentColor": isChecked,
@@ -35,11 +35,16 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
         data-movie={dataMovie}
         onClick={onClick}
         className={clsx(
-          "absolute flex items-center justify-center right-0 text-transparent pr-6 w-7 h-7 border-solid border-[1px] border-r-hidden rounded-full overflow-hidden transition-all duration-350 ease-in-out",
-          "group-hover:w-28 group-hover:text-textColor group-hover:border-textColor",
+          `absolute flex items-center justify-center right-0 text-transparent pr-6 w-7 h-7 border-solid border border-r-hidden
+           rounded-full overflow-hidden transition-all duration-350 ease-in-out`,
+          "group-hover:w-28 ",
+
           {
-            "text-accentColor": isChecked,
-            "text-textColor": !isChecked,
+            // group: hoverd,
+            " group-hover:text-accentColor group-hover:border-accentColor ":
+              isChecked,
+            " group-hover:text-textColor group-hover:border-textColor":
+              !isChecked,
           }
         )}
       >

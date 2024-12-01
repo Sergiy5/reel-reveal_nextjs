@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import ContentLoader from "react-content-loader";
 import { Modal } from "./Modal";
@@ -14,6 +13,7 @@ import { useMovies } from "@/hooks/useMovies";
 import { useOpenUrl } from "@/hooks";
 import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
 import { optimisticMutate } from "@/utils";
+import { sessionUserSignal } from "@/context/UserContext";
 
 export interface IMovieInDB {
   movieId: number;
@@ -28,45 +28,38 @@ interface MovieCardProps {
 export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [movieToSave, setMovieToSave] = useState<IMovieInDB>({
+  const [movieToCondition, setMovieToCondition] = useState<IMovieInDB>({
     movieId: 0,
     watched: false,
     liked: false,
   });
-  const [movieToRemove, setMovieToRemove] = useState<{
-    movieId: number;
-  } | null>(null);
 
-  const session = useSession();
-  const openUrl = useOpenUrl();
-  const { status, data: user } = session;
-  const { id: userId } = user?.user || {};
+  const { userId, status } = sessionUserSignal.value;
   /**
    * Fetch saved movies from database ================
    */
-  const { data: movies, error, mutate } = useMovies(userId as string);
+  const { data: movies, error, mutate } = useMovies(userId);
 
-//   useEffect(() => { 
-//     console.log(error)
-// console.log("MOVIES",movies)
-//   }, [error])
+  const openUrl = useOpenUrl();
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const { poster_path, id, title } = movie;
+  const { poster_path, release_date, vote_average, id, title } = movie;
 
-  const movieForHover = {
-    voteAverage: movie.vote_average,
-    releaseDate: movie.release_date,
-    title: movie.title,
-    id: movie.id,
-    isLiked: movies?.some(
-      (movie: IMovieInDB) => movie.liked && movie.movieId === id
-    ),
-    isWatched: movies?.some(
-      (movie: IMovieInDB) => movie.watched && movie.movieId === id
-    ),
-  };
+  const movieForHover = useMemo(() => {
+    return {
+      voteAverage: vote_average,
+      releaseDate: release_date,
+      title: title,
+      id: id,
+      isLiked: movies?.some(
+        (movieInDB: IMovieInDB) => movieInDB.liked && movieInDB.movieId === id
+      ),
+      isWatched: movies?.some(
+        (movieInDB: IMovieInDB) => movieInDB.watched && movieInDB.movieId === id
+      ),
+    };
+  }, [vote_average, release_date, title, id, movies]);
 
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
@@ -96,93 +89,98 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         (movie: IMovieInDB) => movie.liked && movie.movieId === id
       );
 
-      // If Clicked target is "saveIt" (add to liked movies)
+      // If Clicked target is "saveIt"
       if (clickedTarget === "saveIt") {
-// console.log("ifMovieLiked+>>>>>>", ifMovieLiked);
-        if (ifMovieLiked && !ifMovieWatched) {
-          // console.log("REMOVE_MOVIE")
-          setMovieToRemove({ movieId: id });
+        // Remove movie form db
+        if (ifMovieLiked === true && ifMovieWatched === false) {
+          const filteredMovies = movies.filter(
+            (movie: IMovieInDB) => movie.movieId !== id
+          );
+          optimisticMutate(mutate, filteredMovies);
+          setMovieToCondition({
+            movieId: id,
+            watched: false,
+            liked: false,
+          });
         } else {
-          // 
           optimisticMutate(mutate, {
             movieId: id,
             watched: ifMovieWatched,
-            liked: true,
+            liked: !ifMovieLiked,
           });
           // setTimeout(function () {
-          setMovieToSave({
+          setMovieToCondition({
             movieId: id,
             watched: ifMovieWatched,
-            liked: true,
+            liked: !ifMovieLiked,
           });
           // }, 2000);
         }
       }
 
       if (clickedTarget === "sawIt") {
+        // Remove movie form db
 
-        if (!ifMovieLiked && ifMovieWatched) {
-          setMovieToRemove({ movieId: id });
+        if (ifMovieLiked === false && ifMovieWatched === true) {
+          const filteredMovies = movies.filter(
+            (movie: IMovieInDB) => movie.movieId !== id
+          );
+          optimisticMutate(mutate, filteredMovies);
+          setMovieToCondition({ movieId: id, watched: false, liked: false });
+
         } else {
-          // 
+          //
           optimisticMutate(mutate, {
             movieId: id,
-            watched: ifMovieWatched,
+            watched: !ifMovieWatched,
             liked: ifMovieLiked,
           });
-          // setTimeout(function () {
-          setMovieToSave({
+          setMovieToCondition({
             movieId: id,
-            watched: ifMovieWatched,
+            watched: !ifMovieWatched,
             liked: ifMovieLiked,
           });
-          // }, 2000);
         }
-        
-      };
+      }
     }
   };
 
   useEffect(() => {
-    if (movieToSave.movieId === 0) return;
-console.log("SAVE_MOVIE_IN_USEFFECT", movieToSave)
+    if (movieToCondition.movieId === 0) return;
+
     const onSaveMovie = async () => {
       try {
-        const result = await likedMovieSave(
-          userId as string,
-          movieToSave as IMovieInDB
-        );
+        if (
+          movieToCondition.liked === true ||
+          movieToCondition.watched === true
+        ) {
+          const result = await likedMovieSave(
+            userId as string,
+            movieToCondition as IMovieInDB
+          );
 
-        if (result) mutate();
-          console.log("RESULT_ON_SAVE", result);
-
+          if (result) mutate(result);
+          // console.log("RESULT_ON_SAVE", result);
+        }
+        if (
+          movieToCondition.liked === false &&
+          movieToCondition.watched === false
+        ) {
+          const result = await removeLikedMovie(
+            userId as string,
+            movieToCondition.movieId
+          );
+          console.log("first", result);
+          if (result) mutate(result);
+          // console.log("RESULT_ON_REMOVE", result);
+        }
       } catch (error) {
         console.log(error);
       }
     };
 
     onSaveMovie();
-  }, [userId, movieToSave, mutate]);
-
-  useEffect(() => {
-    if (movieToRemove === null || userId === undefined) return;
-console.log("REMOVE_IN_USEFFECT", movieToRemove);
-
-    const onRemoveMovie = async () => {
-      try {
-        const result = await removeLikedMovie(
-          userId as string,
-          movieToRemove?.movieId
-        );
-        if (result) mutate()
-          console.log("RESULT_ON_REMOVE", result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    
-    onRemoveMovie();
-  }, [movieToRemove, mutate, userId]);
+  }, [userId, movieToCondition, mutate]);
 
   const poster = `https://image.tmdb.org/t/p/w400/${poster_path}`;
 

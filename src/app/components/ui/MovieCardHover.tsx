@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
 import { Movie } from "@/typification";
 
 interface IMovieForHover {
   voteAverage: number;
-  releaseDate: string;
+  releaseDate: Date;
   title: string;
   id: number;
   isLiked: boolean;
@@ -23,8 +23,24 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
-  const { voteAverage, releaseDate, title, id, isLiked, isWatched } = movie;
 
+  const formattedMovie = useMemo(() => {
+    return {
+      ...movie,
+      voteAverageFormatted: movie.voteAverage.toFixed(1),
+      releaseYear: new Date(movie.releaseDate).getFullYear(),
+    };
+  }, [movie]);
+
+  const {
+    title,
+    id,
+    isLiked,
+    isWatched,
+    voteAverageFormatted,
+    releaseYear,
+  } = formattedMovie;
+// releaseDate.slice(0, 4);
   return (
     <div
       id={`${id}`}
@@ -38,9 +54,9 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
             <svg width="19" height="19" className="mr-1">
               <use xlinkHref={`/icons/sprite.svg#icon-star`} />
             </svg>
-            {voteAverage?.toFixed(1)}
+            {voteAverageFormatted}
           </div>
-          <span className="text-white">{releaseDate.slice(0, 4)}</span>
+          <span className="text-white">{releaseYear}</span>
         </div>
 
         <ul className="flex flex-col justify-between h-[119px]">
