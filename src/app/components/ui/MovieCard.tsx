@@ -170,7 +170,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             userId as string,
             movieToCondition.movieId
           );
-          console.log("first", result);
           if (result) mutate(result);
           // console.log("RESULT_ON_REMOVE", result);
         }

@@ -9,6 +9,7 @@ export const POST = async (req: Request) => {
   try {
     await connectDB();
     const user = await User.findById(userId);
+    console.log("USER_++++++++++++++++++++++++>",user)
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }

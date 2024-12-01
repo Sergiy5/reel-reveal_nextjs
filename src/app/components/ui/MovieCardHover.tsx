@@ -40,7 +40,9 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
     voteAverageFormatted,
     releaseYear,
   } = formattedMovie;
-// releaseDate.slice(0, 4);
+  // releaseDate.slice(0, 4);
+  
+  console.log("isLiked", isLiked, "isWatched", isWatched);
   return (
     <div
       id={`${id}`}
