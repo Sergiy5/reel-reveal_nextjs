@@ -5,8 +5,8 @@ import { Settings, default as Slider } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { nanoid } from "nanoid";
-// import { MySliderProps } from "@/typification";
 import { MySliderBtn } from "./MySliderBtn";
+import { ISessionUserSignal } from "@/context/UserContext";
 
 export const settings: Settings = {
   pauseOnHover: true,
@@ -44,13 +44,18 @@ export const settings: Settings = {
 export interface MySliderProps<T> {
   arraySlides: T[];
   settings: Settings;
-  SlideComponent: React.ComponentType<{ movie: T }>;
+  sessionUser: ISessionUserSignal;
+  SlideComponent: React.ComponentType<{
+    movie: T;
+    sessionUser: ISessionUserSignal;
+  }>;
 }
 
 export const MySlider = <T,>({
   arraySlides,
   SlideComponent,
   settings,
+  sessionUser,
 }: MySliderProps<T>) => {
   const [key, setKey] = useState(0);
   const sliderRef = useRef<Slider | null>(null);
@@ -66,7 +71,7 @@ export const MySlider = <T,>({
   return (
     <Slider key={key} ref={sliderRef} {...settings}>
       {arraySlides.map((item) => (
-        <SlideComponent key={nanoid()} movie={item} />
+        <SlideComponent key={nanoid()} movie={item} sessionUser={sessionUser} />
       ))}
     </Slider>
   );

@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import { isAuthUserSignal, sessionUserSignal, userEmailSignal } from "@/context/UserContext";
+import {
+  isAuthUserSignal,
+  sessionUserSignal,
+  userEmailSignal,
+} from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
 import { getSession } from "next-auth/react";
-import { savedMoviesSignal } from "@/context/MoviesContext";
+import { userStatuses } from "@/variables";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -33,19 +36,24 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
     setIsLoading(true);
     const { password } = data;
     const email = userEmailSignal.value;
-    
+
     try {
       const response = await doCredentialLogin({ email, password });
 
-      if (!response) return toast.error(`Wrong password`); // NEED to FIX!!!
+      if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
 
       isAuthUserSignal.value = true;
       toast.success(`User logged in successfully`);
 
-      const session = await getSession()
+      const session = await getSession();
 
-      sessionUserSignal.value = session?.user
-      
+      sessionUserSignal.value = {
+        userId: session?.user?.id,
+        userName: session?.user?.name,
+        email: session?.user?.email,
+        userStatus: userStatuses.Authenticated,
+      };
+      router.refresh();
       router.replace("/home");
     } catch (error) {
       console.log(error);

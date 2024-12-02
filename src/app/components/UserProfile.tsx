@@ -5,15 +5,29 @@ import { doLogout } from "../actions/socialLogin";
 import DeleteAccount from "../../../public/icons/delete-account.svg";
 import Signout from "../../../public/icons/signout.svg";
 import EditAccaount from "../../../public/icons/edit-account.svg";
-import { isAuthUserSignal } from "@/context/UserContext";
+import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
+import { mutate } from "swr";
+import { userStatuses } from "@/variables";
+import { useRouter } from "next/navigation";
 
 export const UserProfile: React.FC = () => {
   const srcImage = "";
 
+  const router = useRouter();
+  
   const signOut = () => {
     isAuthUserSignal.value = false;
-
     doLogout();
+
+
+    sessionUserSignal.value = {
+      userId: "",
+      email: "",
+      userName: "",
+      userStatus: userStatuses.Unauthenticated,
+    };
+
+    router.forward();
   };
 
   return (

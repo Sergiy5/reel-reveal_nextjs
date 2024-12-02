@@ -1,3 +1,5 @@
+"use client";
+
 import { userEmailSignal } from "@/context/UserContext";
 import { useForm } from "react-hook-form";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";

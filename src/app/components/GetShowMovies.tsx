@@ -5,16 +5,21 @@ import { Movie } from "@/typification";
 import { MySlider } from "./ui/MySlider";
 import { MovieCard } from "./ui/MovieCard";
 import { settings } from "./ui/MySlider";
+import { ISessionUserSignal } from "@/context/UserContext";
+
 
 export interface GetShowMoviesProps {
   title: string;
   movies: Movie[];
+  sessionUser: ISessionUserSignal;
 }
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
   movies,
+  sessionUser,
 }) => {
+
   return (
     <div
       className={` flex flex-col items-center gap-12 w-full z-10 xl:max-w-[1440px]`}
@@ -25,6 +30,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
           arraySlides={movies}
           SlideComponent={MovieCard}
           settings={settings}
+          sessionUser={sessionUser}
         />
       </div>
     </div>

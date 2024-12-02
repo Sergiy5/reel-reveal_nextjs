@@ -13,7 +13,10 @@ import { useMovies } from "@/hooks/useMovies";
 import { useOpenUrl } from "@/hooks";
 import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
 import { optimisticMutate } from "@/utils";
-import { sessionUserSignal } from "@/context/UserContext";
+import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
+import { userStatuses } from "@/variables";
+import user from "@/db/models/user";
+import { useSession } from "next-auth/react";
 
 export interface IMovieInDB {
   movieId: number;
@@ -23,9 +26,10 @@ export interface IMovieInDB {
 
 interface MovieCardProps {
   movie: Movie;
+  sessionUser: ISessionUserSignal;
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieToCondition, setMovieToCondition] = useState<IMovieInDB>({
@@ -34,7 +38,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     liked: false,
   });
 
-  const { userId, status } = sessionUserSignal.value;
+  const { userId, userStatus } = sessionUser;
   /**
    * Fetch saved movies from database ================
    */
@@ -77,7 +81,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     if (clickedTarget === "trailer") toggleModal();
 
     if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
-      if (status === "unauthenticated") {
+      // Check if user is logged in
+      if (userStatus === userStatuses.Unauthenticated) {
         toast.error("You need to be logged in to save movies");
         return;
       }
@@ -127,7 +132,6 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           );
           optimisticMutate(mutate, filteredMovies);
           setMovieToCondition({ movieId: id, watched: false, liked: false });
-
         } else {
           //
           optimisticMutate(mutate, {

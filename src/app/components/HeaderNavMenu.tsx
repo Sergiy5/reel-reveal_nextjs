@@ -1,3 +1,5 @@
+"use client";
+
 import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
 import HeartIcon from "../../../public/icons/heart.svg";
@@ -15,13 +17,13 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
 
-  if (!isClient) return null;
+  // if (!isClient) return null;
 
   return (
     <div

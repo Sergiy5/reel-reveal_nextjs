@@ -1,7 +1,6 @@
 import useSWR from "swr";
 
 const fetcher = async (url: string, userId?: string) => {
-
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -17,14 +16,14 @@ const fetcher = async (url: string, userId?: string) => {
   return response.json();
 };
 
-export const useMovies = (userId: string) => {
+export const useMovies = (userId: string | undefined) => {
   const fallbackData =
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("movies") || "[]")
       : [];
 
   const { data, error, mutate } = useSWR(
-    userId ? `/api/get-all-liked_movies?${userId}` : null,
+    userId ? `/api/get-all-liked_movies` : null, // Only fetch if `userId` is valid
     () => fetcher(`/api/get-all-liked_movies`, userId),
     {
       fallbackData,
@@ -39,5 +38,5 @@ export const useMovies = (userId: string) => {
     }
   );
 
-  return { data, error, mutate };
+  return { data: userId ? data : null, error, mutate };
 };
