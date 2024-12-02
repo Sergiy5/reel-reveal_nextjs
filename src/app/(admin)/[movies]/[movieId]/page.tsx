@@ -5,6 +5,9 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import { getMovieById } from "@/app/services";
+import { getSessionUser } from "@/utils";
+import { sessionUserSignal } from "@/context/UserContext";
+import { SimilarMovies } from "@/app/components/SimilarMovies";
 
 const DynamicSimilarMovies = dynamic(
   () =>
@@ -12,6 +15,11 @@ const DynamicSimilarMovies = dynamic(
   { ssr: false }
 );
 
+const DynamicSliderCorousel = dynamic(
+  () =>
+    import("@/app/components/SliderCarousel").then((mod) => mod.SliderCarousel),
+  { ssr: false }
+);
 // export async function generateStaticParams() {
  
     // return []; 
@@ -23,6 +31,11 @@ export default async function OneMoviePage({
   params: { movieId: number};
   }) {
   
+  if (typeof window === "undefined") {
+    // Server-only logic here
+  }
+  const sessionUser = await getSessionUser();
+  
   const { movieId } = params;
 
   const movie = await getMovieById(movieId);
@@ -33,10 +46,15 @@ export default async function OneMoviePage({
     <main className={`pt-0 gap-0`}>
       <MovieInfo movie={movie} />
       <MovieInfoTrailer id={movieId} />
-      <div className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}>
+      <div
+        className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}
+      >
         <MovieInfoCast id={movieId} />
-        <DynamicSimilarMovies title={title ?? original_title} />
-        <SliderCarousel />
+        <DynamicSimilarMovies
+          sessionUser={sessionUser ?? sessionUserSignal.value}
+          title={title ?? original_title}
+        />
+        <DynamicSliderCorousel />
         <TakeOurQuiz />
       </div>
     </main>

@@ -44,10 +44,10 @@ export const settings: Settings = {
 export interface MySliderProps<T> {
   arraySlides: T[];
   settings: Settings;
-  sessionUser: ISessionUserSignal;
+  sessionUser?: ISessionUserSignal;
   SlideComponent: React.ComponentType<{
     movie: T;
-    sessionUser: ISessionUserSignal;
+    sessionUser?: ISessionUserSignal;
   }>;
 }
 

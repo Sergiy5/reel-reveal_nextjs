@@ -14,13 +14,16 @@ import { Modal } from "./ui/Modal";
 import { fetchPopularMovies } from "../actions/fetchPopularMovies";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { Movie } from "@/typification";
+import { ISessionUserSignal } from "@/context/UserContext";
 
 export interface MovieSearchProps {
   movieTitle: string;
+  sessionUser: ISessionUserSignal;
 }
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({
   movieTitle,
+  sessionUser,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
@@ -111,7 +114,10 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
       ) : (
         <h1>The most popular movies</h1>
       )}
-      <ListMovies movies={popularMoviesSignal.value} />
+      <ListMovies
+        movies={popularMoviesSignal.value}
+        sessionUser={sessionUser}
+      />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <ButtonOrLink onClick={() => setPage((prev) => prev + 1)} transparent>
           load more

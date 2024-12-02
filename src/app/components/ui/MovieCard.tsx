@@ -26,7 +26,7 @@ export interface IMovieInDB {
 
 interface MovieCardProps {
   movie: Movie;
-  sessionUser: ISessionUserSignal;
+  sessionUser?: ISessionUserSignal;
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
@@ -38,7 +38,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
     liked: false,
   });
 
-  const { userId, userStatus } = sessionUser;
+  const { userId, userStatus } = sessionUser ?? sessionUserSignal.value;
   /**
    * Fetch saved movies from database ================
    */

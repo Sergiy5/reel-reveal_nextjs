@@ -2,11 +2,9 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/app/components/Hero";
 import { HowItWorks } from "@/app/components/HowItWorks";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
-import { Genres } from "@/app/components/Genres";
 import { GetShowMovies } from "@/app/components/GetShowMovies";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
-import { auth } from "@/auth";
-import { userStatuses } from "@/variables";
+import { getSessionUser } from "@/utils";
 
 const DynamicQuiz = dynamic(
   () => import("../../components/Quiz").then((mod) => mod.Quiz),
@@ -18,26 +16,24 @@ const DynamicSliderCorousel = dynamic(
   { ssr: false }
 );
 
+const DynamicGenres = dynamic(
+  () => import("@/app/components/Genres").then((mod) => mod.Genres),
+  { ssr: false }
+);
+
+
+
 export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
 
-  const session = await auth();
-
-  const sessionUser = {
-    userId: session?.user?.id || "",
-    userName: session?.user?.name || "",
-    email: session?.user?.email || "",
-    userStatus: session
-      ? userStatuses.Authenticated
-      : userStatuses.Unauthenticated,
-  };
+  const sessionUser = await getSessionUser()
 
   return (
     <main>
       <Hero />
       <HowItWorks />
-      <DynamicQuiz />
+      <DynamicQuiz sessionUser={sessionUser} />
       {upcomingMovies && (
         <GetShowMovies
           title={"Upcoming 20 movies in 2024"}
@@ -52,7 +48,7 @@ export default async function Home() {
           sessionUser={sessionUser}
         />
       )}
-      <Genres />
+      <DynamicGenres />
       <DynamicSliderCorousel />
       <TakeOurQuiz />
     </main>

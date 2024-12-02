@@ -36,16 +36,6 @@ export interface Movie {
   runtime: number;
 }
 
-export interface ListMoviesProps {
-  movies: Movie[];
-}
-
-// export interface MySliderProps<T> {
-//   arraySlides: T[];
-//   settings: Settings;
-//   SlideComponent: React.ComponentType<{ movie: T }>;
-// }
-
 export interface SliderCarouselSlideProps {
   movie: string;
 }
@@ -57,11 +47,6 @@ export interface IResponsDataTMbD {
 export interface ILoadMoreCard {
   id: "load_more";
   textBtn: string;
-}
-
-export interface QuizListMoviesProps {
-  arrMovies: Movie[];
-  clearPrevQuiz: () => void;
 }
 
 export interface QuizBtnsProps {

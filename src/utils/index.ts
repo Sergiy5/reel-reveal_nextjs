@@ -13,3 +13,4 @@ export { validateEmail } from "./validateEmail";
 export { validatePassword } from "./validatePassword";
 export { optimisticMutate } from "./optimisticMutate";
 export { cutingString } from "./cutingString";
+export {getSessionUser} from "./getSessionUser"

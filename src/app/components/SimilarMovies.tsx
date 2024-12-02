@@ -5,11 +5,16 @@ import { Loader } from "./ui/Loader";
 import { fetchSimilarMovies } from "../actions";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import useSWR from "swr";
+import { ISessionUserSignal } from "@/context/UserContext";
 
 export interface SimilarMoviesProps {
   title: string;
+  sessionUser: ISessionUserSignal;
 }
-export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
+export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
+  title,
+  sessionUser,
+}) => {
   const {
     data: similarMovies,
     error,
@@ -35,9 +40,13 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({ title }) => {
 
   return (
     <>
-      {similarMovies && similarMovies.length &&
-        <GetShowMovies title={"Similar movies"} movies={similarMovies} />
-      }
+      {similarMovies && similarMovies.length && (
+        <GetShowMovies
+          title={"Similar movies"}
+          movies={similarMovies}
+          sessionUser={sessionUser}
+        />
+      )}
     </>
   );
 };

@@ -8,8 +8,13 @@ import { QuizQuestions } from "./QuizQuestions";
 import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { useState } from "react";
 import { fetchQuizMovies } from "../actions/fetchQuizMovies";
+import { ISessionUserSignal } from "@/context/UserContext";
 
-export const Quiz: React.FC = () => {
+interface IQuizProps {
+  sessionUser: ISessionUserSignal;
+}
+
+export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [isQuizActive, setIsQuizActive] = useState(() =>
     qiuzMoviesSignal.value.length ? false : true
@@ -50,6 +55,7 @@ export const Quiz: React.FC = () => {
             setQuizResult([]);
             setIsQuizActive(true);
           }}
+          sessionUser={sessionUser}
           arrMovies={qiuzMoviesSignal.value ?? listMovies}
         />
       )}

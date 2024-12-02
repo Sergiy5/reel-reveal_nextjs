@@ -1,14 +1,23 @@
 import { useResize } from "@/hooks";
 import { ListMovies } from "./ListMovies";
 import { MySlider } from "./ui/MySlider";
-import { QuizListMoviesProps } from "@/typification";
+import { Movie} from "@/typification";
 import { MovieCard } from "./ui/MovieCard";
 import { Settings } from "react-slick";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
+import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
+
+
+export interface QuizListMoviesProps {
+  arrMovies: Movie[];
+  clearPrevQuiz: () => void;
+  sessionUser?: ISessionUserSignal;
+}
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
   arrMovies,
   clearPrevQuiz,
+  sessionUser,
 }) => {
   const viewWidth = useResize();
 
@@ -48,13 +57,14 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
       <h2 className={`pr-2.5 pl-2.5`}>Have you seen these?</h2>
 
       {viewWidth > 1024 ? (
-        <ListMovies movies={arrMovies} />
+        <ListMovies movies={arrMovies} sessionUser={sessionUser} />
       ) : (
         <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>
           <MySlider
             arraySlides={arrMovies}
             SlideComponent={MovieCard}
             settings={settings}
+            sessionUser={sessionUser ?? sessionUserSignal.value}
           />
         </div>
       )}
