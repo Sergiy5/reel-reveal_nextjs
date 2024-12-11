@@ -3,7 +3,6 @@ import { MovieSearch } from "@/app/components/MovieSearch";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 
-
 export default async function MoviesPage({
   params,
 }: {

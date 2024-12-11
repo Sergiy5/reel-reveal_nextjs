@@ -13,7 +13,6 @@ import {
 import { Modal } from "./ui/Modal";
 import { fetchPopularMovies } from "../actions/fetchPopularMovies";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-import { Movie } from "@/typification";
 import { ISessionUserSignal } from "@/context/UserContext";
 
 export interface MovieSearchProps {
@@ -35,7 +34,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
 
   // On first render show popular movies
   useEffect(() => {
-    // console.log("totalSearchMoviesSignal.value", totalSearchMoviesSignal.value);
+    
     if (movieTitle !== "movies") {
       return setisActiveSearch(true);
     }
@@ -105,11 +104,12 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
     >
       {isActiveSearch ? (
         !isLoading && (
-          <h1>
+          <h1 className="w-full">
             Found{" "}
             <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
-            movies based on your search &quot;{movieTitle}&quot;
-          </h1>
+            movies based on your search &quot;{decodeURIComponent(movieTitle)}
+            &quot;
+          </h1> // Need to fix. If text not latin it will show special symbols insted movieTitle !!!!!!!!!!!!!!
         )
       ) : (
         <h1>The most popular movies</h1>

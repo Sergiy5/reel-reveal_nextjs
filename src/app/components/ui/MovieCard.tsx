@@ -17,6 +17,7 @@ import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { userStatuses } from "@/variables";
 import user from "@/db/models/user";
 import { useSession } from "next-auth/react";
+import { savedMoviesSignal } from "@/context/MoviesContext";
 
 export interface IMovieInDB {
   movieId: number;
@@ -43,6 +44,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
    * Fetch saved movies from database ================
    */
   const { data: movies, error, mutate } = useMovies(userId);
+
+if (movies) savedMoviesSignal.value = movies;
 
   const openUrl = useOpenUrl();
 

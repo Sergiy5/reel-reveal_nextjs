@@ -9,16 +9,17 @@ import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { mutate } from "swr";
 import { userStatuses } from "@/variables";
 import { useRouter } from "next/navigation";
+import { savedMoviesSignal } from "@/context/MoviesContext";
 
 export const UserProfile: React.FC = () => {
   const srcImage = "";
 
   const router = useRouter();
-  
+
   const signOut = () => {
     isAuthUserSignal.value = false;
     doLogout();
-
+    savedMoviesSignal.value = [];
 
     sessionUserSignal.value = {
       userId: "",

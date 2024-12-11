@@ -6,6 +6,7 @@ import HeartIcon from "../../../public/icons/heart.svg";
 import UserIcon from "../../../public/icons/user.svg";
 import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { useSession } from "next-auth/react";
+import { savedMoviesSignal } from "@/context/MoviesContext";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -17,13 +18,12 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
-  // const [isClient, setIsClient] = useState(false);
-
-  // useEffect(() => {
-  //   setIsClient(true);
-  // }, []);
-
-  // if (!isClient) return null;
+const [isSavedMovies, setIsSavedMovies] = useState(
+  !!savedMoviesSignal.value.length
+);
+useEffect(() => {
+  setIsSavedMovies(!!savedMoviesSignal.value.length);
+}, [savedMoviesSignal.value]);
 
   return (
     <div
@@ -38,20 +38,21 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         Movie search
       </Link>
       <Link
-        href={"/saved"}
+        href={`/saved?moviesId=${""}`}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className="link"
       >
         <HeartIcon
-          className={`hidden w-[18px] h-[16px] fill-textColor transition hover:fill-accentColor lg:block`}
+          className={`hidden w-[18px] h-[16px]  transition  lg:block
+          ${
+            isSavedMovies
+              ? "fill-accentColor"
+              : "fill-textColor hover:fill-accentClicked"
+          }`}
         />
       </Link>
       <Link
-        href={
-          isAuth || isAuthUserSignal.value
-            ? "/profile"
-            : "/auth"
-        }
+        href={isAuth || isAuthUserSignal.value ? "/profile" : "/auth"}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className="link"
       >

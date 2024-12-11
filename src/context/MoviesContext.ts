@@ -11,4 +11,4 @@ export const favoriteMoviesSignal = signal<Movie[]>([]);
 
 export const totalSearchMoviesSignal = signal<number>(0);
 
-export const savedMoviesSignal = signal<IStoredMovie[]>();
+export const savedMoviesSignal = signal<IStoredMovie[]>([]);

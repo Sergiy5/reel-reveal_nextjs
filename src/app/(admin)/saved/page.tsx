@@ -1,23 +1,18 @@
 // "use user";
 
 import { SavedMovies } from "@/app/components/SavedMovies";
+import { getManyMoviesByIds } from "@/app/services";
+import { getSessionUser } from "@/utils";
 // import { auth } from "@/auth";
 // import { redirect } from "next/navigation";
 // import { useSession } from "next-auth/react";
 
 export default async function Saved() {
-  // const { data: session } = useSession();
-
-  // if (!session) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // const session = await auth();
-  // if (!session?.user) redirect("/auth");
+  const sessionUser = await getSessionUser();
 
   return (
     <main>
-      <SavedMovies />
+      <SavedMovies sessionUser={sessionUser} />
     </main>
   );
 }

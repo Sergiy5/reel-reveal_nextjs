@@ -1,4 +1,3 @@
-
 export async function fetchMoviesByOneTitle(title: string, page: number) {
   
   try {

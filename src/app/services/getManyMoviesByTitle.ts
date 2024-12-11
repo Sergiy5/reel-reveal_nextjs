@@ -4,7 +4,7 @@ export const getManyMoviesByTitle = async (
   arrMovies: string[]
 ): Promise<Movie[][]> => {
 
-  const SERVER_TOKEN = process.env.BEARER_TOKEN_TMDB;
+  const API_TOKEN = process.env.BEARER_TOKEN_TMDB;
   
   try {
     const requests = arrMovies.map((movie) =>
@@ -13,7 +13,7 @@ export const getManyMoviesByTitle = async (
         {
           cache: "force-cache",
           headers: {
-            Authorization: `Bearer ${SERVER_TOKEN}`,
+            Authorization: `Bearer ${API_TOKEN}`,
           },
         }
       ).then((res) => res.json())

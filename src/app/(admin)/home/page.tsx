@@ -21,8 +21,6 @@ const DynamicGenres = dynamic(
   { ssr: false }
 );
 
-
-
 export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();

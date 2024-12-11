@@ -12,7 +12,7 @@ export const Auth: React.FC = () => {
   const [statusUser, setStatusUser] = useState<
     "signin" | "register" | "signup"
   >("signin");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Please enter email");
 
   useEffect(() => {
     if (statusUser === "signin") setTitle("Please enter email");

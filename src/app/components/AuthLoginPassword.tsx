@@ -43,9 +43,9 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
       if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
 
       isAuthUserSignal.value = true;
-      toast.success(`User logged in successfully`);
-
+      
       const session = await getSession();
+      toast.success(`${session?.user?.name} logged in successfully`);
 
       sessionUserSignal.value = {
         userId: session?.user?.id,

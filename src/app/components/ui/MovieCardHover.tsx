@@ -4,7 +4,8 @@ import { nanoid } from "nanoid";
 import { Movie } from "@/typification";
 
 interface IMovieForHover {
-  voteAverage: number;
+  voteAverage?: number;
+  vote_average?: number;
   releaseDate: Date;
   title: string;
   id: number;
@@ -27,7 +28,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   const formattedMovie = useMemo(() => {
     return {
       ...movie,
-      voteAverageFormatted: movie.voteAverage.toFixed(1),
+      voteAverageFormatted: movie.voteAverage?.toFixed(1) ?? movie.vote_average?.toFixed(1),
       releaseYear: new Date(movie.releaseDate).getFullYear(),
     };
   }, [movie]);
