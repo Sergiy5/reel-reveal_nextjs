@@ -11,7 +11,7 @@ import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
   clearPrevQuiz: () => void;
-  sessionUser?: ISessionUserSignal;
+  sessionUser: ISessionUserSignal;
 }
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
@@ -62,7 +62,9 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
         <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>
           <MySlider
             arraySlides={arrMovies}
-            SlideComponent={MovieCard}
+            SlideComponent={(props) => (
+                        <MovieCard {...props} sessionUser={sessionUser} />
+                      )}
             settings={settings}
             sessionUser={sessionUser ?? sessionUserSignal.value}
           />

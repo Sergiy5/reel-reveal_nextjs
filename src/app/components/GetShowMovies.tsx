@@ -11,7 +11,7 @@ import { ISessionUserSignal } from "@/context/UserContext";
 export interface GetShowMoviesProps {
   title: string;
   movies: Movie[];
-  sessionUser: ISessionUserSignal;
+  sessionUser: ISessionUserSignal ;
 }
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
@@ -28,7 +28,9 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
       <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>
         <MySlider
           arraySlides={movies}
-          SlideComponent={MovieCard}
+          SlideComponent={(props) => (
+            <MovieCard {...props} sessionUser={sessionUser} />
+          )}
           settings={settings}
           sessionUser={sessionUser}
         />
