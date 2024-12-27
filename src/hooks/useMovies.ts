@@ -22,7 +22,7 @@ export const useMovies = (userId: string | undefined) => {
       ? JSON.parse(localStorage.getItem("movies") || "[]")
       : [];
 
-  const { data, error, mutate } = useSWR(
+  const { data, error, mutate, isValidating, isLoading } = useSWR(
     userId ? `/api/get-all-liked_movies` : null, // Only fetch if `userId` is valid
     () => fetcher(`/api/get-all-liked_movies`, userId),
     {
@@ -38,5 +38,5 @@ export const useMovies = (userId: string | undefined) => {
     }
   );
 
-  return { data: userId ? data : null, error, mutate };
+  return { data: userId ? data : null, error, mutate, isValidating, isLoading };
 };

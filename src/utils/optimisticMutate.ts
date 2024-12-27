@@ -16,6 +16,8 @@ export const optimisticMutate: OptimisticUpdateFn<IMovieInDB[]> = (
       const updatedData = currentData ? [...currentData, newItem] : [newItem];
       return updatedData;
     },
-    false // revalidate
+    
+      true, // revalidate
+    
   );
 };

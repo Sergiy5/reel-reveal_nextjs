@@ -101,5 +101,6 @@ export interface fetchUserByEmailResponse {
 export interface IStoredMovie {
   movieId: number;
   watched: boolean;
+  liked: boolean;
   _id: string;
 }

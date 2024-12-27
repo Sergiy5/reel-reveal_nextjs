@@ -4,14 +4,14 @@ import { useMovies } from "@/hooks/useMovies";
 import { optimisticMutate } from "@/utils/optimisticMutate";
 import { Movie } from "@/typification";
 import { IMovieInDB } from "@/app/components/ui/MovieCard";
-import { likedMovieSave } from "@/app/actions/likedMovieSave";
-import { removeLikedMovie } from "@/app/actions/likedMovieRemove";
+import { saveMovieToDB } from "@/app/actions/saveMovieToDB";
+import { removeMovieFromDB } from "@/app/actions/removeMovieFromDB";
 
 export const useMovieHandler = (
   movie: Movie,
   userId: string,
   userStatus: string,
-    muvies: IMovieInDB[],
+  muvies: IMovieInDB[],
   mutate: any
 ) => {
   const [movieToCondition, setMovieToCondition] = useState({
@@ -27,15 +27,19 @@ export const useMovieHandler = (
       title: movie.title,
       id: movie.id,
       isLiked: mutate?.some(
-        (movieInDB: IMovieInDB) => movieInDB.liked && movieInDB.movieId === movie.id
+        (movieInDB: IMovieInDB) =>
+          movieInDB.liked && movieInDB.movieId === movie.id
       ),
       isWatched: mutate?.some(
-        (movieInDB: IMovieInDB) => movieInDB.watched && movieInDB.movieId === movie.id
+        (movieInDB: IMovieInDB) =>
+          movieInDB.watched && movieInDB.movieId === movie.id
       ),
     };
   }, [movie, mutate]);
 
-  const handleMovie = (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+  const handleMovie = (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+  ) => {
     e.stopPropagation();
     const clickedTarget = e.currentTarget.dataset.movie;
 
@@ -112,11 +116,11 @@ export const useMovieHandler = (
     const onSaveMovie = async () => {
       try {
         if (movieToCondition.liked || movieToCondition.watched) {
-          const result = await likedMovieSave(userId, movieToCondition);
+          const result = await saveMovieToDB(userId, movieToCondition);
           if (result) mutate(result);
         }
         if (!movieToCondition.liked && !movieToCondition.watched) {
-          const result = await removeLikedMovie(
+          const result = await removeMovieFromDB(
             userId,
             movieToCondition.movieId
           );

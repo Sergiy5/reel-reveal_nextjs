@@ -15,11 +15,11 @@ export const POST = async (req: Request) => {
 
     if (user.movies) {
 
-      const filteredMovies = user.movies.filter(
-        (m: IStoredMovie) => m.movieId !== movie.movieId
+      const updatedMovies = user.movies.map((m: IStoredMovie) =>
+        m.movieId === movie.id ? { ...m, liked: !m.liked } : m
       );
 
-      user.movies = [movie, ...filteredMovies];
+      user.movies = updatedMovies;
 
       await user.save();
       return NextResponse.json(user.movies);

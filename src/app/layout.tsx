@@ -2,7 +2,7 @@ import "./globals.scss";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ceraPro } from "./fonts";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
 
@@ -33,8 +33,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: {children: React.ReactNode}) {
-  
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -42,12 +45,12 @@ export default async function RootLayout({ children }: {children: React.ReactNod
       </head>
 
       <body className={ceraPro.className}>
-        <SessionProvider >
+        <SessionProvider>
           {children}
           <div id="modal" />
         </SessionProvider>
-          <ToastContainer />
-          <SpeedInsights />
+        <ToastContainer />
+        <SpeedInsights />
       </body>
     </html>
   );
