@@ -8,7 +8,7 @@ import { ISessionUserSignal } from "@/context/UserContext";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
 
 export interface SimilarMoviesProps {
-  title: string;
+  title?: string;
   movieId: number;
   sessionUser: ISessionUserSignal;
 }

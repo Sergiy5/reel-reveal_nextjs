@@ -28,8 +28,9 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   const formattedMovie = useMemo(() => {
     return {
       ...movie,
-      voteAverageFormatted: movie.voteAverage?.toFixed(1) ?? movie.vote_average?.toFixed(1),
-      releaseYear: new Date(movie.releaseDate).getFullYear(),
+      voteAverageFormatted:
+        movie.voteAverage?.toFixed(1) ?? movie.vote_average?.toFixed(1),
+      releaseYear: movie.releaseDate.toString().slice(0, 4),
     };
   }, [movie]);
 
@@ -41,7 +42,6 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
     voteAverageFormatted,
     releaseYear,
   } = formattedMovie;
-  // releaseDate.slice(0, 4);
   
   return (
     <div

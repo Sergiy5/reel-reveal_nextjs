@@ -1,22 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import useSWR from "swr";
 import { Loader } from "./ui/Loader";
-import { fetchMoviesByOneTitle } from "../actions";
 import { ListMovies } from "./ListMovies";
 import {
-  popularMoviesSignal,
-  searchQuerySignal,
+  allMoviesSignal,
   totalSearchMoviesSignal,
 } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
-import { fetchPopularMovies } from "../actions/fetchPopularMovies";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { ISessionUserSignal } from "@/context/UserContext";
+import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
+import { Movie } from "@/typification";
 
 export interface MovieSearchProps {
-  movieTitle: string;
+  movieTitle: string | undefined;
   sessionUser: ISessionUserSignal;
 }
 
@@ -24,100 +23,77 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   movieTitle,
   sessionUser,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
   const [totalPages, setTotalPages] = useState(
-    popularMoviesSignal.value.length / 20
+    allMoviesSignal.value.length / 20
   );
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [queryTitle, setQueryTitle] = useState("");
   const [isActiveSearch, setisActiveSearch] = useState(false);
   const [page, setPage] = useState(1);
-
-  // On first render show popular movies
+console.log(page)
+  const currentRoute = isActiveSearch
+    ? "/api/movies/one-by-title"
+    : "/api/movies/all";
+  const currentRequest = isActiveSearch
+    ? { title: movieTitle, page }
+    : { page };
+console.log(currentRequest);
+  const { data, error, isLoading, isValidating, mutate } = useSWR(
+    currentRoute,
+    () => fetchMovieDataFromAPI(currentRoute, currentRequest),
+    { revalidateOnFocus: false }
+  );
+  // console.log("DATA=========================", data);
   useEffect(() => {
-    
-    if (movieTitle !== "movies") {
-      return setisActiveSearch(true);
+    if (typeof window === "undefined") return;
+
+    if (movieTitle !== "movies" && !isActiveSearch) {
+      setisActiveSearch(true);
     }
 
-    if (isActiveSearch) return;
-    const getPopular = async (page: number) => {
-      setIsLoading(true);
-      try {
-        const response = await fetchPopularMovies(page);
+    if (movieTitle && movieTitle !== queryTitle) {
+      setQueryTitle(movieTitle);
+    }
+  }, [movieTitle, isActiveSearch, queryTitle]);
 
-        if (!response) throw new Error();
-
-        totalSearchMoviesSignal.value = response.total_results;
-        setTotalMovies(response.total_results);
-        setTotalPages(response.total_pages);
-
-        if (page === 1) return (popularMoviesSignal.value = response.results);
-
-        if (page > 1) {
-          return (popularMoviesSignal.value = [
-            ...popularMoviesSignal.value,
-            ...response.results,
-          ]);
-        }
-      } catch (error) {
-        console.log("Error fetch popular movies", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getPopular(page);
-  }, [isActiveSearch, movieTitle, page]);
-
-  // On searching movies
   useEffect(() => {
-    if (!isActiveSearch) return;
+  if(page === 1) return 
+  mutate()
+}, [page]);
 
-    if (searchQuerySignal.value === movieTitle && page === 1) return;
-    searchQuerySignal.value = movieTitle;
+  useEffect(() => {
+    if (!data) return;
 
-    const getMovies = async (title: string) => {
-      setIsLoading(true);
-      try {
-        const response = await fetchMoviesByOneTitle(title, page);
-        if (!response) throw new Error();
-        totalSearchMoviesSignal.value = response.total_results;
-        setTotalMovies(response.total_results);
-        setTotalPages(response.total_pages);
+    totalSearchMoviesSignal.value = data.total_results;
+    setTotalMovies(data.total_results);
+    setTotalPages(data.total_pages);
+    if (page < 3) setMovies(data.results)
+    if(page > 2) setMovies((prev) => [...prev, ...data.results])
+    // const results = page === 1 ? data.results : [...allMoviesSignal.value, ...data.results];
+    // setMovies((prev) => [...prev, ...data.results]);
+  }, [data, page]);
 
-        popularMoviesSignal.value = [
-          ...popularMoviesSignal.value,
-          ...response.results,
-        ];
-      } catch (error) {
-        toast.error("Faild to fetch movies...");
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getMovies(searchQuerySignal.value);
-  }, [isActiveSearch, movieTitle, page]);
+  if (!data) return null;
+  if (isValidating) return <Loader />;
+
+  const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
 
   return (
     <div
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
     >
-      {isActiveSearch ? (
-        !isLoading && (
-          <h1 className="w-full">
-            Found{" "}
-            <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
-            movies based on your search &quot;{decodeURIComponent(movieTitle)}
-            &quot;
-          </h1> // Need to fix. If text not latin it will show special symbols insted movieTitle !!!!!!!!!!!!!!
-        )
+      {isActiveSearch && !isLoading ? (
+        <h1 className="w-full">
+          Found{" "}
+          <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
+          movies based on your search &quot;{safeQueryTitle}
+          &quot;
+        </h1>
       ) : (
         <h1>The most popular movies</h1>
       )}
-      <ListMovies
-        movies={popularMoviesSignal.value}
-        sessionUser={sessionUser}
-      />
+      <ListMovies movies={movies} sessionUser={sessionUser} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <ButtonOrLink onClick={() => setPage((prev) => prev + 1)} transparent>
           load more
@@ -125,7 +101,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
       </div>
       <Modal isOpen={isLoading}>
-        <div className={`flex items-center h-lvh`}>
+        <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>
       </Modal>

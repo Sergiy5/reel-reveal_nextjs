@@ -5,7 +5,7 @@ export const qiuzMoviesSignal = signal<Movie[]>([]);
 
 export const searchQuerySignal = signal<string>("");
 
-export const popularMoviesSignal = signal<Movie[]>([]);
+export const allMoviesSignal = signal<Movie[]>([]);
 
 export const favoriteMoviesSignal = signal<Movie[]>([]);
 

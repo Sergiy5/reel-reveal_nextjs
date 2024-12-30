@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { GenreLinkIcon } from "./ui/GenreLinkIcon";
-import useSWR from "swr";
-import { fetcher } from "../actions";
 import { genres } from "../../../public/genres/genres";
 
 export const Genres: React.FC = (): React.JSX.Element => {
   const [genre, setGenre] = useState<number | null>(null);
-
+  // useEffect(() => {
+    
+  //   console.log(genre);
+  // },[genre])
   // const { data, error, mutate, isValidating, isLoading } = useSWR(
   //   "/api/movies/many-by-ganre",
   //   () => fetcher(["/api/movies/many-by-ganre", {genre}]),
@@ -30,7 +31,7 @@ export const Genres: React.FC = (): React.JSX.Element => {
       <h2>Choose a movie by genre</h2>
 
       <div
-        className={`relative flex items-start flex-wrap justify-around gap-16 sm:justify-between`}
+        className={`relative flex items-start flex-wrap justify-around gap-10 sm:justify-between`}
       >
         {genres.map(({ id, name }) => (
           <GenreLinkIcon
@@ -42,20 +43,6 @@ export const Genres: React.FC = (): React.JSX.Element => {
             }}
           />
         ))}
-        {/* <GenreLinkIcon iconID="comedy" />
-        <GenreLinkIcon iconID="thriller" />
-      X <GenreLinkIcon iconID="detective" />
-        <GenreLinkIcon iconID="drama" />
-        <GenreLinkIcon iconID="romcom" /> romance
-        <GenreLinkIcon iconID="fantasy" />
-        <GenreLinkIcon iconID="history" />
-        <GenreLinkIcon iconID="sci-fi" />
-        <GenreLinkIcon iconID="non-fic" /> documentaly
-        <GenreLinkIcon iconID="horror" />
-        <GenreLinkIcon iconID="adventure" />
-      X <GenreLinkIcon iconID="cartoon" /> 
-        <GenreLinkIcon iconID="musical" />
-        <GenreLinkIcon iconID="animation" /> */}
       </div>
     </div>
   );

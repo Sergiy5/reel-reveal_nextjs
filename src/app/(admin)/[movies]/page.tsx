@@ -8,13 +8,13 @@ export default async function MoviesPage({
 }: {
   params: { movies: string};
 }) {
-  const { movies } = params;
+  const { movies: title } = params;
 
   const sessionUser = await getSessionUser();
 
   return (
     <main>
-      <MovieSearch movieTitle={movies} sessionUser={sessionUser} />
+      <MovieSearch movieTitle={title} sessionUser={sessionUser} />
       <Genres />
       <TakeOurQuiz />
     </main>

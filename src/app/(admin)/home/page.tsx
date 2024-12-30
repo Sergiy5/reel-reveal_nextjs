@@ -30,25 +30,25 @@ export default async function Home() {
   return (
     <main className="">
       {/* <Hero /> */}
-      <HowItWorks />
+      {/* {/* <HowItWorks /> */}
       <DynamicQuiz sessionUser={sessionUser} />
-      {upcomingMovies && (
+      {/* {upcomingMovies && (
         <GetShowMovies
           title={"Upcoming 20 movies in 2024"}
           movies={upcomingMovies}
           sessionUser={sessionUser}
         />
-      )}
-      {topRatedMovies && (
+      )} */}
+      {/* {topRatedMovies && (
         <GetShowMovies
           title={"TOP 20 rated movies"}
           movies={topRatedMovies}
           sessionUser={sessionUser}
         />
-      )}
+      )} */}
       <DynamicGenres />
       {/* <DynamicSliderCorousel /> */}
-      {/* <TakeOurQuiz /> */}
+      <TakeOurQuiz />
     </main>
   );
 }

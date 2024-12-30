@@ -1,8 +1,8 @@
 export const genres = [
-  // {
-  //   id: 28,
-  //   name: "Action",
-  // },
+  {
+    id: 28,
+    name: "action",
+  },
   {
     id: 12,
     name: "adventure",
@@ -15,10 +15,10 @@ export const genres = [
     id: 35,
     name: "comedy",
   },
-  // {
-  //   id: 80,
-  //   name: "Crime",
-  // },
+  {
+    id: 80,
+    name: "crime",
+  },
   {
     id: 99,
     name: "documentary",
@@ -27,10 +27,10 @@ export const genres = [
     id: 18,
     name: "drama",
   },
-  // {
-  //   id: 10751,
-  //   name: "Family",
-  // },
+  {
+    id: 10751,
+    name: "family",
+  },
   {
     id: 14,
     name: "fantasy",
@@ -47,10 +47,10 @@ export const genres = [
     id: 10402,
     name: "music",
   },
-  // {
-  //   id: 9648,
-  //   name: "mystery",
-  // },
+  {
+    id: 9648,
+    name: "mystery",
+  },
   {
     id: 10749,
     name: "romance",
@@ -59,20 +59,16 @@ export const genres = [
     id: 878,
     name: "sci-fi",
   },
-  // {
-  //   id: 10770,
-  //   name: "TV Movie",
-  // },
   {
     id: 53,
     name: "thriller",
   },
-  // {
-  //   id: 10752,
-  //   name: "War",
-  // },
-  // {
-  //   id: 37,
-  //   name: "Western",
-  // },
+  {
+    id: 10752,
+    name: "war",
+  },
+  {
+    id: 37,
+    name: "western",
+  },
 ];
