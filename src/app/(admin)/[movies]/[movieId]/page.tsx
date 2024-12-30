@@ -51,7 +51,8 @@ export default async function OneMoviePage({
       >
         <MovieInfoCast id={movieId} />
         <DynamicSimilarMovies
-          sessionUser={sessionUser ?? sessionUserSignal.value}
+          sessionUser={sessionUser}
+          movieId={movieId}
           title={title ?? original_title}
         />
         <DynamicSliderCorousel />

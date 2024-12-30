@@ -3,19 +3,30 @@ import { capitalizeFirstLetter } from "@/utils";
 
 
 export interface IconGenreProps {
-  iconID: string;
+  iconID: number;
+  iconName: string;
+  onClick?: (id:number) => void;
 }
 
 export const GenreLinkIcon: React.FC<IconGenreProps> = ({
   iconID,
+  iconName,
+  onClick,
 }): React.JSX.Element => {
+
+
   return (
     <Link href={"/movie"} className={`link`}>
-      <div className={`flex flex-col items-center w-[95px] h-[85px] gap-2`}>
+      <div
+        className={`flex flex-col items-center w-[95px] h-[85px] gap-2`}
+        onClick={() => onClick && onClick(iconID)}
+      >
         <svg className={` w-12 h-12 text-current`}>
-          <use xlinkHref={`/icons/genres-sprite.svg#${iconID}`} />
+          <use
+            xlinkHref={`/icons/genres-sprite.svg#${iconName}`}
+          />
         </svg>
-        <p>{capitalizeFirstLetter(iconID)}</p>
+        <p>{capitalizeFirstLetter(iconName)}</p>
       </div>
     </Link>
   );

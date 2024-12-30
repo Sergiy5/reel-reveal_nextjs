@@ -28,8 +28,8 @@ export default async function Home() {
   const sessionUser = await getSessionUser()
 
   return (
-    <main>
-      <Hero />
+    <main className="">
+      {/* <Hero /> */}
       <HowItWorks />
       <DynamicQuiz sessionUser={sessionUser} />
       {upcomingMovies && (
@@ -47,8 +47,8 @@ export default async function Home() {
         />
       )}
       <DynamicGenres />
-      <DynamicSliderCorousel />
-      <TakeOurQuiz />
+      {/* <DynamicSliderCorousel /> */}
+      {/* <TakeOurQuiz /> */}
     </main>
   );
 }

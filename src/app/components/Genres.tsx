@@ -1,8 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import { GenreLinkIcon } from "./ui/GenreLinkIcon";
+import useSWR from "swr";
+import { fetcher } from "../actions";
+import { genres } from "../../../public/genres/genres";
 
 export const Genres: React.FC = (): React.JSX.Element => {
+  const [genre, setGenre] = useState<number | null>(null);
+
+  // const { data, error, mutate, isValidating, isLoading } = useSWR(
+  //   "/api/movies/many-by-ganre",
+  //   () => fetcher(["/api/movies/many-by-ganre", {genre}]),
+  // );
+
   return (
     <div className={`relative flex flex-col items-center gap-12`}>
       <Image
@@ -20,20 +32,30 @@ export const Genres: React.FC = (): React.JSX.Element => {
       <div
         className={`relative flex items-start flex-wrap justify-around gap-16 sm:justify-between`}
       >
-        <GenreLinkIcon iconID="comedy" />
+        {genres.map(({ id, name }) => (
+          <GenreLinkIcon
+            key={id}
+            iconID={id}
+            iconName={name}
+            onClick={(id) => {
+              setGenre(id);
+            }}
+          />
+        ))}
+        {/* <GenreLinkIcon iconID="comedy" />
         <GenreLinkIcon iconID="thriller" />
-        <GenreLinkIcon iconID="detective" />
+      X <GenreLinkIcon iconID="detective" />
         <GenreLinkIcon iconID="drama" />
-        <GenreLinkIcon iconID="romcom" />
+        <GenreLinkIcon iconID="romcom" /> romance
         <GenreLinkIcon iconID="fantasy" />
         <GenreLinkIcon iconID="history" />
         <GenreLinkIcon iconID="sci-fi" />
-        <GenreLinkIcon iconID="non-fic" />
+        <GenreLinkIcon iconID="non-fic" /> documentaly
         <GenreLinkIcon iconID="horror" />
         <GenreLinkIcon iconID="adventure" />
-        <GenreLinkIcon iconID="cartoon" />
+      X <GenreLinkIcon iconID="cartoon" /> 
         <GenreLinkIcon iconID="musical" />
-        <GenreLinkIcon iconID="anime" />
+        <GenreLinkIcon iconID="animation" /> */}
       </div>
     </div>
   );

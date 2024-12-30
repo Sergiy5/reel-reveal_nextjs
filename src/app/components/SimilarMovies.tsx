@@ -2,18 +2,20 @@
 
 import { GetShowMovies } from "./GetShowMovies";
 import { Loader } from "./ui/Loader";
-import { fetchSimilarMovies } from "../actions";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import useSWR from "swr";
 import { ISessionUserSignal } from "@/context/UserContext";
+import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
 
 export interface SimilarMoviesProps {
   title: string;
+  movieId: number;
   sessionUser: ISessionUserSignal;
 }
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
   title,
   sessionUser,
+  movieId,
 }) => {
   const {
     data: similarMovies,
@@ -21,13 +23,13 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
     isValidating,
     mutate,
   } = useSWR(
-    title ? [`similarMovies`, title] : null,
-    () => fetchSimilarMovies(title),
+    movieId ? "/api/movies/similar" : null,
+    () => fetchMovieDataFromAPI("/api/movies/similar", { movieId }),
     {
       revalidateOnFocus: false,
     }
-  );
-
+    );
+  
   if (isValidating) return <Loader />;
 
   if (error) {
