@@ -11,7 +11,7 @@ export default async function Saved() {
   const sessionUser = await getSessionUser();
 
   return (
-    <main className="z-10">
+    <main >
       <SavedMovies sessionUser={sessionUser} />
     </main>
   );

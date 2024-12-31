@@ -15,7 +15,7 @@ interface SavedMoviesProps {
   sessionUser: ISessionUserSignal;
 }
 
-export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
+export const  SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
   
      const { likedMovies, isLoading, isValidating } = useMoviesContext();
@@ -30,7 +30,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
     const movies = likedMoviesFromTMDB?.movies || [];
 
     return (
-      <div className="flex items-center flex-col justify-center gap-20 w-full mb-20">
+      <div className="flex items-center flex-col justify-center gap-20 w-full mb-20 z-20">
         {movies.length === 0 ? (
           <>
             <Image

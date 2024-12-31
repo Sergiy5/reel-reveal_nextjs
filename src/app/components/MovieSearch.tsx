@@ -77,7 +77,7 @@ useEffect(() => {
     setMovies((prev) => [...prev, ...data.results]);
   }, [data]);
 
-  if (!data) return null;
+  // if (!data) return null;
   // if (isValidating) return <Loader />;
 
   const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
