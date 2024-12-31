@@ -18,10 +18,8 @@ export const HeaderSearchBar: React.FC = () => {
       return toast.info("Please enter a movie title.");
     }
     const clearTitle = inputValue.trim().toLowerCase();
-    allMoviesSignal.value = [];
-    searchQuerySignal.value = "";
-    router.push(`/${clearTitle}`);
-    setInputValue("");
+   
+    router.push(`/movies?title=${clearTitle}`);
   };
 
   return (

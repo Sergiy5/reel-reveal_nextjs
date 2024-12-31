@@ -4,14 +4,14 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 
 export default async function MoviesPage({
-  params,
+  searchParams,
 }: {
-  params: { movies: string};
+  searchParams:{title: string};
 }) {
-  const { movies: title } = params;
+  const { title } = searchParams
 
   const sessionUser = await getSessionUser();
-
+// console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", title)
   return (
     <main>
       <MovieSearch movieTitle={title} sessionUser={sessionUser} />

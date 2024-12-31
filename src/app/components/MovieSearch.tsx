@@ -24,43 +24,48 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   sessionUser,
 }) => {
   const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
+  const [isActiveSearch, setisActiveSearch] = useState(false);
+  const [queryTitle, setQueryTitle] = useState("");
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(
     allMoviesSignal.value.length / 20
   );
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [queryTitle, setQueryTitle] = useState("");
-  const [isActiveSearch, setisActiveSearch] = useState(false);
-  const [page, setPage] = useState(1);
-console.log(page)
-  const currentRoute = isActiveSearch
-    ? "/api/movies/one-by-title"
-    : "/api/movies/all";
-  const currentRequest = isActiveSearch
-    ? { title: movieTitle, page }
-    : { page };
-console.log(currentRequest);
+
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    currentRoute,
-    () => fetchMovieDataFromAPI(currentRoute, currentRequest),
+    // currentRoute,
+    isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
+    () =>
+      fetchMovieDataFromAPI(
+        isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
+        isActiveSearch ? { title:queryTitle, page } : { page }
+      ),
     { revalidateOnFocus: false }
   );
   // console.log("DATA=========================", data);
+useEffect(() => {
+  // if (typeof window === "undefined") return;
+  if (movieTitle?.length && movieTitle !== queryTitle) {
+    setMovies([]);
+    setisActiveSearch(true);
+    setQueryTitle(movieTitle);
+    mutate();
+  } else if (movieTitle?.length && movieTitle === queryTitle) {
+    // setMovies(prev => [...prev, ...data.results]);
+    setisActiveSearch(true);
+    mutate();
+
+  } else if(!movieTitle?.length) {
+    setisActiveSearch(false);
+    setMovies([]);
+    mutate();
+  }
+},[movieTitle, movieTitle?.length, mutate, queryTitle])
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (movieTitle !== "movies" && !isActiveSearch) {
-      setisActiveSearch(true);
-    }
-
-    if (movieTitle && movieTitle !== queryTitle) {
-      setQueryTitle(movieTitle);
-    }
-  }, [movieTitle, isActiveSearch, queryTitle]);
-
-  useEffect(() => {
-  if(page === 1) return 
-  mutate()
-}, [page]);
+    mutate();
+    console.log(page);
+  }, [mutate, page]);
 
   useEffect(() => {
     if (!data) return;
@@ -68,14 +73,12 @@ console.log(currentRequest);
     totalSearchMoviesSignal.value = data.total_results;
     setTotalMovies(data.total_results);
     setTotalPages(data.total_pages);
-    if (page < 3) setMovies(data.results)
-    if(page > 2) setMovies((prev) => [...prev, ...data.results])
-    // const results = page === 1 ? data.results : [...allMoviesSignal.value, ...data.results];
-    // setMovies((prev) => [...prev, ...data.results]);
-  }, [data, page]);
+
+    setMovies((prev) => [...prev, ...data.results]);
+  }, [data]);
 
   if (!data) return null;
-  if (isValidating) return <Loader />;
+  // if (isValidating) return <Loader />;
 
   const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
 
@@ -100,7 +103,7 @@ console.log(currentRequest);
         </ButtonOrLink>
         <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
       </div>
-      <Modal isOpen={isLoading}>
+      <Modal isOpen={isLoading || isValidating}>
         <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>

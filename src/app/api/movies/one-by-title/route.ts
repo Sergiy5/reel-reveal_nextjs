@@ -5,6 +5,7 @@ export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page");
   const title = searchParams.get("title");
+  // console.log("TITLE_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", title);
 
   try {
     if (title === null) {
@@ -21,7 +22,7 @@ export const GET = async (req: Request) => {
       });
     }
     const data = await response.json();
-    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", data);
+    // console.log("RESPONSE_DATA_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", data);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch movies" });

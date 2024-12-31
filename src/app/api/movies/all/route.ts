@@ -4,7 +4,7 @@ import { options } from "../options";
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
   const page = searchParams.get("page");
-  console.log("PAGE_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", page);
+  // console.log("PAGE_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", page);
 
   try {
     const response = await fetch(
