@@ -1,22 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import SearchIcon from "../../../public/icons/search.svg";
-import { useRouter } from "next/navigation";
-import { allMoviesSignal, searchQuerySignal } from "@/context/MoviesContext";
-import { toast } from "react-toastify";
 
 export const HeaderSearchBar: React.FC = () => {
-  const [inputValue, setInputValue] = useState("");
+  const  searchParams  = useSearchParams();
+  const searchQuery = searchParams.get("title") || "";
+
+  const [inputValue, setInputValue] = useState(searchQuery);
   const [isFocused, setIsFocused] = useState(false);
+
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputValue.trim() === "") {
-      return toast.info("Please enter a movie title.");
-    }
+    
     const clearTitle = inputValue.trim().toLowerCase();
    
     router.push(`/movies?title=${clearTitle}`);

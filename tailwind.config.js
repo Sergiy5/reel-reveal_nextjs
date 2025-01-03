@@ -16,6 +16,10 @@ module.exports = {
         enableBgColor: "rgb(0,0,0, 0.6)",
         hoverBgColor: "rgb(12, 52, 58, 0.8)",
         accentClicked: "rgb(32, 201, 188, 0.5)",
+        bgSelectDropDown: "#1B1E36",
+        bgSelect: "#292F44",
+        bgSelectItemHover: "#272C42",
+        
       },
       blur: {
         header: "119.5px",

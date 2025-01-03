@@ -3,6 +3,7 @@ import { HeaderSearchBar } from "./HeaderSearchBar";
 import { MainLogo } from "./ui/MainLogo";
 import { HeaderNav } from "./HeaderNav";
 import { auth } from "@/auth";
+import { Suspense } from "react";
 
 export const Header: React.FC = async () => {
   const session = await auth();
@@ -17,7 +18,9 @@ export const Header: React.FC = async () => {
           className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}
         >
           <MainLogo />
-          <HeaderSearchBar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <HeaderSearchBar />
+          </Suspense>
           <HeaderNav isAuth={!!session} />
         </div>
       </div>

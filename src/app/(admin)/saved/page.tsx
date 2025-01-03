@@ -1,18 +1,18 @@
-// "use user";
-
-import { SavedMovies } from "@/app/components/SavedMovies";
-import { getManyMoviesByIds } from "@/app/services";
+import dynamic from "next/dynamic";
 import { getSessionUser } from "@/utils";
-// import { auth } from "@/auth";
-// import { redirect } from "next/navigation";
-// import { useSession } from "next-auth/react";
+
+const SavedMoviesDynamics = dynamic(
+  () =>
+    import("@/app/components/SavedMovies").then((mod) => mod.SavedMovies),
+  { ssr: false }
+)
 
 export default async function Saved() {
   const sessionUser = await getSessionUser();
 
   return (
-    <main >
-      <SavedMovies sessionUser={sessionUser} />
+    <main>
+      <SavedMoviesDynamics sessionUser={sessionUser} />
     </main>
   );
 }

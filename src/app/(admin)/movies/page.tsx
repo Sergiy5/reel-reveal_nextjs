@@ -1,20 +1,19 @@
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { Genres } from "@/app/components/Genres";
-import { MovieSearch } from "@/app/components/MovieSearch";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 
-export default async function MoviesPage({
-  searchParams,
-}: {
-  searchParams:{title: string};
-}) {
-  const { title } = searchParams
+const MovieSearchDynamics = dynamic(() => import("@/app/components/MovieSearch").then((mod) => mod.MovieSearch), { ssr: false });
+
+export default async function MoviesPage() {
 
   const sessionUser = await getSessionUser();
-// console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", title)
   return (
     <main>
-      <MovieSearch movieTitle={title} sessionUser={sessionUser} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MovieSearchDynamics sessionUser={sessionUser} />
+      </Suspense>
       <Genres />
       <TakeOurQuiz />
     </main>

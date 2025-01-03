@@ -18,7 +18,7 @@ interface MovieInfoProps {
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
 
   // const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
-  
+  // console.log(movie)
   return (
     <>
       {movie && (
@@ -31,7 +31,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                bg-movieGradient md:px-[60px] xl:px-[120px] z-10`}
             >
               <h1 className={`block lg:hidden sm:text-7xl pb-6`}>
-                {cutingString(movie.title ?? "", 35)}
+                {cutingString(movie.title ?? movie.original_title, 35)}
               </h1>
               <div
                 className={`flex flex-col-reverse items-center md:items-end gap-10 md:flex-row w-full lg:gap-[122px]`}
@@ -72,8 +72,12 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                       />
                     </div>
                   </div>
-                  <DateGenresDurationList listGenres={movie.genres ?? []} runtime={movie.runtime} reliseDate={movie.release_date} />
-                  
+                  <DateGenresDurationList
+                    listGenres={movie.genres ?? []}
+                    runtime={movie.runtime}
+                    reliseDate={movie.release_date}
+                  />
+
                   <p className={`flex`}>{cutingString(movie.overview, 300)}</p>
                 </div>
               </div>

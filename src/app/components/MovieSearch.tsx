@@ -13,72 +13,88 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { ISessionUserSignal } from "@/context/UserContext";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
 import { Movie } from "@/typification";
+import { useSearchParams } from "next/navigation";
+import { set } from "mongoose";
+import { MultiSelect } from "./ui/MultiSelect";
+import { arrayOfRatings } from "@/utils";
 
 export interface MovieSearchProps {
-  movieTitle: string | undefined;
+  movieTitle?: string | undefined;
   sessionUser: ISessionUserSignal;
 }
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({
-  movieTitle,
+  // movieTitle,
   sessionUser,
 }) => {
   const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
-  const [isActiveSearch, setisActiveSearch] = useState(false);
+  const [isActiveSearch, setisActiveSearch] = useState<boolean | null>(null);
   const [queryTitle, setQueryTitle] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
+  const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [totalPages, setTotalPages] = useState(
     allMoviesSignal.value.length / 20
   );
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    // currentRoute,
     isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
     () =>
       fetchMovieDataFromAPI(
         isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
-        isActiveSearch ? { title:queryTitle, page } : { page }
+        isActiveSearch ? { title: queryTitle, page } : { page }
       ),
     { revalidateOnFocus: false }
   );
-  // console.log("DATA=========================", data);
-useEffect(() => {
-  // if (typeof window === "undefined") return;
-  if (movieTitle?.length && movieTitle !== queryTitle) {
-    setMovies([]);
-    setisActiveSearch(true);
-    setQueryTitle(movieTitle);
-    mutate();
-  } else if (movieTitle?.length && movieTitle === queryTitle) {
-    // setMovies(prev => [...prev, ...data.results]);
-    setisActiveSearch(true);
-    mutate();
 
-  } else if(!movieTitle?.length) {
-    setisActiveSearch(false);
-    setMovies([]);
-    mutate();
-  }
-},[movieTitle, movieTitle?.length, mutate, queryTitle])
+  const searchParams = useSearchParams();
+  const movieTitle = searchParams.get("title") || "";
+
+  const clearCache = () => mutate(() => true, undefined);
 
   useEffect(() => {
-    mutate();
-    console.log(page);
-  }, [mutate, page]);
+    // if (movieTitle === queryTitle) return
+    if (movieTitle?.length && movieTitle !== queryTitle) {
+      setisActiveSearch(true);
+      setQueryTitle(movieTitle);
+      console.log("one");
+      setPage(1);
+      setMovies([]);
+      // mutate("/api/movies/one-by-title");
+    } else if (!movieTitle?.length && movieTitle !== queryTitle) {
+      setisActiveSearch(false);
+      setQueryTitle("");
+      console.log("second");
+      setPage(1);
+      setMovies([]);
+      // mutate("/api/movies/all");
+    } else if (!movieTitle?.length) {
+      setisActiveSearch(false)
+    }
+   
+    return () => {
+      clearCache();
+      // setMovies([]);
+    };
+  }, [movieTitle, movieTitle?.length, page, queryTitle]);
 
   useEffect(() => {
-    if (!data) return;
+    if (isActiveSearch === null) return;
+    setMovieStatus(null);
+    mutate();
+    console.log("page", page);
+  }, [mutate, page, isActiveSearch]);
 
-    totalSearchMoviesSignal.value = data.total_results;
+  useEffect(() => {
+    if (!data?.results || movieStatus === "success") return;
+    console.log("Set MOVIES_>>>>>>>");
+    console.log(movieStatus);
     setTotalMovies(data.total_results);
     setTotalPages(data.total_pages);
-
+    
     setMovies((prev) => [...prev, ...data.results]);
-  }, [data]);
-
-  // if (!data) return null;
-  // if (isValidating) return <Loader />;
+    setMovieStatus("success");
+  }, [data, movieStatus]);
 
   const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
 
@@ -96,9 +112,22 @@ useEffect(() => {
       ) : (
         <h1>The most popular movies</h1>
       )}
+      {/* Filter */}
+      <div className="flex justify-between w-full ">
+        <div className="flex gap-6">
+          <MultiSelect options={[]} placeholder="Genre" />{" "}
+          <MultiSelect options={[]} placeholder="Year" />{" "}
+          <MultiSelect options={arrayOfRatings(91)} placeholder="Rating" />{" "}
+        </div>
+        <ButtonOrLink onClick={() => setPage(1)}>apply filters</ButtonOrLink>
+      </div>
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
-        <ButtonOrLink onClick={() => setPage((prev) => prev + 1)} transparent>
+        <ButtonOrLink
+          onClick={() => setPage((prev) => prev + 1)}
+          transparent
+          disabled={totalMovies === 0}
+        >
           load more
         </ButtonOrLink>
         <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
