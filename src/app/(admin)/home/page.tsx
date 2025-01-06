@@ -7,18 +7,18 @@ import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 import { getSessionUser } from "@/utils";
 
 const DynamicQuiz = dynamic(
-  () => import("../../components/Quiz").then((mod) => mod.Quiz),
-  { ssr: false }
+  () => import("../../components/Quiz").then((mod) => mod.Quiz)
+
 );
 const DynamicSliderCorousel = dynamic(
   () =>
-    import("../../components/SliderCarousel").then((mod) => mod.SliderCarousel),
-  { ssr: false }
+    import("../../components/SliderCarousel").then((mod) => mod.SliderCarousel)
+
 );
 
 const DynamicGenres = dynamic(
-  () => import("@/app/components/Genres").then((mod) => mod.Genres),
-  { ssr: false }
+  () => import("@/app/components/Genres").then((mod) => mod.Genres)
+
 );
 
 export default async function Home() {
@@ -30,7 +30,7 @@ export default async function Home() {
   return (
     <main className="">
       <Hero />
-       <HowItWorks /> 
+      <HowItWorks />
       <DynamicQuiz sessionUser={sessionUser} />
       {upcomingMovies && (
         <GetShowMovies

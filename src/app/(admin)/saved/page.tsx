@@ -3,8 +3,7 @@ import { getSessionUser } from "@/utils";
 
 const SavedMoviesDynamics = dynamic(
   () =>
-    import("@/app/components/SavedMovies").then((mod) => mod.SavedMovies),
-  { ssr: false }
+    import("@/app/components/SavedMovies").then((mod) => mod.SavedMovies)
 )
 
 export default async function Saved() {

@@ -5,20 +5,22 @@ import useSWR from "swr";
 import { Loader } from "./ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
-import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { useState } from "react";
 import { fetchQuizMovies } from "../actions/fetchQuizMovies";
-import { ISessionUserSignal } from "@/context/UserContext";
+import { sessionUser } from "@/typification";
+// import { qiuzMoviesSignal } from "@/context/MoviesContext";
+// import { ISessionUserSignal } from "@/context/UserContext";
 
 interface IQuizProps {
-  sessionUser: ISessionUserSignal;
+  sessionUser: sessionUser;
 }
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(() =>
-    qiuzMoviesSignal.value.length ? false : true
-  );
+  const [isQuizActive, setIsQuizActive] = useState(true)
+    // () =>
+  //   qiuzMoviesSignal.value.length ? false : true
+  // );
 
   // Use SWR to fetch quiz movies based on quizResult
   const {
@@ -31,7 +33,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     {
       revalidateOnFocus: false,
       onSuccess: (movies) => {
-        qiuzMoviesSignal.value = movies ?? [];
+        // qiuzMoviesSignal.value = movies ?? [];
         setIsQuizActive(false);
       },
       onError: (error: any) => {
@@ -56,7 +58,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
             setIsQuizActive(true);
           }}
           sessionUser={sessionUser}
-          arrMovies={qiuzMoviesSignal.value ?? listMovies}
+          arrMovies={listMovies ?? []}
         />
       )}
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import clsx from "clsx";
-import SearchIcon from "../../../public/icons/search.svg";
+import { Icon } from "./ui/Icon";
 
 export const HeaderSearchBar: React.FC = () => {
   const  searchParams  = useSearchParams();
@@ -44,11 +44,11 @@ export const HeaderSearchBar: React.FC = () => {
             isFocused && "bg-accentColor"
           )}
         >
-          <SearchIcon
-            className={clsx(
-              `ml-auto mr-auto transition duration-200`,
-              isFocused && `stroke-bgColor opacity-100`
-            )}
+          <Icon
+            id="icon-search"
+            width={24}
+            height={24}
+            styles={`ml-auto mr-auto transition duration-200 ${isFocused ? "text-bgColor opacity-100" : "text-textColor"}`}
           />
         </button>
       </form>

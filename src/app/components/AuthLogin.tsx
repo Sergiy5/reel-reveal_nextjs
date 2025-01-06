@@ -1,6 +1,6 @@
 "use client";
 
-import { userEmailSignal } from "@/context/UserContext";
+// import { userEmailSignal } from "@/context/UserContext";
 import { useForm } from "react-hook-form";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";
 import { socialLogin } from "../actions/socialLogin";
@@ -35,14 +35,14 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
       );
 
       if (!response.user) {
-        userEmailSignal.value = data.email;
+        // userEmailSignal.value = data.email;
 
         return setStatusUser("register");
       }
 
       if (response.user) {
         setStatusUser("signup");
-        userEmailSignal.value = response.user.email;
+        // userEmailSignal.value = response.user.email;
       }
     } catch (error) {
       console.log(error);

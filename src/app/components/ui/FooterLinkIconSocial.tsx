@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "./Icon";
 
 export interface FooterLinkIconSocialProps {
   link: string;
@@ -17,11 +18,12 @@ export const FooterLinkIconSocial: React.FC<FooterLinkIconSocialProps> = ({
       aria-label={`Link to ${link}`}
       className={`link`}
     >
-      <svg
-        className={`w-[34px] h-[34px] fill-textColor transition hover:fill-accentColor`}
-      >
-        <use xlinkHref={`/icons/sprite.svg#${id}`} />
-      </svg>
+      <Icon
+        id={id}
+        width={34}
+        height={34}
+        styles=" fill-textColor transition duration-300 ease-in-out hover:fill-accentColor "
+      />
     </Link>
   );
 };

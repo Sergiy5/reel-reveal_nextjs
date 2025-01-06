@@ -5,11 +5,11 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-import {
-  isAuthUserSignal,
-  sessionUserSignal,
-  userEmailSignal,
-} from "@/context/UserContext";
+// import {
+//   isAuthUserSignal,
+//   sessionUserSignal,
+//   userEmailSignal,
+// } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
@@ -35,24 +35,24 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const onSubmit = async (data: { password: string }) => {
     setIsLoading(true);
     const { password } = data;
-    const email = userEmailSignal.value;
+    // const email = userEmailSignal.value;
 
     try {
-      const response = await doCredentialLogin({ email, password });
+      // const response = await doCredentialLogin({ email, password });
 
-      if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
+      // if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
 
-      isAuthUserSignal.value = true;
+      // isAuthUserSignal.value = true;
       
       const session = await getSession();
       toast.success(`${session?.user?.name} logged in successfully`);
 
-      sessionUserSignal.value = {
-        userId: session?.user?.id,
-        userName: session?.user?.name,
-        email: session?.user?.email,
-        userStatus: userStatuses.Authenticated,
-      };
+      // sessionUserSignal.value = {
+      //   userId: session?.user?.id,
+      //   userName: session?.user?.name,
+      //   email: session?.user?.email,
+      //   userStatus: userStatuses.Authenticated,
+      // };
       router.refresh();
       router.replace("/home");
     } catch (error) {

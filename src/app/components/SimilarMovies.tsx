@@ -4,13 +4,14 @@ import { GetShowMovies } from "./GetShowMovies";
 import { Loader } from "./ui/Loader";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import useSWR from "swr";
-import { ISessionUserSignal } from "@/context/UserContext";
+// import { ISessionUserSignal } from "@/context/UserContext";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
+import { sessionUser } from "@/typification";
 
 export interface SimilarMoviesProps {
   title?: string;
   movieId: number;
-  sessionUser: ISessionUserSignal;
+  sessionUser: sessionUser;
 }
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
   title,

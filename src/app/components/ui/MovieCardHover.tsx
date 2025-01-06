@@ -13,18 +13,17 @@ interface IMovieForHover {
   isWatched: boolean;
 }
 
- interface MovieCardHoverProps {
-   movie: IMovieForHover;
-   handleMovie: (
-     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-   ) => void;
- }
+interface MovieCardHoverProps {
+  movie: IMovieForHover;
+  handleMovie: (
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
+  ) => void;
+}
 
 export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
-
   const formattedMovie = useMemo(() => {
     return {
       ...movie,
@@ -34,15 +33,9 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
     };
   }, [movie]);
 
-  const {
-    title,
-    id,
-    isLiked,
-    isWatched,
-    voteAverageFormatted,
-    releaseYear,
-  } = formattedMovie;
-  
+  const { title, id, isLiked, isWatched, voteAverageFormatted, releaseYear } =
+    formattedMovie;
+
   return (
     <div
       id={`${id}`}
@@ -64,7 +57,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
         <ul className="flex flex-col justify-between h-[119px]">
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              iconId="icon-heart_btn"
+              iconId="icon-heart_fill"
               dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"

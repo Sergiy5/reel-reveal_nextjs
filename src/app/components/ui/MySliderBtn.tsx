@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
-import ArrowIcon from "../../../../public/icons/arrow.svg";
 import { MySliderBtnProps } from "@/typification";
+import { Icon } from "./Icon";
 
 export const MySliderBtn: React.FC<MySliderBtnProps> = ({
   currentSlide,
@@ -20,8 +20,8 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = ({
       {...props}
       aria-disabled={isActive}
       className={clsx(
-        `absolute  top-[42%] flex items-center justify-center w-20 h-20 rounded-[20px]
-         outline-none transition-colors transition-outline duration-250 ease-[cubic-bezier(0.4,0,0.2,1)] z-10`,
+        `absolute  top-[42%] w-20 h-20 rounded-[20px]
+         outline-none transition-colors transition-outline duration-250 ease-in-out z-10`,
         {
           "cursor-default": isActive,
           "cursor-pointer": !isActive,
@@ -40,12 +40,9 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = ({
         prev_style ? "-left-7" : "-right-7"
       )}
     >
-      <ArrowIcon
-        className={clsx(
-          " ml-auto mr-auto text-inherit w-6 h-6 opacity-100",
-          prev_style
-        )}
-      />
+      <div className={`flex justify-center w-full ${prev_style && "rotate-180"}`}>
+        <Icon id={"icon-arrow"} width={24} height={24} styles={"inherit"} />
+      </div>
     </button>
   );
 };

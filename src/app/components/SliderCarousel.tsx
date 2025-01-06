@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { MySlider } from "./ui/MySlider";
 import { SliderCarouselSlide } from "./ui/SliderCarouselSlide";
 import { fetchPaths } from "../actions";
+import { Loader } from "./ui/Loader";
 
 export const SliderCarousel: React.FC = () => {
   const [images, setFiles] = useState<string[]>([]);
@@ -12,6 +13,7 @@ export const SliderCarousel: React.FC = () => {
     const handler = async () => {
       try {
         const { files } = await fetchPaths();
+
         setFiles(files);
       } catch (error: any) {
         console.log(error);
@@ -51,11 +53,11 @@ export const SliderCarousel: React.FC = () => {
     <div className={` flex flex-col max-w-[3168px] gap-12 z-20 `}>
       <h2 className={`mx-auto px-3`}>Stuck on Movie Choices?</h2>
       <div className={` flex flex-col mx-auto w-[864px] h-auto md:w-full`}>
-        <MySlider
+        { images.length > 0 ? <MySlider
           arraySlides={images}
           SlideComponent={SliderCarouselSlide}
           settings={settings}
-        />
+        /> : <Loader/>}
       </div>
     </div>
   );

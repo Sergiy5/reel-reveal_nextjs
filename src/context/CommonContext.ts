@@ -1,3 +1,3 @@
-import { signal } from "@preact/signals-react";
+// import { signal } from "@preact/signals-react";
 
-export const isLoadingSignal = signal<boolean>(false);
+export const isLoadingSignal = false  //signal<boolean>(false);

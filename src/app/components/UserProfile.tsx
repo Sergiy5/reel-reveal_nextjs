@@ -5,11 +5,11 @@ import { doLogout } from "../actions/socialLogin";
 import DeleteAccount from "../../../public/icons/delete-account.svg";
 import Signout from "../../../public/icons/signout.svg";
 import EditAccaount from "../../../public/icons/edit-account.svg";
-import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
+// import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { mutate } from "swr";
 import { userStatuses } from "@/variables";
 import { useRouter } from "next/navigation";
-import { savedMoviesSignal } from "@/context/MoviesContext";
+// import { savedMoviesSignal } from "@/context/MoviesContext";
 
 export const UserProfile: React.FC = () => {
   const srcImage = "";
@@ -17,16 +17,16 @@ export const UserProfile: React.FC = () => {
   const router = useRouter();
 
   const signOut = () => {
-    isAuthUserSignal.value = false;
+    // isAuthUserSignal.value = false;
     doLogout();
-    savedMoviesSignal.value = [];
+    // savedMoviesSignal.value = [];
 
-    sessionUserSignal.value = {
-      userId: "",
-      email: "",
-      userName: "",
-      userStatus: userStatuses.Unauthenticated,
-    };
+    // sessionUserSignal.value = {
+    //   userId: "",
+    //   email: "",
+    //   userName: "",
+    //   userStatus: userStatuses.Unauthenticated,
+    // };
 
     router.forward();
   };

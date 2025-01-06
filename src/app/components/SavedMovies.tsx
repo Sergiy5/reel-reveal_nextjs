@@ -7,12 +7,13 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { ListMovies } from "./ListMovies";
 import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
-import { ISessionUserSignal } from "@/context/UserContext";
+// import { ISessionUserSignal } from "@/context/UserContext";
 import { fetcher } from "../actions";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
+import { sessionUser } from "@/typification";
 
 interface SavedMoviesProps {
-  sessionUser: ISessionUserSignal;
+  sessionUser: sessionUser;
 }
 
 export const  SavedMovies: React.FC<SavedMoviesProps> = React.memo(

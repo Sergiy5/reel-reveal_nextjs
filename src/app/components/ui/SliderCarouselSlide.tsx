@@ -1,21 +1,25 @@
 import { getFilNameFromPath } from "@/utils";
 import FrameShotIcon from "../../../../public/icons/frame-shot.svg";
 import Image from "next/image";
-import { SliderCarouselSlideProps } from "@/typification";
+import { Icon } from "./Icon";
+
+export interface SliderCarouselSlideProps {
+  movie: string;
+}
 
 export const SliderCarouselSlide: React.FC<SliderCarouselSlideProps> = ({
   movie,
 }) => {
-  const isDev = process.env.NODE_ENV;
-  const regExp = isDev === "development" ? "\\" : "/";
 
-  const pathName = getFilNameFromPath(movie, regExp);
+  const isDev = process.env.NODE_ENV === "development";
+  const regExp = isDev ? "\\" : "/";
+  const pathName = getFilNameFromPath(movie, regExp) || "";
 
   const title = pathName.replaceAll("-", " ");
 
   return (
     <div className={` relative cursor-pointer`}>
-      <FrameShotIcon className={`w-[288px] h-auto`} />
+      <Icon id="icon-frame-shot" width={288} height={275} />
       <div className={` rounded-[3px]`}>
         <Image
           src={`/carousel-images/${pathName}.webp`}

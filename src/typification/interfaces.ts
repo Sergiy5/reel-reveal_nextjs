@@ -36,10 +36,6 @@ export interface Movie {
   runtime: number;
 }
 
-export interface SliderCarouselSlideProps {
-  movie: string;
-}
-
 export interface IResponsDataTMbD {
   results: Movie[];
 }
@@ -103,4 +99,11 @@ export interface IStoredMovie {
   watched: boolean;
   liked: boolean;
   _id: string;
+}
+
+export interface sessionUser {
+  userId: string;
+  email: string;
+  userName: string;
+  userStatus: string;
 }

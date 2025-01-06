@@ -4,7 +4,7 @@ import { Genres } from "@/app/components/Genres";
 import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 
-const MovieSearchDynamics = dynamic(() => import("@/app/components/MovieSearch").then((mod) => mod.MovieSearch), { ssr: false });
+const MovieSearchDynamics = dynamic(() => import("@/app/components/MovieSearch").then((mod) => mod.MovieSearch));
 
 export default async function MoviesPage() {
 

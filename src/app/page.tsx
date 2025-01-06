@@ -1,4 +1,4 @@
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ButtonOrLink } from "./components/ui/ButtonOrLink";
 
 export default function Page() {

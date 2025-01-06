@@ -1,14 +1,14 @@
-import { signal } from "@preact/signals-react";
+// import { signal } from "@preact/signals-react";
 import { IStoredMovie, Movie } from "@/typification";
 
-export const qiuzMoviesSignal = signal<Movie[]>([]);
+// export const qiuzMoviesSignal = signal<Movie[]>([]);
 
-export const searchQuerySignal = signal<string>("");
+// export const searchQuerySignal = signal<string>("");
 
-export const allMoviesSignal = signal<Movie[]>([]);
+// export const allMoviesSignal = signal<Movie[]>([]);
 
-export const favoriteMoviesSignal = signal<Movie[]>([]);
+// export const favoriteMoviesSignal = signal<Movie[]>([]);
 
-export const totalSearchMoviesSignal = signal<number>(0);
+// export const totalSearchMoviesSignal = signal<number>(0);
 
-export const savedMoviesSignal = signal<IStoredMovie[]>([]);
+// export const savedMoviesSignal = signal<IStoredMovie[]>([]);

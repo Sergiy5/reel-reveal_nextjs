@@ -33,14 +33,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { likedMovies, watchedMovies, toggleLiked, toggleWatched } =
     useMoviesContext();
-  
+
   const openUrl = useOpenUrl();
 
   const { userStatus } = sessionUser;
 
   const isLiked = likedMovies.includes(movie.id);
   const isWatched = watchedMovies.includes(movie.id);
-
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -71,8 +70,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
     if (clickedTarget === "trailer") toggleModal();
 
     if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
-      
-if (userStatus === "unauthenticated") {
+      if (userStatus === "unauthenticated") {
         toast.error("You need to be logged in to save movies");
         return;
       }

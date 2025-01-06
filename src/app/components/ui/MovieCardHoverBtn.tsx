@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Icon } from "./Icon";
 
  interface MovieCardHoverBtnProps {
   iconId: string;
@@ -50,9 +51,8 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
       >
         {text}
       </button>
-      <svg className="w-4 h-4">
-        <use xlinkHref={`/icons/sprite.svg#${iconId}`} />
-      </svg>
+      <Icon id={iconId} width={16} height={16} styles="" />
+      
     </div>
   );
 };

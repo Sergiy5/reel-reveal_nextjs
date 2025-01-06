@@ -1,8 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
-import BurgerIcon from "../../../public/icons/burger.svg";
-import CrossIcon from "../../../public/icons/cross.svg";
-import { isAuthUserSignal } from "@/context/UserContext";
+import { Icon } from "./ui/Icon";
+// import { isAuthUserSignal } from "@/context/UserContext";
 
 interface HeaderNavMenuProps {
   isOpenMenu: boolean;
@@ -32,9 +31,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           className={`absolute right-4 flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgLightColor
                      transition-all duration-300`}
         >
-          <CrossIcon
-            className={` w-[30px] h-[30px] stroke-textColor transition duration-300`}
-          />
+          <Icon id="cross" width={30} height={30} styles="text-textColor" />
         </button>
         <Link
           href={"/movies"}
@@ -51,7 +48,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           <p className="">My library</p>
         </Link>
         <Link
-          href={isAuth || isAuthUserSignal.value ? "/profile" : "/auth"}
+          href={isAuth ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >
@@ -75,8 +72,11 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
         className={`flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgColor
                      transition-all duration-300 lg:hidden`}
       >
-        <BurgerIcon
-          className={` w-[30px] h-[30px] stroke-textColor transition duration-300 `}
+        <Icon
+          id="burger-icon"
+          width={30}
+          height={30}
+          styles="text-textColor transition duration-300"
         />
       </button>
     </>

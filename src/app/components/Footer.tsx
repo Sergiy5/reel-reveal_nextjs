@@ -6,9 +6,9 @@ import { useDeviceType } from "@/hooks";
 import { MainLogo } from "./ui/MainLogo";
 import { FooterMenu } from "./FooterMenu";
 import { FooterListSocial } from "./FooterListSocial";
-import CameraIcon from "../../../public/icons/camera.svg";
 import { DeviceType } from "@/typification";
 import { LinkToQuiz } from "./LinkToQuiz";
+import { Icon } from "./ui/Icon";
 
 export const Footer: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -37,14 +37,7 @@ export const Footer: React.FC = () => {
 
           <div className={`flex justify-between w-full  `}>
             {!isClient ? null : deviceType !== "mobile" && <FooterMenu />}
-
-            <CameraIcon
-              width={154}
-              height={160}
-              id="camera-icon"
-              alt="Camera icon"
-              placeholder="empty"
-            />
+            <Icon id="icon-camera" width={154} height={160} />
 
             <FooterListSocial />
           </div>

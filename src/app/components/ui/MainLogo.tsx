@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LogoMain from "../../../../public/icons/main-logo.svg";
+import { Icon } from "./Icon";
 
 export const MainLogo: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ export const MainLogo: React.FC = () => {
       className="flex items-center"
       aria-label="Go to ReelReveal home page"
     >
-      <LogoMain alt="logo" width={48} height={48} />
+      <Icon id="main-logo" width={48} height={48} styles="fill-textColor" />
 
       <span className="hidden font-bold text-3xl text-textColor lg:flex">
         ReelReveal

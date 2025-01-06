@@ -16,7 +16,6 @@ interface MovieInfoProps {
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-
   // const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
   // console.log(movie)
   return (

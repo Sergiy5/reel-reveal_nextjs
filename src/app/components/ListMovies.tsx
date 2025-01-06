@@ -3,12 +3,12 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import { MovieCard } from "./ui/MovieCard";
-import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
-import { Movie } from "@/typification";
+// import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
+import { Movie, sessionUser } from "@/typification";
 
 export interface ListMoviesProps {
   movies: Movie[];
-  sessionUser?: ISessionUserSignal;
+  sessionUser?: sessionUser;
 }
 
 export const ListMovies: React.FC<ListMoviesProps> = ({ movies, sessionUser }) => {
@@ -19,7 +19,7 @@ export const ListMovies: React.FC<ListMoviesProps> = ({ movies, sessionUser }) =
         <MovieCard
           key={nanoid()}
           movie={movie}
-          sessionUser={sessionUser ?? sessionUserSignal.value}
+          sessionUser={sessionUser as sessionUser}
         />
       ))}
     </div>

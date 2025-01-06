@@ -1,6 +1,7 @@
 import React, { useEffect, ReactNode} from "react";
 import { createPortal } from "react-dom";
 import CrossIcon from "../../../../public/icons/cross.svg";
+import { Icon } from "./Icon";
 
 interface ModalProps {
   children: ReactNode;
@@ -62,10 +63,11 @@ export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
             className="absolute top-2 right-2 text-textColor hover:text-accentColor"
             aria-label="Close Modal"
           >
-            <CrossIcon
+            <Icon id={"cross"} width={30} height={30} />
+            {/* <CrossIcon
               className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] stroke-textColor
                          transition duration-300 hover:stroke-accentColor`}
-            />
+            /> */}
           </button>
         )}
         {children}

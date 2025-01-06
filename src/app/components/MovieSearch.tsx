@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Loader } from "./ui/Loader";
 import { ListMovies } from "./ListMovies";
-import {
-  allMoviesSignal,
-  totalSearchMoviesSignal,
-} from "@/context/MoviesContext";
+// import {
+//   allMoviesSignal,
+//   totalSearchMoviesSignal,
+// } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-import { ISessionUserSignal } from "@/context/UserContext";
+// import { ISessionUserSignal } from "@/context/UserContext";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
-import { Movie } from "@/typification";
+import { Movie, sessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { set } from "mongoose";
 import { MultiSelect } from "./ui/MultiSelect";
@@ -20,22 +20,20 @@ import { arrayOfRatings } from "@/utils";
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
-  sessionUser: ISessionUserSignal;
+  sessionUser: sessionUser;
 }
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({
   // movieTitle,
   sessionUser,
 }) => {
-  const [totalMovies, setTotalMovies] = useState(totalSearchMoviesSignal.value);
+  const [totalMovies, setTotalMovies] = useState(); //totalSearchMoviesSignal.value
   const [isActiveSearch, setisActiveSearch] = useState<boolean | null>(null);
   const [queryTitle, setQueryTitle] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
-  const [totalPages, setTotalPages] = useState(
-    allMoviesSignal.value.length / 20
-  );
+  const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
     isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
@@ -69,9 +67,9 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
       setMovies([]);
       // mutate("/api/movies/all");
     } else if (!movieTitle?.length) {
-      setisActiveSearch(false)
+      setisActiveSearch(false);
     }
-   
+
     return () => {
       clearCache();
       // setMovies([]);
@@ -91,7 +89,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
     console.log(movieStatus);
     setTotalMovies(data.total_results);
     setTotalPages(data.total_pages);
-    
+
     setMovies((prev) => [...prev, ...data.results]);
     setMovieStatus("success");
   }, [data, movieStatus]);
