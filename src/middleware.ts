@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
   console.log("IN_MIDDLEWARE_>>>>>>>>>>>>>", isAuthenticated, nextUrl.pathname);
 
   // Define the path where middleware should apply
-  const protectedPaths = ["/profile", "/saved"];
+  const protectedPaths = ["/profile", "/saved"]; // if need to add more paths from api
   const pathname = req.nextUrl.pathname;
 
   // Check if the request is for a protected route

@@ -2,14 +2,11 @@
 
 import Image from "next/image";
 import { doLogout } from "../actions/socialLogin";
-import DeleteAccount from "../../../public/icons/delete-account.svg";
-import Signout from "../../../public/icons/signout.svg";
-import EditAccaount from "../../../public/icons/edit-account.svg";
-// import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
-import { mutate } from "swr";
+import { isAuthUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { userStatuses } from "@/variables";
 import { useRouter } from "next/navigation";
-// import { savedMoviesSignal } from "@/context/MoviesContext";
+import { savedMoviesSignal } from "@/context/MoviesContext";
+import { Icon } from "./ui/Icon";
 
 export const UserProfile: React.FC = () => {
   const srcImage = "";
@@ -17,16 +14,16 @@ export const UserProfile: React.FC = () => {
   const router = useRouter();
 
   const signOut = () => {
-    // isAuthUserSignal.value = false;
+    isAuthUserSignal.value = false;
     doLogout();
-    // savedMoviesSignal.value = [];
+    savedMoviesSignal.value = [];
 
-    // sessionUserSignal.value = {
-    //   userId: "",
-    //   email: "",
-    //   userName: "",
-    //   userStatus: userStatuses.Unauthenticated,
-    // };
+    sessionUserSignal.value = {
+      userId: "",
+      email: "",
+      userName: "",
+      userStatus: userStatuses.Unauthenticated,
+    };
 
     router.forward();
   };
@@ -58,11 +55,13 @@ export const UserProfile: React.FC = () => {
             <button
               className={`group flex items-center gap-2 hover:cursor-pointer tranisition-all ease-in-out duration-300 hover:text-accentColor`}
             >
-              <EditAccaount
-                width={21}
-                height={21}
-                className={`fill-textColor tranisition-all ease-in-out duration-300 group-hover:fill-accentColor`}
-              />{" "}
+              <Icon
+                id="icon-edit-profile"
+                width={20}
+                height={20}
+                styles={`text-textColor tranisition-all ease-in-out duration-300 group-hover:text-accentColor`}
+              />
+
               <span>Edit pfile</span>
             </button>
           </li>
@@ -71,11 +70,13 @@ export const UserProfile: React.FC = () => {
               onClick={signOut}
               className={`group flex items-center gap-2 hover:cursor-pointer tranisition-all ease-in-out duration-300 hover:text-accentColor`}
             >
-              <Signout
+              <Icon
+                id="icon-signout"
                 width={24}
                 height={24}
-                className={`fill-textColor tranisition-all ease-in-out duration-300 group-hover:fill-accentColor`}
-              />{" "}
+                styles="fill-textColor tranisition-all ease-in-out duration-300 group-hover:fill-accentColor"
+              />
+
               <span>Sign out</span>
             </button>
           </li>
@@ -83,12 +84,14 @@ export const UserProfile: React.FC = () => {
             <button
               className={`group flex items-center gap-2 hover:cursor-pointer tranisition-all ease-in-out duration-300 hover:text-accentColor`}
             >
-              <DeleteAccount
+              <Icon
+                id="icon-remove-acount"
                 width={20}
                 height={18}
-                className={`fill-textColor stroke-textColor tranisition-all ease-in-out duration-300 group-hover:stroke-accentColor group-hover:fill-accentColor`}
-              />{" "}
-              <span>Delete acount</span>
+                styles="fill-textColor stroke-textColor tranisition-all ease-in-out duration-300 group-hover:stroke-accentColor group-hover:fill-accentColor"
+              />
+
+              <span>Delete account</span>
             </button>
           </li>
         </ul>

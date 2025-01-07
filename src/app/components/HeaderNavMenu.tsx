@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Icon } from "./ui/Icon";
-// import { isAuthUserSignal} from "@/context/UserContext";
+import { isAuthUserSignal} from "@/context/UserContext";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -36,7 +36,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           id="icon-heart"
           width={18}
           height={16}
-          styles="text-textColor transition duration ease-in-out hover:text-accentClicked"
+          styles="text-textColor transition duration ease-in-out hover:text-accentColor active:text-accentClicked"
         />
       </Link>
       <Link
@@ -48,7 +48,9 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           id="icon-user"
           width={18}
           height={20}
-          styles="text-textColor transition duration ease-in-out hover:text-accentClicked"
+          styles={`transition duration ease-in-out hover:text-accentColor active:text-accentClicked ${
+            isAuth ? "text-accentColor" : "text-textColor"
+          }`}
         />
       </Link>
       <Link

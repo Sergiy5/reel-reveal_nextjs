@@ -8,8 +8,7 @@ import { QuizQuestions } from "./QuizQuestions";
 import { useState } from "react";
 import { fetchQuizMovies } from "../actions/fetchQuizMovies";
 import { sessionUser } from "@/typification";
-// import { qiuzMoviesSignal } from "@/context/MoviesContext";
-// import { ISessionUserSignal } from "@/context/UserContext";
+import { qiuzMoviesSignal } from "@/context/MoviesContext";
 
 interface IQuizProps {
   sessionUser: sessionUser;
@@ -17,10 +16,10 @@ interface IQuizProps {
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(true)
-    // () =>
-  //   qiuzMoviesSignal.value.length ? false : true
-  // );
+  const [isQuizActive, setIsQuizActive] = useState(
+    () =>
+    qiuzMoviesSignal.value.length ? false : true
+  );
 
   // Use SWR to fetch quiz movies based on quizResult
   const {
@@ -33,7 +32,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     {
       revalidateOnFocus: false,
       onSuccess: (movies) => {
-        // qiuzMoviesSignal.value = movies ?? [];
+        qiuzMoviesSignal.value = movies ?? [];
         setIsQuizActive(false);
       },
       onError: (error: any) => {

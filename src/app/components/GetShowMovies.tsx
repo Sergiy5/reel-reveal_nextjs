@@ -5,20 +5,19 @@ import { Movie, sessionUser } from "@/typification";
 import { MySlider } from "./ui/MySlider";
 import { MovieCard } from "./ui/MovieCard";
 import { settings } from "./ui/MySlider";
-// import { ISessionUserSignal } from "@/context/UserContext";
-
+import { useSession } from "next-auth/react";
 
 export interface GetShowMoviesProps {
   title: string;
   movies: Movie[];
-  sessionUser: sessionUser;
 }
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
   movies,
-  sessionUser,
 }) => {
+
+  const { status } = useSession();
 
   return (
     <div
@@ -29,10 +28,9 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
         <MySlider
           arraySlides={movies}
           SlideComponent={(props) => (
-            <MovieCard {...props} sessionUser={sessionUser} />
+            <MovieCard {...props} sessionUserStatus={status} />
           )}
           settings={settings}
-          sessionUser={sessionUser}
         />
       </div>
     </div>

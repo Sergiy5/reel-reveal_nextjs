@@ -4,8 +4,6 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { MovieInfoTrailer } from "@/app/components/MovieInfoTrailer";
 import { MovieInfoCast } from "@/app/components/MovieInfoCast";
 import { getMovieById } from "@/app/services";
-import { getSessionUser } from "@/utils";
-// import { sessionUserSignal } from "@/context/UserContext";
 
 const DynamicSimilarMovies = dynamic(
   () =>
@@ -17,16 +15,12 @@ const DynamicSliderCarousel = dynamic(
     import("@/app/components/SliderCarousel").then((mod) => mod.SliderCarousel)
 );
 
-
 export default async function OneMoviePage(
   props: {
     params: Promise<{ movieId: number}>;
     }
 ) {
   const params = await props.params;
-
-  const sessionUser = await getSessionUser();
-
   const { movieId } = params;
 
   const movie = await getMovieById(movieId);
@@ -42,7 +36,6 @@ export default async function OneMoviePage(
       >
         <MovieInfoCast id={movieId} />
         <DynamicSimilarMovies
-          sessionUser={sessionUser}
           movieId={movieId}
           title={title ?? original_title}
         />

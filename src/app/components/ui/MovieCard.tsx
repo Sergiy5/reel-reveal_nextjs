@@ -17,26 +17,19 @@ export interface IMovieInDB {
   liked: boolean;
 }
 
-interface ISessionUser {
-  email: string;
-  userId: string;
-  userName: string;
-  userStatus: string;
-}
 interface MovieCardProps {
   movie: Movie;
-  sessionUser: ISessionUser;
+  sessionUserStatus: string;
 }
 
-export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
+export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUserStatus }) => {
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { likedMovies, watchedMovies, toggleLiked, toggleWatched } =
     useMoviesContext();
 
   const openUrl = useOpenUrl();
-
-  const { userStatus } = sessionUser;
 
   const isLiked = likedMovies.includes(movie.id);
   const isWatched = watchedMovies.includes(movie.id);
@@ -70,7 +63,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUser }) => {
     if (clickedTarget === "trailer") toggleModal();
 
     if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
-      if (userStatus === "unauthenticated") {
+      if (sessionUserStatus === "unauthenticated") {
         toast.error("You need to be logged in to save movies");
         return;
       }

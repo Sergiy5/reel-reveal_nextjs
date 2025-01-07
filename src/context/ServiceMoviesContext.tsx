@@ -31,8 +31,8 @@ const ServiceMoviesContext = createContext<MoviesContextType | undefined>(
 export const ServiceMoviesProvider: React.FC<{
   userId: string;
   children: React.ReactNode;
-}> = ({ userId, children }) => {
-  
+}> = ({userId, children }) => {
+
   const { mutate } = useSWRConfig();
 
   const { data: movies, error, isValidating, isLoading } = useMovies(userId);
@@ -116,7 +116,6 @@ export const ServiceMoviesProvider: React.FC<{
       const updatedMovies = movies.map((m: IMovieInDB) =>
         m.movieId === movieId ? { ...m, watched: !m.watched } : m
       );
-      console.log("updatedMovies", updatedMovies);
 
       // Update movie in DB if liked true
       if (movie.liked) {

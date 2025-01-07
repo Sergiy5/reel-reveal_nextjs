@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
-import { useEffect, useState } from "react";
-// import { userEmailSignal } from "@/context/UserContext";
+import { userEmailSignal } from "@/context/UserContext";
 import { registerUser } from "../actions/registerUser";
 import { toast } from "react-toastify";
 import { validateEmail, validatePassword } from "@/utils";
@@ -77,7 +76,7 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           label="Email"
           type="text"
           id="email"
-          defaultValue={`${""}`} //userEmailSignal.value ?? ""
+          defaultValue={`${userEmailSignal.value ?? ""}`}
           register={register}
           validation={{ required: true, validate: validateEmail }}
           errors={errors}

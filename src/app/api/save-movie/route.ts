@@ -5,7 +5,7 @@ import { IStoredMovie } from "@/typification";
 
 export const POST = async (req: Request) => {
   const { movie, userId } = await req.json();
-
+  
   try {
     await connectDB();
     const user = await User.findById(userId);

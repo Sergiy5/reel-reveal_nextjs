@@ -1,13 +1,14 @@
 "use client";
 
-// import { userEmailSignal } from "@/context/UserContext";
 import { useForm } from "react-hook-form";
+import { userEmailSignal } from "@/context/UserContext";
 import { fetchUserByEmail } from "../actions/fetchUserByEmail";
 import { socialLogin } from "../actions/socialLogin";
 import Google from "../../../public/icons/google.svg";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validateEmail } from "@/utils";
+import { Icon } from "./ui/Icon";
 
 interface AuthLoginProps {
   setStatusUser: (statusUser: "register" | "signup") => void;
@@ -35,14 +36,14 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
       );
 
       if (!response.user) {
-        // userEmailSignal.value = data.email;
+        userEmailSignal.value = data.email;
 
         return setStatusUser("register");
       }
 
       if (response.user) {
         setStatusUser("signup");
-        // userEmailSignal.value = response.user.email;
+        userEmailSignal.value = response.user.email;
       }
     } catch (error) {
       console.log(error);
@@ -86,11 +87,16 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
               type="submit"
               name="action"
               value="google"
-              className={`size-44 rounded-2xl font-normal text-2xl bg-bgLightColor`}
+              className={`group size-44 rounded-2xl font-normal text-2xl bg-bgLightColor transition duration-300 hover:text-accentColor`}
             >
-              <Google
-                className={`mx-auto size-12 stroke-textColor fill-none`}
-              />
+              <div className="flex justify-center text-inherit group-hover:text-accentColor">
+                <Icon
+                  id="icon-google"
+                  width={64}
+                  height={64}
+                  styles="transition duration-300 group-hover:fill-accentColor"
+                />
+              </div>
               Google
             </button>
           </form>

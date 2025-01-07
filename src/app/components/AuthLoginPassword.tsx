@@ -5,23 +5,25 @@ import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
-// import {
-//   isAuthUserSignal,
-//   sessionUserSignal,
-//   userEmailSignal,
-// } from "@/context/UserContext";
+import {
+  isAuthUserSignal,
+  sessionUserSignal,
+  userEmailSignal,
+} from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { userStatuses } from "@/variables";
+import { useEffect, useState } from "react";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
 export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
-  // useRouter ===========================================
+const [isUserLogedIn, setIsUserLogedIn] = useState(false);
+
   const router = useRouter();
   // useForm ===============================================
   const {
@@ -31,36 +33,49 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   } = useForm<{ password: string }>({
     mode: "onChange",
   });
+  const { data: session, status, update } = useSession();
   // Submit form ============================================
   const onSubmit = async (data: { password: string }) => {
     setIsLoading(true);
     const { password } = data;
-    // const email = userEmailSignal.value;
+    const email = userEmailSignal.value;
 
     try {
-      // const response = await doCredentialLogin({ email, password });
+      const response = await doCredentialLogin({ email, password });
 
-      // if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
+      if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
 
-      // isAuthUserSignal.value = true;
-      
-      const session = await getSession();
+      isAuthUserSignal.value = true;
+
       toast.success(`${session?.user?.name} logged in successfully`);
 
-      // sessionUserSignal.value = {
-      //   userId: session?.user?.id,
-      //   userName: session?.user?.name,
-      //   email: session?.user?.email,
-      //   userStatus: userStatuses.Authenticated,
-      // };
-      router.refresh();
-      router.replace("/home");
+      const user = await update();
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",user)
+      sessionUserSignal.value = {
+        userId: session?.user?.id,
+        userName: session?.user?.name,
+        email: session?.user?.email,
+        userStatus: userStatuses.Authenticated,
+      };
+      setIsUserLogedIn(true);
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
   };
+  
+  useEffect(() => {
+    if (!isUserLogedIn) return
+    // console.log("updating===========================")
+    router.replace("/home");
+    window.location.reload();
+    // const updateUserStatus = async () => {
+      
+    //   // await router.refresh();
+    // }
+    // updateUserStatus();
+  },[isUserLogedIn])
 
   return (
     <>
