@@ -5,7 +5,6 @@ import { Movie, sessionUser } from "@/typification";
 import { MySlider } from "./ui/MySlider";
 import { MovieCard } from "./ui/MovieCard";
 import { settings } from "./ui/MySlider";
-import { useSession } from "next-auth/react";
 
 export interface GetShowMoviesProps {
   title: string;
@@ -18,7 +17,6 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   movies,
   sessionUser,
 }) => {
-  const { status } = useSession();
 
   return (
     <div

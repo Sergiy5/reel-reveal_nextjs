@@ -1,12 +1,10 @@
+import { Settings } from "react-slick";
 import { useResize } from "@/hooks";
 import { ListMovies } from "./ListMovies";
 import { MySlider } from "./ui/MySlider";
-import { Movie, sessionUser} from "@/typification";
+import { Movie, sessionUser } from "@/typification";
 import { MovieCard } from "./ui/MovieCard";
-import { Settings } from "react-slick";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-// import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
-
 
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
@@ -63,7 +61,10 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
           <MySlider
             arraySlides={arrMovies}
             SlideComponent={(props) => (
-              <MovieCard {...props} sessionUserStatus={"sessionUser"} />
+              <MovieCard
+                {...props}
+                sessionUserStatus={sessionUser.userStatus}
+              />
             )}
             settings={settings}
           />

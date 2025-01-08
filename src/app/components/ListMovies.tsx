@@ -3,9 +3,8 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import { MovieCard } from "./ui/MovieCard";
-// import { ISessionUserSignal, sessionUserSignal } from "@/context/UserContext";
 import { Movie, sessionUser } from "@/typification";
-import { useSession } from "next-auth/react";
+import { sessionUserSignal } from "@/context/UserContext";
 
 export interface ListMoviesProps {
   movies: Movie[];
@@ -13,8 +12,6 @@ export interface ListMoviesProps {
 }
 
 export const ListMovies: React.FC<ListMoviesProps> = ({ movies, sessionUser }) => {
-  // const { data, status, update } = useSession();
-  // console.log(session);
 
   return (
     <div className="grid w-full h-auto lg:grid-cols-4 grid-cols-2 sm:items-center">

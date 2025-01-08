@@ -4,17 +4,11 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Loader } from "./ui/Loader";
 import { ListMovies } from "./ListMovies";
-// import {
-//   allMoviesSignal,
-//   totalSearchMoviesSignal,
-// } from "@/context/MoviesContext";
 import { Modal } from "./ui/Modal";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
-// import { ISessionUserSignal } from "@/context/UserContext";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
 import { Movie, sessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
-import { set } from "mongoose";
 import { MultiSelect } from "./ui/MultiSelect";
 import { arrayOfRatings } from "@/utils";
 
@@ -55,14 +49,14 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
     if (movieTitle?.length && movieTitle !== queryTitle) {
       setisActiveSearch(true);
       setQueryTitle(movieTitle);
-      console.log("one");
+      // console.log("one");
       setPage(1);
       setMovies([]);
       // mutate("/api/movies/one-by-title");
     } else if (!movieTitle?.length && movieTitle !== queryTitle) {
       setisActiveSearch(false);
       setQueryTitle("");
-      console.log("second");
+      // console.log("second");
       setPage(1);
       setMovies([]);
       // mutate("/api/movies/all");
@@ -80,13 +74,13 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
     if (isActiveSearch === null) return;
     setMovieStatus(null);
     mutate();
-    console.log("page", page);
+    // console.log("page", page);
   }, [mutate, page, isActiveSearch]);
 
   useEffect(() => {
     if (!data?.results || movieStatus === "success") return;
-    console.log("Set MOVIES_>>>>>>>");
-    console.log(movieStatus);
+    // console.log("Set MOVIES_>>>>>>>");
+    // console.log(movieStatus);
     setTotalMovies(data.total_results);
     setTotalPages(data.total_pages);
 
@@ -99,7 +93,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   return (
     <div
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
-    >
+      >
       {isActiveSearch && !isLoading ? (
         <h1 className="w-full">
           Found{" "}
@@ -134,7 +128,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>
-      </Modal>
+      </Modal> 
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { Icon } from "./ui/Icon";
+import { isAuthUserSignal } from "@/context/UserContext";
 // import { isAuthUserSignal } from "@/context/UserContext";
 
 interface HeaderNavMenuProps {
@@ -48,7 +49,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           <p className="">My library</p>
         </Link>
         <Link
-          href={isAuth ? "/profile" : "/auth"}
+          href={isAuth || isAuthUserSignal.value ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >

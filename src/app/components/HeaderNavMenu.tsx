@@ -15,6 +15,9 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
+  
+// console.log("isAuthUserSignal", isAuthUserSignal.value);
+
   return (
     <div
       className={`hidden items-center justify-between relative w-[380px] h-[40px] flex-row lg:flex            
@@ -49,7 +52,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           width={18}
           height={20}
           styles={`transition duration ease-in-out hover:text-accentColor active:text-accentClicked ${
-            isAuth ? "text-accentColor" : "text-textColor"
+            isAuth || isAuthUserSignal.value ? "text-accentColor" : "text-textColor"
           }`}
         />
       </Link>

@@ -63,7 +63,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, sessionUserStatus }
     if (clickedTarget === "trailer") toggleModal();
 
     if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
-      if (sessionUserStatus === "unauthenticated") {
+
+      if (sessionUserStatus !== "authenticated") {
         toast.error("You need to be logged in to save movies");
         return;
       }

@@ -14,8 +14,8 @@ export const UserProfile: React.FC = () => {
   const router = useRouter();
 
   const signOut = () => {
-    isAuthUserSignal.value = false;
     doLogout();
+    isAuthUserSignal.value = false;
     savedMoviesSignal.value = [];
 
     sessionUserSignal.value = {
@@ -24,8 +24,12 @@ export const UserProfile: React.FC = () => {
       userName: "",
       userStatus: userStatuses.Unauthenticated,
     };
-
-    router.forward();
+setTimeout(() => {
+  window.location.reload();
+  window.location.href = "/home";
+  
+}, 1000);
+      
   };
 
   return (

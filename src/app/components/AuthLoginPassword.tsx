@@ -6,15 +6,11 @@ import { SharedInput } from "./ui/SharedInput";
 import { validatePassword } from "@/utils";
 import { toast } from "react-toastify";
 import {
-  isAuthUserSignal,
-  sessionUserSignal,
   userEmailSignal,
 } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
-import { getSession, useSession } from "next-auth/react";
-import { userStatuses } from "@/variables";
 import { useEffect, useState } from "react";
 
 interface SignInProps {
@@ -33,7 +29,7 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
   } = useForm<{ password: string }>({
     mode: "onChange",
   });
-  const { data: session, status, update } = useSession();
+  
   // Submit form ============================================
   const onSubmit = async (data: { password: string }) => {
     setIsLoading(true);
@@ -44,19 +40,7 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
       const response = await doCredentialLogin({ email, password });
 
       if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
-
-      isAuthUserSignal.value = true;
-
-      toast.success(`${session?.user?.name} logged in successfully`);
-
-      const user = await update();
-      // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",user)
-      sessionUserSignal.value = {
-        userId: session?.user?.id,
-        userName: session?.user?.name,
-        email: session?.user?.email,
-        userStatus: userStatuses.Authenticated,
-      };
+      
       setIsUserLogedIn(true);
     } catch (error) {
       console.log(error);
@@ -67,15 +51,10 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
   
   useEffect(() => {
     if (!isUserLogedIn) return
-    // console.log("updating===========================")
-    router.replace("/home");
     window.location.reload();
-    // const updateUserStatus = async () => {
-      
-    //   // await router.refresh();
-    // }
-    // updateUserStatus();
-  },[isUserLogedIn, router])
+    window.location.href = "/home";
+   
+  },[isUserLogedIn])
 
   return (
     <>
