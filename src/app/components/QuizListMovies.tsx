@@ -63,10 +63,9 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
           <MySlider
             arraySlides={arrMovies}
             SlideComponent={(props) => (
-                        <MovieCard {...props} sessionUser={sessionUser} />
-                      )}
+              <MovieCard {...props} sessionUserStatus={"sessionUser"} />
+            )}
             settings={settings}
-            sessionUser={sessionUser}
           />
         </div>
       )}

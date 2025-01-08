@@ -50,7 +50,7 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
       toast.success(`${session?.user?.name} logged in successfully`);
 
       const user = await update();
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",user)
+      // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",user)
       sessionUserSignal.value = {
         userId: session?.user?.id,
         userName: session?.user?.name,
@@ -75,7 +75,7 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
     //   // await router.refresh();
     // }
     // updateUserStatus();
-  },[isUserLogedIn])
+  },[isUserLogedIn, router])
 
   return (
     <>

@@ -10,13 +10,14 @@ import { useSession } from "next-auth/react";
 export interface GetShowMoviesProps {
   title: string;
   movies: Movie[];
+  sessionUser: sessionUser;
 }
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   title,
   movies,
+  sessionUser,
 }) => {
-
   const { status } = useSession();
 
   return (
@@ -28,7 +29,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
         <MySlider
           arraySlides={movies}
           SlideComponent={(props) => (
-            <MovieCard {...props} sessionUserStatus={status} />
+            <MovieCard {...props} sessionUserStatus={sessionUser.userStatus} />
           )}
           settings={settings}
         />
