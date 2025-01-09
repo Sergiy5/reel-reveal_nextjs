@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Icon } from "./ui/Icon";
-import { isAuthUserSignal} from "@/context/UserContext";
+import { isAuthUserSignal } from "@/context/UserContext";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -15,8 +15,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
-  
-// console.log("isAuthUserSignal", isAuthUserSignal.value);
+  // console.log("isAuthUserSignal", isAuthUserSignal.value);
 
   return (
     <div
@@ -39,7 +38,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           id="icon-heart"
           width={18}
           height={16}
-          styles="text-textColor transition duration ease-in-out hover:text-accentColor active:text-accentClicked"
+          className="text-textColor transition duration ease-in-out hover:text-accentColor active:text-accentClicked"
         />
       </Link>
       <Link
@@ -51,8 +50,10 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           id="icon-user"
           width={18}
           height={20}
-          styles={`transition duration ease-in-out hover:text-accentColor active:text-accentClicked ${
-            isAuth || isAuthUserSignal.value ? "text-accentColor" : "text-textColor"
+          className={`transition duration ease-in-out hover:text-accentColor active:text-accentClicked ${
+            isAuth || isAuthUserSignal.value
+              ? "text-accentColor"
+              : "text-textColor"
           }`}
         />
       </Link>

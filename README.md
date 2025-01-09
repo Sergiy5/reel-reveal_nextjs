@@ -7,11 +7,12 @@ Overview
 The Movie Discovery Platform combines the wealth of information from TMdB with the cutting-edge capabilities of OpenAI to offer personalized movie suggestions. Whether you're in the mood for a feel-good movie, an intense thriller, or something suitable for a specific age group, our platform is designed to simplify your movie selection process.
 
 Key Features
-Comprehensive Movie Information: Access detailed information, ratings, reviews, and more from TMdB.
+    Comprehensive Movie Information: Access detailed information, ratings, reviews, and more from TMdB.
 Interactive Quiz: Take a fun quiz to understand your movie preferences better.
 Personalized Recommendations: Receive tailored movie suggestions based on your quiz responses, powered by OpenAI.
+    
 Technologies Used
-Next.js: A React framework for building server-side rendered and static web applications.
+    Next.js: A React framework for building server-side rendered and static web applications.
 React: A JavaScript library for building user interfaces, ensuring responsiveness and interactivity.
 TypeScript: A typed superset of JavaScript that enhances code quality and maintainability.
 Slick-Slider: A carousel component for creating responsive sliders and carousels.
@@ -35,22 +36,22 @@ cd movie-discovery
 Install dependencies:
 
 bash
-Копіювати код
 npm install
 # or
 yarn install
+
 Running the Application
 bash
-Копіювати код
 npm run dev
 # or
 yarn dev
+
 Open your browser and navigate to http://localhost:3000 to view the application.
 
 Contributing
 Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
 
-Fork the repository.
+    Fork the repository.
 Create a new branch (git checkout -b feature/my-feature).
 Make your changes.
 Commit your changes (git commit -am 'Add new feature').

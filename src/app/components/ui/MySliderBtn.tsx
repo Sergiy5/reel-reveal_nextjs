@@ -9,7 +9,6 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = ({
   prev_style,
   ...props
 }): React.JSX.Element => {
-
   const isActiveNext = currentSlide === 16;
   const isActivePrev = currentSlide === 0;
 
@@ -40,8 +39,10 @@ export const MySliderBtn: React.FC<MySliderBtnProps> = ({
         prev_style ? "-left-7" : "-right-7"
       )}
     >
-      <div className={`flex justify-center w-full ${prev_style && "rotate-180"}`}>
-        <Icon id={"icon-arrow"} width={24} height={24} styles={"inherit"} />
+      <div
+        className={`flex justify-center w-full ${prev_style && "rotate-180"}`}
+      >
+        <Icon id={"icon-arrow"} width={24} height={24} className={"inherit"} />
       </div>
     </button>
   );

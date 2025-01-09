@@ -1,66 +1,63 @@
 "use client";
 
+import { FilterArray } from "@/typification";
 import { useEffect, useState } from "react";
-
+import { Icon } from "../Icon";
+import { capitalizeFirstLetter } from "@/utils";
 
 interface ListSelectedValuesProps {
-  selectedValues: string[] | number[];
-  isOpenSelect?: boolean;
-
+  selectedValues: FilterArray;
   removeValue: (valueToRemove: string | number) => void;
-
 }
+
 export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
   selectedValues,
   removeValue,
-  isOpenSelect
 }) => {
   const [visibleCount, setVisibleCount] = useState(0);
 
-  const [arrayValues, setArrayValues] = useState<string[] | []>([]);
-  const [opacity, setOpacity] = useState("")
-  
-
   useEffect(() => {
-  //   console.log("isOpenSelect", isOpenSelect);
-  // console.log("selectedValues", selectedValues);
-      setTimeout(() => {
-        selectedValues.forEach((_, index) => {
-          setTimeout(() => setVisibleCount((prev) => prev + 1), 200);
-        });
-      }, 300);
-    // }
-    // else {
-    //   //   Hide all strings strings one by one with a delay
-    //   for (let i = selectedValues.length - 1; i >= 0; i--) {
-    //     setTimeout(
-    //       () => setVisibleCount((prev) => prev - 1),
-    //       (selectedValues.length - 1 - i) * 200
-    //     );
-    //   }
-    //     setVisibleCount(0);
-    // }
+    // console.log(selectedValues)
+    // Reset visible count when selectedValues changes
+    setVisibleCount(0);
 
+    // Gradually show items with a delay
+    selectedValues.forEach((_, index) => {
+      setTimeout(() => setVisibleCount((prev) => prev + 1), index * 100);
+    });
+
+    // Cleanup to avoid memory leaks when selectedValues changes
+    return () => {
+      setVisibleCount(0);
+    };
   }, [selectedValues]);
 
   return (
-    <>
-      {selectedValues.map((value, index) => (
-        <li
-          key={index}
-          className={`flex items-center cursor-pointer rounded-lg p-2.5 bg-blue_sky `}
-
-        >
-          {value}
-          <button
-            type="button"
-            className="ml-2"
-            onClick={() => removeValue(value)}
+    <ul className="flex flex-wrap gap-4">
+      {selectedValues.slice(0, visibleCount).map((value, index) => {
+       
+        return (
+          <li
+            key={index}
+            className={`flex items-center rounded-full border border-bgLightColor px-4 py-2 bg-bgColor transition-opacity duration-3000
+            ${index === visibleCount-(visibleCount-index) ? "opacity-100" : "opacity-0"}`}
+            
           >
-            {/* <Icon id="cross" color="black" width={18} height={18} /> */}
-          </button>
-        </li>
-      ))}
-    </>
+            {capitalizeFirstLetter(value.toString())}
+            <button
+              type="button"
+              className="ml-2 cursor-pointer"
+              onClick={() => removeValue(value)}
+            >
+              <Icon
+                id="cross"
+                width={14}
+                height={14}
+                className="text-textColor hover:text-accentColor active:text-accentClicked transition-colors duration-300 "
+              />
+            </button>
+          </li>
+        );})}
+    </ul>
   );
 };

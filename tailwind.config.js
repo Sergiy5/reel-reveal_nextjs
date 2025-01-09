@@ -19,7 +19,8 @@ module.exports = {
         bgSelectDropDown: "#1B1E36",
         bgSelect: "#292F44",
         bgSelectItemHover: "#272C42",
-        
+        scrolBarTrackColor: "#23283e",
+        scrolBarThumbColor: "#656878",
       },
       blur: {
         header: "119.5px",
@@ -57,7 +58,14 @@ module.exports = {
          rgba(18, 19, 44, 0.96) 8%,
          rgba(18, 19, 44, 0.16) 100%) `,
       },
+      
     },
   },
-  plugins: [],
+
+  plugins: [
+    require("tailwind-scrollbar")({
+      nocompatible: true,
+      preferredStrategy: "pseudoelements",
+    }),
+  ],
 };

@@ -17,4 +17,5 @@ export { getSessionUser } from "./getSessionUser";
 export { addMovieToDBAndMutate } from "./addMovieToDBAndMutate";
 export { updateMoviesInDBAndMutate } from "./updateMoviesInDBAndMutate";
 export { removeMovieFromDBAndMutate } from "./removeMovieFromDBAndMutate";
-export {arrayOfRatings} from "./arrayOfRatings";
+export { arrayOfRatings } from "./arrayOfRatings";
+export { arrayOfYears } from "./arrayOfYears";

@@ -24,12 +24,10 @@ export const UserProfile: React.FC = () => {
       userName: "",
       userStatus: userStatuses.Unauthenticated,
     };
-setTimeout(() => {
-  window.location.reload();
-  window.location.href = "/home";
-  
-}, 1000);
-      
+    setTimeout(() => {
+      window.location.reload();
+      window.location.href = "/home";
+    }, 1000);
   };
 
   return (
@@ -63,7 +61,7 @@ setTimeout(() => {
                 id="icon-edit-profile"
                 width={20}
                 height={20}
-                styles={`text-textColor tranisition-all ease-in-out duration-300 group-hover:text-accentColor`}
+                className={`text-textColor tranisition-all ease-in-out duration-300 group-hover:text-accentColor`}
               />
 
               <span>Edit pfile</span>
@@ -78,7 +76,7 @@ setTimeout(() => {
                 id="icon-signout"
                 width={24}
                 height={24}
-                styles="fill-textColor tranisition-all ease-in-out duration-300 group-hover:fill-accentColor"
+                className="fill-textColor tranisition-all ease-in-out duration-300 group-hover:fill-accentColor"
               />
 
               <span>Sign out</span>
@@ -92,7 +90,7 @@ setTimeout(() => {
                 id="icon-remove-acount"
                 width={20}
                 height={18}
-                styles="fill-textColor stroke-textColor tranisition-all ease-in-out duration-300 group-hover:stroke-accentColor group-hover:fill-accentColor"
+                className="fill-textColor stroke-textColor tranisition-all ease-in-out duration-300 group-hover:stroke-accentColor group-hover:fill-accentColor"
               />
 
               <span>Delete account</span>

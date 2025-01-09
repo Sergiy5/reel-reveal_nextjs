@@ -16,3 +16,5 @@ export type Actor = {
   popularity: number;
   profile_path: string;
 };
+
+export type FilterArray = (string | number)[]

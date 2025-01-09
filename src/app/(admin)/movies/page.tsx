@@ -5,10 +5,13 @@ import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 import { Loader } from "@/app/components/ui/Loader";
 
-const MovieSearchDynamics = dynamic(() => import("@/app/components/MovieSearch").then((mod) => mod.MovieSearch));
+const MovieSearchDynamics = dynamic(() =>
+  import("@/app/components/movieSearch/MovieSearch").then(
+    (mod) => mod.MovieSearch
+  )
+);
 
 export default async function MoviesPage() {
-
   const sessionUser = await getSessionUser();
 
   return (

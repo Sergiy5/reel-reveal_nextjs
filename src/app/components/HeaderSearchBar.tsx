@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Icon } from "./ui/Icon";
 
 export const HeaderSearchBar: React.FC = () => {
-  const  searchParams  = useSearchParams();
+  const searchParams = useSearchParams();
   const searchQuery = searchParams.get("title") || "";
 
   const [inputValue, setInputValue] = useState(searchQuery);
@@ -16,9 +16,9 @@ export const HeaderSearchBar: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     const clearTitle = inputValue.trim().toLowerCase();
-   
+
     router.push(`/movies?title=${clearTitle}`);
   };
 
@@ -48,7 +48,7 @@ export const HeaderSearchBar: React.FC = () => {
             id="icon-search"
             width={24}
             height={24}
-            styles={`ml-auto mr-auto transition duration-200 ${isFocused ? "text-bgColor opacity-100" : "text-textColor"}`}
+            className={`ml-auto mr-auto transition duration-200 ${isFocused ? "text-bgColor opacity-100" : "text-textColor"}`}
           />
         </button>
       </form>

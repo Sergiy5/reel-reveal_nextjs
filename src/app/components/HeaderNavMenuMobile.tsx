@@ -32,7 +32,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           className={`absolute right-4 flex items-center justify-center w-[36px] h-[36px] rounded-[3px] bg-bgLightColor
                      transition-all duration-300`}
         >
-          <Icon id="cross" width={30} height={30} styles="text-textColor" />
+          <Icon id="cross" width={30} height={30} className="text-textColor" />
         </button>
         <Link
           href={"/movies"}
@@ -77,7 +77,7 @@ export const HeaderNavMenuMobile: React.FC<HeaderNavMenuProps> = ({
           id="burger-icon"
           width={30}
           height={30}
-          styles="text-textColor transition duration-300"
+          className="text-textColor transition duration-300"
         />
       </button>
     </>

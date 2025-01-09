@@ -94,7 +94,7 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
                   id="icon-google"
                   width={64}
                   height={64}
-                  styles="transition duration-300 group-hover:fill-accentColor"
+                  className="transition duration-300 group-hover:fill-accentColor"
                 />
               </div>
               Google

@@ -22,7 +22,7 @@ export const FooterLinkIconSocial: React.FC<FooterLinkIconSocialProps> = ({
         id={id}
         width={34}
         height={34}
-        styles=" fill-textColor transition duration-300 ease-in-out hover:fill-accentColor "
+        className=" fill-textColor transition duration-300 ease-in-out hover:fill-accentColor "
       />
     </Link>
   );

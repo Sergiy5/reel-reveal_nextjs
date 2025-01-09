@@ -1,14 +1,13 @@
 import clsx from "clsx";
 import { Icon } from "./Icon";
 
- interface MovieCardHoverBtnProps {
+interface MovieCardHoverBtnProps {
   iconId: string;
   text: string;
   isChecked?: boolean;
   dataMovie: string;
-  onClick?:((
-        e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-      ) => void)
+  onClick?:
+    | ((e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void)
     | undefined;
   hoverd?: boolean;
 }
@@ -51,8 +50,7 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
       >
         {text}
       </button>
-      <Icon id={iconId} width={16} height={16} styles="" />
-      
+      <Icon id={iconId} width={16} height={16} className="" />
     </div>
   );
 };

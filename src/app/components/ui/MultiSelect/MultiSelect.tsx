@@ -1,29 +1,29 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import React, { useState, useEffect, useRef, use } from "react";
 import { GoTriangleDown } from "react-icons/go";
-import { ListSelectedValues } from "./ListSelectedValues";
+import { FilterArray } from "@/typification";
 
 interface SearchSelectProps {
   placeholder: string;
-  options?: string[] | number[];
-  setValue?: (selectedValues: string[]) => void;
-  height?: string;
+  options: FilterArray;
+  selectedOptions: FilterArray;
+  setValue?: (selectedValues: (string| number)[]) => void;
 }
 
 export const MultiSelect: React.FC<SearchSelectProps> = ({
   placeholder,
   options = [],
+  selectedOptions,
   setValue,
-  height = "h-14",
 }) => {
-  const [selectedValues, setSelectedValues] = useState<string[] | number[]>([]);
+  const [selectedValues, setSelectedValues] =
+    useState<FilterArray>(selectedOptions);
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const dropdownWithSearchRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  // const [searchQuery, setSearchQuery] = useState("");
+  // const inputRef = useRef<HTMLInputElement>(null);
 
   // Close drop down on tap outside
   useEffect(() => {
@@ -41,99 +41,98 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (!value) return;
-  //   setSelectedValues(value); // Update state if value prop changes
-  // }, [value]);
-
-  // useEffect(() => {
-  //   const selectedSkills = options.filter((opt) =>
-  //     selectedValues.includes(opt)
-  //   );
-  //   const arrIds = selectedSkills.map((skill) => skill.id);
-
-  //   if (setValue) setValue(arrIds); // Set value to form
-  // }, [options, selectedValues, setValue]);
-
+  
   const handleSelectChange = (option: string | number) => {
     let updatedValues = [];
-    // if (selectedValues.includes(option)) {
-    //   updatedValues = selectedValues.filter((val) => val !== option);
-    // } else {
-    //   updatedValues = [...selectedValues, option];
-    // }
-    // setSelectedValues(updatedValues);
-    // if (onChange) onChange(updatedValues);
+    if (selectedValues.includes(option)) {
+      updatedValues = selectedValues.filter((val) => val !== option);
+    } else {
+      updatedValues = [...selectedValues, option];
+    }
+    setSelectedValues(updatedValues);
   };
 
-  const removeValue = (valueToRemove: string | number) => {
-    // setSelectedValues(
-    //   selectedValues.filter((value) => value !== valueToRemove)
-    // );
+  const arrayIntersection = (arr1: FilterArray, arr2: FilterArray) => {
+    // console.log("arr1",arr1);
+    // console.log("arr2",arr2)
+    const result = arr1.filter((value) => arr2.includes(value));
+  // console.log("return ", result);
+    return result; 
+  }
+  
+  useEffect(() => {
+    if (selectedOptions?.length) {
+      setSelectedValues(selectedOptions);
+    }
+    }, [selectedOptions]);
+  
+  useEffect(() => {
+  console.log("selectedOptions", selectedOptions);
+  console.log("selectedValues", selectedValues);
+  }, [selectedOptions])
+  useEffect(() => {
+    if(!isOpen) setValue?.(selectedValues);
+  }, [isOpen]);
+  
+const toggleDropdown = () => {
+  setIsOpen(!isOpen);
   };
-
-  const toggleDropdown = () => {
-    console.log("togleDropdown");
-    setIsOpen(!isOpen);
-  };
-
-  // const handleBlur = () => {
-  // if (isOpen && inputRef.current) {
-  //   inputRef.current.focus(); // Programmatically focus the input
-  // }
-  // setIsOpen(false); // Close dropdown or related logic
-  // };
 
   return (
     <div
       className={`relative z-20 flex flex-col justify-end w-[120px]
         `}
       ref={dropdownWithSearchRef}
-      onClick={toggleDropdown}
       onKeyDown={(e) => (e.key === "Enter" ? toggleDropdown() : null)}
     >
       <div
-        className={`flex items-center w-full h-10 py-3 px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
+        onClick={toggleDropdown}
+        className={`flex items-center justify-between w-full h-10 py-3 px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
           ${isOpen ? "rounded-t-[20px]" : "rounded-[20px]"}`}
       >
         <div>{placeholder}</div>
-        {/* <ul className="inline-flex flex-wrap gap-2 w-full">
-          <ListSelectedValues
-            isOpenSelect={isOpen}
-            selectedValues={options}
-            removeValue={removeValue}
-          />
-        </ul> */}
+        {/* <div className="inline-flex flex-wrap gap-2 w-full"> */}
+        {/* </div> */}
+
         <div>
-          <GoTriangleDown className="w-4 h-4 text-white" />
+          <GoTriangleDown
+            className={`w-4 h-4 text-white
+            ${isOpen && "rotate-180"}
+            `}
+          />
         </div>
       </div>
 
-      {/* <div
-        className={`relative z-10 flex gap-2.5  
-            ${isOpen ? "opacity-100" : "max-h-0 opacity-0"}`}
-      > */}
       {options.length > 0 && (
-        <ul
-          className={` absolute -z-10 flex flex-wrap pb-1 rounded-b-[20px] transition-all ease-in-out duration-500
-                bg-bgSelectDropDown overflow-y-auto
-            ${isOpen ? "max-h-52 top-full" : "max-h-0 top-5"}
-              `}
+        <div
+          className={`w-full absolute -z-10 flex flex-wrap transition-all ease-in-out duration-500 overflow-hidden
+            ${isOpen ? "max-h-[220px] top-full" : "max-h-0 top-5"}
+        `}
         >
-          {options.map((option, index) => (
-            <li
-              key={index}
-              className={`w-full px-4 py-2 cursor-pointer hover:bg-bgSelectItemHover active:text-accentClicked `}
-              onClick={() => handleSelectChange(option)}
-              // role="option"
-              // aria-selected={selectedValues.includes(option)}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
+          <ul
+            className={` flex flex-wrap pb-1 h-full transition-all ease-in-out duration-500 
+              bg-bgSelectDropDown scrollbar scrollbar-w-2 scrollbar-thumb-h-
+              scrollbar-track-scrolBarTrackColor hover:scrollbar-thumb-textColor scrollbar-thumb-scrolBarThumbColor overflow-x-hidden overflow-y-scroll
+              max-h-[200px]
+              `}
+          >
+            {options.map((option, index) => (
+              <li
+                key={index}
+                className={`w-full px-4 py-2 cursor-pointer hover:bg-bgSelectItemHover active:text-accentClicked ${
+                  selectedValues.includes(option)
+                    ? "text-accentColor"
+                    : "text-textColor"
+                }`}
+                onClick={() => handleSelectChange(option)}
+              >
+                {option}
+              </li>
+            ))}
+          </ul>
+          <div className=" -top-44 w-full h-5 bg-bgSelectDropDown rounded-b-[20px]" />
+        </div>
       )}
-      {/* </div> */}
     </div>
   );
 };

@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { Loader } from "./ui/Loader";
-import { ListMovies } from "./ListMovies";
-import { Modal } from "./ui/Modal";
-import { ButtonOrLink } from "./ui/ButtonOrLink";
-import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
+import { Loader } from "../ui/Loader";
+import { ListMovies } from "../ListMovies";
+import { Modal } from "../ui/Modal";
+import { ButtonOrLink } from "../ui/ButtonOrLink";
+import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
 import { Movie, sessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
-import { MultiSelect } from "./ui/MultiSelect";
-import { arrayOfRatings } from "@/utils";
+import { MovieSearchFilter } from "./MovieSearchFilter";
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
@@ -93,7 +92,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   return (
     <div
       className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
-      >
+    >
       {isActiveSearch && !isLoading ? (
         <h1 className="w-full">
           Found{" "}
@@ -105,14 +104,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <h1>The most popular movies</h1>
       )}
       {/* Filter */}
-      <div className="flex justify-between w-full ">
-        <div className="flex gap-6">
-          <MultiSelect options={[]} placeholder="Genre" />{" "}
-          <MultiSelect options={[]} placeholder="Year" />{" "}
-          <MultiSelect options={arrayOfRatings(91)} placeholder="Rating" />{" "}
-        </div>
-        <ButtonOrLink onClick={() => setPage(1)}>apply filters</ButtonOrLink>
-      </div>
+      <MovieSearchFilter />
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <ButtonOrLink
@@ -128,7 +120,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>
-      </Modal> 
+      </Modal>
     </div>
   );
 };
