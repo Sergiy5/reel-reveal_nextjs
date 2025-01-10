@@ -19,13 +19,16 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
     setTimeout(() => {
       setAllFilterOptions([...genresArray, ...yearsArray, ...ratingsArray]);
       
-    }, 1000);
+    }, 500);
+  
   }, [yearsArray, genresArray, ratingsArray]);
 
   const removeValue = (valueToRemove: string | number) => {
-      setAllFilterOptions(
-        allfilterOptions.filter((value) => value !== valueToRemove)
-      );
+    
+    const filter = allfilterOptions.filter((value) => value !== valueToRemove);
+    // console.log("filter_=============>>>>>", filter);
+    
+      setAllFilterOptions(filter);
   };
 
    const arrayIntersection = (arr1: FilterArray, arr2: FilterArray) => {
@@ -36,13 +39,20 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
       return result; 
     }
 
+  useEffect(() => {
+    setGenresArray( arrayIntersection(genresArray, allfilterOptions));
+    setYearsArray(arrayIntersection(yearsArray, allfilterOptions));
+    setRatingsArray(arrayIntersection(ratingsArray, allfilterOptions));
+    
+}, [allfilterOptions.length]);
+  
   return (
     <div className="flex justify-between w-full ">
       <div className="flex flex-col gap-6">
         <ul className="flex gap-6">
           <li key={"Genre"}>
             <MultiSelect
-              selectedOptions={arrayIntersection(genresArray, allfilterOptions)}
+              selectedOptions={genresArray}
               options={genres.map((genre) => genre.name)}
               setValue={setGenresArray}
               placeholder="Genre"
@@ -50,7 +60,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
           </li>
           <li key={"Year"}>
             <MultiSelect
-              selectedOptions={arrayIntersection(yearsArray, allfilterOptions)}
+              selectedOptions={yearsArray}
               options={arrayOfYears(1900).reverse()}
               setValue={setYearsArray}
               placeholder="Year"
@@ -58,10 +68,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
           </li>
           <li key={"Rating"}>
             <MultiSelect
-              selectedOptions={arrayIntersection(
-                ratingsArray,
-                allfilterOptions
-              )}
+              selectedOptions={ratingsArray}
               options={arrayOfRatings(91)}
               setValue={setRatingsArray}
               placeholder="Rating"

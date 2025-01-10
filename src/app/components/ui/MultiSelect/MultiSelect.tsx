@@ -18,12 +18,13 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
   setValue,
 }) => {
   const [selectedValues, setSelectedValues] =
-    useState<FilterArray>(selectedOptions);
+    useState<FilterArray>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownWithSearchRef = useRef<HTMLDivElement>(null);
-  // const [searchQuery, setSearchQuery] = useState("");
-  // const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    setSelectedValues(selectedOptions);
+  }, [selectedOptions.length]);
 
   // Close drop down on tap outside
   useEffect(() => {
@@ -51,25 +52,11 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
     }
     setSelectedValues(updatedValues);
   };
-
-  const arrayIntersection = (arr1: FilterArray, arr2: FilterArray) => {
-    // console.log("arr1",arr1);
-    // console.log("arr2",arr2)
-    const result = arr1.filter((value) => arr2.includes(value));
-  // console.log("return ", result);
-    return result; 
-  }
   
   useEffect(() => {
-    if (selectedOptions?.length) {
       setSelectedValues(selectedOptions);
-    }
     }, [selectedOptions]);
-  
-  useEffect(() => {
-  // console.log("selectedOptions", selectedOptions);
-  // console.log("selectedValues", selectedValues);
-  }, [selectedOptions])
+
   useEffect(() => {
     if(!isOpen) setValue?.(selectedValues);
   }, [isOpen]);
