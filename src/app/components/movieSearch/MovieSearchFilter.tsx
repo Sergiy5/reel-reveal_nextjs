@@ -1,15 +1,19 @@
 "use client";
+import { useEffect, useState } from "react";
+import { genres } from "../../../../public/genres/genres";
 import { arrayOfRatings, arrayOfYears } from "@/utils";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { Icon } from "../ui/Icon";
 import { MultiSelect } from "../ui/MultiSelect";
 import { ListSelectedValues } from "../ui/MultiSelect/ListSelectedValues";
-import { genres } from "../../../../public/genres/genres";
-import { useEffect, useState } from "react";
-import { FilterArray } from "@/typification";
+import { FilterArray, IQueryFilterParams } from "@/typification";
 
-interface MovieSearchFilterProps {}
-export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
+interface MovieSearchFilterProps {
+  getFilterOptions: (filter: IQueryFilterParams[]) => void;
+}
+export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
+  getFilterOptions,
+}) => {
   const [allfilterOptions, setAllFilterOptions] = useState<FilterArray>([]);
   const [yearsArray, setYearsArray] = useState<FilterArray>([]);
   const [genresArray, setGenresArray] = useState<FilterArray>([]);
@@ -18,34 +22,45 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
   useEffect(() => {
     setTimeout(() => {
       setAllFilterOptions([...genresArray, ...yearsArray, ...ratingsArray]);
-      
     }, 500);
-  
   }, [yearsArray, genresArray, ratingsArray]);
 
   const removeValue = (valueToRemove: string | number) => {
-    
     const filter = allfilterOptions.filter((value) => value !== valueToRemove);
-    // console.log("filter_=============>>>>>", filter);
-    
-      setAllFilterOptions(filter);
+
+    setAllFilterOptions(filter);
   };
 
-   const arrayIntersection = (arr1: FilterArray, arr2: FilterArray) => {
-      // console.log("arr1",arr1);
-      // console.log("arr2",arr2)
-      const result = arr1.filter((value) => arr2.includes(value));
-    // console.log("return ", result);
-      return result; 
-    }
+  const arrayIntersection = (arr1: FilterArray, arr2: FilterArray) => {
+    const result = arr1.filter((value) => arr2.includes(value));
+
+    return result;
+  };
 
   useEffect(() => {
-    setGenresArray( arrayIntersection(genresArray, allfilterOptions));
+    setGenresArray(arrayIntersection(genresArray, allfilterOptions));
     setYearsArray(arrayIntersection(yearsArray, allfilterOptions));
     setRatingsArray(arrayIntersection(ratingsArray, allfilterOptions));
-    
-}, [allfilterOptions.length]);
-  
+  }, [allfilterOptions.length]);
+
+  const handleFilterOptions = () => {
+    // console.log("first")
+    getFilterOptions([
+    {
+      name: "genres",
+      value: genresArray,
+    },
+    {
+      name: "years",
+      value: yearsArray,
+    },
+    {
+      name: "ratings",
+      value: ratingsArray,
+    },
+  ]);};
+ 
+
   return (
     <div className="flex justify-between w-full ">
       <div className="flex flex-col gap-6">
@@ -84,7 +99,9 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({}) => {
       </div>
       <ul className="flex flex-col items-end gap-6">
         <li>
-          <ButtonOrLink onClick={() => {}}>apply filters</ButtonOrLink>
+          <ButtonOrLink onClick={handleFilterOptions}>
+            apply filters
+          </ButtonOrLink>
         </li>
         <li>
           <button

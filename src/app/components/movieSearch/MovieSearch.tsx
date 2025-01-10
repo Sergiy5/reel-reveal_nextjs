@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Loader } from "../ui/Loader";
 import { ListMovies } from "../ListMovies";
 import { Modal } from "../ui/Modal";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
-import { Movie, sessionUser } from "@/typification";
+import { IQueryFilterParams, Movie, sessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { MovieSearchFilter } from "./MovieSearchFilter";
 
@@ -27,21 +27,32 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   const [page, setPage] = useState(1);
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
+  const [filterOptions, setFilterOptions] = useState<IQueryFilterParams[]>([]);
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
+    "/api/movies/all",
+
     () =>
-      fetchMovieDataFromAPI(
-        isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
-        isActiveSearch ? { title: queryTitle, page } : { page }
-      ),
+      fetchMovieDataFromAPI("/api/movies/all", {
+        title: queryTitle,
+        ...filterOptions,
+        page,
+      }),
     { revalidateOnFocus: false }
   );
-
+  // fetchMovieDataFromAPI(
+  //       isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
+  //       isActiveSearch ? { title: queryTitle, page } : { page }
+  //     ),
+  //GET https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&query=Batman&primary_release_date.gte=2010-01-01&vote_average.gte=7
   const searchParams = useSearchParams();
   const movieTitle = searchParams.get("title") || "";
 
   const clearCache = () => mutate(() => true, undefined);
+
+  useEffect(() => {
+    console.log("filterOptions", filterOptions);
+  }, [JSON.stringify(filterOptions)]);
 
   useEffect(() => {
     // if (movieTitle === queryTitle) return
@@ -104,7 +115,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <h1>The most popular movies</h1>
       )}
       {/* Filter */}
-      <MovieSearchFilter />
+      <MovieSearchFilter getFilterOptions={setFilterOptions} />
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <ButtonOrLink

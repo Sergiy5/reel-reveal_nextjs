@@ -1,4 +1,5 @@
 import { CustomArrowProps, Settings } from "react-slick";
+import { FilterArray } from "./types";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -106,4 +107,9 @@ export interface sessionUser {
   email: string;
   userName: string;
   userStatus: string;
+}
+
+export interface IQueryFilterParams {
+  name: string;
+  value: FilterArray;
 }
