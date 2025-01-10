@@ -1,6 +1,7 @@
-import React, { useEffect, ReactNode} from "react";
+"use client";
+
+import React, { useEffect, ReactNode } from "react";
 import { createPortal } from "react-dom";
-import CrossIcon from "../../../../public/icons/cross.svg";
 import { Icon } from "./Icon";
 
 interface ModalProps {
