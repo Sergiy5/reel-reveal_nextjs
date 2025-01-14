@@ -9,7 +9,7 @@ import { ListSelectedValues } from "../ui/MultiSelect/ListSelectedValues";
 import { FilterArray, IQueryFilterParams } from "@/typification";
 
 interface MovieSearchFilterProps {
-  getFilterOptions: (filter: IQueryFilterParams[]) => void;
+  getFilterOptions: (filter: IQueryFilterParams) => void;
 }
 export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   getFilterOptions,
@@ -37,6 +37,17 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
     return result;
   };
 
+  const setIdGenresFromName = (
+    arrayOfNames: string[],
+    arrayOfObjects: { name: string; id: number }[]
+  ) => {
+    const arrayOfIds = arrayOfNames.map(
+      (name: string) =>
+        arrayOfObjects.find((element) => element.name === name)?.id
+    );
+    return arrayOfIds;
+  };
+
   useEffect(() => {
     setGenresArray(arrayIntersection(genresArray, allfilterOptions));
     setYearsArray(arrayIntersection(yearsArray, allfilterOptions));
@@ -44,22 +55,19 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   }, [allfilterOptions.length]);
 
   const handleFilterOptions = () => {
-    // console.log("first")
-    getFilterOptions([
-    {
-      name: "genres",
-      value: genresArray,
-    },
-    {
-      name: "years",
-      value: yearsArray,
-    },
-    {
-      name: "ratings",
-      value: ratingsArray,
-    },
-  ]);};
- 
+    getFilterOptions({
+      genresId: setIdGenresFromName(
+        genresArray.filter((value) => typeof value === "string"),
+        genres
+      ).filter((id) => id !== undefined),
+
+      years: yearsArray.filter((value) => typeof value === "number"),
+
+      rating: ratingsArray.filter((value) => {
+        return typeof value === "number"
+      }),
+    });
+  };
 
   return (
     <div className="flex justify-between w-full ">
@@ -67,6 +75,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
         <ul className="flex gap-6">
           <li key={"Genre"}>
             <MultiSelect
+              isMulti={true}
               selectedOptions={genresArray}
               options={genres.map((genre) => genre.name)}
               setValue={setGenresArray}

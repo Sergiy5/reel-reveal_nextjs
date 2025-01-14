@@ -1,15 +1,19 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { Loader } from "../ui/Loader";
 import { ListMovies } from "../ListMovies";
-import { Modal } from "../ui/Modal";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
 import { IQueryFilterParams, Movie, sessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { MovieSearchFilter } from "./MovieSearchFilter";
+
+const ModalDynamic = dynamic(() =>
+  import("../ui/Modal").then((mod) => mod.Modal)
+);
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
@@ -27,56 +31,67 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   const [page, setPage] = useState(1);
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
-  const [filterOptions, setFilterOptions] = useState<IQueryFilterParams[]>([]);
+  const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
+  // const filterKey = filterOptions ? JSON.stringify(filterOptions) : "default";
+  
+  const currentUrl = isActiveSearch
+    ? "/api/movies/one-by-title"
+    : `/api/movies/all`;
+
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    "/api/movies/all",
+    [currentUrl, filterOptions, page],
 
     () =>
-      fetchMovieDataFromAPI("/api/movies/all", {
-        title: queryTitle,
-        ...filterOptions,
-        page,
-      }),
-    { revalidateOnFocus: false }
+      fetchMovieDataFromAPI(
+        currentUrl,
+        isActiveSearch
+          ? { title: queryTitle, page }
+          : {
+              filter: JSON.stringify(filterOptions),
+              page,
+            }
+      ),
+    {
+      revalidateOnFocus: false, // Optional: Prevent revalidation on focus
+      shouldRetryOnError: true, // Retry fetch on errors
+      dedupingInterval: 0, // Ensures SWR doesn't deduplicate fetches
+    }
   );
-  // fetchMovieDataFromAPI(
-  //       isActiveSearch ? "/api/movies/one-by-title" : "/api/movies/all",
-  //       isActiveSearch ? { title: queryTitle, page } : { page }
-  //     ),
-  //GET https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&query=Batman&primary_release_date.gte=2010-01-01&vote_average.gte=7
+
   const searchParams = useSearchParams();
   const movieTitle = searchParams.get("title") || "";
 
   const clearCache = () => mutate(() => true, undefined);
 
   useEffect(() => {
-    console.log("filterOptions", filterOptions);
-  }, [JSON.stringify(filterOptions)]);
+    setMovieStatus(null)
+    setMovies([]);
+    console.log("filterOptions_==============", filterOptions);
+  }, [filterOptions]);
 
   useEffect(() => {
-    // if (movieTitle === queryTitle) return
     if (movieTitle?.length && movieTitle !== queryTitle) {
+
       setisActiveSearch(true);
       setQueryTitle(movieTitle);
-      // console.log("one");
       setPage(1);
       setMovies([]);
-      // mutate("/api/movies/one-by-title");
+
     } else if (!movieTitle?.length && movieTitle !== queryTitle) {
+
       setisActiveSearch(false);
       setQueryTitle("");
-      // console.log("second");
       setPage(1);
       setMovies([]);
-      // mutate("/api/movies/all");
+
     } else if (!movieTitle?.length) {
+
       setisActiveSearch(false);
     }
 
     return () => {
       clearCache();
-      // setMovies([]);
     };
   }, [movieTitle, movieTitle?.length, page, queryTitle]);
 
@@ -84,19 +99,17 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
     if (isActiveSearch === null) return;
     setMovieStatus(null);
     mutate();
-    // console.log("page", page);
   }, [mutate, page, isActiveSearch]);
 
   useEffect(() => {
     if (!data?.results || movieStatus === "success") return;
-    // console.log("Set MOVIES_>>>>>>>");
-    // console.log(movieStatus);
+
     setTotalMovies(data.total_results);
     setTotalPages(data.total_pages);
 
     setMovies((prev) => [...prev, ...data.results]);
     setMovieStatus("success");
-  }, [data, movieStatus]);
+  }, [data]);
 
   const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
 
@@ -127,11 +140,11 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         </ButtonOrLink>
         <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
       </div>
-      <Modal isOpen={isLoading || isValidating}>
+      <ModalDynamic isOpen={isLoading || isValidating}>
         <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>
-      </Modal>
+      </ModalDynamic>
     </div>
   );
 };

@@ -110,6 +110,7 @@ export interface sessionUser {
 }
 
 export interface IQueryFilterParams {
-  name: string;
-  value: FilterArray;
+  genresId: number[];
+  years: number[];
+  rating: number[];
 }

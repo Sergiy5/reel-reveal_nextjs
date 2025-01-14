@@ -8,6 +8,7 @@ interface SearchSelectProps {
   placeholder: string;
   options: FilterArray;
   selectedOptions: FilterArray;
+  isMulti?: boolean;
   setValue?: (selectedValues: (string| number)[]) => void;
 }
 
@@ -15,13 +16,16 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
   placeholder,
   options = [],
   selectedOptions,
+  isMulti,
   setValue,
 }) => {
   const [selectedValues, setSelectedValues] =
     useState<FilterArray>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const dropdownWithSearchRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setSelectedValues(selectedOptions);
   }, [selectedOptions.length]);
@@ -44,6 +48,9 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
 
   
   const handleSelectChange = (option: string | number) => {
+    
+      // if (isDisabled) return; 
+    
     let updatedValues = [];
     if (selectedValues.includes(option)) {
       updatedValues = selectedValues.filter((val) => val !== option);
@@ -54,16 +61,26 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
   };
   
   useEffect(() => {
+    setIsDisabled(false);
       setSelectedValues(selectedOptions);
     }, [selectedOptions]);
 
   useEffect(() => {
     if(!isOpen) setValue?.(selectedValues);
   }, [isOpen]);
+
+  useEffect(() => {
+   if (!isMulti) {
+     const isDisabledButton = !isMulti ? selectedValues.length > 0 : false;
+     setIsDisabled(isDisabledButton);
+     if (isDisabledButton) return;
+   }
+  }, [selectedValues]);
   
 const toggleDropdown = () => {
   setIsOpen(!isOpen);
   };
+
 
   return (
     <div
@@ -104,16 +121,20 @@ const toggleDropdown = () => {
               `}
           >
             {options.map((option, index) => (
-              <li
-                key={index}
-                className={`w-full px-4 py-2 cursor-pointer hover:bg-bgSelectItemHover active:text-accentClicked ${
-                  selectedValues.includes(option)
-                    ? "text-accentColor"
-                    : "text-textColor"
-                }`}
-                onClick={() => handleSelectChange(option)}
-              >
-                {option}
+              <li key={index} className="w-full">
+                <button
+                  type="button"
+                  disabled={isDisabled}
+                  className={`w-full px-4 py-2 ${
+                    selectedValues.includes(option)
+                      ? "text-accentColor"
+                      : "text-textColor"
+                  }
+                  ${isDisabled ? "opactity-100 cursor-default" : "cursor-pointer hover:bg-bgSelectItemHover active:text-accentClicked"}`}
+                  onClick={() => handleSelectChange(option)}
+                >
+                  {option}
+                </button>
               </li>
             ))}
           </ul>

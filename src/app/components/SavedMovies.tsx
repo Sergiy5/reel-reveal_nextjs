@@ -1,16 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { ListMovies } from "./ListMovies";
-import { Modal } from "./ui/Modal";
 import { Loader } from "./ui/Loader";
-// import { ISessionUserSignal } from "@/context/UserContext";
 import { fetcher } from "../actions";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
 import { sessionUser } from "@/typification";
+
+const ModalDynamic = dynamic(() =>
+  import("./ui/Modal").then((mod) => mod.Modal)
+);
 
 interface SavedMoviesProps {
   sessionUser: sessionUser;
@@ -61,11 +64,11 @@ export const  SavedMovies: React.FC<SavedMoviesProps> = React.memo(
             <ListMovies movies={movies} sessionUser={sessionUser} />
           </>
         )}
-        <Modal isOpen={isValidating  || isLoading}>
+        <ModalDynamic isOpen={isValidating  || isLoading}>
           <div className="flex items-center h-lvh">
             <Loader />
           </div>
-        </Modal>
+        </ModalDynamic>
       </div>
     );
   }
