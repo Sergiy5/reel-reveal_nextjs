@@ -14,22 +14,22 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Reel-Reveal Team",
-      // url: "https://reel-reveal-nextjs.vercel.app",
+      url: "https://reel-reveal-nextjs.vercel.app",
     },
   ],
   openGraph: {
     title: "Reel-Reveal - Find Your Perfect Movie",
     description: "Take our AI-based quiz to discover your next favorite film!",
-    // url: "https://reel-reveal-nextjs.vercel.app/home",
+    url: "https://reel-reveal-nextjs.vercel.app/home",
     type: "website",
-    // images: [
-    //   {
-    //     url: "https://reel-reveal-nextjs.vercel.app/images/og-image.png",
-    //     width: 800,
-    //     height: 600,
-    //     alt: "Reel-Reveal",
-    //   },
-    // ],
+    images: [
+      {
+        url: "https://reel-reveal-nextjs.vercel.app/images/og-image.png",
+        width: 800,
+        height: 600,
+        alt: "Reel-Reveal",
+      },
+    ],
   },
 };
 
