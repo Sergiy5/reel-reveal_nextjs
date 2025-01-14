@@ -7,8 +7,6 @@ export const GET = async (req: NextRequest) => {
   const page = searchParams.get("page") || "1";
   const filter = searchParams.get("filter") || "";
 
-console.log("FILTER_>>>", filter)
-
   let filters;
  try {
    filters =
@@ -25,6 +23,7 @@ console.log("FILTER_>>>", filter)
   const MAIN_URL: string = `https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&page=${page}`;
   
   const URL_WITH_SEARCH = new URL(MAIN_URL);
+
   years.length > 0
   ? URL_WITH_SEARCH.searchParams.append(
     "primary_release_year",
@@ -44,8 +43,6 @@ console.log("FILTER_>>>", filter)
   )
   : "";
   
-  console.log("URL_WITH_SEARCH_>>>>", URL_WITH_SEARCH);
-
   try {
     
     const response = await fetch(URL_WITH_SEARCH, options);

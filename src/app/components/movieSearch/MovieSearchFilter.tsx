@@ -10,9 +10,11 @@ import { FilterArray, IQueryFilterParams } from "@/typification";
 
 interface MovieSearchFilterProps {
   getFilterOptions: (filter: IQueryFilterParams) => void;
+  genreName: string | null;
 }
 export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   getFilterOptions,
+  genreName
 }) => {
   const [allfilterOptions, setAllFilterOptions] = useState<FilterArray>([]);
   const [yearsArray, setYearsArray] = useState<FilterArray>([]);
@@ -20,11 +22,21 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   const [ratingsArray, setRatingsArray] = useState<FilterArray>([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setAllFilterOptions([...genresArray, ...yearsArray, ...ratingsArray]);
-    }, 500);
+    setAllFilterOptions([...genresArray, ...yearsArray, ...ratingsArray]);
   }, [yearsArray, genresArray, ratingsArray]);
-
+  
+  useEffect(() => {
+    if (genreName) {
+      setGenresArray([genreName]);
+        // console.log("CALL_FUNCTION>>>>>>>>>>>>>>>>>>>>>>>");
+      }
+    }, [genreName]);
+    
+    useEffect(() => {
+      if (genreName && genresArray) {
+        handleFilterOptions();
+      }
+    }, [genreName, genresArray]);
   const removeValue = (valueToRemove: string | number) => {
     const filter = allfilterOptions.filter((value) => value !== valueToRemove);
 

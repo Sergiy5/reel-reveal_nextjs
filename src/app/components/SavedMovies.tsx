@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
@@ -9,7 +9,7 @@ import { ListMovies } from "./ListMovies";
 import { Loader } from "./ui/Loader";
 import { fetcher } from "../actions";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
-import { sessionUser } from "@/typification";
+import { Movie, sessionUser } from "@/typification";
 
 const ModalDynamic = dynamic(() =>
   import("./ui/Modal").then((mod) => mod.Modal)
@@ -21,17 +21,21 @@ interface SavedMoviesProps {
 
 export const  SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
+    const [movies, setMovies] = useState<Movie[]>([]);
   
      const { likedMovies, isLoading, isValidating } = useMoviesContext();
 
-    const { data: likedMoviesFromTMDB } = useSWR(
+    const { data} = useSWR(
       likedMovies.length > 0
         ? ["/api/movies/many-by-array_id", likedMovies]
         : null,
       () => fetcher(["/api/movies/many-by-array_id", likedMovies])
     );
 
-    const movies = likedMoviesFromTMDB?.movies || [];
+    useEffect(() => {
+setMovies(data?.movies || []);
+    }, [data]);
+
 
     return (
       <div className="flex items-center flex-col justify-center gap-20 w-full mb-20 z-20">

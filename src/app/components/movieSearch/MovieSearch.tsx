@@ -32,7 +32,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
   const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
-  // const filterKey = filterOptions ? JSON.stringify(filterOptions) : "default";
+  const [queryGenre, setQueryGenre] = useState<string | null>(null);
   
   const currentUrl = isActiveSearch
     ? "/api/movies/one-by-title"
@@ -61,13 +61,20 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
 
   const searchParams = useSearchParams();
   const movieTitle = searchParams.get("title") || "";
+  const genreName = searchParams.get("genre") || null;
+
+  
+  useEffect(() => {
+    setQueryGenre(genreName);
+    // console.log("genreId", genreName);
+  },[genreName])
 
   const clearCache = () => mutate(() => true, undefined);
 
   useEffect(() => {
     setMovieStatus(null)
     setMovies([]);
-    console.log("filterOptions_==============", filterOptions);
+    // console.log("filterOptions_==============", filterOptions);
   }, [filterOptions]);
 
   useEffect(() => {
@@ -128,7 +135,10 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         <h1>The most popular movies</h1>
       )}
       {/* Filter */}
-      <MovieSearchFilter getFilterOptions={setFilterOptions} />
+      <MovieSearchFilter
+        getFilterOptions={setFilterOptions}
+        genreName={queryGenre}
+      />
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
         <ButtonOrLink

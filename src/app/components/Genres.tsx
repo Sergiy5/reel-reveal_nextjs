@@ -1,21 +1,9 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { GenreLinkIcon } from "./ui/GenreLinkIcon";
 import { genres } from "../../../public/genres/genres";
 
 export const Genres: React.FC = (): React.JSX.Element => {
-  const [genre, setGenre] = useState<number | null>(null);
-  // useEffect(() => {
-    
-  //   console.log(genre);
-  // },[genre])
-  // const { data, error, mutate, isValidating, isLoading } = useSWR(
-  //   "/api/movies/many-by-ganre",
-  //   () => fetcher(["/api/movies/many-by-ganre", {genre}]),
-  // );
-
   return (
     <div className={`relative flex flex-col items-center gap-12`}>
       <Image
@@ -34,14 +22,7 @@ export const Genres: React.FC = (): React.JSX.Element => {
         className={`relative flex items-start flex-wrap justify-around gap-10 sm:justify-between`}
       >
         {genres.map(({ id, name }) => (
-          <GenreLinkIcon
-            key={id}
-            iconID={id}
-            iconName={name}
-            onClick={(id) => {
-              setGenre(id);
-            }}
-          />
+          <GenreLinkIcon key={id} iconName={name} />
         ))}
       </div>
     </div>

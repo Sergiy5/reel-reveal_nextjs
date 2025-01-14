@@ -3,6 +3,7 @@
 import { use, useEffect, useState } from "react";
 import { Icon } from "../Icon";
 import { FilterArray } from "@/typification";
+import { capitalizeFirstLetter } from "@/utils";
 
 interface ListSelectedValuesProps {
   selectedValues: FilterArray;
@@ -52,7 +53,7 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
               ${index < visibleCount ? "opacity-100" : "opacity-0"}
                  `}
         >
-          {value}
+          {typeof value === "string" ? capitalizeFirstLetter(value) : value}
           <button
             type="button"
             className="ml-2"

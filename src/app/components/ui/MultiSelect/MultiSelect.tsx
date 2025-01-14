@@ -3,13 +3,14 @@
 import React, { useState, useEffect, useRef, use } from "react";
 import { GoTriangleDown } from "react-icons/go";
 import { FilterArray } from "@/typification";
+import { capitalizeFirstLetter } from "@/utils";
 
 interface SearchSelectProps {
   placeholder: string;
   options: FilterArray;
   selectedOptions: FilterArray;
   isMulti?: boolean;
-  setValue?: (selectedValues: (string| number)[]) => void;
+  setValue?: (selectedValues: (string | number)[]) => void;
 }
 
 export const MultiSelect: React.FC<SearchSelectProps> = ({
@@ -19,8 +20,7 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
   isMulti,
   setValue,
 }) => {
-  const [selectedValues, setSelectedValues] =
-    useState<FilterArray>([]);
+  const [selectedValues, setSelectedValues] = useState<FilterArray>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -46,11 +46,9 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
     };
   }, []);
 
-  
   const handleSelectChange = (option: string | number) => {
-    
-      // if (isDisabled) return; 
-    
+    // if (isDisabled) return;
+
     let updatedValues = [];
     if (selectedValues.includes(option)) {
       updatedValues = selectedValues.filter((val) => val !== option);
@@ -59,28 +57,27 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
     }
     setSelectedValues(updatedValues);
   };
-  
-  useEffect(() => {
-    setIsDisabled(false);
-      setSelectedValues(selectedOptions);
-    }, [selectedOptions]);
 
   useEffect(() => {
-    if(!isOpen) setValue?.(selectedValues);
+    setIsDisabled(false);
+    setSelectedValues(selectedOptions);
+  }, [selectedOptions]);
+
+  useEffect(() => {
+    if (!isOpen) setValue?.(selectedValues);
   }, [isOpen]);
 
   useEffect(() => {
-   if (!isMulti) {
-     const isDisabledButton = !isMulti ? selectedValues.length > 0 : false;
-     setIsDisabled(isDisabledButton);
-     if (isDisabledButton) return;
-   }
+    if (!isMulti) {
+      const isDisabledButton = !isMulti ? selectedValues.length > 0 : false;
+      setIsDisabled(isDisabledButton);
+      if (isDisabledButton) return;
+    }
   }, [selectedValues]);
-  
-const toggleDropdown = () => {
-  setIsOpen(!isOpen);
-  };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div
@@ -95,8 +92,6 @@ const toggleDropdown = () => {
           ${isOpen ? "rounded-t-[20px]" : "rounded-[20px]"}`}
       >
         <div>{placeholder}</div>
-        {/* <div className="inline-flex flex-wrap gap-2 w-full"> */}
-        {/* </div> */}
 
         <div>
           <GoTriangleDown
@@ -133,7 +128,7 @@ const toggleDropdown = () => {
                   ${isDisabled ? "opactity-100 cursor-default" : "cursor-pointer hover:bg-bgSelectItemHover active:text-accentClicked"}`}
                   onClick={() => handleSelectChange(option)}
                 >
-                  {option}
+                  { typeof option === "string" ? capitalizeFirstLetter(option) : option }
                 </button>
               </li>
             ))}
