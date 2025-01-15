@@ -1,4 +1,4 @@
-import "./globals.scss";
+import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ceraPro } from "./fonts";
@@ -41,6 +41,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg"></link>
         <title>Reel-Reveal</title>
       </head>
 

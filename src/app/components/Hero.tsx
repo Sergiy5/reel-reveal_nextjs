@@ -8,7 +8,8 @@ export const Hero: React.FC = () => {
       className={`relative flex justify-between flex-col-reverse h-auto gap-6 lg:flex-row `}
     >
       <article
-        className={`flex items-center justify-center flex-col text-textColor w-full h-auto gap-6 lg:items-start`}
+        className={`flex items-start justify-center flex-col text-textColor w-full h-auto gap-6
+             lg:pr-8`}
       >
         <h1 className={` lg:justify-start`}>
           Discover Your Perfect Movie with ReelReveal!
@@ -20,7 +21,7 @@ export const Hero: React.FC = () => {
           finding the perfect movie match.
         </p>
 
-        <ButtonOrLink href="/quiz" className={`z-10`}>
+        <ButtonOrLink href="/quiz" className={`z-10 mt-2`}>
           start quiz
         </ButtonOrLink>
       </article>

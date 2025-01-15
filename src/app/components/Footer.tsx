@@ -9,6 +9,7 @@ import { FooterListSocial } from "./FooterListSocial";
 import { DeviceType } from "@/typification";
 import { LinkToQuiz } from "./LinkToQuiz";
 import { Icon } from "./ui/Icon";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -41,6 +42,22 @@ export const Footer: React.FC = () => {
 
             <FooterListSocial />
           </div>
+          <div className={`flex flex-col gap-10 text-textColor w-full mt-10`}>
+            <div className="w-full h-[1px] bg-disabledColor"></div>
+            <div className="flex  items-center justify-between">
+              <p className="text-disabledColor">
+                Copyright © 2025 ReelReveal. All rights reserved.
+              </p>
+              <div className="flex gap-6">
+                <Link href="/privacy-policy" className="link">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms-and-conditions" className="link">
+                  Terms and Conditions
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
         <Image
           src={"/icons/footer_bg-ellips.svg"}
@@ -48,11 +65,8 @@ export const Footer: React.FC = () => {
           width={1429}
           height={614}
           priority
-          className={`absolute top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-[100%] blur-footer z-10 w-1440 h-auto`}
+          className={`absolute top-[130%] left-1/2 transform -translate-x-1/2 -translate-y-[130%] blur-footer z-10 w-1440 h-auto`}
         />
-      </div>
-      <div className={`flex justify-center  text-textColor`}>
-        © 2024 Reel Reveal
       </div>
     </footer>
   );

@@ -11,7 +11,7 @@ export const Header: React.FC = async () => {
   return (
     <div className={`flex justify-center items-center w-full `}>
       <div
-        className={`flex items-center justify-center py-0 w-full h-11 bg-bgColor  z-20 
+        className={`flex items-center justify-center py-0 w-full h-[58px] bg-bgColor  z-20 
             md:h-[68px] lg:h-[84px]`}
       >
         <div

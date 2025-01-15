@@ -29,13 +29,13 @@ export default async function Home() {
   const sessionUser = await getSessionUser()
 
   return (
-    <main className="">
+    <main>
       <Hero />
       <HowItWorks />
       <DynamicQuiz sessionUser={sessionUser} />
       {upcomingMovies ? 
         <GetShowMovies
-          title={"Upcoming 20 movies in 2024"}
+          title={"Upcoming 20 movies in 2025"}
           movies={upcomingMovies}
           sessionUser={sessionUser}
         /> : <Loader />

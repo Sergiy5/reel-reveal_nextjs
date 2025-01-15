@@ -122,17 +122,19 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
 
   return (
     <div
-      className={` flex flex-col items-center justify-center w-full gap-12 z-10`}
+      className={` flex flex-col items-center justify-center w-full gap-10 lg:gap-12 z-10`}
     >
       {isActiveSearch && !isLoading ? (
-        <h1 className="w-full">
+        <h1 className="flex justify-start md:justify-center w-full">
           Found{" "}
           <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
           movies based on your search &quot;{safeQueryTitle}
           &quot;
         </h1>
       ) : (
-        <h1>The most popular movies</h1>
+        <h1 className="flex justify-start md:justify-center w-full">
+          The most popular movies
+        </h1>
       )}
       {/* Filter */}
       <MovieSearchFilter

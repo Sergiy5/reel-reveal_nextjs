@@ -81,14 +81,14 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
 
   return (
     <div
-      className={`relative z-20 flex flex-col justify-end w-[120px]
+      className={`relative z-20 flex flex-col justify-end sm:w-[120px]
         `}
       ref={dropdownWithSearchRef}
       onKeyDown={(e) => (e.key === "Enter" ? toggleDropdown() : null)}
     >
       <div
         onClick={toggleDropdown}
-        className={`flex items-center justify-between w-full h-10 py-3 px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
+        className={`flex items-center gap-[4px] sm:justify-between w-full h-10 sm:py-3 py-2 px-4 sm:px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
           ${isOpen ? "rounded-t-[20px]" : "rounded-[20px]"}`}
       >
         <div>{placeholder}</div>
@@ -116,11 +116,11 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
               `}
           >
             {options.map((option, index) => (
-              <li key={index} className="w-full">
+              <li key={index} className="w-full ">
                 <button
                   type="button"
                   disabled={isDisabled}
-                  className={`w-full px-4 py-2 ${
+                  className={`flex w-full justify-start px-2 py-2 ${
                     selectedValues.includes(option)
                       ? "text-accentColor"
                       : "text-textColor"

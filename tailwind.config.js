@@ -33,6 +33,7 @@ module.exports = {
       boxShadow: {
         0: "0px 0px 0px rgba(0, 0, 0, 0)",
         hoverShadow: "1px 2px 24px 0 rgba(32, 232, 218, 0.3)",
+        focusShadow: "1px 2px 24px 0 rgba(32, 232, 218, 0.5)",
       },
       backgroundImage: {
         borderIcon: "url('/icons/border.svg')",

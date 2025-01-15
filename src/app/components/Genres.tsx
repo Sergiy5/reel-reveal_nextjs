@@ -13,7 +13,8 @@ export const Genres: React.FC = (): React.JSX.Element => {
         height={720}
         priority
         className={`absolute z-0 top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4
-           w-full h-auto blur-hero xl:max-w-[1440px]`}
+           w-full h-auto blur-hero xl:max-w-[1440px]
+           `}
       />
 
       <h2>Choose a movie by genre</h2>

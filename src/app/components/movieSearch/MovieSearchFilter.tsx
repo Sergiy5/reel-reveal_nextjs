@@ -7,6 +7,7 @@ import { Icon } from "../ui/Icon";
 import { MultiSelect } from "../ui/MultiSelect";
 import { ListSelectedValues } from "../ui/MultiSelect/ListSelectedValues";
 import { FilterArray, IQueryFilterParams } from "@/typification";
+import { useResize } from "@/hooks";
 
 interface MovieSearchFilterProps {
   getFilterOptions: (filter: IQueryFilterParams) => void;
@@ -20,6 +21,8 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   const [yearsArray, setYearsArray] = useState<FilterArray>([]);
   const [genresArray, setGenresArray] = useState<FilterArray>([]);
   const [ratingsArray, setRatingsArray] = useState<FilterArray>([]);
+
+  const size = useResize();
 
   useEffect(() => {
     setAllFilterOptions([...genresArray, ...yearsArray, ...ratingsArray]);
@@ -82,9 +85,9 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   };
 
   return (
-    <div className="flex justify-between w-full ">
-      <div className="flex flex-col gap-6">
-        <ul className="flex gap-6">
+    <div className="flex flex-col gap-6 w-full ">
+      <div className="flex flex-wrap justify-between gap-6">
+        <ul className="flex w-full gap-2 sm:w-[412px] sm:gap-4">
           <li key={"Genre"}>
             <MultiSelect
               isMulti={true}
@@ -111,32 +114,26 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
             />{" "}
           </li>
         </ul>
-        <div className="flex gap-4">
-          <ListSelectedValues
-            selectedValues={allfilterOptions}
-            removeValue={removeValue}
-          />
-        </div>
+        <ButtonOrLink onClick={handleFilterOptions}>apply filters</ButtonOrLink>
       </div>
-      <ul className="flex flex-col items-end gap-6">
-        <li>
-          <ButtonOrLink onClick={handleFilterOptions}>
-            apply filters
-          </ButtonOrLink>
-        </li>
-        <li>
-          <button
-            type="button"
-            onClick={() => setAllFilterOptions([])}
-            className="flex items-center justify-center gap-2 text-textColor"
-          >
-            <span className=" text-lg font-light">Clear all filters</span>
-            <span className="mt-1">
-              <Icon id="cross" width={14} height={14} />
-            </span>
-          </button>
-        </li>
-      </ul>
+      <div className="flex flex-wrap justify-between gap-6">
+        <ListSelectedValues
+          selectedValues={allfilterOptions}
+          removeValue={removeValue}
+        />
+        {allfilterOptions.length > 1 && <button
+          type="button"
+          onClick={() => setAllFilterOptions([])}
+          className="flex items-center justify-center gap-2 text-textColor"
+        >
+          <span className=" text-lg font-light">
+            {size > 860 ? "Clear all filters" : "Clear all"}
+          </span>
+          <span className="mt-1">
+            <Icon id="cross" width={14} height={14} />
+          </span>
+        </button>}
+      </div>
     </div>
   );
 };

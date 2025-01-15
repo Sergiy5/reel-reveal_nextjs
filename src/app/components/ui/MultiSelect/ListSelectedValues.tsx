@@ -44,7 +44,7 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
   };
 
   return (
-    <ul className={"flex flex-wrap gap-4"}>
+    <ul className={"flex flex-wrap gap-2 sm:gap-4"}>
       {selectedList.map((value, index) => (
         <li
           key={index}
@@ -61,8 +61,8 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
           >
             <Icon
               id="cross"
-              width={14}
-              height={14}
+              width={12}
+              height={12}
               className="text-textColor hover:text-accentColor active:text-accentClicked transition-colors duration-300"
             />
           </button>
