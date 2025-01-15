@@ -29,7 +29,7 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
 
     // return () => {
     // };
-  }, [selectedList]);
+  }, [selectedList, selectedValues]);
   
   useEffect(() => {
     if (selectedValues.length !== selectedList.length) {
@@ -37,7 +37,7 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
       setVisibleCount(0);
       setSelectedList(selectedValues);
     }
-  }, [selectedValues.length]);
+  }, [selectedValues.length, selectedList.length, selectedValues]);
   const removeselectedItem = (valueToRemove: string | number) => {
     removeValue(valueToRemove);
     setSelectedList((prev) => prev.filter((value) => value !== valueToRemove));

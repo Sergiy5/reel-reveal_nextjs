@@ -61,7 +61,7 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
   useEffect(() => {
     setIsDisabled(false);
     setSelectedValues(selectedOptions);
-  }, [selectedOptions]);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) setValue?.(selectedValues);

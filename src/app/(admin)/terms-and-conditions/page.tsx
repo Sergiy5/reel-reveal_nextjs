@@ -14,8 +14,8 @@ export default function TermAndConditionPage() {
             https://www.reel-reveal.club
           </Link>{" "}
           as well as any other related products and services that refer or link
-          to these legal terms (the "Legal Terms") (collectively, the
-          "Services")
+          to these legal terms (the &quot;Legal Terms&quot;) (collectively, the
+          &quot;Services&quot;)
         </p>
         <p>
           ReelReveal is an AI-powered platform designed to help users discover
@@ -35,8 +35,8 @@ export default function TermAndConditionPage() {
         </p>
         <p>
           These Legal Terms constitute a legally binding agreement made between
-          you, whether personally or on behalf of an entity ("you"), and
-          ReelReveal, concerning your access to and use of the Services. You
+          you, whether personally or on behalf of an entity (&quot;you&quot;),
+          and ReelReveal, concerning your access to and use of the Services. You
           agree that by accessing the Services, you have read, understood, and
           agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE
           WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM
@@ -47,13 +47,14 @@ export default function TermAndConditionPage() {
           the Services from time to time are hereby expressly incorporated
           herein by reference. We reserve the right, in our sole discretion, to
           make changes or modifications to these Legal Terms from time to time.
-          We will alert you about any changes by updating the "Last updated"
-          date of these Legal Terms, and you waive any right to receive specific
-          notice of each such change. It is your responsibility to periodically
-          review these Legal Terms to stay informed of updates. You will be
-          subject to, and will be deemed to have been made aware of and to have
-          accepted, the changes in any revised Legal Terms by your continued use
-          of the Services after the date such revised Legal Terms are posted
+          We will alert you about any changes by updating the &quot;Last
+          updated&quot; date of these Legal Terms, and you waive any right to
+          receive specific notice of each such change. It is your responsibility
+          to periodically review these Legal Terms to stay informed of updates.
+          You will be subject to, and will be deemed to have been made aware of
+          and to have accepted, the changes in any revised Legal Terms by your
+          continued use of the Services after the date such revised Legal Terms
+          are posted
         </p>
         <p>
           The Services are intended for users who are at least 18 years old.
@@ -193,8 +194,8 @@ export default function TermAndConditionPage() {
             in our Services, including all source code, databases,
             functionality, software, website designs, audio, video, text,
             photographs, and graphics in the Services (collectively, the
-            "Content"), as well as the trademarks, service marks, and logos
-            contained therein (the "Marks").
+            &quot;Content&quot;), as well as the trademarks, service marks, and
+            logos contained therein (the &quot;Marks&quot;).
           </span>
         </div>
         <div>
@@ -207,8 +208,8 @@ export default function TermAndConditionPage() {
         </div>
         <div>
           <span>
-            The Content and Marks are provided in or through the Services "AS
-            IS" for your personal, non-commercial use only.
+            The Content and Marks are provided in or through the Services
+            &quot;AS IS&quot; for your personal, non-commercial use only.
           </span>
         </div>
         <div>
@@ -218,13 +219,14 @@ export default function TermAndConditionPage() {
         </div>
         <div>
           <span>
-            Subject to your compliance with these Legal Terms, including the "
+            Subject to your compliance with these Legal Terms, including the
+            &quot;
           </span>
           <a href="#prohibited">
             <span>PROHIBITED ACTIVITIES</span>
           </a>
           <span>
-            " section below, we grant you a non-exclusive, non-transferable,
+            &quot;section below, we grant you a non-exclusive, non-transferable,
             revocable license to:
           </span>
         </div>
@@ -279,24 +281,24 @@ export default function TermAndConditionPage() {
         <h3>Your submissions </h3>{" "}
         <div>
           <span>
-            Please review this section and the "
+            Please review this section and the &quot;
             <a href="#prohibited">
               <span>PROHIBITED ACTIVITIES</span>
             </a>
-            " section carefully prior to using our Services to understand the
-            (a) rights you give us and (b) obligations you have when you post or
-            upload any content through the Services.
+            &quot; section carefully prior to using our Services to understand
+            the (a) rights you give us and (b) obligations you have when you
+            post or upload any content through the Services.
           </span>
         </div>
         <div>
           <span>
             <strong>Submissions:</strong> By directly sending us any question,
             comment, suggestion, idea, feedback, or other information about the
-            Services ("Submissions"), you agree to assign to us all intellectual
-            property rights in such Submission. You agree that we shall own this
-            Submission and be entitled to its unrestricted use and dissemination
-            for any lawful purpose, commercial or otherwise, without
-            acknowledgment or compensation to you.
+            Services (&quot;Submissions&quot;), you agree to assign to us all
+            intellectual property rights in such Submission. You agree that we
+            shall own this Submission and be entitled to its unrestricted use
+            and dissemination for any lawful purpose, commercial or otherwise,
+            without acknowledgment or compensation to you.
           </span>
         </div>
         <span>
@@ -305,16 +307,16 @@ export default function TermAndConditionPage() {
         </span>
         <ul>
           <li>
-            <span>confirm that you have read and agree with our "</span>
+            <span>confirm that you have read and agree with our &quot;</span>
             <a href="#prohibited">
               <span>PROHIBITED ACTIVITIES</span>
             </a>
             <span>
-              " and will not post, send, publish, upload, or transmit through
-              the Services any Submission that is illegal, harassing, hateful,
-              harmful, defamatory, obscene, bullying, abusive, discriminatory,
-              threatening to any person or group, sexually explicit, false,
-              inaccurate, deceitful, or misleading;
+              &quot; and will not post, send, publish, upload, or transmit
+              through the Services any Submission that is illegal, harassing,
+              hateful, harmful, defamatory, obscene, bullying, abusive,
+              discriminatory, threatening to any person or group, sexually
+              explicit, false, inaccurate, deceitful, or misleading;
             </span>
           </li>
           <li>
@@ -341,7 +343,7 @@ export default function TermAndConditionPage() {
         <div>
           You are solely responsible for your Submissions and you expressly
           agree to reimburse us for any and all losses that we may suffer
-          because of your breach of (a) this section, (b) any third party’s
+          because of your breach of (a) this section, (b) any third party&apos;s
           intellectual property rights, or (c) applicable law.
         </div>
       </div>
@@ -520,8 +522,9 @@ export default function TermAndConditionPage() {
           We are the owner or the licensee of all intellectual property rights
           in our Services, including all source code, databases, functionality,
           software, website designs, audio, video, text, photographs, and
-          graphics in the Services (collectively, the "Content"), as well as the
-          trademarks, service marks, and logos contained therein (the "Marks").
+          graphics in the Services (collectively, the &quot;Content&quot;), as
+          well as the trademarks, service marks, and logos contained therein
+          (the &quot;Marks&quot;).
         </p>
         <p>
           Our Content and Marks are protected by copyright and trademark laws
@@ -529,8 +532,8 @@ export default function TermAndConditionPage() {
           laws) and treaties in the United States and around the world.
         </p>
         <p>
-          The Content and Marks are provided in or through the Services "AS IS"
-          for your personal, non-commercial use only.
+          The Content and Marks are provided in or through the Services &quot;AS
+          IS&quot; for your personal, non-commercial use only.
         </p>
         <h3>Your use of our Services</h3>
         <p>
@@ -628,190 +631,191 @@ export default function TermAndConditionPage() {
       </div>
 
       <div id="prohibited">
-        
-            <h2>8. PROHIBITED ACTIVITIES</h2>
-         
-          </div>
-          <div>
-              
-      <div>
-        <span>
-          The Services may not be used in connection with any commercial
-          endeavors except those that are specifically endorsed or approved by
-          us.
-        </span>
+        <h2>8. PROHIBITED ACTIVITIES</h2>
       </div>
-
       <div>
-          <span className="my-6" >As a user of the Services, you agree not to:</span>
-        <ul className="flex flex-col gap-4">
-          <li>
+        <div>
+          <span>
+            The Services may not be used in connection with any commercial
+            endeavors except those that are specifically endorsed or approved by
+            us.
+          </span>
+        </div>
+
+        <div>
+          <span className="my-6">
+            As a user of the Services, you agree not to:
+          </span>
+          <ul className="flex flex-col gap-4">
+            <li>
               <span>
                 Systematically retrieve data or other content from the Services
                 to create or compile, directly or indirectly, a collection,
                 compilation, database, or directory without written permission
                 from us.
               </span>
-          </li>
-          <li>
+            </li>
+            <li>
               <span>
                 Trick, defraud, or mislead us and other users, especially in any
                 attempt to learn sensitive account information such as user
                 passwords.
               </span>
-          </li>
-          <li>
-            <span>
+            </li>
+            <li>
+              <span>
                 Circumvent, disable, or otherwise interfere with
                 security-related features of the Services, including features
                 that prevent or restrict the use or copying of any Content or
                 enforce limitations on the use of the Services and/or the
                 Content contained therein.
-            </span>
-          </li>
-          <li>
+              </span>
+            </li>
+            <li>
               <span>
                 Disparage, tarnish, or otherwise harm, in our opinion, us and/or
                 the Services.
               </span>
-          </li>
-          <li>
+            </li>
+            <li>
               <span>
                 Use any information obtained from the Services in order to
                 harass, abuse, or harm another person.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Make improper use of our support services or submit false
                 reports of abuse or misconduct.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Use the Services in a manner inconsistent with any applicable
                 laws or regulations.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Engage in unauthorized framing of or linking to the Services.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Upload or transmit (or attempt to upload or to transmit)
                 viruses, Trojan horses, or other material, including excessive
                 use of capital letters and spamming (continuous posting of
-                repetitive text), that interferes with any party’s uninterrupted
-                use and enjoyment of the Services or modifies, impairs,
-                disrupts, alters, or interferes with the use, features,
+                repetitive text), that interferes with any party&apos;s
+                uninterrupted use and enjoyment of the Services or modifies,
+                impairs, disrupts, alters, or interferes with the use, features,
                 functions, operation, or maintenance of the Services.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Engage in any automated use of the system, such as using scripts
                 to send comments or messages, or using any data mining, robots,
                 or similar data gathering and extraction tools.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Delete the copyright or other proprietary rights notice from any
                 Content.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Attempt to impersonate another user or person or use the
                 username of another user.
-            </span>
-          </li>
-          <li>
+              </span>
+            </li>
+            <li>
               <span>
                 Upload or transmit (or attempt to upload or to transmit) any
                 material that acts as a passive or active information collection
                 or transmission mechanism, including without limitation, clear
-                graphics interchange formats ("gifs"), 1×1 pixels, web bugs,
-                cookies, or other similar devices (sometimes referred to as
-                "spyware" or "passive collection mechanisms" or "pcms").
+                graphics interchange formats (&quot;gifs&quot;), 1x1 pixels, web
+                bugs, cookies, or other similar devices (sometimes referred to
+                as &quot;spyware&quot; or &quot;passive collection
+                mechanisms&quot; or &quot;pcms&quot;).
               </span>
-          </li>
-          <li>
+            </li>
+            <li>
               <span>
                 Interfere with, disrupt, or create an undue burden on the
                 Services or the networks or services connected to the Services.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Harass, annoy, intimidate, or threaten any of our employees or
                 agents engaged in providing any portion of the Services to you.
-            </span>
-          </li>
-          <li>
+              </span>
+            </li>
+            <li>
               <span>
                 Attempt to bypass any measures of the Services designed to
                 prevent or restrict access to the Services, or any portion of
                 the Services.
-            </span>
-          </li>
-          <li>
+              </span>
+            </li>
+            <li>
               <span>
-                Copy or adapt the Services' software, including but not limited
-                to Flash, PHP, HTML, JavaScript, or other code.
-            </span>
-          </li>
-          <li>
-            <span>
+                Copy or adapt the Services&apos; software, including but not
+                limited to Flash, PHP, HTML, JavaScript, or other code.
+              </span>
+            </li>
+            <li>
+              <span>
                 Except as permitted by applicable law, decipher, decompile,
                 disassemble, or reverse engineer any of the software comprising
                 or in any way making up a part of the Services.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Except as may be the result of standard search engine or
                 Internet browser usage, use, launch, develop, or distribute any
                 automated system, including without limitation, any spider,
                 robot, cheat utility, scraper, or offline reader that accesses
                 the Services, or use or launch any unauthorized script or other
                 software.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Use a buying agent or purchasing agent to make purchases on the
                 Services.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Make any unauthorized use of the Services, including collecting
                 usernames and/or email addresses of users by electronic or other
                 means for the purpose of sending unsolicited email, or creating
                 user accounts by automated means or under false pretenses.
-            </span>
-          </li>
-          <li>
-            <span>
+              </span>
+            </li>
+            <li>
+              <span>
                 Use the Services as part of any effort to compete with us or
                 otherwise use the Services and/or the Content for any
                 revenue-generating endeavor or commercial enterprise.
-            </span>
-          </li>
-          <li>
-            <span>
-              Use the Services to advertise or offer to sell goods and services.
-            </span>
-          </li>
-          <li>
-            <span>Sell or otherwise transfer your profile.</span>
-          </li>
-        </ul>
+              </span>
+            </li>
+            <li>
+              <span>
+                Use the Services to advertise or offer to sell goods and
+                services.
+              </span>
+            </li>
+            <li>
+              <span>Sell or otherwise transfer your profile.</span>
+            </li>
+          </ul>
+        </div>
       </div>
-          </div>
 
       <div id="ugc">
         <strong>
@@ -829,9 +833,10 @@ export default function TermAndConditionPage() {
           and materials to us or on the Services, including but not limited to
           text, writings, video, audio, photographs, graphics, comments,
           suggestions, or personal information or other material (collectively,
-          "Contributions"). Contributions may be viewable by other users of the
-          Services and through third-party websites. When you create or make
-          available any Contributions, you thereby represent and warrant that:
+          &quot;Contributions&quot;). Contributions may be viewable by other
+          users of the Services and through third-party websites. When you
+          create or make available any Contributions, you thereby represent and
+          warrant that:
         </span>
       </div>
 
@@ -1013,11 +1018,11 @@ export default function TermAndConditionPage() {
         <p>
           As part of the functionality of the Services, you may link your
           account with online accounts you have with third-party service
-          providers (each such account, a "Third-Party Account") by either: (1)
-          providing your Third-Party Account login information through the
-          Services; or (2) allowing us to access your Third-Party Account, as is
-          permitted under the applicable terms and conditions that govern your
-          use of each Third-Party Account.
+          providers (each such account, a &quot;Third-Party Account&quot;) by
+          either: (1) providing your Third-Party Account login information
+          through the Services; or (2) allowing us to access your Third-Party
+          Account, as is permitted under the applicable terms and conditions
+          that govern your use of each Third-Party Account.
         </p>
 
         <p>
@@ -1034,11 +1039,12 @@ export default function TermAndConditionPage() {
           By granting us access to any Third-Party Accounts, you understand that
           (1) we may access, make available, and store (if applicable) any
           content that you have provided to and stored in your Third-Party
-          Account (the "Social Network Content") so that it is available on and
-          through the Services via your account, including without limitation
-          any friend lists and (2) we may submit to and receive from your
-          Third-Party Account additional information to the extent you are
-          notified when you link your account with the Third-Party Account.
+          Account (the &quot;Social Network Content&quot;) so that it is
+          available on and through the Services via your account, including
+          without limitation any friend lists and (2) we may submit to and
+          receive from your Third-Party Account additional information to the
+          extent you are notified when you link your account with the
+          Third-Party Account.
         </p>
 
         <p>
@@ -1178,13 +1184,14 @@ export default function TermAndConditionPage() {
         <div>
           <span>
             To expedite resolution and control the cost of any dispute,
-            controversy, or claim related to these Legal Terms (each a "Dispute"
-            and collectively, the "Disputes") brought by either you or us (ind
-            ividually, a "Party" and collectively, the "Parties"), the Parties
-            agree to first attempt to negotiate any Dispute (except those
-            Disputes expressly provided below) informally for at least thirty
-            (30) days before initiating arbitration. Such informal negotiations
-            commence upon written notice from one Party to the other Party.
+            controversy, or claim related to these Legal Terms (each a
+            &quot;Dispute&quot; and collectively, the &quot;Disputes&quot;)
+            brought by either you or us (ind ividually, a &quot;Party&quot; and
+            collectively, the &quot;Parties&quot;), the Parties agree to first
+            attempt to negotiate any Dispute (except those Disputes expressly
+            provided below) informally for at least thirty (30) days before
+            initiating arbitration. Such informal negotiations commence upon
+            written notice from one Party to the other Party.
           </span>
         </div>
 
@@ -1280,25 +1287,25 @@ export default function TermAndConditionPage() {
             THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
             MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
             NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE
-            ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF
-            ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE
-            WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS,
-            MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL
-            INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM
-            YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS
-            TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL
-            INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY
-            INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES,
-            (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE
-            TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR
-            (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY
-            LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY
-            CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE
-            SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME
-            RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A
-            THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY
-            WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER
-            ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE
+            ACCURACY OR COMPLETENESS OF THE SERVICES&apos; CONTENT OR THE
+            CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE
+            SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY
+            (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2)
+            PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER,
+            RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY
+            UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND
+            ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED
+            THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR
+            FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE
+            WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD
+            PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND
+            MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT
+            OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE
+            AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE,
+            OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR
+            OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED
+            WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER
+            OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE
             RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY
             THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE
             OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT,
@@ -1346,8 +1353,8 @@ export default function TermAndConditionPage() {
         You agree to defend, indemnify, and hold us harmless, including our
         subsidiaries, affiliates, and all of our respective officers, agents,
         partners, and employees, from and against any loss, damage, liability,
-        claim, or demand, including reasonable attorneys’ fees and expenses,
-        made by any third party due to or arising out of:{" "}
+        claim, or demand, including reasonable attorneys&apos; fees and
+        expenses, made by any third party due to or arising out of:{" "}
       </span>
       <div data-type="if" id="475fffa5-05ca-def8-ac88-f426b238903c">
         <div data-type="conditional-block">

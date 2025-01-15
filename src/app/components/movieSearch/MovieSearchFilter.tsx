@@ -39,7 +39,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
       if (genreName && genresArray) {
         handleFilterOptions();
       }
-    }, [genreName, genresArray]);
+    }, [genreName, genresArray, ]);
   const removeValue = (valueToRemove: string | number) => {
     const filter = allfilterOptions.filter((value) => value !== valueToRemove);
 
