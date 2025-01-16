@@ -38,3 +38,5 @@ export const POST = async (req: Request) => {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
+
+POST.displayName = "OpenAI Chat API POST Handler";

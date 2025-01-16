@@ -1,10 +1,11 @@
-import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { ceraPro } from "./fonts";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { SessionProvider } from "next-auth/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ToastContainer } from "react-toastify";
+import { ceraPro } from "./fonts";
+import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ConsentCockie } from "./components/consentCockie/consentCockie";
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -52,6 +53,7 @@ export default async function RootLayout({
         </SessionProvider>
         <ToastContainer />
         <SpeedInsights />
+        <ConsentCockie />
       </body>
     </html>
   );

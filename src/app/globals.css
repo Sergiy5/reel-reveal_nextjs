@@ -15,7 +15,7 @@
     /* Adjust font stack as needed */
   }
 
-  .scrollbar {
+  /* .scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;
   }
@@ -32,7 +32,7 @@
 
   .scrollbar::-webkit-scrollbar-track {
     background-color: #f1f1f1;
-  }
+  } */
 }
 body {
   @apply font-sans block max-w-full bg-bgColor opacity-70;
@@ -42,7 +42,7 @@ main {
   @apply relative flex flex-col items-center justify-start font-light font-cera-pro mx-auto px-4 py-6
    max-w-[1440px] text-textColor bg-bgColor gap-16 overflow-hidden
     md:px-20 md:py-20 md:gap-20
-    xl:gap-40 xl:p-[120px] xl:overflow-visible xl:max-w-[1440px];
+    xl:gap-40 xl:px-[120px] lg:py-10 xl:overflow-visible xl:max-w-[1440px];
 }
 
 code {
