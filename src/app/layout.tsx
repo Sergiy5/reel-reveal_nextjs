@@ -6,6 +6,11 @@ import { ceraPro } from "./fonts";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ConsentCockie } from "./components/consentCockie/consentCockie";
+import dynamic from "next/dynamic";
+
+const CountQuizProviderDynamic = dynamic(() =>
+  import("@/context/CountQuizContext").then((mod) => mod.CountQuizProvider)
+);
 
 export const metadata: Metadata = {
   title: "Reel-Reveal",
@@ -48,8 +53,10 @@ export default async function RootLayout({
 
       <body className={ceraPro.className}>
         <SessionProvider>
-          {children}
-          <div id="modal" />
+          <CountQuizProviderDynamic>
+            {children}
+            <div id="modal" />
+          </CountQuizProviderDynamic>
         </SessionProvider>
         <ToastContainer />
         <SpeedInsights />

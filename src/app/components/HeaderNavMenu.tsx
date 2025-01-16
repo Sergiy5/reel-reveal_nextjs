@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Icon } from "./ui/Icon";
 import { isAuthUserSignal } from "@/context/UserContext";
+import { useContextCountQuiz } from "@/context/CountQuizContext";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -15,7 +16,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
-  // console.log("isAuthUserSignal", isAuthUserSignal.value);
+  const { count } = useContextCountQuiz();
 
   return (
     <div
@@ -60,12 +61,15 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
       <Link
         href={"/quiz"}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
-        className={`header__link-btn flex items-center justify-center font-medium leading-8 text-xl
-               w-[140px] h-[40px] text-bgColor bg-textColor rounded-[30px] shadow-0
-                transition duration-250 ease-in-out hover:bg-accentColor hover:shadow-hoverShadow
-                 active:bg-clickedColor`}
+        className={`flex items-center justify-between font-medium leading-5 text-xl px-5 w-[169px] h-[40px]
+           text-bgColor bg-textColor rounded-[30px] shadow-0 transition duration-250 ease-in-out
+            hover:bg-accentColor hover:shadow-hoverShadow active:bg-clickedColor`}
       >
-        take quiz
+        <span className="flex flex-row">
+          <span className="w-[13px] mr-[3px]">{count}</span>
+          <Icon id="icon-ai" width={20} height={18} className="text-bgColor" />
+        </span>
+        <span className="">take quiz</span>
       </Link>
     </div>
   );

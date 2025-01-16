@@ -7,7 +7,6 @@ import { userEmailSignal } from "@/context/UserContext";
 import { registerUser } from "../actions/registerUser";
 import { toast } from "react-toastify";
 import { validateEmail, validatePassword } from "@/utils";
-import { isLoadingSignal } from "@/context/CommonContext";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 

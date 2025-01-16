@@ -31,8 +31,7 @@ const ServiceMoviesContext = createContext<MoviesContextType | undefined>(
 export const ServiceMoviesProvider: React.FC<{
   userId: string;
   children: React.ReactNode;
-}> = ({userId, children }) => {
-
+}> = ({ userId, children }) => {
   const { mutate } = useSWRConfig();
 
   const { data: movies, error, isValidating, isLoading } = useMovies(userId);
@@ -97,7 +96,7 @@ export const ServiceMoviesProvider: React.FC<{
     const movie = movies?.find((m: IMovieInDB) => m.movieId === movieId);
     // If movie doesn't exist in DB
     if (!movie) {
-      console.log("If movie doesn't exist in DB")
+      console.log("If movie doesn't exist in DB");
       const newMovie = {
         movieId,
         watched: true,
@@ -107,7 +106,7 @@ export const ServiceMoviesProvider: React.FC<{
 
       // If movie exists in DB update movie
     } else {
-      console.log("If movie exists in DB update movie")
+      console.log("If movie exists in DB update movie");
       const updatedMovie = {
         movieId,
         liked: movie.liked,
@@ -119,7 +118,7 @@ export const ServiceMoviesProvider: React.FC<{
 
       // Update movie in DB if liked true
       if (movie.liked) {
-        console.log("Update movie in DB if liked true")
+        console.log("Update movie in DB if liked true");
         updateMoviesInDBAndMutate(userId, updatedMovie, updatedMovies, mutate);
 
         // Remove movie from DB if liked false
