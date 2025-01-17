@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AuthRegister } from "./AuthRegister";
 import { AuthLoginPassword } from "./AuthLoginPassword";
 import { AuthLogin } from "./AuthLogin";
+import Link from "next/link";
 
 export const Auth: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,7 +24,7 @@ export const Auth: React.FC = () => {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center pb-32 gap-12 z-10`}
+      className={`relative flex flex-col items-center justify-center pb-32 gap-12 z-20`}
     >
       <h3>{title}</h3>
       <div
@@ -41,8 +42,14 @@ export const Auth: React.FC = () => {
         )}
       </div>
       <p className={`text-lg`}>
-        By signing in or creating an account, you agree with our Terms &
-        Conditions and Privacy Policy
+        By signing in or creating an account, you agree with our{" "}
+        <Link href="/terms-and-conditions" className="link">
+          Terms & Conditions
+        </Link>{" "}
+        and{" "}
+        <Link href="/privacy-policy" className="link">
+          Privacy Policy
+        </Link>
       </p>
       <Modal isOpen={isLoading}>
         <Loader />

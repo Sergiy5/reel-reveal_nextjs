@@ -12,13 +12,16 @@ import { useRouter } from "next/navigation";
 import { doCredentialLogin } from "../actions/socialLogin";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 interface SignInProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
 export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
-const [isUserLogedIn, setIsUserLogedIn] = useState(false);
+  const [isUserLogedIn, setIsUserLogedIn] = useState(false);
+  
+  const [cookies, setCookie] = useCookies(["user-consent"]);
 
   const router = useRouter();
   // useForm ===============================================
@@ -40,8 +43,15 @@ const [isUserLogedIn, setIsUserLogedIn] = useState(false);
       const response = await doCredentialLogin({ email, password });
 
       if (!response) return toast.error(`Wrong password`); // NEED to change more information!!!
-      
+
       setIsUserLogedIn(true);
+      // Set the `user-consent` cookie upon login
+      setCookie("user-consent", "true", {
+        path: "/", // Cookie is valid site-wide
+        expires: new Date(new Date().getTime() + 150 * 24 * 60 * 60 * 1000), // 150 days from now
+        secure: true, // Only sent over HTTPS
+        sameSite: "strict", // CSRF protection
+      });
     } catch (error) {
       console.log(error);
     } finally {

@@ -67,6 +67,7 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           label="Name"
           type="text"
           id="name"
+          defaultValue={""}
           register={register}
           validation={{ required: true }}
           errors={errors}

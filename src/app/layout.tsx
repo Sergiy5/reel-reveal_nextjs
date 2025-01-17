@@ -5,7 +5,8 @@ import { ToastContainer } from "react-toastify";
 import { ceraPro } from "./fonts";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ConsentCockie } from "./components/consentCockie/consentCockie";
+import { ConsentCoockie } from "./components/consentCoockie/ConsentCookie";
+
 import dynamic from "next/dynamic";
 
 const CountQuizProviderDynamic = dynamic(() =>
@@ -60,7 +61,7 @@ export default async function RootLayout({
         </SessionProvider>
         <ToastContainer />
         <SpeedInsights />
-        <ConsentCockie />
+        <ConsentCoockie />
       </body>
     </html>
   );
