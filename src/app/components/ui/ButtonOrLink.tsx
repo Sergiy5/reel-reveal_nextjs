@@ -22,7 +22,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   disabled,
   ...props
 }) => {
-  const commonClasses = `flex items-center justify-center h-10 font-[var(--cera-pro)] font-bold
+  const commonClasses = `flex items-center justify-center gap-2 h-10 font-[var(--cera-pro)] font-bold
     text-lg  leading-[333%] uppercase rounded-full shadow-0 bg-accentColor
     transition-all duration-300  text-bgColor w-[285px]
      
@@ -46,14 +46,20 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
 
   if (href) {
     return (
-      <Link href={href} className={clsx(commonClasses)}>
+      <Link href={href} className={`${commonClasses} ${className}`}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button onClick={onClick} disabled={disabled} type={type} className={clsx(commonClasses)} {...props}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      className={`${commonClasses} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );

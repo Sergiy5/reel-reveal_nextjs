@@ -42,10 +42,10 @@ export const Footer: React.FC = () => {
 
             <FooterListSocial />
           </div>
-          <div className={`flex flex-col gap-10 text-textColor w-full mt-10`}>
-            <div className="w-full h-[1px] bg-disabledColor"></div>
-            <div className="flex  items-center justify-between">
-              <p className="text-disabledColor">
+          <div className={`flex flex-col gap-6 text-textColor w-full mt-10`}>
+            <div className="w-full h-[0.5px] bg-disabledColor opacity-80"></div>
+            <div className="flex items-center justify-between">
+              <p >
                 Copyright © 2025 ReelReveal. All rights reserved.
               </p>
               <div className="flex gap-6">

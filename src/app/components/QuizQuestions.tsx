@@ -1,8 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { QuizProgresBar } from "./QuizProgresBar";
 import { QuizButtons } from "./QuizButtons";
 import { quizDataList } from "../../../public/quiz-data/quizDataList";
-import { useResize } from "@/hooks";
 import { nextQuestion } from "@/utils";
 import { IQuizData, QuizQuestionsProps } from "@/typification";
 
@@ -11,7 +12,6 @@ export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
   const [currentPageForProgresBar, setCurrentPageForProgresBar] = useState(1);
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(false);
-  const viewWidth = useResize();
 
   useEffect(() => {
     if (quizResult.length < 8) return;
@@ -36,16 +36,10 @@ export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
 
   return (
     <div className={`flex items-center flex-col justify-center w-full gap-12`}>
-      <div className={`flex flex-row justify-between w-full gap-5`}>
-        <h2>
-          <span className={`text-accentColor`}>{quiz}</span>
-          {title}
-        </h2>
-
-        {viewWidth > 1024 ? (
-          <QuizProgresBar page={currentPageForProgresBar} />
-        ) : null}
-      </div>
+      <h2 className="flex justify-center">
+        <span className={`text-accentColor`}>{quiz}</span>
+        {title}
+      </h2>
 
       <div
         className={`grid items-center grid-cols-2 gap-5 w-full h-auto lg:grid-cols-4`}
@@ -56,9 +50,9 @@ export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
           answers={options}
         />
       </div>
-      {viewWidth < 1025 ? (
-        <QuizProgresBar page={currentPageForProgresBar} />
-      ) : null}
+
+      <QuizProgresBar page={currentPageForProgresBar} />
+  
     </div>
   );
 };

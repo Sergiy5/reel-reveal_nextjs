@@ -12,10 +12,10 @@ export const HowItWorksItem: React.FC<HowItWorksItemProps> = ({
   text,
 }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <Icon id={id} width={42} height={42} className="fill-textColor" />
       <h3>{title}</h3>
-      <p>{text}</p>
+      <p  >{text}</p>
     </div>
   );
 };

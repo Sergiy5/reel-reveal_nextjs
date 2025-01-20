@@ -6,7 +6,6 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
   collectQuiz,
   isActive,
 }) => {
-
   return (
     <>
       {answers.map((item) => {
@@ -14,7 +13,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
         // To prettify text in button to divide strings
         const [firstString, secondString] = answer.split(/\s*(?=\()/);
         const answerForAI = value.length ? value : answer;
-        
+
         return (
           <button
             key={answer}
@@ -31,7 +30,7 @@ export const QuizButtons: React.FC<QuizBtnsProps> = ({
               }
             )}
           >
-            <p className=" text-xl sm:text-2xl md:text-3xl  text-inherit">
+            <p className=" text-xl sm:text-2xl md:text-3xl  lg:text-xl">
               {firstString}
               <br />
               {secondString}

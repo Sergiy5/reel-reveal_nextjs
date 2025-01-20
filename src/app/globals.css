@@ -63,7 +63,7 @@ ul {
 }
 
 h1 {
-  font-family: var(--hind-font);
+  /* font-family: var(--hind-font); */
   font-weight: 700;
   font-size: 40px;
   line-height: 120%;
@@ -76,17 +76,7 @@ h1 {
 }
 
 h2 {
-  font-family: var(--hind-font);
-  font-weight: 600;
-  font-size: 38px;
-  line-height: 124%;
-}
-
-@media (min-width: 769px) {
-  h2 {
-    font-size: 48px;
-    line-height: 60px;
-  }
+  @apply text-4xl 
 }
 
 h3 {
@@ -123,7 +113,7 @@ a {
 
 
 p {
-@apply font-extralight text-lg leading-7 tracking-normal ;
+@apply font-thin text-base leading-7 tracking-normal opacity-80;
 }
 
 button,

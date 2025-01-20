@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
+import { ShowQuizCount } from "./showQuizCount/ShowQuizCount";
 
 export const Hero: React.FC = () => {
 
@@ -9,7 +10,7 @@ export const Hero: React.FC = () => {
     >
       <article
         className={`flex items-start justify-center flex-col text-textColor w-full h-auto gap-6
-             lg:pr-8`}
+             lg:pr-20`}
       >
         <h1 className={` lg:justify-start`}>
           Discover Your Perfect Movie with ReelReveal!
@@ -22,7 +23,7 @@ export const Hero: React.FC = () => {
         </p>
 
         <ButtonOrLink href="/quiz" className={`z-10 mt-2`}>
-          start quiz
+          <ShowQuizCount />{" "}start quiz
         </ButtonOrLink>
       </article>
 

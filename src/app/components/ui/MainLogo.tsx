@@ -8,9 +8,9 @@ export const MainLogo: React.FC = () => {
       className="flex items-center"
       aria-label="Go to ReelReveal home page"
     >
-      <Icon id="main-logo" width={48} height={48} className="fill-textColor" />
+      <Icon id="main-logo" width={35} height={35} className="fill-textColor" />
 
-      <span className="hidden font-bold text-3xl text-textColor lg:flex">
+      <span className="hidden font-bold text-xl text-textColor lg:flex">
         ReelReveal
       </span>
     </Link>

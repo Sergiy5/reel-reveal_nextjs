@@ -18,7 +18,6 @@ interface IQuizProps {
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [errorFetchMovies, setErrorFetchMovies] = useState(false);
   const [isQuizActive, setIsQuizActive] = useState(
     qiuzMoviesSignal.value.length ? false : true
   );
@@ -38,17 +37,14 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     {
       revalidateOnFocus: false,
       onSuccess: (movies) => {
-console.log(movies);
         if (!movies || !movies.length) throw new Error();
         qiuzMoviesSignal.value = movies ?? [];
-        setErrorFetchMovies(false);
         setIsQuizActive(false);
         decrement();
       },
       onError: (error: any) => {
         
         console.error(error);
-        setErrorFetchMovies(true);
       },
     }
     );
@@ -63,15 +59,10 @@ console.log(movies);
   }
 
   return (
-    <div className="relative flex items-center justify-center py-[131px] w-full gap-12">
+    <div className="relative flex items-center justify-center py-[131px] w-full min-h-[592px] gap-12">
       <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
 
-      {errorFetchMovies ? (
-        <div className="flex items-center justify-center flex-col gap-12">
-          <h2 className={`pr-2.5 pl-2.5`}>Somthing went wrong</h2>
-          <ButtonOrLink onClick={()=>mutate()}>try again</ButtonOrLink>
-        </div>
-      ) : isValidating ? (
+     { isValidating ? (
         <Loader />
       ) : isQuizActive ? (
         <QuizQuestions quizData={setQuizResult} />

@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Icon } from "./ui/Icon";
 import { isAuthUserSignal } from "@/context/UserContext";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
+import { useSession } from "next-auth/react";
+import { ShowQuizCount } from "./showQuizCount/ShowQuizCount";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -16,12 +18,21 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isOpenMenu,
   setIsOpenMenu,
 }) => {
-  
+  const [userName, setUserName] = useState<string | null>(null);
   const { count } = useContextCountQuiz();
+
+  const { update, data, status } = useSession();
+
+  useEffect(() => {
+    if (!data?.user || userName) return;
+    const firstName = data.user?.name?.split(" ")[0];
+    setUserName(firstName || null);
+    console.log("firstName", firstName);
+  }, [data, userName]);
 
   return (
     <div
-      className={`hidden items-center justify-between relative w-[380px] h-[40px] flex-row lg:flex            
+      className={`hidden items-center gap-6 relative h-[40px] lg:flex            
           `}
     >
       <Link
@@ -29,35 +40,29 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className={`link font-light leading-8 text-xl`}
       >
-        Movie search
+        <p>Movie search</p>
       </Link>
       <Link
         href={`/saved`}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className=" relative link"
       >
-        <Icon
-          id="icon-heart"
-          width={18}
-          height={16}
-          className="text-textColor transition duration ease-in-out hover:text-accentColor active:text-accentClicked"
-        />
+        <p>Favorites</p>
+       
       </Link>
       <Link
         href={isAuth ? "/profile" : "/auth"}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
         className="link"
       >
-        <Icon
-          id="icon-user"
-          width={18}
-          height={20}
-          className={`transition duration ease-in-out hover:text-accentColor active:text-accentClicked ${
-            isAuth || isAuthUserSignal.value
-              ? "text-accentColor"
-              : "text-textColor"
-          }`}
-        />
+        {isAuth ? (
+          <p>
+            Hi {" "}<span className="font-thin" >{userName}</span>
+          </p>
+        ) : (
+          <p>Login</p>
+        )}
+       
       </Link>
       <Link
         href={"/quiz"}
@@ -66,10 +71,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
            text-bgColor bg-textColor rounded-[30px] shadow-0 transition duration-250 ease-in-out
             hover:bg-accentColor hover:shadow-hoverShadow active:bg-clickedColor`}
       >
-        <span className="flex flex-row">
-          <span className="w-[13px] mr-[3px]">{count}</span>
-          <Icon id="icon-ai" width={20} height={18} className="text-bgColor" />
-        </span>
+        <ShowQuizCount/>
         <span className="">take quiz</span>
       </Link>
     </div>
