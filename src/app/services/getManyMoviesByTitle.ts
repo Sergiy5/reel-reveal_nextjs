@@ -5,13 +5,12 @@ export const getManyMoviesByTitle = async (
 ): Promise<Movie[][]> => {
 
   const API_TOKEN = process.env.BEARER_TOKEN_TMDB;
-  
+
   try {
     const requests = arrMovies.map((movie) =>
       fetch(
         `https://api.themoviedb.org/3/search/movie?query=${movie}&language=en-US`,
         {
-          cache: "force-cache",
           headers: {
             Authorization: `Bearer ${API_TOKEN}`,
           },

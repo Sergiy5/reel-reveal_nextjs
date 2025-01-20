@@ -19,4 +19,3 @@ export { updateMoviesInDBAndMutate } from "./updateMoviesInDBAndMutate";
 export { removeMovieFromDBAndMutate } from "./removeMovieFromDBAndMutate";
 export { arrayOfRatings } from "./arrayOfRatings";
 export { arrayOfYears } from "./arrayOfYears";
-export { isTodayOrPast } from "./isTodayOrPast";

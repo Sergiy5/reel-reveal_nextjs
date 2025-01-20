@@ -11,9 +11,6 @@ import { sessionUser } from "@/typification";
 import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
-import { useIndexedDB } from "@/hooks";
-import { isTodayOrPast } from "@/utils";
-
 
 interface IQuizProps {
   sessionUser: sessionUser;
@@ -21,17 +18,14 @@ interface IQuizProps {
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [isQuizActive, setIsQuizActive] = useState(() =>
+  const [errorFetchMovies, setErrorFetchMovies] = useState(false);
+  const [isQuizActive, setIsQuizActive] = useState(
     qiuzMoviesSignal.value.length ? false : true
   );
 
   // Use context count pased quiz
-  const { decrement, reset } = useContextCountQuiz();
-  // Use IndexedDB
-  const { setIndexedDB, getIndexedDB } = useIndexedDB();
-  // Check if it's today
-  const isToday = isTodayOrPast(""); //"YYYY-MM-DD"
-
+  const { decrement, reset, count } = useContextCountQuiz();
+  
   // Use SWR to fetch quiz movies based on quizResult
   const {
     data: listMovies,
@@ -44,16 +38,20 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     {
       revalidateOnFocus: false,
       onSuccess: (movies) => {
+console.log(movies);
+        if (!movies || !movies.length) throw new Error();
         qiuzMoviesSignal.value = movies ?? [];
+        setErrorFetchMovies(false);
         setIsQuizActive(false);
         decrement();
       },
       onError: (error: any) => {
-        toast.error(error.message);
+        
         console.error(error);
+        setErrorFetchMovies(true);
       },
     }
-  );
+    );
 
   if (error) {
     return (
@@ -68,10 +66,10 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     <div className="relative flex items-center justify-center py-[131px] w-full gap-12">
       <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
 
-      {error ? (
+      {errorFetchMovies ? (
         <div className="flex items-center justify-center flex-col gap-12">
-          <h2 className={`pr-2.5 pl-2.5`}>Somthing went wrong</h2>;
-          <ButtonOrLink onClick={mutate}>try again</ButtonOrLink>
+          <h2 className={`pr-2.5 pl-2.5`}>Somthing went wrong</h2>
+          <ButtonOrLink onClick={()=>mutate()}>try again</ButtonOrLink>
         </div>
       ) : isValidating ? (
         <Loader />

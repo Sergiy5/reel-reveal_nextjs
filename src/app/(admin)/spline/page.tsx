@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from 'react';
 import Spline from '@splinetool/react-spline';
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 // Define the type for the object that will be stored in the ref
 type SplineObject = {
@@ -11,33 +12,37 @@ type SplineObject = {
 };
 
 export default function SplinePage() {
+  //   const cube = useRef<SplineObject | null>(null); // Specify that the ref will be a SplineObject or null
 
-//   const cube = useRef<SplineObject | null>(null); // Specify that the ref will be a SplineObject or null
+  //   function onLoad(spline: any) {
+  //     const obj = spline.findObjectByName('Cube');
+  //     // or
+  //     // const obj = spline.findObjectById('8E8C2DDD-18B6-4C54-861D-7ED2519DE20E');
 
-//   function onLoad(spline: any) {
-//     const obj = spline.findObjectByName('Cube');
-//     // or
-//     // const obj = spline.findObjectById('8E8C2DDD-18B6-4C54-861D-7ED2519DE20E');
+  //     // save it in a ref for later use
+  //     cube.current = obj;
+  //   }
 
-//     // save it in a ref for later use
-//     cube.current = obj;
-//   }
+  //   function moveObj() {
+  //     if (cube.current) {
+  //       console.log(cube.current); // Spline Object => { name: 'Cube', id: '8E8C2DDD-18B6-4C54-861D-7ED2519DE20E', position: {}, ... }
 
-//   function moveObj() {
-//     if (cube.current) {
-//       console.log(cube.current); // Spline Object => { name: 'Cube', id: '8E8C2DDD-18B6-4C54-861D-7ED2519DE20E', position: {}, ... }
-
-//       // move the object in 3D space
-//       cube.current.position.x += 10;
-//     }
-//   }
-
+  //       // move the object in 3D space
+  //       cube.current.position.x += 10;
+  //     }
+  //   }
+  //"https://lottie.host/3aa27a41-6786-4664-8964-28a37e12e8c3/Yq5rxZSHkB.lottie"
   return (
-    <div>
-      <Spline
+    <div className='m-auto w-1/2' >
+      <DotLottieReact
+        src="github.json"
+        loop
+        autoplay
+      />
+      {/* <Spline
         scene="https://prod.spline.design/ChTibSpqFhjI3IUd/scene.splinecode"
         // onLoad={onLoad}
-      />
+      /> */}
       {/* <button type="button" onClick={moveObj}>
         Move Cube
       </button> */}

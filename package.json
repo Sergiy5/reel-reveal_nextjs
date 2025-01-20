@@ -13,12 +13,14 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.12.1",
     "@preact/signals-react": "^3.0.0",
     "@splinetool/react-spline": "^4.0.0",
     "@splinetool/runtime": "^1.9.59",
     "@vercel/speed-insights": "^1.1.0",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "icons": "^1.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
@@ -36,8 +38,7 @@
     "react-toastify": "^11.0.2",
     "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
-    "swr": "^2.3.0",
-    "zustand": "^5.0.2"
+    "swr": "^2.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
