@@ -17,7 +17,7 @@ export const Header: React.FC = async () => {
         <div
           className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}
         >
-          <MainLogo />
+          <MainLogo />  
           <Suspense fallback={<div>Loading...</div>}>
             <HeaderSearchBar />
           </Suspense>

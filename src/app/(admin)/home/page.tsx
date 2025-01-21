@@ -21,8 +21,8 @@ const DynamicGetShowMovies = dynamic(() =>
 );
 
 export default async function Home() {
-  // const topRatedMovies = await getTopRatedMovies();
-  // const upcomingMovies = await getUpcomingMovies();
+  const topRatedMovies = await getTopRatedMovies();
+  const upcomingMovies = await getUpcomingMovies();
 
   const sessionUser = await getSessionUser();
 
@@ -31,7 +31,7 @@ export default async function Home() {
       <Hero />
       <HowItWorks />
       <DynamicQuiz sessionUser={sessionUser} />
-      {/* <DynamicGetShowMovies
+      <DynamicGetShowMovies
         title={"Upcoming 20 movies in 2025"}
         movies={upcomingMovies}
         sessionUser={sessionUser}
@@ -41,7 +41,7 @@ export default async function Home() {
         title={"TOP 20 rated movies"}
         movies={topRatedMovies}
         sessionUser={sessionUser}
-      /> */}
+      />
       
       <DynamicGenres />
       <DynamicSliderCorousel />

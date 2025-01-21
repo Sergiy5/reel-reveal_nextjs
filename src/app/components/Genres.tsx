@@ -20,7 +20,7 @@ export const Genres: React.FC = (): React.JSX.Element => {
       <h2>Choose a movie by genre</h2>
 
       <div
-        className={`relative flex items-start flex-wrap justify-center gap-10 sm:gap-2 `}
+        className={`relative flex items-start flex-wrap justify-center gap-10 sm:gap-8 `}
       >
         {genres.map(({ id, name }) => (
           <GenreLinkIcon key={id} iconName={name} />

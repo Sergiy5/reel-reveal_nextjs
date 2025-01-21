@@ -27,7 +27,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
     if (!data?.user || userName) return;
     const firstName = data.user?.name?.split(" ")[0];
     setUserName(firstName || null);
-    console.log("firstName", firstName);
   }, [data, userName]);
 
   return (

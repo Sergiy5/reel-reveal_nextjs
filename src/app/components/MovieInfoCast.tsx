@@ -1,21 +1,20 @@
 "use client";
 
+import useSWR from "swr";
 import { MySlider } from "./ui/MySlider";
 import { MovieInfoCastCard } from "./ui/MovieInfoCastCard";
 import { MySliderBtn } from "./ui/MySliderBtn";
 import { Actor } from "@/typification";
-import { fetchMovieCast } from "../actions/fetchMovieCast";
-import { toast } from "react-toastify";
-import useSWR from "swr";
 import { Loader } from "./ui/Loader";
+import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
 
 interface TopCastProps {
   id: number;
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
-  const { data, error, isLoading } = useSWR(`${id}`, fetchMovieCast);
-
-  if (error) return toast.error("Failed to load cast...");
+  const { data, error, isLoading } = useSWR(`${id}`, () =>
+    fetchMovieDataFromAPI("/api/movies/cast", { movieId: id })
+  );
 
   const settings = {
     infinite: false,
@@ -79,7 +78,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
         <div className="container">
           {" "}
           <MySlider
-            arraySlides={data as Actor[]}
+            arraySlides={data.cast as Actor[]}
             SlideComponent={MovieInfoCastCard}
             settings={settings}
           />

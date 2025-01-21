@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import useSWR from "swr";
-import { toast } from "react-toastify";
 import { Loader } from "./ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
@@ -24,7 +23,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
 
   // Use context count pased quiz
   const { decrement, reset, count } = useContextCountQuiz();
-  
+
   // Use SWR to fetch quiz movies based on quizResult
   const {
     data: listMovies,
@@ -43,11 +42,10 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
         decrement();
       },
       onError: (error: any) => {
-        
         console.error(error);
       },
     }
-    );
+  );
 
   if (error) {
     return (
@@ -62,7 +60,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     <div className="relative flex items-center justify-center py-[131px] w-full min-h-[592px] gap-12">
       <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
 
-     { isValidating ? (
+      {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
         <QuizQuestions quizData={setQuizResult} />
@@ -73,7 +71,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
             setIsQuizActive(true);
           }}
           sessionUser={sessionUser}
-          arrMovies={listMovies ?? []}
+          arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>

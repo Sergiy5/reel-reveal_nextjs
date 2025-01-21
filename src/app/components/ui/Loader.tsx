@@ -3,7 +3,7 @@
 export const Loader: React.FC = () => {
   
   return (
-    <div className={` flex items-center justify-center opacity-0.50`}>
+    <div className={` flex items-center justify-center w-full h-lvh opacity-0.50`}>
       <div className="flex justify-center items-center">
         <div
           className={`size-14 border-[8px] border-t-[8px] border-gray-200 border-solid rounded-full animate-spin

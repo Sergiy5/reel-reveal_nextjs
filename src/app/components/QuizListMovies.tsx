@@ -5,6 +5,7 @@ import { MySlider } from "./ui/MySlider";
 import { Movie, sessionUser } from "@/typification";
 import { MovieCard } from "./ui/MovieCard";
 import { ButtonOrLink } from "./ui/ButtonOrLink";
+import { ShowQuizCount } from "./showQuizCount/ShowQuizCount";
 
 export interface QuizListMoviesProps {
   arrMovies: Movie[];
@@ -71,7 +72,7 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
         </div>
       )}
       <ButtonOrLink onClick={clearPrevQuiz} className={``}>
-        retake quiz
+        <ShowQuizCount /> retake quiz
       </ButtonOrLink>
     </div>
   );

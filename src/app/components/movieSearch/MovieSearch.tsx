@@ -33,11 +33,10 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
   const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
   const [queryGenre, setQueryGenre] = useState<string | null>(null);
-  
+
   const currentUrl = isActiveSearch
     ? "/api/movies/one-by-title"
     : `/api/movies/all`;
-
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
     [currentUrl, filterOptions, page],
@@ -63,43 +62,31 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
   const movieTitle = searchParams.get("title") || "";
   const genreName = searchParams.get("genre") || null;
 
-  
   useEffect(() => {
     setQueryGenre(genreName);
-    // console.log("genreId", genreName);
-  },[genreName])
+  }, [genreName]);
 
   const clearCache = () => mutate(() => true, undefined);
 
   useEffect(() => {
-    setMovieStatus(null)
+    setMovieStatus(null);
     setMovies([]);
-    // console.log("filterOptions_==============", filterOptions);
   }, [filterOptions]);
 
   useEffect(() => {
     if (movieTitle?.length && movieTitle !== queryTitle) {
-
       setisActiveSearch(true);
       setQueryTitle(movieTitle);
       setPage(1);
       setMovies([]);
-
     } else if (!movieTitle?.length && movieTitle !== queryTitle) {
-
       setisActiveSearch(false);
       setQueryTitle("");
       setPage(1);
       setMovies([]);
-
     } else if (!movieTitle?.length) {
-
       setisActiveSearch(false);
     }
-
-    return () => {
-      clearCache();
-    };
   }, [movieTitle, movieTitle?.length, page, queryTitle]);
 
   useEffect(() => {
@@ -116,7 +103,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
 
     setMovies((prev) => [...prev, ...data.results]);
     setMovieStatus("success");
-  }, [data]);
+  }, [data, movieStatus]);
 
   const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
 
