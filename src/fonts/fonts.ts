@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-// fonts / urbanist / Urbanist - Thin.woff2;
+
 export const urbanist = localFont({
   src: [
     {
