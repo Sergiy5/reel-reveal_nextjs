@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ToastContainer } from "react-toastify";
@@ -7,7 +8,6 @@ import { urbanist } from "@/fonts/fonts";
 import "react-toastify/dist/ReactToastify.css";
 import { ConsentCoockie } from "./components/consentCoockie/ConsentCookie";
 
-import dynamic from "next/dynamic";
 
 const CountQuizProviderDynamic = dynamic(() =>
   import("@/context/CountQuizContext").then((mod) => mod.CountQuizProvider)
