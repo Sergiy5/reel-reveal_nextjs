@@ -6,10 +6,10 @@ export const Hero: React.FC = () => {
 
   return (
     <div
-      className={`relative flex justify-between flex-col-reverse h-auto gap-6 lg:flex-row -mb-10 `}
+      className={`relative flex justify-between flex-col-reverse gap-6 lg:flex-row -lg:mb-10 `}
     >
       <article
-        className={`flex items-start justify-center flex-col text-textColor w-full h-auto gap-6
+        className={`flex items-start justify-center flex-col text-textColor w-full gap-6
              lg:pr-20`}
       >
         <h1 className={` lg:justify-start`}>

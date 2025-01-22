@@ -7,6 +7,7 @@ import { isAuthUserSignal } from "@/context/UserContext";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { useSession } from "next-auth/react";
 import { ShowQuizCount } from "./showQuizCount/ShowQuizCount";
+import { ButtonOrLink } from "./ui/ButtonOrLink";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -47,7 +48,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         className=" relative link"
       >
         <p>Favorites</p>
-       
       </Link>
       <Link
         href={isAuth ? "/profile" : "/auth"}
@@ -56,22 +56,25 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
       >
         {isAuth ? (
           <p>
-            Hi {" "}<span className="font-thin" >{userName}</span>
+            Hi <span className="font-thin">{userName}</span>
           </p>
         ) : (
           <p>Login</p>
         )}
-       
       </Link>
+      {/* <ButtonOrLink href="/quiz" className={`bg-white text-base px-5`}>
+        <ShowQuizCount />
+        <span className="">take quiz</span>
+      </ButtonOrLink> */}
       <Link
         href={"/quiz"}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
-        className={`flex items-center justify-between font-medium leading-5 text-xl px-5 w-[169px] h-[40px]
-           text-bgColor bg-textColor rounded-[30px] shadow-0 transition duration-250 ease-in-out
+        className={`flex items-center justify-between gap-2 leading-5  px-5 h-[38px]
+           text-bgColor bg-textColor rounded-[30px] shadow-0 uppercase transition duration-250 ease-in-out
             hover:bg-accentColor hover:shadow-hoverShadow active:bg-clickedColor`}
       >
-        <ShowQuizCount/>
-        <span className="">take quiz</span>
+        <ShowQuizCount />
+        <span className="font-medium text-base">take quiz</span>
       </Link>
     </div>
   );

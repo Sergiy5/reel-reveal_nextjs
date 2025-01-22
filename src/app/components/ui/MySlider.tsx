@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Settings, default as Slider } from "react-slick";
 import { MySliderBtn } from "./MySliderBtn";
+import { array } from "joi";
 
 export const settings: Settings = {
   pauseOnHover: true,

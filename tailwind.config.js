@@ -59,7 +59,9 @@ module.exports = {
          rgba(18, 19, 44, 0.96) 8%,
          rgba(18, 19, 44, 0.16) 100%) `,
       },
-      
+      fontFamily: {
+        urbanist: ["var(--font-urbanist)", "sans-serif"],
+      },
     },
   },
 

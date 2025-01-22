@@ -1,4 +1,3 @@
-import { getTrailer } from "@/app/services";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request): Promise<NextResponse> => {
@@ -20,12 +19,12 @@ export const GET = async (req: Request): Promise<NextResponse> => {
     }
 
     const data = await response.json();
-
+// console.log("DATA_IN_ROUTE_>>>>>>>>>>>>>>>>>>>>>>>>>>>",data)
     return NextResponse.json(data, { status: 200 });
 
   } catch (error) {
 
-    console.error("Error in POST /api/get-trailer_id:", error);
+    console.error("Error in POST /api/movies/get-trailer_id:", error);
   return NextResponse.json(
     { error: "Internal server error", details: error},
     { status: 500 }

@@ -22,9 +22,9 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   disabled,
   ...props
 }) => {
-  const commonClasses = `flex items-center justify-center gap-2 h-10 font-[var(--cera-pro)] font-bold
-    text-lg  leading-[333%] uppercase rounded-full shadow-0 bg-accentColor
-    transition-all duration-300  text-bgColor w-[285px]
+  const commonClasses = `flex items-center justify-center gap-2 h-10 font-semibold
+    uppercase rounded-full shadow-0 bg-accentColor
+    transition-all duration-300  text-bgColor w-[245px]
      
     focus:shadow-[1px 2px 24px 0 rgba(32, 232, 218, 0.5)]
     focus:bg-accentColor focus:outline-2  focus:shadow-[1px 2px 24px 0 rgba(32, 232, 218, 0.3)]

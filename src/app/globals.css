@@ -10,8 +10,8 @@
 
 /*Layer utilities*/
 @layer utilities {
-  .font-cera-pro {
-    font-family: 'Cera Pro', sans-serif;
+  .font-urbanist {
+    font-family: 'Urbanist', sans-serif;
     /* Adjust font stack as needed */
   }
 
@@ -35,19 +35,18 @@
   } */
 }
 body {
-  @apply font-sans block max-w-full bg-bgColor opacity-70;
+  @apply font-sans block max-w-full bg-bgColor;
 }
 
 main {
-  @apply relative flex flex-col items-center justify-start font-light font-cera-pro mx-auto px-4 py-6
+  @apply relative flex flex-col items-center justify-start font-light font-urbanist mx-auto px-4 py-6
    max-w-[1440px] text-textColor bg-bgColor gap-16 overflow-hidden
     md:px-20 md:py-20 md:gap-20
     xl:gap-40 xl:px-[120px] lg:py-10 xl:overflow-visible xl:max-w-[1440px];
 }
 
 code {
-  @apply font-cera-pro ;
-  /* font-family: var(--cera-pro), monospace; */
+  @apply font-urbanist ;
 }
 
 p,
@@ -63,7 +62,6 @@ ul {
 }
 
 h1 {
-  /* font-family: var(--hind-font); */
   font-weight: 700;
   font-size: 40px;
   line-height: 120%;
@@ -76,18 +74,15 @@ h1 {
 }
 
 h2 {
-  @apply text-4xl 
+  @apply text-4xl font-semibold 
 }
 
 h3 {
-  @apply font-bold text-3xl leading-9 tracking-normal md:text-2xl;
+  @apply font-medium text-3xl leading-9 tracking-normal md:text-2xl;
 }
 
 h4 {
   @apply font-light text-2xl leading-9 tracking-normal;
-  /* font-weight: 300;
-  line-height: 32px;
-  font-size: 28px; */
 }
 
 h5 {
@@ -143,7 +138,7 @@ a {
 }
 
 .link-btn {
-  @apply flex items-center justify-center h-10 font-cera-pro font-bold text-lg leading-[333%] uppercase
+  @apply flex items-center justify-center h-10 font-bold text-lg uppercase
   text-bgColor rounded-full bg-accentColor shadow-none transition-all duration-300 ease-in-out
   hover:shadow-hoverShadow hover:bg-accentColor focus:shadow-focusShadow active:bg-clickedColor 
 }

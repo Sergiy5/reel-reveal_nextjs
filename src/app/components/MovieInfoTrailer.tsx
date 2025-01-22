@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchTrailerId } from "../actions/fetchTrailerId";
 import useSWR from "swr";
 import ContentLoader from "react-content-loader";
 import { fetchMovieDataFromAPI } from "../actions/fetchMovieDataFromAPI";
@@ -11,45 +9,9 @@ export interface VideoComponentProps {
 }
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
-  const [movieId, setMovieId] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // const { data, error, mutate, isValidating } = useSWR(
-  //   movieId ? `trailer-${movieId}` : null,
-  //   () => fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: movieId })
-  // );
-
-  
-//   useEffect(() => {
-//     if(!id || typeof window === "undefined") return
-//     console.log("DATA_>>>>>>>>>>>>>>>>>>>>>>>>>>", data)
-// setMovieId(id)
-//   },[id])
-
-  // useEffect(() => {
-  //   const fetchTrailer = async (id: number) => {
-  //     // setIsLoading(true);
-  //     try {
-  //       const traillerId = await fetchTrailerId(`${id}`);
-
-  //       if (!traillerId) throw new Error();
-  //       setMovieId(traillerId);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       // setIsLoading(false);
-  //     }
-  //   };
-  //   fetchTrailer(id);
-  // }, [id]);
-
-//  if (!id) return null;
-
-//   console.log("ERROR_>>>>>>>>>>>>>>>>>",error)
-  
-//  if (error) {
-//    return <div>Error loading trailer. Please try again later.</div>;
-//  }
+  const { data, error, isLoading } = useSWR(`trailer-${id}`, () =>
+    fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: id })
+  );
 
   return (
     <div className={`flex items-center w-full justify-center lg:px-16`}>
@@ -70,7 +32,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
             className={` flex items-center justify-center overflow-hidden w-full xl:max-w-[1200px] border-0 rounded-2xl`}
           >
             <iframe
-              src={`https://www.youtube.com/embed/${movieId} `}
+              src={`https://www.youtube.com/embed/${data.results[0].key}`}
               allowFullScreen
               title="Description"
               className="w-full aspect-video"

@@ -19,7 +19,7 @@ export const HowItWorks = () => {
 
       <h2>How it works</h2>
       <div
-        className={` flex items-start justify-between flex-col w-full h-auto gap-20 lg:flex-row`}
+        className={` flex items-start justify-between flex-col w-full h-auto gap-10 lg:gap-20 lg:flex-row`}
       >
         <HowItWorksItem
           id="icon-take_quiz"

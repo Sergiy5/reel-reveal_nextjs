@@ -3,6 +3,11 @@ export const fetchMovieDataFromAPI = async (routeURL: string, requestData: any) 
     // console.log("QUERY_=====================", requestData);
     // console.log(`${routeURL}?${query.toString()}`);
     const response = await fetch(`${routeURL}?${query.toString()}`);
-    // console.log("RESPONS_>>>>>>>>>>>>>", await response.json());
-    return response.json();
+     if (!response.ok) {
+       throw new Error(`HTTP error! status: ${response.status}`);
+     }
+
+     const data = await response.json();
+    //  console.log("RESPONS_>>>>>>>>>>>>>", data);
+     return data;
 }

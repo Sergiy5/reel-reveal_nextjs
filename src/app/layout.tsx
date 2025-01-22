@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ToastContainer } from "react-toastify";
-import { ceraPro } from "./fonts";
 import "./globals.css";
+import { urbanist } from "@/fonts/fonts";
 import "react-toastify/dist/ReactToastify.css";
 import { ConsentCoockie } from "./components/consentCoockie/ConsentCookie";
 
@@ -52,7 +52,7 @@ export default async function RootLayout({
         <title>Reel-Reveal</title>
       </head>
 
-      <body className={ceraPro.className}>
+      <body className={urbanist.className}>
         <SessionProvider>
           <CountQuizProviderDynamic>
             {children}
