@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useMovies } from "@/hooks/useMovies";
 import { optimisticMutate } from "@/utils/optimisticMutate";
 import { Movie } from "@/typification";
-import { IMovieInDB } from "@/app/components/ui/MovieCard";
+import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 import { saveMovieToDB } from "@/app/actions/saveMovieToDB";
 import { removeMovieFromDB } from "@/app/actions/removeMovieFromDB";
 

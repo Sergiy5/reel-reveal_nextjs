@@ -1,23 +1,27 @@
 import dynamic from "next/dynamic";
-import { Hero } from "@/app/components/Hero";
-import { HowItWorks } from "@/app/components/HowItWorks";
-import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
+import { Hero } from "@/app/components/hero/Hero";
+import { HowItWorks } from "@/app/components/howItWorks/HowItWorks";
+import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 import { getSessionUser } from "@/utils";
 
 const DynamicQuiz = dynamic(() =>
-  import("../../components/Quiz").then((mod) => mod.Quiz)
+  import("../../components/quiz/Quiz").then((mod) => mod.Quiz)
 );
 const DynamicSliderCorousel = dynamic(() =>
-  import("../../components/SliderCarousel").then((mod) => mod.SliderCarousel)
+  import("../../components/sliderCarousel/SliderCarousel").then(
+    (mod) => mod.SliderCarousel
+  )
 );
 
 const DynamicGenres = dynamic(() =>
-  import("@/app/components/Genres").then((mod) => mod.Genres)
+  import("@/app/components/genres/Genres").then((mod) => mod.Genres)
 );
 
 const DynamicGetShowMovies = dynamic(() =>
-  import("@/app/components/GetShowMovies").then((mod) => mod.GetShowMovies)
+  import("@/app/components/getShowMovies/GetShowMovies").then(
+    (mod) => mod.GetShowMovies
+  )
 );
 
 export default async function Home() {
@@ -36,13 +40,13 @@ export default async function Home() {
         movies={upcomingMovies}
         sessionUser={sessionUser}
       />
-     
+
       <DynamicGetShowMovies
         title={"TOP 20 rated movies"}
         movies={topRatedMovies}
         sessionUser={sessionUser}
       />
-      
+
       <DynamicGenres />
       <DynamicSliderCorousel />
       <TakeOurQuiz />

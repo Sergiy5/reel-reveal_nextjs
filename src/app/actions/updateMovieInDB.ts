@@ -1,9 +1,6 @@
-import { IMovieInDB } from "../components/ui/MovieCard";
+import { IMovieInDB } from "../components/movieCard/MovieCard";
 
-export const updateMovieInDB = async (
-  userId: string,
-  movie: IMovieInDB
-) => {
+export const updateMovieInDB = async (userId: string, movie: IMovieInDB) => {
   try {
     const res = await fetch("/api/save-movie", {
       method: "POST",

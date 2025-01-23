@@ -1,5 +1,5 @@
 import { saveMovieToDB } from "@/app/actions/saveMovieToDB";
-import { IMovieInDB } from "@/app/components/ui/MovieCard";
+import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 
 export const addMovieToDBAndMutate = async (
   userId: string,

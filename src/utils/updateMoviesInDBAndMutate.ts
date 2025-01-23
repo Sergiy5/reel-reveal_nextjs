@@ -1,6 +1,6 @@
 import { updateMovieInDB } from "@/app/actions";
 import { saveMovieToDB } from "@/app/actions/saveMovieToDB";
-import { IMovieInDB } from "@/app/components/ui/MovieCard";
+import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 
 export const updateMoviesInDBAndMutate = (
   userId: string,

@@ -1,4 +1,4 @@
-import { IMovieInDB } from "@/app/components/ui/MovieCard";
+import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 import { KeyedMutator } from "swr";
 
 type OptimisticUpdateFn<T> = (
@@ -16,8 +16,7 @@ export const optimisticMutate: OptimisticUpdateFn<IMovieInDB[]> = (
       const updatedData = currentData ? [...currentData, newItem] : [newItem];
       return updatedData;
     },
-    
-      true, // revalidate
-    
+
+    true // revalidate
   );
 };

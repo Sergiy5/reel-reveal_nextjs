@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { Loader } from "../ui/Loader";
-import { ListMovies } from "../ListMovies";
+import { ListMovies } from "@/app/components/listMovies/ListMovies";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
 import { IQueryFilterParams, Movie, sessionUser } from "@/typification";
@@ -21,7 +21,6 @@ export interface MovieSearchProps {
 }
 
 export const MovieSearch: React.FC<MovieSearchProps> = ({
-  // movieTitle,
   sessionUser,
 }) => {
   const [totalMovies, setTotalMovies] = useState(); //totalSearchMoviesSignal.value

@@ -1,6 +1,6 @@
 import { KeyedMutator, mutate } from "swr";
 import { removeMovieFromDB } from "@/app/actions/removeMovieFromDB";
-import { IMovieInDB } from "@/app/components/ui/MovieCard";
+import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 
 export const removeMovieFromDBAndMutate = (
   userId: string,

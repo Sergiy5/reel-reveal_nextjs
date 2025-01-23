@@ -1,23 +1,27 @@
 import dynamic from "next/dynamic";
-import { MovieInfo } from "@/app/components/MovieInfo";
-import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
+import { MovieInfo } from "@/app/components/movieInfo/MovieInfo";
+import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
 import { getMovieById } from "@/app/services";
 import { getSessionUser } from "@/utils";
 
 const DynamicSimilarMovies = dynamic(() =>
-  import("@/app/components/SimilarMovies").then((mod) => mod.SimilarMovies)
+  import("@/app/components/similarMovies/SimilarMovies").then(
+    (mod) => mod.SimilarMovies
+  )
 );
 
 const DynamicSliderCarousel = dynamic(() =>
-  import("@/app/components/SliderCarousel").then((mod) => mod.SliderCarousel)
+  import("@/app/components/sliderCarousel/SliderCarousel").then((mod) => mod.SliderCarousel)
 );
 
 const DynamicMovieInfoCast = dynamic(() =>
-  import("@/app/components/MovieInfoCast").then((mod) => mod.MovieInfoCast)
+  import("@/app/components/movieInfo/MovieInfoCast").then(
+    (mod) => mod.MovieInfoCast
+  )
 );
 
 const DynamicMovieInfoTrailer = dynamic(() =>
-  import("@/app/components/MovieInfoTrailer").then(
+  import("@/app/components/movieInfo/MovieInfoTrailer").then(
     (mod) => mod.MovieInfoTrailer
   )
 );

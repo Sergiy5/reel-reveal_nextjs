@@ -108,7 +108,7 @@ a {
 
 
 p {
-@apply font-thin text-base leading-7 tracking-normal opacity-80;
+@apply font-thin text-base leading-7 tracking-widest opacity-80;
 }
 
 button,

@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { Genres } from "@/app/components/Genres";
-import { TakeOurQuiz } from "@/app/components/TakeOurQuiz";
+import { Genres } from "@/app/components/genres/Genres";
+import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
 import { getSessionUser } from "@/utils";
 import { Loader } from "@/app/components/ui/Loader";
 
