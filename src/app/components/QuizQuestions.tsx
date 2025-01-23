@@ -38,9 +38,9 @@ export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
     <div className={`flex items-center flex-col justify-center w-full gap-12`}>
       <h2 className="inline-flex md:flex justify-center">
         <span className={`text-accentColor`}>{quiz}</span>
-        <p>
+        <span>
         {title}
-        </p>
+        </span>
       </h2>
 
       <div

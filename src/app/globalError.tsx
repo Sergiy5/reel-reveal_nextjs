@@ -1,7 +1,6 @@
 "use client";
 
 import { ErrorComponent, ErrorComponentProps } from "./components/ui/ErrorComponent";
-import { ceraPro } from "./fonts";
 
 export default function GlobalError({ error, reset }: ErrorComponentProps) {
   return (
@@ -9,7 +8,7 @@ export default function GlobalError({ error, reset }: ErrorComponentProps) {
       <head>
         <title>Reel-Reveal</title>
       </head>
-      <body className={ceraPro.className}>
+      <body >
         <ErrorComponent error={error} reset={reset} from={"home"} />;
       </body>
     </html>
