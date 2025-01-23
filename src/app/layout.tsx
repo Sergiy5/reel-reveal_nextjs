@@ -6,60 +6,67 @@ import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ConsentCoockie } from "./components/consentCoockie/ConsentCookie";
+import { Urbanist } from "next/font/google";
 
-import localFont from "next/font/local";
-
-export const urbanist = localFont({
-  src: [
-    {
-      path: "/fonts/urbanist/Urbanist-Thin.woff2",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-ExtraLight.woff2",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Light.woff2",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Semibold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-ExtraBold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "/fonts/urbanist/Urbanist-Black.woff2",
-      weight: "900",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-  variable: "--font-urbanist",
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "600", "700", "800", "900"], // Include the weights you need
+  variable: "--font-urbanist", // Optional: for use with Tailwind CSS
 });
+
+// import localFont from "next/font/local";
+
+// export const urbanist = localFont({
+//   src: [
+//     {
+//       path: "/fonts/urbanist/Urbanist-Thin.woff2",
+//       weight: "100",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-ExtraLight.woff2",
+//       weight: "200",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Light.woff2",
+//       weight: "300",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Regular.woff2",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Medium.woff2",
+//       weight: "500",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Semibold.woff2",
+//       weight: "600",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Bold.woff2",
+//       weight: "700",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-ExtraBold.woff2",
+//       weight: "800",
+//       style: "normal",
+//     },
+//     {
+//       path: "/fonts/urbanist/Urbanist-Black.woff2",
+//       weight: "900",
+//       style: "normal",
+//     },
+//   ],
+//   display: "swap",
+//   variable: "--font-urbanist",
+// });
 
 const CountQuizProviderDynamic = dynamic(() =>
   import("@/context/CountQuizContext").then((mod) => mod.CountQuizProvider)
@@ -104,7 +111,7 @@ export default async function RootLayout({
         <title>Reel-Reveal</title>
       </head>
 
-      <body className={urbanist.className}>
+      <body className={`${urbanist.className} ${urbanist.variable}`}>
         <SessionProvider>
           <CountQuizProviderDynamic>
             {children}
