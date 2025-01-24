@@ -56,8 +56,8 @@ module.exports = {
    )`,
         movieGradient: `linear-gradient(
         0deg, rgba(18, 19, 44, 1) 2%,
-         rgba(18, 19, 44, 0.96) 8%,
-         rgba(18, 19, 44, 0.16) 100%) `,
+         rgba(18, 19, 44, 0.99) 8%,
+         rgba(18, 19, 44, 0.66) 100%) `,
       },
       fontFamily: {
         urbanist: ["var(--font-urbanist)", "sans-serif"],

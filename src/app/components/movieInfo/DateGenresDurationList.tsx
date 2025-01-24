@@ -1,5 +1,4 @@
 import { hoursFromMinuts } from "@/utils";
-import { nanoid } from "nanoid";
 
 interface IGnre {
   id: number;
@@ -12,22 +11,41 @@ interface DateGenresDurationListProps {
   reliseDate: Date;
 }
 
-export const DateGenresDurationList: React.FC<DateGenresDurationListProps> = ({ listGenres, reliseDate, runtime }) => {
+export const DateGenresDurationList: React.FC<DateGenresDurationListProps> = ({
+  listGenres,
+  reliseDate,
+  runtime,
+}) => {
+  const year = reliseDate.toString().slice(0, 4).replaceAll("-", " ");
+  const durationTime = runtime ? hoursFromMinuts(runtime) : "Unknown duration";
+  const genres = listGenres.map((genre) => genre.name);
+
+  const arr = [year, durationTime, ...genres];
+
   return (
-    <ul className={`flex justify-start flex-wrap w-full`}>
-      <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-        {reliseDate.toString().slice(0, 4).replaceAll("-", " ")}
-      </li>
-      {listGenres?.map((item: IGnre) => {
+    <ul className={`flex justify-start gap-2 flex-wrap w-full`}>
+      {arr?.map((item: string, index) => {
         return (
-          <li key={nanoid()} className={`rounded-2xl bg-bgColor m-2 px-2`}>
-            {item.name}
+          <li key={index}>
+            <DateGenresDurationListItem item={item} />
           </li>
         );
       })}
-      <li className={`rounded-2xl bg-bgColor m-2 px-2`}>
-        {runtime ? hoursFromMinuts(runtime) : "Unknown duration"}
-      </li>
     </ul>
+  );
+};
+
+interface DateGenresDurationListItemProps {
+  item: string | number;
+}
+export const DateGenresDurationListItem: React.FC<
+  DateGenresDurationListItemProps
+> = ({ item }) => {
+  return (
+    <div
+      className={`flex items-center rounded-full h-8 bg-bgColor py-2 px-4 text-lg`}
+    >
+      {item}
+    </div>
   );
 };

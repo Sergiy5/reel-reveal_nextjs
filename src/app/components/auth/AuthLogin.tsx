@@ -75,28 +75,29 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
         </ButtonOrLink>
       </form>
       <div className={`w-full flex items-center justify-center gap-2`}>
-        <div className={`w-10 h-[1px] bg-gray-400 `}></div>
-        <p>or use Google </p>
-        <div className={`w-10 h-[1px] bg-gray-400 `}></div>
+        <div className={`w-full h-[1px] bg-gray-400 `}></div>
+        <p>or</p>
+        <div className={`w-full h-[1px] bg-gray-400 `}></div>
       </div>
-      <ul className={`flex items-center justify-center gap-5 `}>
-        <li>
+      <ul className={`flex items-center justify-center gap-5 w-full`}>
+        <li className="w-full">
           <form action={socialLogin}>
             <button
               type="submit"
               name="action"
               value="google"
-              className={`group size-44 rounded-2xl font-normal text-2xl bg-bgLightColor transition duration-300 hover:text-accentColor`}
+              className={` flex items-center justify-center gap-2.5 w-full h-10 rounded-full font-semibold uppercase
+                  text-lg bg-textColor text-bgColor transition duration-300 hover:opacity-80 active:opacity-100`}
             >
-              <div className="flex justify-center text-inherit group-hover:text-accentColor">
+              <div className="">
                 <Icon
                   id="icon-google"
-                  width={64}
-                  height={64}
+                  width={24}
+                  height={24}
                   className="transition duration-300 group-hover:fill-accentColor"
                 />
               </div>
-              Google
+              Continue with Google
             </button>
           </form>
         </li>

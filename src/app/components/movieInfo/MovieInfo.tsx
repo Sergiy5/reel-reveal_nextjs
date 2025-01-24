@@ -9,8 +9,7 @@ interface MovieInfoProps {
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-  // const listGenres = movie.genres?.map((genre: { id: number; name: string }) => genre.name);
-  // console.log(movie)
+
   return (
     <>
       {movie && (
@@ -29,7 +28,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                 className={`flex flex-col-reverse items-center md:items-end gap-10 md:flex-row w-full lg:gap-[122px]`}
               >
                 <Image
-                  src={generateUrlImage(movie.poster_path, "300")}
+                  src={generateUrlImage(movie.poster_path, "original")}
                   alt={movie.title}
                   width={285}
                   height={428}
@@ -77,7 +76,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
           </div>
           <div />
           <Image
-            src={generateUrlImage(movie.backdrop_path, "1280")}
+            src={generateUrlImage(movie.backdrop_path, "original")}
             alt={"Movie image"}
             width={600}
             height={380}

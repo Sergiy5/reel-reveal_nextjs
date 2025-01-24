@@ -5,18 +5,21 @@ export const FooterListSocial: React.FC = () => {
     <ul className={`flex justify-between flex-col h-40`}>
       <li>
         <FooterLinkIconSocial
-          link={"https://www.facebook.com"}
+          link={"https://www.facebook.com/reelreveal"}
           id={"icon-facebook"}
         />
       </li>
       <li>
         <FooterLinkIconSocial
-          link={"https://www.instagram.com"}
+          link={"https://www.instagram.com/reel_reveal"}
           id={"icon-instagram"}
         />
       </li>
       <li>
-        <FooterLinkIconSocial link={"https://www.gmail.com"} id={"icon-mail"} />
+        <FooterLinkIconSocial
+          link="mailto:info.reelreveal@gmail.com"
+          id={"icon-mail"}
+        />
       </li>
     </ul>
   );

@@ -32,7 +32,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
       
     ${
       !disabled &&
-      `active:bg-clickedColor hover:shadow-hoverShadow cursor-pointer hover:border hover:border-accentColor`
+      `active:bg-clickedColor hover:bg-clickedColor active:opacity-100 cursor-pointer hover:border hover:border-accentColor`
     }
     ${
       transparent &&
