@@ -19,7 +19,7 @@ interface IQuizProps {
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
-  const [showPopUp, setShowPopUp] = useState(true);
+  const [showPopUp, setShowPopUp] = useState(false);
   const [isQuizActive, setIsQuizActive] = useState(
     qiuzMoviesSignal.value.length ? false : true
   );

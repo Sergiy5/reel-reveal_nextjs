@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { userEmailSignal } from "@/context/UserContext";
 import { fetchUserByEmail } from "../../actions/fetchUserByEmail";
 import { socialLogin } from "../../actions/socialLogin";
-import Google from "../../../public/icons/google.svg";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { SharedInput } from "../ui/SharedInput";
 import { validateEmail } from "@/utils";

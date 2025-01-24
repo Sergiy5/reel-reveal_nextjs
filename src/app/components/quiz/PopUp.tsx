@@ -1,4 +1,29 @@
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
 export const PopUp: React.FC = () => {
+  const [valueInput, setValueInput] = useState<string | undefined>();
+  
+const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm<{ email: string }>({
+    mode: "onChange",
+  });
+
+  const onSubmit = (data: {email:string}) => {
+  console.log(data)
+}
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   console.log(e)
+  // }
+
   return (
     <div className="bg-bgColor flex justify-start items-center flex-col gap-12 w-[800px] p-[54px] rounded-[18px]">
       <h2 className="text-textColor">Thanks for Trying Reel Reveal!</h2>
@@ -14,18 +39,25 @@ export const PopUp: React.FC = () => {
           Please enter your email to join the waiting list
         </p>
         <div className="flex justify-start items-center flex-col gap-3 grow-0 shrink-0 basis-auto">
-          <div className="bg-[#20243b] flex justify-between items-center flex-row gap-2 w-[360px] h-11 grow-0 shrink-0 basis-auto overflow-hidden pl-[24.5px] pr-[3px] rounded-[100px]">
+              <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex justify-between items-center flex-row gap-2 w-[360px] h-11 grow-0 shrink-0 basis-auto overflow-hidden pl-[24.5px] pr-[3px] rounded-[100px]">
             <div className="flex justify-center items-center flex-row gap-2.5 h-[13px] grow-0 shrink-0 basis-auto">
-              <input
+
+                <input
+                type="email"
+                {...register("email")}
                 placeholder="enter your email"
-                className="text-lg font-light text-textColor grow-0 shrink-0 basis-auto"
-              />
+                className="text-lg font-light text-bgColor grow-0 shrink-0 basis-auto"
+                />
             </div>
-            {/* Button Component starts here. We've generated code using MUI Base. See other options in "Component library" dropdown in Settings */}
-            <button className="bg-accentColor text-lg font-bold uppercase text-bgColor min-w-[87px] h-10 w-[87px] cursor-pointer block grow-0 shrink-0 basis-auto rounded-[30px] border-[none]">
+            <button
+              type="submit"
+              className="bg-accentColor text-lg font-bold uppercase text-bgColor min-w-[87px] h-10 w-[87px] cursor-pointer block grow-0 shrink-0 basis-auto rounded-[30px] border-[none]"
+              >
               join
             </button>
           </div>
+              </form>
           <p className="leading-[14px] text-textColor grow-0 shrink-0 basis-auto">
             By sharing my email I agree to Privacy Policy and Terms of Use
           </p>

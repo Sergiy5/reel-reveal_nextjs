@@ -59,10 +59,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           <p>Login</p>
         )}
       </Link>
-      {/* <ButtonOrLink href="/quiz" className={`bg-white text-base px-5`}>
-        <ShowQuizCount />
-        <span className="">take quiz</span>
-      </ButtonOrLink> */}
+     
       <Link
         href={"/quiz"}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -71,7 +68,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
             hover:bg-accentColor hover:shadow-hoverShadow active:bg-clickedColor`}
       >
         <ShowQuizCount />
-        <span className="font-medium text-base">take quiz</span>
+        <span className="font-semibold text-base">take quiz</span>
       </Link>
     </div>
   );

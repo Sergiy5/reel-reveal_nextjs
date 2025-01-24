@@ -43,14 +43,24 @@ export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
     }
   }, [isOpen, onClose]);
 
+  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
+    
+    if (event.target === event.currentTarget) {
+      onClose && onClose();
+    }
+  };
+
   if (!isOpen) return null;
+
   const modalRoot = document.getElementById("modal");
 
   if (!modalRoot) return null;
 
   return createPortal(
     <div
-      onClick={onClose}
+      onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+        handleClickOutside(e)
+      }
       className="fixed inset-0 z-50 bg-black bg-opacity-50"
     >
       <div

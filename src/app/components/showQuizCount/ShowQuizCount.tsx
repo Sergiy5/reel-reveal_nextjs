@@ -8,7 +8,7 @@ export const ShowQuizCount: React.FC = () => {
 
   return (
     <span className="flex items-center gap-[3px]">
-      <span className="font-medium text-base">{count}</span>
+      <span className="font-semibold text-base">{count}</span>
       <Icon id="icon-ai" width={20} height={18} className="text-bgColor" />
     </span>
   );
