@@ -12,6 +12,7 @@ import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
 import { PopUp } from "./PopUp";
+import IconFavicon from "../../../../public/icons/favicon.svg";
 
 interface IQuizProps {
   sessionUser: sessionUser;
@@ -48,16 +49,16 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
         console.error(error);
       },
     }
-    );
-  
+  );
+
   const handleNextQuizClick = () => {
     if (count > 0) {
       setQuizResult([]);
       setIsQuizActive(true);
-    } else { 
+    } else {
       setShowPopUp(true);
     }
-};
+  };
 
   if (error) {
     return (
@@ -83,7 +84,9 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
           arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
-      <Modal isOpen={showPopUp} onClose={() => setShowPopUp(false)} ><PopUp/></Modal>
+      <Modal isOpen={showPopUp} onClose={() => setShowPopUp(false)}>
+        <PopUp />
+      </Modal>
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
     </div>
   );

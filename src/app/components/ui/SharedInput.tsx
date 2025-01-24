@@ -91,7 +91,7 @@ export const SharedInput: React.FC<CustomInputProps> = ({
       <label
         htmlFor={id}
         className={clsx(
-          "absolute bg-transparent left-5 text-accentColor transition-all duration-200 ease-in-out",
+          "absolute bg-transparent left-5 text-textColor transition-all duration-200 ease-in-out",
           isFocused || hasValue ? "-top-6" : " top-2"
         )}
       >

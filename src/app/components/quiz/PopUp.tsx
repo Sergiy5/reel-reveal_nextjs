@@ -47,7 +47,7 @@ const {
                 type="email"
                 {...register("email")}
                 placeholder="enter your email"
-                className="text-lg font-light text-bgColor grow-0 shrink-0 basis-auto"
+                className="text-lg font-light bg-bgColor text-textColor grow-0 shrink-0 basis-auto"
                 />
             </div>
             <button

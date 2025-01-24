@@ -43,11 +43,17 @@ export const Auth: React.FC = () => {
       </div>
       <p className={`text-lg`}>
         By signing in or creating an account, you agree with our{" "}
-        <Link href="/terms-and-conditions" className="link">
+        <Link
+          href="/terms-and-conditions"
+          className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
+        >
           Terms & Conditions
         </Link>{" "}
         and{" "}
-        <Link href="/privacy-policy" className="link">
+        <Link
+          href="/privacy-policy"
+          className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
+        >
           Privacy Policy
         </Link>
       </p>

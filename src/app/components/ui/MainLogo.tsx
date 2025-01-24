@@ -5,10 +5,13 @@ export const MainLogo: React.FC = () => {
   return (
     <Link
       href={"/home"}
-      className="flex items-center"
+      className="flex items-center justify-center"
       aria-label="Go to ReelReveal home page"
     >
-      <Icon id="main-logo" width={35} height={35} className="fill-textColor" />
+      <span>
+      <Icon id="main-logo" width={41} height={40} className="fill-textColor" />
+
+      </span>
 
       <span className="hidden font-bold text-xl text-textColor lg:flex">
         ReelReveal
