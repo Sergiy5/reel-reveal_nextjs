@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Loader } from "../ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
@@ -20,6 +20,7 @@ interface IQuizProps {
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
+  const [showModal, setShowModal] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [isQuizActive, setIsQuizActive] = useState(
     qiuzMoviesSignal.value.length ? false : true
@@ -60,6 +61,19 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     }
   };
 
+  useEffect(() => {
+    if (!showModal) {
+      setTimeout(() => {
+        setShowPopUp(false);
+      }, 500);
+    }
+    if (showModal) {
+      setTimeout(() => {
+        setShowPopUp(true);
+      }, 500);
+     }
+  }, [showModal]);
+
   if (error) {
     return (
       <div className="flex items-center justify-center flex-col gap-12">
@@ -76,7 +90,16 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
-        <QuizQuestions quizData={setQuizResult} />
+        <>
+          <QuizQuestions quizData={setQuizResult} />
+          <button
+            type="button"
+            onClick={() => setShowModal(!showModal)}
+            className="w-full bg-red-500"
+          >
+            Push
+          </button>
+        </>
       ) : (
         <QuizListMovies
           clearPrevQuiz={handleNextQuizClick}
@@ -84,8 +107,14 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
           arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
-      <Modal isOpen={showPopUp} onClose={() => setShowPopUp(false)}>
-        <PopUp />
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <div className="relative flex items-center justify-center border w-full h-lvh">
+          <div
+            className={`absolute transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[860px]"}`}
+          >
+            <PopUp />
+          </div>
+        </div>
       </Modal>
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
     </div>

@@ -12,7 +12,7 @@ interface TopCastProps {
   id: number;
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
-  const { data, error, isLoading } = useSWR(`${id}`, () =>
+  const { data, error, isLoading } = useSWR(`cast-${id}`, () =>
     fetchMovieDataFromAPI("/api/movies/cast", { movieId: id })
   );
 

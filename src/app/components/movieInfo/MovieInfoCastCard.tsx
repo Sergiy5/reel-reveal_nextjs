@@ -13,7 +13,7 @@ export const MovieInfoCastCard: React.FC<MovieInfoCastCardProps> = ({
   return (
     <div className={`flex flex-col p-1 sm:p-3 lg:p-2 xl:p-3 gap-6`}>
       <Image
-        src={`${generateUrlImage(profile_path, "200")}`}
+        src={`${generateUrlImage(profile_path, "w200")}`}
         alt={`Foto ${name ?? original_name}`}
         width={183}
         height={183}
