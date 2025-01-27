@@ -15,6 +15,16 @@
     /* Adjust font stack as needed */
   }
 
+/* Autofill text color (white) to prevent browser default color */
+.autofill-text:-webkit-autofill {
+  -webkit-text-fill-color: white;
+}
+
+.text-input {
+  /* set text colour (white) */
+  @apply autofill-text;
+}
+
   /* .scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #888 #f1f1f1;

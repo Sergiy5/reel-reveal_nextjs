@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { registerUser } from "@/app/actions/registerUser";
 import { SharedInput } from "../ui/SharedInput";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
+import { useState } from "react";
 
 export interface IUserData {
   name: string;
@@ -22,6 +23,8 @@ interface AuthRegisterProps {
 }
 
 export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
+const [isSubmited, setIsSubmited] = useState(false);
+
   // useRouter =============================================
   const router = useRouter();
   // useForm ===============================================
@@ -68,6 +71,8 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           type="text"
           id="name"
           defaultValue={""}
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           register={register}
           validation={{ required: true }}
           errors={errors}
@@ -76,6 +81,8 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           label="Email"
           type="text"
           id="email"
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           defaultValue={`${userEmailSignal.value ?? ""}`}
           register={register}
           validation={{ required: true, validate: validateEmail }}
@@ -85,6 +92,8 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           id="password"
           label="Password"
           type="password"
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           register={register}
           validation={{ required: true, validate: validatePassword }}
           errors={errors}
@@ -93,6 +102,8 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           label="Confirm password"
           type="password"
           id="confirmPassword"
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           register={register}
           validation={{
             required: true,
@@ -100,7 +111,11 @@ export const AuthRegister: React.FC<AuthRegisterProps> = ({ setIsLoading }) => {
           }}
           errors={errors}
         />
-        <ButtonOrLink type="submit" disabled={!isValid} className={`w-full`}>
+        <ButtonOrLink
+          type="submit"
+          onClick={() => setIsSubmited(true)}
+          className={`w-full`}
+        >
           create account
         </ButtonOrLink>
       </form>

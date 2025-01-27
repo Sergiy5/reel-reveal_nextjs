@@ -11,6 +11,7 @@ interface CustomInputProps {
   type?: string;
   id: string;
   defaultValue?: string;
+  isSubmited: boolean;
   onInput?: (value: string) => void;
   register: UseFormReturn<any, any>["register"];
   errors: UseFormReturn<any, any>["formState"]["errors"];
@@ -25,6 +26,7 @@ export const SharedInput: React.FC<CustomInputProps> = ({
   errors,
   validation,
   onInput,
+  isSubmited,
   label,
   id,
   type = "text",
@@ -33,7 +35,7 @@ export const SharedInput: React.FC<CustomInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [hasValue, setHasValue] = useState(() => (defaultValue ? true : false));
   const [passwordVisible, setPasswordVisible] = useState(false);
-// For change color border input ===================================================
+  // For change color border input ===================================================
   const handleFocus = () => {
     setIsFocused((prev) => !prev);
   };
@@ -77,16 +79,14 @@ export const SharedInput: React.FC<CustomInputProps> = ({
         autoComplete={
           ["password", "confirmPassword"].includes(id) ? "off" : "on"
         }
-        className={clsx(
-          `flex-grow w-full font-light h-10 text-light text-xl text-textColor bg-inputColor tracking-widest font-mono
-           rounded-[18px] px-5 focus:outline-none transition-all duration-200 ease-in-out autofill:bg-yellow-300
-            outline-none border `,
-          {
-            "border-transparent": !errors[id] && !hasValue,
-            "border-error  text-error": errors[id],
-            "border-accentColor": !errors[id] && hasValue,
-          }
-        )}
+        className={`text-input flex-grow w-full font-light h-10 text-light text-xl text-textColor bg-inputColor tracking-widest font-mono
+           rounded-[18px] px-5 focus:outline-none transition-all duration-200 ease-in-out outline-none border 
+            autofill:shadow-[inset_0_0_0px_1000px_rgb(32,36,59)]
+            
+          ${!errors[id] && !hasValue && "border-transparent"} 
+          ${isSubmited && errors[id] && "border-error  text-error"}
+          ${!errors[id] && hasValue && "border-accentColor"}
+            `}
       />
       <label
         htmlFor={id}

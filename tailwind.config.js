@@ -66,9 +66,14 @@ module.exports = {
   },
 
   plugins: [
+    // require('tailwindcss'),
+    // require("autoprefixer"),
     require("tailwind-scrollbar")({
       nocompatible: true,
       preferredStrategy: "pseudoelements",
     }),
+    function ({ addVariant }) {
+      addVariant("autofill", "&:-webkit-autofill");
+    },
   ],
 };

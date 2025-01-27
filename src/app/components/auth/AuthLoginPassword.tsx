@@ -20,6 +20,7 @@ interface SignInProps {
 
 export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
   const [isUserLogedIn, setIsUserLogedIn] = useState(false);
+const [isSubmited, setIsSubmited] = useState(false);
   
   const [cookies, setCookie] = useCookies(["user-consent"]);
 
@@ -76,11 +77,17 @@ export const AuthLoginPassword: React.FC<SignInProps> = ({ setIsLoading }) => {
           id="password"
           label="Password"
           type="password"
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           register={register}
           validation={{ required: true, validate: validatePassword }}
           errors={errors}
         />
-        <ButtonOrLink type="submit" disabled={!isValid} className={`w-full`}>
+        <ButtonOrLink
+          type="submit"
+          onClick={() => setIsSubmited(true)}
+          className={`w-full`}
+        >
           sign in
         </ButtonOrLink>
       </form>

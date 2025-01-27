@@ -8,6 +8,7 @@ import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { SharedInput } from "../ui/SharedInput";
 import { validateEmail } from "@/utils";
 import { Icon } from "../ui/Icon";
+import { useState } from "react";
 
 interface AuthLoginProps {
   setStatusUser: (statusUser: "register" | "signup") => void;
@@ -18,6 +19,8 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
   setStatusUser,
   setIsLoading,
 }) => {
+const [isSubmited, setIsSubmited] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -62,13 +65,16 @@ export const AuthLogin: React.FC<AuthLoginProps> = ({
           id="email"
           type="text"
           register={register}
+          onInput={() => setIsSubmited(false)}
+          isSubmited={isSubmited}
           validation={{ required: true, validate: validateEmail }}
           errors={errors}
         />
 
         <ButtonOrLink
           type="submit"
-          disabled={!isValid}
+          // disabled={!isValid}
+          onClick={() => setIsSubmited(true)}
           className={`w-full disabled:opacity-75`}
         >
           continue with email
