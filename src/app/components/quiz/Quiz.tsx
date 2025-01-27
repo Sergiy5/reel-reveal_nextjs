@@ -12,7 +12,6 @@ import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
 import { PopUp } from "./PopUp";
-import IconFavicon from "../../../../public/icons/favicon.svg";
 
 interface IQuizProps {
   sessionUser: sessionUser;
@@ -92,13 +91,13 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       ) : isQuizActive ? (
         <>
           <QuizQuestions quizData={setQuizResult} />
-          <button
+          {/* <button
             type="button"
             onClick={() => setShowModal(!showModal)}
             className="w-full bg-red-500"
           >
             Push
-          </button>
+          </button> */}
         </>
       ) : (
         <QuizListMovies
@@ -108,7 +107,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
         />
       )}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        <div className="relative flex items-center justify-center border w-full h-lvh">
+        <div className="relative flex items-center justify-center w-full h-lvh">
           <div
             className={`absolute transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[860px]"}`}
           >
