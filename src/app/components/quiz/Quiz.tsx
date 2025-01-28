@@ -89,16 +89,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
-        <>
           <QuizQuestions quizData={setQuizResult} />
-          {/* <button
-            type="button"
-            onClick={() => setShowModal(!showModal)}
-            className="w-full bg-red-500"
-          >
-            Push
-          </button> */}
-        </>
       ) : (
         <QuizListMovies
           clearPrevQuiz={handleNextQuizClick}

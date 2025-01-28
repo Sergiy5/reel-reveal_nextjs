@@ -52,7 +52,7 @@ export const CountQuizProvider = ({ children }: { children: React.ReactNode }) =
 
   useEffect(() => {
 
-    if (!isToDay || count <= 0) return
+    if (!isToDay || count < 0) return
     
 setIndexedDB("quizCount", {
   date: dateToday,
