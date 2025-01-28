@@ -48,7 +48,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                       <h3 className={`max-w-34 `}>
                         TMDB {floorNumber(movie.vote_average)}
                       </h3>
-                      <MovieCardHoverBtn
+                      {/* <MovieCardHoverBtn
                         iconId={false ? "icon-heart_fill" : "icon-heart"}
                         dataMovie={"save it"}
                         text="save it"
@@ -59,7 +59,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                         dataMovie={"saw it"}
                         text="saw it"
                         isChecked={false}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <DateGenresDurationList

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { ListMovies } from "@/app/components/listMovies/ListMovies";
@@ -10,10 +10,11 @@ import { Loader } from "../ui/Loader";
 import { fetcher } from "../../actions";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
 import { IMovie, ISessionUser } from "@/typification";
+import { Modal } from "../ui/Modal";
 
-const ModalDynamic = dynamic(() =>
-  import("../ui/Modal").then((mod) => mod.Modal)
-);
+// const ModalDynamic = dynamic(() =>
+//   import("../ui/Modal").then((mod) => mod.Modal)
+// );
 
 interface SavedMoviesProps {
   sessionUser: ISessionUser;
@@ -21,7 +22,7 @@ interface SavedMoviesProps {
 
 export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
-    const [movies, setMovies] = useState<IMovie[]>([]);
+    const [movies, setMovies] = useState<IMovie[] | null>(null);
 
     const { likedMovies, isLoading, isValidating } = useMoviesContext();
 
@@ -38,7 +39,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
 
     return (
       <div className="flex items-center flex-col justify-center gap-20 w-full mb-20 z-20">
-        {movies.length === 0 ? (
+        {movies?.length === 0 ? (
           <>
             <Image
               src="/images/popcorn.png"
@@ -51,7 +52,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
               Your list is empty, explore our movie search or take a quiz to
               find something interesting!
             </p>
-            <div className="flex flex-col items-center justify-center w-full md:flex-row gap-4">
+            <div className="flex flex-col items-center justify-center w-full md:flex-row md:w-[590px] gap-4">
               <ButtonOrLink href="/movies" transparent>
                 search movie
               </ButtonOrLink>
@@ -61,17 +62,15 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
         ) : (
           <>
             <h1>
-              Saved <span className="text-accentColor">{movies.length}</span>{" "}
+              Saved <span className="text-accentColor">{movies?.length}</span>{" "}
               movies
             </h1>
-            <ListMovies movies={movies} sessionUser={sessionUser} />
+            <ListMovies movies={movies ?? []} sessionUser={sessionUser} />
           </>
         )}
-        <ModalDynamic isOpen={isValidating || isLoading}>
-          <div className="flex items-center h-lvh">
-            <Loader />
-          </div>
-        </ModalDynamic>
+        <Modal isOpen={isValidating || isLoading || movies === null}>
+          <Loader />
+        </Modal>
       </div>
     );
   }

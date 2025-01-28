@@ -1,9 +1,13 @@
+"use client";
+
+import { useMoviesContext } from "@/context/ServiceMoviesContext";
 import { Icon } from "../ui/Icon";
 
 interface MovieCardHoverBtnProps {
   iconId: string;
   text: string;
   isChecked?: boolean;
+  movieId?: number;
   dataMovie: string;
   onClick?:
     | ((e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void)
@@ -12,10 +16,31 @@ interface MovieCardHoverBtnProps {
 export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   iconId,
   text,
+  movieId,
   isChecked,
   dataMovie,
   onClick,
 }): React.JSX.Element => {
+
+  const { likedMovies, watchedMovies, toggleLiked, toggleWatched } =
+    useMoviesContext();
+
+  const isLiked = likedMovies.includes(movieId ?? 0);
+  const isWatched = watchedMovies.includes(movieId ?? 0);
+
+  //  if (clickedTarget === "sawIt" || clickedTarget === "saveIt") {
+  //       if (sessionUserStatus !== "authenticated") {
+  //         toast.error("You need to be logged in to save movies");
+  //         return;
+  //       }
+  //       if (clickedTarget === "saveIt") {
+  //         toggleLiked(movie.id);
+  //       }
+
+  //       if (clickedTarget === "sawIt") {
+  //         toggleWatched(movie.id);
+  //       }
+  //     }
 
   return (
     <div
@@ -23,6 +48,7 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
          transition-all duration-350 ease-in-out
         ${isChecked ? "border-accentColor" : "border-textColor"}
       `}
+      onClick={()=> console.log("first")}
     >
       <button
         type="button"

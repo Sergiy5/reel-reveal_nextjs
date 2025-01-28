@@ -24,7 +24,9 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   if (error) return null;
 
   return (
-    <div className={`flex items-center w-full justify-center lg:px-16`}>
+    <div
+      className={`flex items-center w-full xl:max-w-[1000px] justify-center lg:px-16`}
+    >
       {isLoading || !trailerId ? (
         <div className="relative w-full h-full">
           <ContentLoader

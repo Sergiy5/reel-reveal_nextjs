@@ -88,17 +88,17 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
         handleClickOutside(e)
       }
-      className="fixed inset-0 z-50 bg-black bg-opacity-50"
+      className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-50"
     >
       <div
-        className="relative flex items-center justify-center shadow-lg"
+        className="relative w-full"
         role="dialog"
         aria-modal="true"
       >
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-2 right-2"
+            className="absolute top-0 right-2"
             aria-label="Close Modal"
           >
             {!isHideCross && (
@@ -112,7 +112,10 @@ export const Modal: React.FC<ModalProps> = ({
             )}
           </button>
         )}
+        <div className="flex items-center justify-center w-auto" >
         {children}
+
+        </div>
       </div>
     </div>,
     modalRoot

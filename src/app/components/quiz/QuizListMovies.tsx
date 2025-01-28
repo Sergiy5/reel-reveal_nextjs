@@ -71,7 +71,7 @@ export const QuizListMovies: React.FC<QuizListMoviesProps> = ({
           />
         </div>
       )}
-      <ButtonOrLink onClick={clearPrevQuiz} className={``}>
+      <ButtonOrLink onClick={clearPrevQuiz} className={`md:w-[245px]`}>
         <ShowQuizCount /> retake quiz
       </ButtonOrLink>
     </div>
