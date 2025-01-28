@@ -22,8 +22,8 @@ export const Hero: React.FC = () => {
           finding the perfect movie match.
         </p>
 
-        <ButtonOrLink href="/quiz" className={`z-10 mt-2`}>
-          <ShowQuizCount />{" "}start quiz
+        <ButtonOrLink href="/quiz" className={`z-10 mt-2 md:w-[245px]`}>
+          <ShowQuizCount /> start quiz
         </ButtonOrLink>
       </article>
 

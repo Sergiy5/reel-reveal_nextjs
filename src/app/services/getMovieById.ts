@@ -1,6 +1,6 @@
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 
-export const getMovieById = async (id: number): Promise<Movie> => {
+export const getMovieById = async (id: number): Promise<IMovie> => {
   const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/movie/${id}`;
 
@@ -16,9 +16,9 @@ export const getMovieById = async (id: number): Promise<Movie> => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response as Movie;
+    return response as IMovie;
   } catch (error: any) {
     console.error("Fetch error:", error);
-    return {} as Movie;
+    return {} as IMovie;
   }
 };

@@ -56,7 +56,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
         <ul className="flex flex-col justify-between h-[119px]">
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              iconId="icon-heart_fill"
+              iconId={isLiked ?"icon-heart_fill" :"icon-heart"}
               dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"

@@ -8,19 +8,47 @@ interface ModalProps {
   children: ReactNode;
   isOpen: boolean;
   onClose?: () => void;
+  toggleDuration?: number;
+  isHideCross?: boolean;
 }
 
-export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({
+  children,
+  isOpen,
+  onClose,
+  isHideCross = false,
+}) => {
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "unset";
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = "unset";
+  //   };
+  // }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    const handleBodyScroll = () => {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      } else {
+        document.body.style.overflow = "unset";
+        document.body.style.paddingRight = "0px";
+      }
+    };
+
+    handleBodyScroll();
 
     return () => {
       document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "0px";
     };
   }, [isOpen]);
 
@@ -44,7 +72,6 @@ export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
-    
     if (event.target === event.currentTarget) {
       onClose && onClose();
     }
@@ -64,24 +91,25 @@ export const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
       className="fixed inset-0 z-50 bg-black bg-opacity-50"
     >
       <div
-        className="relative flex items-center m-auto justify-center py-6 px-12 rounded shadow-lg"
+        className="relative flex items-center justify-center shadow-lg"
         role="dialog"
         aria-modal="true"
       >
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-2 right-2 text-textColor hover:text-accentColor"
+            className="absolute top-2 right-2"
             aria-label="Close Modal"
           >
-            <Icon
-              id={"cross"}
-              width={30}
-              height={30}
-              className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
+            {!isHideCross && (
+              <Icon
+                id={"cross"}
+                width={30}
+                height={30}
+                className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
                          transition duration-300 easy-in-out hover:text-accentColor`}
-            />
-            
+              />
+            )}
           </button>
         )}
         {children}

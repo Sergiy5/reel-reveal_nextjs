@@ -2,15 +2,15 @@ import { Settings } from "react-slick";
 import { useResize } from "@/hooks";
 import { ListMovies } from "@/app/components/listMovies/ListMovies";
 import { MySlider } from "@/app/components/mySlider/MySlider";
-import { Movie, sessionUser } from "@/typification";
+import { IMovie, ISessionUser } from "@/typification";
 import { MovieCard } from "../movieCard/MovieCard";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { ShowQuizCount } from "../showQuizCount/ShowQuizCount";
 
 export interface QuizListMoviesProps {
-  arrMovies: Movie[];
+  arrMovies: IMovie[];
   clearPrevQuiz: () => void;
-  sessionUser: sessionUser;
+  sessionUser: ISessionUser;
 }
 
 export const QuizListMovies: React.FC<QuizListMoviesProps> = ({

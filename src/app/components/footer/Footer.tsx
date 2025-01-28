@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className={`block mx-auto w-max`}>
+    <footer className={`block mx-auto w-max overflow-hidden md:overflow-visible `}>
       <div
         className={`relative flex w-full justify-center items-center mx-auto `}
       >
@@ -42,11 +42,13 @@ export const Footer: React.FC = () => {
 
             <FooterListSocial />
           </div>
-          <div className={`flex flex-col gap-6 text-textColor w-full mt-10`}>
+          <div
+            className={`flex flex-col items-center lg:items-stretch gap-6 text-textColor w-full mt-10`}
+          >
             <div className="w-full h-[0.5px] bg-disabledColor opacity-80"></div>
-            <div className="flex items-center justify-between">
-              <p>Copyright © 2025 ReelReveal. All rights reserved.</p>
-              <div className="flex gap-6">
+            <div className="lg:flex justify-between">
+              <p className="text-center text-sm" >Copyright © 2025 ReelReveal. All rights reserved.</p>
+              <div className="flex items-center mt-2 lg:mt-0 justify-center gap-6">
                 <Link href="/privacy-policy" className="link">
                   Privacy Policy
                 </Link>

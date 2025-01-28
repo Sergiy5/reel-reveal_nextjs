@@ -24,7 +24,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
 }) => {
   const commonClasses = `flex items-center justify-center gap-2 h-10 font-semibold
     uppercase rounded-full shadow-0 bg-accentColor
-    transition-all duration-300  text-bgColor w-[245px]
+    transition-all duration-300  text-bgColor w-full
      
     focus:shadow-[1px 2px 24px 0 rgba(32, 232, 218, 0.5)]
     focus:bg-accentColor focus:outline-2  focus:shadow-[1px 2px 24px 0 rgba(32, 232, 218, 0.3)]

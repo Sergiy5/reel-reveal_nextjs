@@ -6,7 +6,7 @@ import { Loader } from "../ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
 import { fetchQuizMovies } from "../../actions/fetchQuizMovies";
-import { sessionUser } from "@/typification";
+import { ISessionUser } from "@/typification";
 import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
@@ -14,7 +14,7 @@ import { Modal } from "../ui/Modal";
 import { PopUp } from "./PopUp";
 
 interface IQuizProps {
-  sessionUser: sessionUser;
+  sessionUser: ISessionUser;
 }
 
 export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
@@ -56,7 +56,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       setQuizResult([]);
       setIsQuizActive(true);
     } else {
-      setShowPopUp(true);
+      setShowModal(true);
     }
   };
 
@@ -64,13 +64,13 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     if (!showModal) {
       setTimeout(() => {
         setShowPopUp(false);
-      }, 500);
+      }, 300);
     }
     if (showModal) {
       setTimeout(() => {
         setShowPopUp(true);
-      }, 500);
-     }
+      }, 300);
+    }
   }, [showModal]);
 
   if (error) {
@@ -106,12 +106,16 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
           arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        isHideCross={true}
+      >
         <div className="relative flex items-center justify-center w-full h-lvh">
           <div
-            className={`absolute transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[860px]"}`}
+            className={`absolute w-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[860px]"}`}
           >
-            <PopUp />
+            <PopUp onClose={() => setShowModal(false)} />
           </div>
         </div>
       </Modal>

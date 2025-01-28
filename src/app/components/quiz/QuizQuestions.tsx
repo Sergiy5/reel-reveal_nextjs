@@ -5,7 +5,11 @@ import { QuizProgresBar } from "./QuizProgresBar";
 import { QuizButtons } from "./QuizButtons";
 import { quizDataList } from "../../../../public/quiz-data/quizDataList";
 import { nextQuestion } from "@/utils";
-import { IQuizData, QuizQuestionsProps } from "@/typification";
+import { IQuizData } from "@/typification";
+
+export interface QuizQuestionsProps {
+  quizData: (answerForAI: string[]) => void;
+}
 
 export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
   const [currentQuiz, setCurrentQuiz] = useState<IQuizData>(quizDataList[0]);

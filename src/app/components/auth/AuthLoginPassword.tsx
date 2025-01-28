@@ -86,7 +86,6 @@ const [isSubmited, setIsSubmited] = useState(false);
         <ButtonOrLink
           type="submit"
           onClick={() => setIsSubmited(true)}
-          className={`w-full`}
         >
           sign in
         </ButtonOrLink>

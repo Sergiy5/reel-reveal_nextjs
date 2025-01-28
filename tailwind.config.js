@@ -21,6 +21,7 @@ module.exports = {
         bgSelectItemHover: "#272C42",
         scrolBarTrackColor: "#23283e",
         scrolBarThumbColor: "#656878",
+        greyColor: "#717180",
       },
       blur: {
         header: "119.5px",

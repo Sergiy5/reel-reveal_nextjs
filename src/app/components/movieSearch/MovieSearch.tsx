@@ -7,7 +7,7 @@ import { Loader } from "../ui/Loader";
 import { ListMovies } from "@/app/components/listMovies/ListMovies";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
-import { IQueryFilterParams, Movie, sessionUser } from "@/typification";
+import { IQueryFilterParams, IMovie, ISessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { MovieSearchFilter } from "./MovieSearchFilter";
 
@@ -17,16 +17,14 @@ const ModalDynamic = dynamic(() =>
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
-  sessionUser: sessionUser;
+  sessionUser: ISessionUser;
 }
 
-export const MovieSearch: React.FC<MovieSearchProps> = ({
-  sessionUser,
-}) => {
+export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   const [totalMovies, setTotalMovies] = useState(); //totalSearchMoviesSignal.value
   const [isActiveSearch, setisActiveSearch] = useState<boolean | null>(null);
   const [queryTitle, setQueryTitle] = useState("");
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
   const [page, setPage] = useState(1);
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
@@ -128,15 +126,20 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({
         genreName={queryGenre}
       />
       <ListMovies movies={movies} sessionUser={sessionUser} />
-      <div className={`flex gap-5 z-10 flex-col sm:flex-row`}>
+      <div
+        className={`flex w-full items-center justify-center gap-5 z-10 flex-col sm:flex-row`}
+      >
         <ButtonOrLink
           onClick={() => setPage((prev) => prev + 1)}
           transparent
           disabled={totalMovies === 0}
+          className="md:w-[245px]"
         >
           load more
         </ButtonOrLink>
-        <ButtonOrLink href="/quiz">take quiz</ButtonOrLink>
+        <ButtonOrLink href="/quiz" className="md:w-[245px]">
+          take quiz
+        </ButtonOrLink>
       </div>
       <ModalDynamic isOpen={isLoading || isValidating}>
         <div className={`flex items-center my-auto h-lvh`}>

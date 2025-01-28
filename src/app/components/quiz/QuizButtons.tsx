@@ -1,5 +1,10 @@
 import clsx from "clsx";
-import { QuizBtnsProps } from "@/typification";
+
+interface QuizBtnsProps {
+  answers: { answer: string; value: string }[];
+  collectQuiz: (answer: string) => void;
+  isActive: boolean;
+}
 
 export const QuizButtons: React.FC<QuizBtnsProps> = ({
   answers,

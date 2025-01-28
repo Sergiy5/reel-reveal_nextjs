@@ -39,7 +39,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
       if (genreName && genresArray) {
         handleFilterOptions();
       }
-    }, [genreName, genresArray, ]);
+    }, [genreName, genresArray ]);
   const removeValue = (valueToRemove: string | number) => {
     const filter = allfilterOptions.filter((value) => value !== valueToRemove);
 
@@ -87,8 +87,8 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
   return (
     <div className="flex flex-col gap-6 w-full ">
       <div className="flex flex-wrap justify-between gap-6">
-        <ul className="flex w-full gap-2 sm:w-[412px] sm:gap-4">
-          <li key={"Genre"}>
+        <ul className="flex w-full gap-2 md:w-[412px] sm:gap-4">
+          <li key={"Genre"} className="w-full md:w-[120px]">
             <MultiSelect
               isMulti={true}
               selectedOptions={genresArray}
@@ -97,7 +97,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
               placeholder="Genre"
             />{" "}
           </li>
-          <li key={"Year"}>
+          <li key={"Year"} className="w-full md:w-[120px]">
             <MultiSelect
               selectedOptions={yearsArray}
               options={arrayOfYears(1900).reverse()}
@@ -105,7 +105,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
               placeholder="Year"
             />{" "}
           </li>
-          <li key={"Rating"}>
+          <li key={"Rating"} className="w-full md:w-[120px]">
             <MultiSelect
               selectedOptions={ratingsArray}
               options={arrayOfRatings(91)}
@@ -114,25 +114,29 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
             />{" "}
           </li>
         </ul>
-        <ButtonOrLink onClick={handleFilterOptions}>apply filters</ButtonOrLink>
+        <ButtonOrLink onClick={handleFilterOptions} className="md:w-[245px]">
+          apply filters
+        </ButtonOrLink>
       </div>
       <div className="flex flex-wrap justify-between gap-6">
         <ListSelectedValues
           selectedValues={allfilterOptions}
           removeValue={removeValue}
         />
-        {allfilterOptions.length > 1 && <button
-          type="button"
-          onClick={() => setAllFilterOptions([])}
-          className="flex items-center justify-center gap-2 text-textColor"
-        >
-          <span className=" text-lg font-light">
-            {size > 860 ? "Clear all filters" : "Clear all"}
-          </span>
-          <span className="mt-1">
-            <Icon id="cross" width={14} height={14} />
-          </span>
-        </button>}
+        {allfilterOptions.length > 1 && (
+          <button
+            type="button"
+            onClick={() => setAllFilterOptions([])}
+            className="flex items-center justify-center gap-2 text-textColor"
+          >
+            <span className=" text-lg font-light">
+              {size > 860 ? "Clear all filters" : "Clear all"}
+            </span>
+            <span className="mt-1">
+              <Icon id="cross" width={14} height={14} />
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
     <div
       className={`flex flex-col justify-center items-center w-full mt-16 md:mt-20 xl:mt-30 `}
     >
-      <h2 className={`flex justify-center w-full mb-12`}>Top cast</h2>
+      <h2 className={`flex justify-start md:justify-center w-full mb-12`}>Top cast</h2>
       {isLoading ? (
         <Loader />
       ) : (

@@ -1,8 +1,6 @@
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 
-export const getUpcomingMovies = async (
-
-): Promise<Movie[]> => {
+export const getUpcomingMovies = async (): Promise<IMovie[]> => {
   const token = process.env.BEARER_TOKEN_TMDB;
   const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US`;
 

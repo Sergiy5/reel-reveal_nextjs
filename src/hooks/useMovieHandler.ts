@@ -2,13 +2,13 @@ import { useState, useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import { useMovies } from "@/hooks/useMovies";
 import { optimisticMutate } from "@/utils/optimisticMutate";
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 import { IMovieInDB } from "@/app/components/movieCard/MovieCard";
 import { saveMovieToDB } from "@/app/actions/saveMovieToDB";
 import { removeMovieFromDB } from "@/app/actions/removeMovieFromDB";
 
 export const useMovieHandler = (
-  movie: Movie,
+  movie: IMovie,
   userId: string,
   userStatus: string,
   muvies: IMovieInDB[],

@@ -55,7 +55,7 @@ const [isSubmited, setIsSubmited] = useState(false);
   };
 
   return (
-    <div className="flex flex-col items-center w-[387px] gap-6 justify-center">
+    <div className="flex flex-col items-center w-full md:w-[387px] gap-6 justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={`flex flex-col gap-6 w-full`}
@@ -73,9 +73,8 @@ const [isSubmited, setIsSubmited] = useState(false);
 
         <ButtonOrLink
           type="submit"
-          // disabled={!isValid}
           onClick={() => setIsSubmited(true)}
-          className={`w-full disabled:opacity-75`}
+          className="w-full"
         >
           continue with email
         </ButtonOrLink>

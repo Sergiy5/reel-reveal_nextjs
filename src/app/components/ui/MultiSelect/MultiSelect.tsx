@@ -81,14 +81,14 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
 
   return (
     <div
-      className={`relative z-20 flex flex-col justify-end sm:w-[120px]
+      className={`relative z-20 flex flex-col justify-end w-full
         `}
       ref={dropdownWithSearchRef}
       onKeyDown={(e) => (e.key === 'Enter' ? toggleDropdown() : null)}
     >
       <div
         onClick={toggleDropdown}
-        className={`flex items-center gap-[4px] sm:justify-between w-full h-10 sm:py-3 py-2 px-4 sm:px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
+        className={`flex items-center gap-[4px] justify-between w-full h-10 sm:py-3 py-2 px-4 sm:px-4 cursor-pointer transition-all ease-in-out duration-300 bg-bgSelect
           ${isOpen ? 'rounded-t-[20px]' : 'rounded-[20px]'}`}
       >
         <div>{placeholder}</div>

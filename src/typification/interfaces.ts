@@ -1,24 +1,29 @@
-import { CustomArrowProps, Settings } from "react-slick";
-import { FilterArray } from "./types";
+import { CustomArrowProps } from "react-slick";
 
-export interface LayoutProps {
-  children: React.ReactNode;
-}
+// export interface ILayoutContextProps {
+//   deviceType: string;
+// }
+// export interface ILayoutProviderProps {
+//   deviceType: string;
+//   children: React.ReactNode;
+// }
+
+// export interface fetchUserByEmailResponse {
+//   message: string;
+//   user: IUser;
+// }
+// export interface ILoadMoreCard {
+//   id: "load_more";
+//   textBtn: string;
+// }
 export interface IViewWidth {
   viewWidth: number;
 }
 export interface TypeDevice {
   deviceType: string;
 }
-export interface LayoutContextProps {
-  deviceType: string;
-}
-export interface LayoutProviderProps {
-  deviceType: string;
-  children: React.ReactNode;
-}
 
-export interface Movie {
+export interface IMovie {
   id: number;
   adult: boolean;
   backdrop_path: string | null;
@@ -38,18 +43,7 @@ export interface Movie {
 }
 
 export interface IResponsDataTMbD {
-  results: Movie[];
-}
-
-export interface ILoadMoreCard {
-  id: "load_more";
-  textBtn: string;
-}
-
-export interface QuizBtnsProps {
-  answers: { answer: string; value: string }[];
-  collectQuiz: (answer: string) => void;
-  isActive: boolean;
+  results: IMovie[];
 }
 
 export interface MySliderBtnProps extends CustomArrowProps {
@@ -62,15 +56,6 @@ export interface IQuizData {
   options: { answer: string; value: string }[];
   page: number;
 }
-
-export interface MovieInfoProps {
-  id: string;
-}
-
-export interface QuizQuestionsProps {
-  quizData: (answerForAI: string[]) => void;
-}
-
 
 export interface IFilm {
   id: string;
@@ -87,11 +72,6 @@ export interface IUser {
   films: IFilm[];
 }
 
-export interface fetchUserByEmailResponse {
-  message: string;
-  user: IUser;
-}
-
 export interface IStoredMovie {
   movieId: number;
   watched: boolean;
@@ -99,7 +79,7 @@ export interface IStoredMovie {
   _id: string;
 }
 
-export interface sessionUser {
+export interface ISessionUser {
   userId: string;
   email: string;
   userName: string;

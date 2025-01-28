@@ -7,7 +7,7 @@ import ContentLoader from "react-content-loader";
 import { Modal } from "../ui/Modal";
 import { MovieInfoTrailer } from "../movieInfo/MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 import { useOpenUrl } from "@/hooks";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
 
@@ -18,7 +18,7 @@ export interface IMovieInDB {
 }
 
 interface MovieCardProps {
-  movie: Movie;
+  movie: IMovie;
   sessionUserStatus: string;
 }
 
@@ -29,10 +29,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   const [isShowHover, setIsShowHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openUrl = useOpenUrl();
+
   const { likedMovies, watchedMovies, toggleLiked, toggleWatched } =
     useMoviesContext();
-
-  const openUrl = useOpenUrl();
 
   const isLiked = likedMovies.includes(movie.id);
   const isWatched = watchedMovies.includes(movie.id);

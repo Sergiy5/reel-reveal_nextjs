@@ -9,19 +9,19 @@ import { ListMovies } from "@/app/components/listMovies/ListMovies";
 import { Loader } from "../ui/Loader";
 import { fetcher } from "../../actions";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
-import { Movie, sessionUser } from "@/typification";
+import { IMovie, ISessionUser } from "@/typification";
 
 const ModalDynamic = dynamic(() =>
   import("../ui/Modal").then((mod) => mod.Modal)
 );
 
 interface SavedMoviesProps {
-  sessionUser: sessionUser;
+  sessionUser: ISessionUser;
 }
 
 export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
-    const [movies, setMovies] = useState<Movie[]>([]);
+    const [movies, setMovies] = useState<IMovie[]>([]);
 
     const { likedMovies, isLoading, isValidating } = useMoviesContext();
 

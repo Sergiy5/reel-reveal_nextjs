@@ -1,9 +1,8 @@
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 
 export const getManyMoviesByTitle = async (
   arrMovies: string[]
-): Promise<Movie[][]> => {
-
+): Promise<IMovie[][]> => {
   const API_TOKEN = process.env.BEARER_TOKEN_TMDB;
 
   try {
@@ -17,13 +16,12 @@ export const getManyMoviesByTitle = async (
         }
       ).then((res) => res.json())
     );
-  
+
     const response = await Promise.all(requests);
-    
+
     return response.map(({ results }) => results);
-    
   } catch (error: any) {
     console.log("getManyMoviesByTitle error", error.message);
-    return error
+    return error;
   }
 };

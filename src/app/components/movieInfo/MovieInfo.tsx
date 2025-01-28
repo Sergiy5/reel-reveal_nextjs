@@ -1,15 +1,14 @@
 import Image from "next/image";
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 import { MovieCardHoverBtn } from "../movieCard/MovieCardHoverBtn";
 import { cutingString, floorNumber, generateUrlImage } from "@/utils";
 import { DateGenresDurationList } from "./DateGenresDurationList";
 
 interface MovieInfoProps {
-  movie: Movie;
+  movie: IMovie;
 }
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
-
   return (
     <>
       {movie && (
@@ -21,7 +20,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
               className={`flex flex-col items-center justify-center w-full px-[16px]
                bg-movieGradient md:px-[60px] xl:px-[120px] z-10`}
             >
-              <h1 className={`block lg:hidden sm:text-7xl pb-6`}>
+              <h1 className={`flex justify-start w-full lg:hidden pb-6`}>
                 {cutingString(movie.title ?? movie.original_title, 35)}
               </h1>
               <div
@@ -50,7 +49,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
                         TMDB {floorNumber(movie.vote_average)}
                       </h3>
                       <MovieCardHoverBtn
-                        iconId="icon-heart_btn"
+                        iconId={false ? "icon-heart_fill" : "icon-heart"}
                         dataMovie={"save it"}
                         text="save it"
                         isChecked={false}

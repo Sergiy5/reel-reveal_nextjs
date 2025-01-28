@@ -1,8 +1,8 @@
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 
 export const getManyMoviesByIds = async (
   arrayIds: number[]
-): Promise<Movie[]> => {
+): Promise<IMovie[]> => {
   const token = process.env.BEARER_TOKEN_TMDB;
 
   try {
@@ -24,6 +24,6 @@ export const getManyMoviesByIds = async (
     return response;
   } catch (error: any) {
     console.error("Fetch error:", error);
-    return [] as Movie[];
+    return [] as IMovie[];
   }
 };

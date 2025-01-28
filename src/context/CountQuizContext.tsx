@@ -3,26 +3,29 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { format, isSameDay } from "date-fns";
 import { useIndexedDB } from '@/hooks';
+import { countDefaultQuizes } from '@/variables';
 
 
 // Create the context
 const CountQuizContext = createContext({
-  count: 4,
+  count: countDefaultQuizes,
   decrement: () => {},
   reset: () => {},
 });
 
 // Create the provider component
 export const CountQuizProvider = ({ children }: { children: React.ReactNode }) => {
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(countDefaultQuizes);
   const [isToDay, setIsToDay] = useState(false);
   const [dateToday, setDateToday] = useState(format(new Date(), "yyyy-MM-dd"));
 
   // Use IndexedDB
   const { setIndexedDB, getIndexedDB } = useIndexedDB();
-
+  
+// Refresh count on new day
   useEffect(() => {
-  if (isToDay) return
+    if (isToDay) return
+    
     getIndexedDB("quizCount")
       .then((dataQuiz: any) => {
 
@@ -37,8 +40,9 @@ export const CountQuizProvider = ({ children }: { children: React.ReactNode }) =
 
         setIndexedDB("quizCount", {
           date: dateToday,
-          count: 4,
+          count: countDefaultQuizes,
         });
+
         if (!isToDay) setIsToDay(true);
       })
       .catch((error) => {
@@ -47,7 +51,9 @@ export const CountQuizProvider = ({ children }: { children: React.ReactNode }) =
 }, [dateToday, getIndexedDB, isToDay, setIndexedDB]);
 
   useEffect(() => {
-if(!isToDay) return
+
+    if (!isToDay || count <= 0) return
+    
 setIndexedDB("quizCount", {
   date: dateToday,
   count,

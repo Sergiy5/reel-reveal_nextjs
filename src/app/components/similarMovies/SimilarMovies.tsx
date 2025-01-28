@@ -5,12 +5,12 @@ import { Loader } from "../ui/Loader";
 import useSWR from "swr";
 import { ButtonOrLink } from "@/app/components/ui/ButtonOrLink";
 import { fetchMovieDataFromAPI } from "@/app/actions/fetchMovieDataFromAPI";
-import { sessionUser } from "@/typification";
+import { ISessionUser } from "@/typification";
 
 export interface SimilarMoviesProps {
   title?: string;
   movieId: number;
-  sessionUser: sessionUser;
+  sessionUser: ISessionUser;
 }
 export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
   title,

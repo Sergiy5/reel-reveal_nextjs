@@ -1,10 +1,10 @@
-import { Movie } from "@/typification";
+import { IMovie } from "@/typification";
 
-export const firstElementsFromArrays = (arrMovies: Movie[][]): Movie[] => {
+export const firstElementsFromArrays = (arrMovies: IMovie[][]): IMovie[] => {
   console.log("arrMovies_>>>>>>>>>>>>>", arrMovies);
   if (arrMovies.length) {
     const arrForListMovies = arrMovies
-      .map((item: Movie[]) => {
+      .map((item: IMovie[]) => {
         for (let i = 0; i < item.length; i++) {
           if (item[i].poster_path?.length) {
             return item[i];
@@ -14,7 +14,7 @@ export const firstElementsFromArrays = (arrMovies: Movie[][]): Movie[] => {
       })
       .filter((movie) => movie !== undefined); // Remove undefined values
 
-    return arrForListMovies as Movie[];
+    return arrForListMovies as IMovie[];
   }
   return [];
 };

@@ -69,7 +69,8 @@ export const useIndexedDB = (): IndexedDBService => {
         };
         request.onerror = () => reject("Failed to get value from IndexedDB");
       });
-    } else {
+    }
+    else {
       return Promise.reject("Database is not ready");
     }
   };

@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import { Movie, sessionUser } from "@/typification";
+import { IMovie, ISessionUser } from "@/typification";
 import { MySlider } from "@/app/components/mySlider/MySlider";
 import { MovieCard } from "@/app/components/movieCard/MovieCard";
 import { settings } from "@/app/components/mySlider/MySlider";
 
 export interface GetShowMoviesProps {
   title: string;
-  movies: Movie[];
-  sessionUser: sessionUser;
+  movies: IMovie[];
+  sessionUser: ISessionUser;
 }
 
 export const GetShowMovies: React.FC<GetShowMoviesProps> = ({

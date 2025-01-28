@@ -114,15 +114,13 @@ const [isSubmited, setIsSubmited] = useState(false);
         <ButtonOrLink
           type="submit"
           onClick={() => setIsSubmited(true)}
-          className={`w-full`}
         >
           create account
         </ButtonOrLink>
       </form>
       <Link href={`/register`} className={`link`}>
         <p>Forgot password?</p>
-      </Link>
-      <div className={`w-full h-[1px] bg-gray-500`}></div>
+      </Link> 
     </>
   );
 };

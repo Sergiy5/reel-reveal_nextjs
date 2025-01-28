@@ -24,11 +24,11 @@ export const Auth: React.FC = () => {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center pb-32 gap-12 z-20`}
+      className={`relative flex flex-col items-center justify-center pb-32 gap-12 z-10`}
     >
       <h3>{title}</h3>
       <div
-        className={`flex flex-col items-center justify-center gap-6 w-[372px] `}
+        className={`flex flex-col items-center justify-center gap-6 w-full md:w-[372px] `}
       >
         {statusUser === "signin" ? (
           <AuthLogin
@@ -41,22 +41,26 @@ export const Auth: React.FC = () => {
           <AuthLoginPassword setIsLoading={setIsLoading} />
         )}
       </div>
-      <p className={`text-lg`}>
-        By signing in or creating an account, you agree with our{" "}
-        <Link
-          href="/terms-and-conditions"
-          className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
-        >
-          Terms & Conditions
-        </Link>{" "}
-        and{" "}
-        <Link
-          href="/privacy-policy"
-          className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
-        >
-          Privacy Policy
-        </Link>
-      </p>
+      <div className="flex flex-col items-center gap-6">
+        <div className={`w-full h-[1px] bg-gray-500`}></div>
+        <p className={`text-lg text-center`}>
+          By signing in or creating an account, you agree with our{" "}
+          <Link
+            href="/terms-and-conditions"
+            className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
+          >
+            Terms & Conditions
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/privacy-policy"
+            className="hover:text-clickedColor cursor-pointer transition ease-in-out text-accentColor active:text-clickedColor"
+          >
+            Privacy Policy
+          </Link>
+        </p>
+      </div>
+
       <Modal isOpen={isLoading}>
         <Loader />
       </Modal>
