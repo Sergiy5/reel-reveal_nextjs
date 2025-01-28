@@ -9,9 +9,13 @@ import { IQuizData } from "@/typification";
 
 export interface QuizQuestionsProps {
   quizData: (answerForAI: string[]) => void;
+  isLeftQuiz: boolean;
 }
 
-export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
+export const QuizQuestions: React.FC<QuizQuestionsProps> = ({
+  quizData,
+  isLeftQuiz,
+}) => {
   const [currentQuiz, setCurrentQuiz] = useState<IQuizData>(quizDataList[0]);
   const [currentPageForProgresBar, setCurrentPageForProgresBar] = useState(1);
   const [quizResult, setQuizResult] = useState<string[]>([]);
@@ -50,7 +54,7 @@ export const QuizQuestions: React.FC<QuizQuestionsProps> = ({ quizData }) => {
       >
         <QuizButtons
           collectQuiz={collectQuizChoices}
-          isActive={isDisabled}
+          isDisabled={isDisabled || isLeftQuiz}
           answers={options}
         />
       </div>

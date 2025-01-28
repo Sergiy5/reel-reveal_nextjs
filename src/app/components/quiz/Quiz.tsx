@@ -89,7 +89,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
-          <QuizQuestions quizData={setQuizResult} />
+          <QuizQuestions quizData={setQuizResult} isLeftQuiz={ count === 0} />
       ) : (
         <QuizListMovies
           clearPrevQuiz={handleNextQuizClick}
