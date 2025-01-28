@@ -113,7 +113,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       >
         <div className="relative flex items-center justify-center w-full h-lvh">
           <div
-            className={`absolute w-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[860px]"}`}
+            className={`absolute w-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[1280px]"}`}
           >
             <PopUp onClose={() => setShowModal(false)} />
           </div>
