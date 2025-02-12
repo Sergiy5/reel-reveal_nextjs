@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Urbanist } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ConsentCoockie } from "./components/consentCoockie/ConsentCookie";
-import { Urbanist } from "next/font/google";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -20,31 +20,46 @@ const CountQuizProviderDynamic = dynamic(() =>
 );
 
 export const metadata: Metadata = {
-  title: "Reel-Reveal",
-  description: "Discover your perfect movie match with our AI-powered quiz.",
-  robots: "noindex, nofollow",
-  keywords: "movie recommendations, AI quiz, film match, cinema, entertainment",
+  title: "Reel-Reveal | AI Movie Quiz for Personalized Recommendations",
+  description:
+    "Find your perfect movie with Reel-Reveal! Take our AI-powered quiz and get personalized film recommendations tailored to your taste.",
+  robots: "index, follow",
+  keywords:
+    "AI movie quiz, personalized movie recommendations, best films to watch, film matcher, AI cinema guide",
   authors: [
     {
       name: "Reel-Reveal Team",
-      url: "https://reel-reveal-nextjs.vercel.app",
+      url: "https://www.reel-reveal.club",
     },
   ],
+  metadataBase: new URL("https://www.reel-reveal.club"),
+  alternates: {
+    canonical: "https://www.reel-reveal.club",
+  },
   openGraph: {
-    title: "Reel-Reveal - Find Your Perfect Movie",
-    description: "Take our AI-based quiz to discover your next favorite film!",
-    url: "https://reel-reveal-nextjs.vercel.app/home",
+    title: "Reel-Reveal | AI Movie Quiz for Personalized Recommendations",
+    description:
+      "Take our AI-based quiz and get the best movie recommendations based on your taste!",
+    url: "https://www.reel-reveal.club",
     type: "website",
     images: [
       {
-        url: "https://reel-reveal-nextjs.vercel.app/images/og-image.png",
-        width: 800,
-        height: 600,
+        url: "images/reel_reveal.webp",
+        width: 1200,
+        height: 630,
         alt: "Reel-Reveal",
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reel-Reveal | AI Movie Quiz for Personalized Recommendations",
+    description:
+      "Take our AI-based quiz and get the best movie recommendations based on your taste!",
+    images: ["images/reel_reveal.webp"],
+  },
 };
+
 
 export default async function RootLayout({
   children,
