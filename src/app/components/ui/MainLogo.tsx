@@ -7,6 +7,7 @@ export const MainLogo: React.FC = () => {
       href={"/home"}
       className="flex items-center justify-center"
       aria-label="Go to ReelReveal home page"
+      aria-labelledby="main-logo"
     >
       <span>
         <Icon

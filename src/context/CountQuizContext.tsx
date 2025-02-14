@@ -1,10 +1,8 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 import { format, isSameDay } from "date-fns";
-import { useIndexedDB } from '@/hooks';
-import { countDefaultQuizes } from '@/variables';
-
+import { countDefaultQuizes } from "@/variables";
 
 // Create the context
 const CountQuizContext = createContext({
@@ -14,52 +12,50 @@ const CountQuizContext = createContext({
 });
 
 // Create the provider component
-export const CountQuizProvider = ({ children }: { children: React.ReactNode }) => {
+export const CountQuizProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [count, setCount] = useState(countDefaultQuizes);
   const [isToDay, setIsToDay] = useState(false);
-  const [dateToday, setDateToday] = useState(format(new Date(), "yyyy-MM-dd"));
+  const dateToday = format(new Date(), "yyyy-MM-dd");
 
-  // Use IndexedDB
-  const { setIndexedDB, getIndexedDB } = useIndexedDB();
-  
-// Refresh count on new day
+  // Load data from localStorage
   useEffect(() => {
-    if (isToDay) return
-    
-    getIndexedDB("quizCount")
-      .then((dataQuiz: any) => {
+    if (isToDay) return;
 
-        if (
-          dataQuiz &&
-          isSameDay(new Date(dataQuiz.date), new Date(dateToday))
-        ) {
+    const storedData = localStorage.getItem("quizCount");
+    if (storedData) {
+      try {
+        const dataQuiz = JSON.parse(storedData);
+        if (isSameDay(new Date(dataQuiz.date), new Date(dateToday))) {
           setCount(dataQuiz.count);
           setIsToDay(true);
           return;
         }
+      } catch (error) {
+        console.error("Error parsing localStorage data:", error);
+      }
+    }
 
-        setIndexedDB("quizCount", {
-          date: dateToday,
-          count: countDefaultQuizes,
-        });
+    // If no valid data, set default values
+    localStorage.setItem(
+      "quizCount",
+      JSON.stringify({ date: dateToday, count: countDefaultQuizes })
+    );
+    setIsToDay(true);
+  }, [dateToday, isToDay]);
 
-        if (!isToDay) setIsToDay(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-}, [dateToday, getIndexedDB, isToDay, setIndexedDB]);
-
+  // Update localStorage when count changes
   useEffect(() => {
+    if (!isToDay || count < 0) return;
 
-    if (!isToDay || count < 0) return
-    
-setIndexedDB("quizCount", {
-  date: dateToday,
-  count,
-})
-  }, [count, dateToday, isToDay, setIndexedDB])
-
+    localStorage.setItem(
+      "quizCount",
+      JSON.stringify({ date: dateToday, count })
+    );
+  }, [count, dateToday, isToDay]);
 
   // Decrement function
   const decrement = () => setCount((prevCount) => prevCount - 1);
@@ -76,7 +72,5 @@ setIndexedDB("quizCount", {
 
 // Custom hook to use the context
 export const useContextCountQuiz = () => {
-  const context = useContext(CountQuizContext);
-
-  return context;
+  return useContext(CountQuizContext);
 };

@@ -56,6 +56,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
+      aria-label="button"
       type={type}
       className={`${commonClasses} ${className}`}
       {...props}

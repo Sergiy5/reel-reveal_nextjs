@@ -14,7 +14,7 @@ export const Icon: React.FC<IconProps> = ({
   className: styles,
 }) => {
   return (
-    <svg width={width} height={height} className={`${styles}`}>
+    <svg width={width} height={height} aria-label={`icon ${id}`} className={`${styles}`}>
       <use xlinkHref={`/icons/sprite.svg#${id}`} />
     </svg>
   );

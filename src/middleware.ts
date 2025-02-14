@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
   const session = await auth();
   const isAuthenticated = !!session?.user;
 
-  console.log("IN_MIDDLEWARE_>>>>>>>>>>>>>", isAuthenticated, nextUrl.pathname);
+  // console.log("IN_MIDDLEWARE_>>>>>>>>>>>>>", isAuthenticated, nextUrl.pathname);
 
   // Define the path where middleware should apply
   const protectedPaths = ["/profile", "/saved"]; // if need to add more paths from api

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-// import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { ListMovies } from "@/app/components/listMovies/ListMovies";
@@ -12,19 +11,15 @@ import { useMoviesContext } from "@/context/ServiceMoviesContext";
 import { IMovie, ISessionUser } from "@/typification";
 import { Modal } from "../ui/Modal";
 
-// const ModalDynamic = dynamic(() =>
-//   import("../ui/Modal").then((mod) => mod.Modal)
-// );
-
 interface SavedMoviesProps {
   sessionUser: ISessionUser;
 }
 
 export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
-    const [movies, setMovies] = useState<IMovie[] | null>(null);
+    const [movies, setMovies] = useState<IMovie[]>();
 
-    const { likedMovies, isLoading, isValidating } = useMoviesContext();
+    const { likedMovies, isLoading } = useMoviesContext();
 
     const { data } = useSWR(
       likedMovies.length > 0
@@ -34,12 +29,16 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
     );
 
     useEffect(() => {
-      setMovies(data?.movies || []);
-    }, [data]);
+      if (!data) return;
 
+      setMovies(data?.movies);
+    }, [data, data?.movies.length]);
+    
     return (
-      <div className="flex items-center flex-col justify-center gap-20 w-full mb-20 z-20">
-        {movies?.length === 0 ? (
+      <div
+        className={`flex items-center flex-col justify-center gap-20 w-full mb-20 ${movies?.length ? "z-10" : "z-20"} `}
+      >
+        {movies?.length === 0 || !movies ? (
           <>
             <Image
               src="/images/popcorn.png"
@@ -68,7 +67,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
             <ListMovies movies={movies ?? []} sessionUser={sessionUser} />
           </>
         )}
-        <Modal isOpen={isValidating || isLoading || movies === null}>
+        <Modal isOpen={isLoading}>
           <Loader />
         </Modal>
       </div>

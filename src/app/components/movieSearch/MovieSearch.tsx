@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { Loader } from "../ui/Loader";
 import { ListMovies } from "@/app/components/listMovies/ListMovies";
@@ -10,10 +9,7 @@ import { fetchMovieDataFromAPI } from "../../actions/fetchMovieDataFromAPI";
 import { IQueryFilterParams, IMovie, ISessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { MovieSearchFilter } from "./MovieSearchFilter";
-
-const ModalDynamic = dynamic(() =>
-  import("../ui/Modal").then((mod) => mod.Modal)
-);
+import { Modal } from "../ui/Modal";
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
@@ -27,7 +23,6 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [page, setPage] = useState(1);
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
-  const [totalPages, setTotalPages] = useState(movies.length / 20); //allMoviesSignal.value.length / 20
   const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
   const [queryGenre, setQueryGenre] = useState<string | null>(null);
 
@@ -63,9 +58,8 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     setQueryGenre(genreName);
   }, [genreName]);
 
-  const clearCache = () => mutate(() => true, undefined);
-
   useEffect(() => {
+
     setMovieStatus(null);
     setMovies([]);
   }, [filterOptions]);
@@ -87,7 +81,8 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   }, [movieTitle, movieTitle?.length, page, queryTitle]);
 
   useEffect(() => {
-    if (isActiveSearch === null) return;
+    if (isActiveSearch === null || isActiveSearch === false) return;
+
     setMovieStatus(null);
     mutate();
   }, [mutate, page, isActiveSearch]);
@@ -96,7 +91,6 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     if (!data?.results || movieStatus === "success") return;
 
     setTotalMovies(data.total_results);
-    setTotalPages(data.total_pages);
 
     setMovies((prev) => [...prev, ...data.results]);
     setMovieStatus("success");
@@ -130,7 +124,10 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
         className={`flex w-full items-center justify-center gap-5 z-10 flex-col sm:flex-row`}
       >
         <ButtonOrLink
-          onClick={() => setPage((prev) => prev + 1)}
+          onClick={() => {
+            setMovieStatus(null);
+            setPage((prev) => prev + 1)
+          }}
           transparent
           disabled={totalMovies === 0}
           className="md:w-[245px]"
@@ -141,11 +138,11 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
           take quiz
         </ButtonOrLink>
       </div>
-      <ModalDynamic isOpen={isLoading || isValidating}>
+      <Modal isOpen={isLoading || isValidating}>
         <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
         </div>
-      </ModalDynamic>
+      </Modal>
     </div>
   );
 };

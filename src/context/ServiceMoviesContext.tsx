@@ -80,12 +80,12 @@ export const ServiceMoviesProvider: React.FC<{
       );
       // Update movie in DB if watched true
       if (movie.watched) {
-        console.log("update movie in  liked");
+        // console.log("update movie in  liked");
         updateMoviesInDBAndMutate(userId, updatedMovie, updatedMovies, mutate);
 
         // Remove movie from DB if watched false
       } else {
-        console.log("remove movie from liked");
+        // console.log("remove movie from liked");
         removeMovieFromDBAndMutate(userId, movieId, mutate);
       }
     }
@@ -106,7 +106,7 @@ export const ServiceMoviesProvider: React.FC<{
 
       // If movie exists in DB update movie
     } else {
-      console.log("If movie exists in DB update movie");
+      // console.log("If movie exists in DB update movie");
       const updatedMovie = {
         movieId,
         liked: movie.liked,
@@ -118,12 +118,12 @@ export const ServiceMoviesProvider: React.FC<{
 
       // Update movie in DB if liked true
       if (movie.liked) {
-        console.log("Update movie in DB if liked true");
+        // console.log("Update movie in DB if liked true");
         updateMoviesInDBAndMutate(userId, updatedMovie, updatedMovies, mutate);
 
         // Remove movie from DB if liked false
       } else {
-        console.log("Remove movie from DB if liked false");
+        // console.log("Remove movie from DB if liked false");
         removeMovieFromDBAndMutate(userId, movieId, mutate);
       }
     }

@@ -28,7 +28,7 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
 
   useEffect(() => {
     setSelectedValues(selectedOptions);
-  }, [selectedOptions.length]);
+  }, [selectedOptions, selectedOptions.length]);
 
   // Close drop down on tap outside
   useEffect(() => {
@@ -84,6 +84,7 @@ export const MultiSelect: React.FC<SearchSelectProps> = ({
       className={`relative z-20 flex flex-col justify-end w-full
         `}
       ref={dropdownWithSearchRef}
+      aria-label='Select'
       onKeyDown={(e) => (e.key === 'Enter' ? toggleDropdown() : null)}
     >
       <div

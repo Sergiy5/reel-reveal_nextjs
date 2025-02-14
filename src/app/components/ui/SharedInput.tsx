@@ -71,6 +71,7 @@ export const SharedInput: React.FC<CustomInputProps> = ({
     <div className="relative">
       <input
         onInput={onInputHandler}
+        aria-label={`input ${label}`}
         id={id}
         type={type}
         defaultValue={defaultValue ?? ""}
