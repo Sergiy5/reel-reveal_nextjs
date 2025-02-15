@@ -4,7 +4,6 @@ import { MainLogo } from "@/app/components/ui/MainLogo";
 import { HeaderNav } from "./HeaderNav";
 import { auth } from "@/auth";
 import { Suspense } from "react";
-import { animationHeader } from "@/variables/animation";
 
 export const Header: React.FC = async () => {
   const session = await auth();
