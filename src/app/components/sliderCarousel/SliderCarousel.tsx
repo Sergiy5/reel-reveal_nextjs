@@ -1,10 +1,12 @@
 "use client";
 
-import { fetchPaths } from "@/app/actions";
 import React, { useEffect, useState } from "react";
+import { motion} from "motion/react";
+import { fetchPaths } from "@/app/actions";
 import { MySlider } from "../mySlider/MySlider";
 import { Loader } from "../ui/Loader";
 import { SliderCarouselSlide } from "./SliderCarouselSlide";
+import { animationSection } from "@/variables/animation";
 
 
 export const SliderCarousel: React.FC = () => {
@@ -51,7 +53,9 @@ export const SliderCarousel: React.FC = () => {
   };
 
   return (
-    <div className={` flex flex-col max-w-[3168px] gap-12 z-20 `}>
+    <motion.section
+      {...animationSection}
+      className={` flex flex-col max-w-[3168px] gap-12 z-20 `}>
       <h2 className={`mx-auto w-svw md:w-auto px-3`}>Stuck on Movie Choices?</h2>
       <div className={` flex flex-col mx-auto w-[864px] h-auto md:w-full`}>
         { images.length > 0 ? <MySlider
@@ -60,7 +64,7 @@ export const SliderCarousel: React.FC = () => {
           settings={settings}
         /> : <Loader/>}
       </div>
-    </div>
+    </motion.section>
   );
 };
 

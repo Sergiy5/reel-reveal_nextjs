@@ -4,12 +4,15 @@ import { MainLogo } from "@/app/components/ui/MainLogo";
 import { HeaderNav } from "./HeaderNav";
 import { auth } from "@/auth";
 import { Suspense } from "react";
+import { animationHeader } from "@/variables/animation";
 
 export const Header: React.FC = async () => {
   const session = await auth();
 
   return (
-    <div className={`flex justify-center items-center w-full `}>
+    <div
+      className={`flex justify-center items-center w-full `}
+    >
       <div
         className={`flex items-center justify-center py-0 w-full h-[58px] bg-bgColor  z-20 
             md:h-[68px] lg:h-[84px]`}
@@ -17,7 +20,7 @@ export const Header: React.FC = async () => {
         <div
           className={`flex items-center justify-between px-4 w-[1440px] md:px-[60px] xl:px-[120px] lg:px-[60px]`}
         >
-          <MainLogo />  
+          <MainLogo />
           <Suspense fallback={<div>Loading...</div>}>
             <HeaderSearchBar />
           </Suspense>

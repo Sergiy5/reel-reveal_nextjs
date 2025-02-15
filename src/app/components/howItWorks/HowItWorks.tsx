@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { HowItWorksItem } from "./HowItWorksItem";
+import { animationSection } from "@/variables/animation";
 
 export const HowItWorks = () => {
   return (
-    <article
+    <motion.section
+      {...animationSection}
       id="how it work"
       className={` relative flex items-start flex-col w-full gap-12 text-textColor md:items-center xl:gap-[38px] xl:gap-22 `}
     >
@@ -38,6 +43,6 @@ export const HowItWorks = () => {
           text="Explore the recommendations, pop your popcorn and enjoy, we have a movie for everybody!"
         />
       </div>
-    </article>
+    </motion.section>
   );
 };

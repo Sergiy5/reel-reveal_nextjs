@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import {motion} from "motion/react";
 import { GenreLinkIcon } from "./GenreLinkIcon";
 import { genres } from "../../../../public/genres/genres";
+import { animationSection } from "@/variables/animation";
 
 export const Genres: React.FC = (): React.JSX.Element => {
   return (
@@ -22,8 +26,10 @@ export const Genres: React.FC = (): React.JSX.Element => {
       <div
         className={`relative flex items-start flex-wrap justify-center gap-10 sm:gap-8 `}
       >
-        {genres.map(({ id, name }) => (
-          <GenreLinkIcon key={id} iconName={name} />
+        {genres.map(({ id, name }, index) => (
+          <motion.div {...animationSection} transition={{ delay: 0.1 * index }} key={id}>
+            <GenreLinkIcon iconName={name} />
+          </motion.div>
         ))}
       </div>
     </div>

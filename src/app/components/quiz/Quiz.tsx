@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import {motion} from "motion/react";
 import { Loader } from "../ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
@@ -12,6 +13,7 @@ import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
 import { PopUp } from "./PopUp";
+import { animationSection } from "@/variables/animation";
 
 interface IQuizProps {
   sessionUser: ISessionUser;
@@ -83,7 +85,9 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   }
 
   return (
-    <div className="relative flex items-center justify-center py-[131px] w-full min-h-[592px] gap-12">
+    <motion.section
+      {...animationSection}
+      className="relative flex items-center justify-center py-[131px] w-full min-h-[592px] gap-12">
       <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
 
       {isValidating ? (
@@ -111,6 +115,6 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
         </div>
       </Modal>
       <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
-    </div>
+    </motion.section>
   );
 };

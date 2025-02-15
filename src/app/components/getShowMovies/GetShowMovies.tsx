@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import { IMovie, ISessionUser } from "@/typification";
 import { MySlider } from "@/app/components/mySlider/MySlider";
 import { MovieCard } from "@/app/components/movieCard/MovieCard";
 import { settings } from "@/app/components/mySlider/MySlider";
+import { animationSection } from "@/variables/animation";
 
 export interface GetShowMoviesProps {
   title: string;
@@ -18,7 +20,8 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   sessionUser,
 }) => {
   return (
-    <div
+    <motion.section
+      {...animationSection}
       className={` flex flex-col items-center gap-12 w-full z-10 xl:max-w-[1440px]`}
     >
       <h2>{title}</h2>
@@ -31,6 +34,6 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
           settings={settings}
         />
       </div>
-    </div>
+    </motion.section>
   );
 };

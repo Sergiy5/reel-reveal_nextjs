@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { AnimatePresence, motion } from "motion/react";
 import { ButtonOrLink } from "@/app/components/ui/ButtonOrLink";
 import { ShowQuizCount } from "@/app/components/showQuizCount/ShowQuizCount";
+import { animationSection } from "@/variables/animation";
 
 export const Hero: React.FC = () => {
-
   return (
-    <div
+    <motion.section
+      {...animationSection}
       className={`relative flex justify-between flex-col-reverse gap-6 lg:flex-row -lg:mb-10 `}
     >
       <article
@@ -26,7 +30,6 @@ export const Hero: React.FC = () => {
           <ShowQuizCount /> start quiz
         </ButtonOrLink>
       </article>
-
       <div
         className={`relative flex items-center justify-center w-full h-auto`}
       >
@@ -38,14 +41,16 @@ export const Hero: React.FC = () => {
           priority
           className={` aspect-[590/584] z-10`}
         />
+
         <Image
           src={"/icons/hero_bg-ellips.svg"}
           width={833}
           height={890}
           alt="Hero movies"
-          className={` absolute w-auto h-auto blur-hero `}
+          className={`absolute w-auto h-auto blur-hero`}
         />
       </div>
-    </div>
+      <AnimatePresence mode="wait" />
+    </motion.section>
   );
 };
