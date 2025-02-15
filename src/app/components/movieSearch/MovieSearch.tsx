@@ -109,9 +109,9 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     >
       {isActiveSearch && !isLoading ? (
         <h1 className="flex justify-start md:justify-center w-full">
-          Found{" "}
-          <span className="font-bold text-accentColor">{totalMovies}</span>{" "}
-          movies based on your search &quot;{safeQueryTitle}
+          Found&nbsp;
+          <span className="font-bold text-accentColor">{totalMovies}</span>
+          &nbsp;movies based on your search &quot;{safeQueryTitle}
           &quot;
         </h1>
       ) : (
@@ -131,7 +131,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
         <ButtonOrLink
           onClick={() => {
             setMovieStatus(null);
-            setPage((prev) => prev + 1)
+            setPage((prev) => prev + 1);
           }}
           transparent
           disabled={totalMovies === 0}
