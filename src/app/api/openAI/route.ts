@@ -19,7 +19,7 @@ export const POST = async (req: Request) => {
       model: "gpt-3.5-turbo",
       temperature: 0.8,
     });
-console.log("result?.choices_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", result?.choices);
+    
     const message = result?.choices?.[0]?.message?.content
     ?.trim()
     .replace("\n", "");

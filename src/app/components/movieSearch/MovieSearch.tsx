@@ -10,6 +10,7 @@ import { IQueryFilterParams, IMovie, ISessionUser } from "@/typification";
 import { useSearchParams } from "next/navigation";
 import { MovieSearchFilter } from "./MovieSearchFilter";
 import { Modal } from "../ui/Modal";
+import { capitalizeFirstLetter } from "@/utils";
 
 export interface MovieSearchProps {
   movieTitle?: string | undefined;
@@ -31,7 +32,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     : `/api/movies/all`;
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    [currentUrl, filterOptions, page],
+    [`${currentUrl} ${queryTitle} ${page}`, filterOptions, page],
 
     () =>
       fetchMovieDataFromAPI(
@@ -59,44 +60,48 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   }, [genreName]);
 
   useEffect(() => {
+      // console.log("0");
 
     setMovieStatus(null);
     setMovies([]);
-  }, [filterOptions]);
+  }, [filterOptions, isActiveSearch]);
 
   useEffect(() => {
     if (movieTitle?.length && movieTitle !== queryTitle) {
+      // console.log("1")
       setisActiveSearch(true);
+      // console.log("movieTitle_>>>>>>>>>>>>>>>>>>>>", movieTitle);
       setQueryTitle(movieTitle);
       setPage(1);
       setMovies([]);
+
+       setMovieStatus(null);
+      mutate();
+      
     } else if (!movieTitle?.length && movieTitle !== queryTitle) {
+     
+      // console.log("2");
       setisActiveSearch(false);
       setQueryTitle("");
       setPage(1);
       setMovies([]);
     } else if (!movieTitle?.length) {
+     
+      // console.log("3");
       setisActiveSearch(false);
     }
-  }, [movieTitle, movieTitle?.length, page, queryTitle]);
-
-  useEffect(() => {
-    if (isActiveSearch === null || isActiveSearch === false) return;
-
-    setMovieStatus(null);
-    mutate();
-  }, [mutate, page, isActiveSearch]);
+  }, [movieTitle, movieTitle?.length, page, queryTitle, mutate]);
 
   useEffect(() => {
     if (!data?.results || movieStatus === "success") return;
-
+      // console.log("6");
     setTotalMovies(data.total_results);
 
     setMovies((prev) => [...prev, ...data.results]);
     setMovieStatus("success");
   }, [data, movieStatus]);
 
-  const safeQueryTitle = queryTitle ? decodeURIComponent(queryTitle) : "";
+  const safeQueryTitle = queryTitle ? capitalizeFirstLetter(decodeURIComponent(queryTitle)) : "";
 
   return (
     <div
