@@ -32,7 +32,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     : `/api/movies/all`;
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    [`${currentUrl} ${queryTitle} ${page}`, filterOptions, page],
+    [`${currentUrl} ${queryTitle} ${page}`, `${filterOptions}`, page],
 
     () =>
       fetchMovieDataFromAPI(
