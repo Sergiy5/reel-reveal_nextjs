@@ -9,7 +9,7 @@ import { animationSection } from "@/variables/animation";
 
 export const Genres: React.FC = (): React.JSX.Element => {
   return (
-    <div className={`relative flex flex-col items-center gap-12`}>
+    <div className={`relative z-20 flex flex-col items-center gap-12`}>
       <Image
         src={"/icons/genres_bg-ellips.svg"}
         alt="Background ellips"

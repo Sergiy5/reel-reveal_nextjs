@@ -26,7 +26,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
   const [queryGenre, setQueryGenre] = useState<string | null>(null);
-console.log("filterOptions>>>>>>>>>", filterOptions);
+
   const currentUrl = isActiveSearch
     ? "/api/movies/one-by-title"
     : `/api/movies/all`;
