@@ -13,7 +13,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
     <>
       {movie && (
         <div
-          className={`relative flex w-screen h-[1160px] sm:h-[960px] sm:aspect-[150/400] md:aspect-[1040/1024] lg:aspect-[1440/1024] lg:max-w-[1440px]`}
+          className={`relative flex w-full h-[1160px] sm:h-[960px] sm:aspect-[150/400] md:aspect-[1040/1024] lg:aspect-[1440/1024] lg:max-w-[1440px]`}
         >
           <div id="children" className={`absolute flex w-full h-full`}>
             <div

@@ -10,11 +10,7 @@ const MovieSearchDynamics = dynamic(() =>
   )
 );
 
-export default async function MoviesPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default async function MoviesPage() {
   // const query = searchParams.genre;
 
   // console.log("PARAMS", query);
