@@ -26,28 +26,28 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
   const [movieStatus, setMovieStatus] = useState<null | "success">(null);
   const [filterOptions, setFilterOptions] = useState<IQueryFilterParams>();
   const [queryGenre, setQueryGenre] = useState<string | null>(null);
-
+console.log("filterOptions>>>>>>>>>", filterOptions);
   const currentUrl = isActiveSearch
     ? "/api/movies/one-by-title"
     : `/api/movies/all`;
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
-    [`${currentUrl} ${queryTitle} ${page}`, `${filterOptions}`, page],
-
+    [
+      currentUrl,
+      isActiveSearch ? queryTitle : JSON.stringify(filterOptions), // Depend on filterOptions or queryTitle
+      page,
+    ],
     () =>
       fetchMovieDataFromAPI(
         currentUrl,
         isActiveSearch
           ? { title: queryTitle, page }
-          : {
-              filter: JSON.stringify(filterOptions),
-              page,
-            }
+          : { filter: JSON.stringify(filterOptions), page }
       ),
     {
-      revalidateOnFocus: false, // Optional: Prevent revalidation on focus
-      shouldRetryOnError: true, // Retry fetch on errors
-      dedupingInterval: 0, // Ensures SWR doesn't deduplicate fetches
+      revalidateOnFocus: false, // Prevents refetching on window focus
+      shouldRetryOnError: true, // Retries fetching if it fails
+      dedupingInterval: 0, // Ensures it refetches immediately when dependencies change
     }
   );
 

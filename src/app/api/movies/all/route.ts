@@ -43,6 +43,8 @@ export const GET = async (req: NextRequest) => {
   )
   : "";
   
+// console.log("URL_WITH_SEARCH=========================>>>>>>>>", URL_WITH_SEARCH);
+
   try {
     
     const response = await fetch(URL_WITH_SEARCH, options);
