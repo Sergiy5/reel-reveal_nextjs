@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { Hero } from "@/app/components/hero/Hero";
 import { HowItWorks } from "@/app/components/howItWorks/HowItWorks";
-import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
 import { getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 import { getSessionUser } from "@/utils";
 
@@ -31,7 +30,7 @@ export default async function Home() {
   const sessionUser = await getSessionUser();
 
   return (
-    <main>
+    <div className="page-wrapper">
       <Hero />
       <HowItWorks />
       <DynamicQuiz sessionUser={sessionUser} />
@@ -49,7 +48,6 @@ export default async function Home() {
 
       <DynamicGenres />
       <DynamicSliderCorousel />
-      <TakeOurQuiz />
-    </main>
+    </div>
   );
 }

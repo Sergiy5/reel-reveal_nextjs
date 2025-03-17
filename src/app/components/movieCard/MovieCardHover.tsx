@@ -10,6 +10,7 @@ interface IMovieForHover {
   id: number;
   isLiked: boolean;
   isWatched: boolean;
+  isShowHover: boolean;
 }
 
 interface MovieCardHoverProps {
@@ -40,7 +41,10 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
       id={`${id}`}
       data-movie={"movie"}
       onClick={handleMovie}
-      className="absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor"
+      className={`absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor
+         transition-opacity duration-500 ease-in-out
+        ${movie.isShowHover ? "opacity-100" : "opacity-0"}
+        `}
     >
       <div className="flex justify-between">
         <div className=" flex flex-col h-12.5">
@@ -53,10 +57,10 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           <span className="text-white">{releaseYear}</span>
         </div>
 
-        <ul className="flex flex-col justify-between h-[119px]">
+        <ul className="flex flex-col justify-between items-end h-[119px]">
           <li key={nanoid()}>
             <MovieCardHoverBtn
-              iconId={isLiked ?"icon-heart_fill" :"icon-heart"}
+              iconId={isLiked ? "icon-heart_fill" : "icon-heart"}
               dataMovie={"saveIt"}
               onClick={handleMovie}
               text="save it"

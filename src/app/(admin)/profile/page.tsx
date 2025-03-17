@@ -2,8 +2,8 @@ import { UserProfile } from "@/app/components/userProfile/UserProfile";
 
 export default async function ProfilePage() {
   return (
-    <main>
+    <div className="page-wrapper">
       <UserProfile />
-    </main>
+    </div>
   );
 }

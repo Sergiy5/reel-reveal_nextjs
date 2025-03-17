@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className=" w-full md:w-[700px]">
+    <div className="page-wrapper w-full md:w-[700px]">
       <div className="flex flex-col gap-6  ">
         <h1>Privacy Policy</h1>
         <p>Last updated: January 15, 2025</p>
@@ -580,6 +580,6 @@ export default function PrivacyPolicyPage() {
           <li>By email: info.reelreveal@gmail.com</li>
         </ul>
       </div>
-    </main>
+    </div>
   );
 }

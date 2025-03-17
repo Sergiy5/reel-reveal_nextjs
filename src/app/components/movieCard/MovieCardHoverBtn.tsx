@@ -43,35 +43,38 @@ export const MovieCardHoverBtn: React.FC<MovieCardHoverBtnProps> = ({
   //     }
 
   return (
-    <div
-      className={`group relative flex items-center justify-center w-7 h-7 bg-transparent rounded-full border-solid border
-         transition-all duration-350 ease-in-out
-        ${isChecked ? "border-accentColor" : "border-textColor"}
-      `}
-      onClick={()=> console.log("first")}
-    >
-      <button
-        type="button"
-        data-movie={dataMovie}
-        onClick={onClick}
-        className={`absolute flex items-center justify-center right-0 pr-6 w-7 h-7
-           border-solid border border-r-hidden rounded-full overflow-hidden transition-all duration-350 ease-in-out
-          group-hover:w-28 text-transparent
-          ${
-            isChecked
-              ? "group-hover:text-accentColor border-accentColor"
-              : "group-hover:text-textColor border-textColor"
-          }
+   
+    <button
+      type="button"
+      data-movie={dataMovie}
+      onClick={onClick}
+      className={`group relative flex items-center justify-end right-0 w-7 h-7
+           border rounded-full overflow-hidden transition-all duration-[350ms] ease-in-out
+          hover:w-24 text-transparent
+         
         `}
+    >
+      <span
+        className={`absolute z-10 w-full h-full border rounded-full pr-4 border-solid transition-all duration-300  ${
+          isChecked
+            ? "text-accentColor border-accentColor text-opacity-0 group-hover:text-opacity-100"
+            : "text-textColor border-textColor text-opacity-0 group-hover:text-opacity-100"
+        } `}
       >
         {text}
-      </button>
-      <Icon
-        id={iconId}
-        width={16}
-        height={16}
-        className={`${isChecked ? "text-accentColor" : "text-textColor"}`}
-      />
-    </div>
+      </span>
+      <span
+        className={`absolute z-20 ml-auto w-7 h-7 flex items-center justify-center rounded-full border-solid border transition-all duration-350 ease-in-out
+         ${isChecked ? "border-accentColor" : "border-textColor"}
+       `}
+      >
+        <Icon
+          id={iconId}
+          width={16}
+          height={16}
+          className={`${isChecked ? "text-accentColor" : "text-textColor"}`}
+        />
+      </span>
+    </button>
   );
 };

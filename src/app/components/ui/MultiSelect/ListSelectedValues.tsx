@@ -44,11 +44,13 @@ export const ListSelectedValues: React.FC<ListSelectedValuesProps> = ({
   };
 
   return (
-    <ul className={"flex flex-wrap gap-2 sm:gap-4"}>
+    <ul
+      className={`flex flex-wrap gap-2 sm:gap-4 transition-all duration-1000 ${selectedList.length === 0 ? "h-0" : "h-[42px]"} `}
+    >
       {selectedList.map((value, index) => (
         <li
           key={index}
-          className={`flex items-center rounded-full border border-bgLightColor px-4 py-2 bg-bgColor
+          className={`flex items-center rounded-full border border-bgLightColor px-4 py-2 bg-bgColor h-[42px]
              transition-all ease-in-out duration-500 
               ${index < visibleCount ? "opacity-100" : "opacity-0"}
                  `}

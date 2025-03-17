@@ -8,7 +8,7 @@ import { Modal } from "../ui/Modal";
 import { MovieInfoTrailer } from "../movieInfo/MovieInfoTrailer";
 import { MovieCardHover } from "./MovieCardHover";
 import { IMovie } from "@/typification";
-import { useOpenUrl } from "@/hooks";
+import { useOpenUrl, useResize } from "@/hooks";
 import { useMoviesContext } from "@/context/ServiceMoviesContext";
 
 export interface IMovieInDB {
@@ -30,6 +30,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openUrl = useOpenUrl();
+  const screenWidth = useResize();
 
   const { likedMovies, watchedMovies, toggleLiked, toggleWatched } =
     useMoviesContext();
@@ -48,7 +49,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     id: id,
     isLiked: isLiked,
     isWatched: isWatched,
+    isShowHover: isShowHover,
   };
+
+const handleMouseEvent = (e: React.MouseEvent<HTMLDivElement>) => {
+  e.stopPropagation();
+  screenWidth > 1024 && setIsShowHover(true);
+};
 
   const handleMovie = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
@@ -57,10 +64,15 @@ export const MovieCard: React.FC<MovieCardProps> = ({
     const clickedTarget = e.currentTarget.dataset.movie;
 
     if (clickedTarget === "movie") {
-      const url = `/movies/${id}`;
+      
+      if (screenWidth < 1024 && !isShowHover) {
+         setIsShowHover(true);
+      } else if (isShowHover) {
+        const url = `/movies/${id}`;
+        openUrl(url, e);
+      }
 
       // Open the URL in a new tab if Ctrl or Meta key is pressed
-      openUrl(url, e);
     }
 
     if (clickedTarget === "trailer") toggleModal();
@@ -84,18 +96,20 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 
   return (
     <div
-      onMouseEnter={() => {
-        setIsShowHover(true);
+      onMouseEnter={(e) => {
+        handleMouseEvent(e);
       }}
       onMouseLeave={() => {
         setIsShowHover(false);
       }}
       className={`p-1 w-full lg:p-2 xl:p-3`}
     >
+      {/* Hover Movie Card */}
       <div className=" relative w-full">
-        {isShowHover ? (
-          <MovieCardHover movie={movieForHover} handleMovie={handleMovie} />
-        ) : null}
+          <MovieCardHover
+            movie={movieForHover}
+            handleMovie={handleMovie}
+          />
         {poster_path ? (
           <Image
             id={`${id}`}

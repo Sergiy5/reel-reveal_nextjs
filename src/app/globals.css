@@ -15,15 +15,15 @@
     /* Adjust font stack as needed */
   }
 
-/* Autofill text color (white) to prevent browser default color */
-.autofill-text:-webkit-autofill {
-  -webkit-text-fill-color: white;
-}
+  /* Autofill text color (white) to prevent browser default color */
+  .autofill-text:-webkit-autofill {
+    -webkit-text-fill-color: white;
+  }
 
-.text-input {
-  /* set text colour (white) */
-  @apply autofill-text;
-}
+  .text-input {
+    /* set text colour (white) */
+    @apply autofill-text;
+  }
 
   /* .scrollbar {
     scrollbar-width: thin;
@@ -44,19 +44,13 @@
     background-color: #f1f1f1;
   } */
 }
+
 body {
   @apply block max-w-full bg-bgColor;
 }
 
-main {
-  @apply relative flex flex-col items-center justify-start font-light font-urbanist mx-auto px-4 py-6
-   max-w-[1440px] text-textColor bg-bgColor gap-16 overflow-hidden
-    md:px-20 md:py-20 md:gap-20
-    xl:gap-40 xl:px-[120px] lg:py-10 xl:overflow-visible xl:max-w-[1440px];
-}
-
 code {
-  @apply font-urbanist ;
+  @apply font-urbanist;
 }
 
 p,
@@ -76,6 +70,7 @@ h1 {
   font-size: 40px;
   line-height: 120%;
 }
+
 @media (min-width: 769px) {
   h1 {
     line-height: 60px;
@@ -84,7 +79,7 @@ h1 {
 }
 
 h2 {
-  @apply text-4xl font-semibold 
+  @apply text-4xl font-semibold
 }
 
 h3 {
@@ -118,7 +113,7 @@ a {
 
 
 p {
-@apply font-thin text-base leading-7 tracking-widest opacity-80;
+  @apply font-thin text-base leading-7 tracking-widest opacity-80;
 }
 
 button,
@@ -126,12 +121,18 @@ a {
   @apply cursor-pointer p-0 m-0 border-none;
 }
 
+.page-wrapper {
+  @apply relative flex flex-col items-center justify-start font-light font-urbanist mx-auto px-4 py-6 max-w-[1440px]
+   text-textColor bg-bgColor gap-16 overflow-hidden md:px-20 md:py-20 md:gap-20 xl:gap-40 xl:px-[120px] xl:pb-32 lg:py-10
+   xl:overflow-visible;
+}
+
 .custom-outline:focus {
- @apply outline-[2px] text-accentColor;
+  @apply outline-[2px] text-accentColor;
 }
 
 .custom-outline:active {
- @apply outline-none;
+  @apply outline-none;
 }
 
 .border-r-hidden {
@@ -144,15 +145,16 @@ a {
 }
 
 .link {
-  @apply text-textColor transition-colors duration-300 ease-in-out hover:text-accentColor ;
+  @apply text-textColor transition-colors duration-300 ease-in-out hover:text-accentColor;
 }
 
 .link-btn {
-  @apply flex items-center justify-center h-10 font-bold text-lg uppercase
-  text-bgColor rounded-full bg-accentColor shadow-none transition-all duration-300 ease-in-out
-  hover:shadow-hoverShadow hover:bg-accentColor focus:shadow-focusShadow active:bg-clickedColor 
+  @apply flex items-center justify-center h-10 font-bold text-lg uppercase text-bgColor rounded-full bg-accentColor shadow-none transition-all duration-300 ease-in-out hover:shadow-hoverShadow hover:bg-accentColor focus:shadow-focusShadow active:bg-clickedColor
 }
 
+.take-quiz-btn {
+  @apply w-[249px] mx-auto sm:w-[343px] md:w-[249px];
+}
 
 .slick-track {
   display: flex !important;
@@ -164,7 +166,9 @@ a {
     left: 0 !important;
   }
 }
+
 .slick-slide {
   width: 100% !important;
-}/*# sourceMappingURL=globals.css.map */
+}
 
+/*# sourceMappingURL=globals.css.map */

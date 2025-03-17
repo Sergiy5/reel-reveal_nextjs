@@ -118,7 +118,7 @@ export const MovieSearchFilter: React.FC<MovieSearchFilterProps> = ({
           apply filters
         </ButtonOrLink>
       </div>
-      <div className="flex flex-wrap justify-between gap-6">
+      <div className={`flex flex-wrap justify-between gap-6`}>
         <ListSelectedValues
           selectedValues={allfilterOptions}
           removeValue={removeValue}

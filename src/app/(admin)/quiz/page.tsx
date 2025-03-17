@@ -11,10 +11,10 @@ export default async function Home() {
   const sessionUser = await getSessionUser();
 
   return (
-    <main>
+    <div className="page-wrapper">
       <DynamicQuiz sessionUser={sessionUser} />
       <HowItWorks />
       <SliderCarousel />
-    </main>
+    </div>
   );
 }

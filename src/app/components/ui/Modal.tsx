@@ -77,34 +77,28 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
         handleClickOutside(e)
       }
-      className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-50"
+      className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-80"
     >
-      <div
-        className="relative w-full"
-        role="dialog"
-        aria-modal="true"
-      >
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="absolute top-0 right-2"
-            aria-label="Close Modal"
-          >
-            {!isHideCross && (
-              <Icon
-                id={"cross"}
-                width={30}
-                height={30}
-                className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
+     
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="absolute z-50 bg-enableBgColor p-1 top-8 right-8"
+          aria-label="Close Modal"
+        >
+          {!isHideCross && (
+            <Icon
+              id={"cross"}
+              width={30}
+              height={30}
+              className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
                          transition duration-300 easy-in-out hover:text-accentColor`}
-              />
-            )}
-          </button>
-        )}
-        <div className="flex items-center justify-center w-auto" >
+            />
+          )}
+        </button>
+      )}
+      <div className=" flex items-center justify-center w-full px-2 lg:px-20">
         {children}
-
-        </div>
       </div>
     </div>,
     modalRoot

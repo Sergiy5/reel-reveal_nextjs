@@ -1,9 +1,8 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { Genres } from "@/app/components/genres/Genres";
-import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
-import { getSessionUser } from "@/utils";
 import { Loader } from "@/app/components/ui/Loader";
+import { getSessionUser } from "@/utils";
 
 const MovieSearchDynamics = dynamic(() =>
   import("@/app/components/movieSearch/MovieSearch").then(
@@ -11,16 +10,22 @@ const MovieSearchDynamics = dynamic(() =>
   )
 );
 
-export default async function MoviesPage() {
+export default async function MoviesPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  // const query = searchParams.genre;
+
+  // console.log("PARAMS", query);
   const sessionUser = await getSessionUser();
 
   return (
-    <main>
+    <div className="page-wrapper">
       <Suspense fallback={<Loader />}>
         <MovieSearchDynamics sessionUser={sessionUser} />
       </Suspense>
       <Genres />
-      <TakeOurQuiz />
-    </main>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import { MovieInfo } from "@/app/components/movieInfo/MovieInfo";
-import { TakeOurQuiz } from "@/app/components/takeOurQuiz/TakeOurQuiz";
 import { getMovieById } from "@/app/services";
 import { getSessionUser } from "@/utils";
 
@@ -39,7 +38,7 @@ export default async function OneMoviePage(props: {
   const { title, original_title } = movie;
 
   return (
-    <main className={`pt-0 gap-0`}>
+    <div className="page-wrapper md:pt-0 lg:pt-0 gap-0 md:gap-0">
       <MovieInfo movie={movie} />
       <DynamicMovieInfoTrailer id={movieId} />
       <div
@@ -52,8 +51,7 @@ export default async function OneMoviePage(props: {
           sessionUser={sessionUser}
         />
         <DynamicSliderCarousel />
-        <TakeOurQuiz />
       </div>
-    </main>
+    </div>
   );
 }

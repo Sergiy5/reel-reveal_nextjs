@@ -11,8 +11,8 @@ export default async function Saved() {
   const sessionUser = await getSessionUser();
 
   return (
-    <main>
+    <div className="page-wrapper">
       <SavedMoviesDynamics sessionUser={sessionUser} />
-    </main>
+    </div>
   );
 }

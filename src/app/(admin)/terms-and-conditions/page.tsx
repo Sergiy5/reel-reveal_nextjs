@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function TermAndConditionPage() {
   return (
-    <main className=" w-full md:w-[700px]">
+    <div className="page-wrapper w-full md:w-[700px]">
       <div className="flex flex-col gap-6  ">
         <h1>TERMS AND CONDITIONS</h1>
         <h5>Last updated January 15, 2025</h5>
@@ -1498,6 +1498,6 @@ export default function TermAndConditionPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
