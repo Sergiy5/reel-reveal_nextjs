@@ -55,7 +55,7 @@ export const SliderCarousel: React.FC = () => {
   return (
     <motion.section
       {...animationSection}
-      className={` flex flex-col max-w-[3168px] gap-12 z-20 `}
+      className={` flex flex-col max-w-[3168px] gap-12`}
     >
       <h2 className={`mx-auto w-svw md:w-auto px-3`}>
         Stuck on Movie Choices?

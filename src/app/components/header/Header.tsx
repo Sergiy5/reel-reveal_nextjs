@@ -30,14 +30,14 @@ export const Header: React.FC = async () => {
           </div>
         </div>
       </div>
-      <Image
+      {/* <Image
         src={`/icons/header_bg-ellips.svg`}
         alt="Background ellips"
         width={1440}
         height={361}
         priority
         className={`absolute top-0 blur-header 2xl:max-w-[1440px] h-auto z-10 `}
-      />
+      /> */}
     </div>
   );
 };

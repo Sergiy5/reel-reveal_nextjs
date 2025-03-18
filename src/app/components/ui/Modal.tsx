@@ -97,7 +97,7 @@ export const Modal: React.FC<ModalProps> = ({
           )}
         </button>
       )}
-      <div className=" flex items-center justify-center w-full px-2 lg:px-20">
+      <div className=" flex items-center justify-center w-full max-w-[1280px] h-auto px-2 lg:px-20">
         {children}
       </div>
     </div>,

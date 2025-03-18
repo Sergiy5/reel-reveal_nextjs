@@ -22,7 +22,7 @@ export const GetShowMovies: React.FC<GetShowMoviesProps> = ({
   return (
     <motion.section
       {...animationSection}
-      className={` flex flex-col items-center gap-12 w-full z-10 xl:max-w-[1440px]`}
+      className={` flex flex-col items-center gap-12 w-full xl:max-w-[1440px]`}
     >
       <h2>{title}</h2>
       <div className={` max-w-[1200px] w-full flex flex-col h-auto`}>

@@ -28,11 +28,10 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   }, [data, userName]);
 
   return (
-    <ul
+    <div
       className={`hidden items-center justify-between h-[40px] w-full gap-4 lg:flex xl:gap-6           
           `}
     >
-      <li className="flex" >
         <Link
           href={"/movies"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -40,8 +39,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         >
           <p>Movie search</p>
         </Link>
-      </li>
-      <li className="flex" >
         <Link
           href={`/saved`}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -49,8 +46,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         >
           <p>Favorites</p>
         </Link>
-      </li>
-      <li className="flex" >
         <Link
           href={isAuth ? "/profile" : "/auth"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -64,8 +59,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
             <p>Login</p>
           )}
         </Link>
-      </li>
-      <li className="flex" >
         <Link
           href={"/quiz"}
           onClick={() => setIsOpenMenu(!isOpenMenu)}
@@ -76,7 +69,6 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
           <ShowQuizCount />
           <span className="font-semibold text-base">take quiz</span>
         </Link>
-      </li>
-    </ul>
+    </div>
   );
 };
