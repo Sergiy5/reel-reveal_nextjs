@@ -1,9 +1,8 @@
-import Image from "next/image";
+import { Suspense } from "react";
 import { HeaderSearchBar } from "./HeaderSearchBar";
 import { MainLogo } from "@/app/components/ui/MainLogo";
 import { HeaderNav } from "./HeaderNav";
 import { auth } from "@/auth";
-import { Suspense } from "react";
 
 export const Header: React.FC = async () => {
   const session = await auth();
@@ -30,14 +29,6 @@ export const Header: React.FC = async () => {
           </div>
         </div>
       </div>
-      {/* <Image
-        src={`/icons/header_bg-ellips.svg`}
-        alt="Background ellips"
-        width={1440}
-        height={361}
-        priority
-        className={`absolute top-0 blur-header 2xl:max-w-[1440px] h-auto z-10 `}
-      /> */}
     </div>
   );
 };
