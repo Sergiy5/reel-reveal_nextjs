@@ -19,7 +19,8 @@ export const POST = async (req: Request) => {
       );
 
       if (indexMovie === -1) {
-        user.movies.push(movie);
+        user.movies = [movie, ...user.movies];
+        // user.movies.push(movie);
 
         await user.save();
 
@@ -31,6 +32,7 @@ export const POST = async (req: Request) => {
         return NextResponse.json(user.movies);
       }
     } else {
+      
       user.movies.push(movie);
 
       await user.save();
