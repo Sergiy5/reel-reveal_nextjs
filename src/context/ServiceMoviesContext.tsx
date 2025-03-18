@@ -20,7 +20,7 @@ interface MoviesContextType {
   watchedMovies: number[];
   toggleLiked: (movieId: number) => void;
   toggleWatched: (movieId: number) => void;
-  isValidating: boolean;
+  // isValidating: boolean;
   isLoading: boolean;
 }
 
@@ -34,7 +34,7 @@ export const ServiceMoviesProvider: React.FC<{
 }> = ({ userId, children }) => {
   const { mutate } = useSWRConfig();
 
-  const { data: movies, error, isValidating, isLoading } = useMovies(userId);
+  const { data: movies, error, isLoading } = useMovies(userId);
 
   const likedMovies = useMemo(
     () =>
@@ -136,7 +136,6 @@ export const ServiceMoviesProvider: React.FC<{
         watchedMovies,
         toggleLiked,
         toggleWatched,
-        isValidating,
         isLoading,
       }}
     >

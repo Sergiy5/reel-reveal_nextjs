@@ -12,7 +12,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ isAuth }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   return (
-    <div id="nav" className={`relative flex`}>
+    <div id="nav" className={`relative w-full`}>
       <HeaderNavMenu
         isOpenMenu={isOpenMenu}
         isAuth={isAuth}
