@@ -31,10 +31,10 @@ export const SliderCarousel: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     cssEase: "linear",
     arrows: false,
-    pauseOnHover: false,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1024,
