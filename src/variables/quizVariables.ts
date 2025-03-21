@@ -1,1 +1,1 @@
-export const countDefaultQuizes = 4;
+export const countDefaultQuizes = 40;

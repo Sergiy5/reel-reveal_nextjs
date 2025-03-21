@@ -122,7 +122,7 @@ a {
 }
 
 .page-wrapper {
-  @apply flex flex-col items-center justify-start font-light font-urbanist mx-auto px-4 py-6 max-w-[1440px]
+  @apply flex flex-col items-center justify-start font-light font-urbanist mx-auto px-4 py-6 w-full max-w-[1440px]
    text-textColor gap-16 overflow-hidden md:px-16 md:py-20 md:gap-20 xl:gap-40 xl:px-[120px] xl:pb-32 lg:py-10
    xl:overflow-visible;
 }

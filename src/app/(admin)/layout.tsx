@@ -27,7 +27,7 @@ export default async function Layout({ children }: {children:React.ReactNode;}) 
             width={1440}
             height={361}
             priority
-            className={`absolute blur-header max-w-[1440px] h-auto -z-10 `}
+            className={`absolute blur-header w-full max-w-[1440px] h-auto -z-10 `}
           />
           
           {children}

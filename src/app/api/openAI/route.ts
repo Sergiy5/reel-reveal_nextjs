@@ -7,7 +7,7 @@ export const POST = async (req: Request) => {
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const { prompt } = await req.json();
-
+// console.log("=========>>>>>>>>>>>>>>>>>>",prompt)
   if (!prompt) {
 
     return NextResponse.json({ error: "Prompt is required" }, { status: 400 });

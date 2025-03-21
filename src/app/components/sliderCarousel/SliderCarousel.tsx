@@ -57,10 +57,10 @@ export const SliderCarousel: React.FC = () => {
       {...animationSection}
       className={` flex flex-col max-w-[3168px] gap-12`}
     >
-      <h2 className={`mx-auto w-svw md:w-auto px-3`}>
+      <h2 className={`mx-auto w-screen md:w-auto px-3`}>
         Stuck on Movie Choices?
       </h2>
-      <div className={` flex flex-col mx-auto w-[864px] h-auto md:w-full`}>
+      <div className={` flex flex-col mx-auto w-[864px] md:w-full h-auto`}>
         {images.length > 0 ? (
           <MySlider
             arraySlides={images}

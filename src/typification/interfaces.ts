@@ -53,8 +53,9 @@ export interface MySliderBtnProps extends CustomArrowProps {
 export interface IQuizData {
   quiz: string;
   title: string;
-  options: { answer: string; value: string }[];
+  name: string;
   page: number;
+  options: { answer: string; value: string }[];
 }
 
 export interface IFilm {
