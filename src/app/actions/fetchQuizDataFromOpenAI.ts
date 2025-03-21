@@ -5,8 +5,6 @@ const Back_END_URL = "/api/openAI";
 export const fetchQuizDataFromOpenAI = async (
   requestArray: string[]
 ): Promise<OpenAiResponse> => {
-  // const releaseDate = requestArray[3];
-  const ageLimit = requestArray[6];
   const mood = requestArray[0];
   const watchingWith = requestArray[1];
   const genre = requestArray[2];
