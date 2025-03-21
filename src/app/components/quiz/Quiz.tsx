@@ -101,6 +101,9 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
           arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
+
+      
+      <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
@@ -114,7 +117,6 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
           </div>
         </div>
       </Modal>
-      <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
     </motion.section>
   );
 };
