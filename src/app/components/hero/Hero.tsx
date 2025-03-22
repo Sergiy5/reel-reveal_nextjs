@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
         </ButtonOrLink>
       </article>
       <div
-        className={` flex items-center justify-center w-full h-auto`}
+        className={`relative flex items-center justify-center w-full h-auto`}
       >
         <Image
           src={"/images/hero-image.webp"}
@@ -39,7 +39,7 @@ export const Hero: React.FC = () => {
           height={584}
           alt="Hero movies colage"
           priority
-          className={` aspect-[590/584] z-10`}
+          className={` aspect-[590/584]`}
         />
 
         <Image
@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
           width={833}
           height={890}
           alt="Hero movies"
-          className={`absolute w-auto h-auto blur-hero`}
+          className={`absolute -z-10 w-auto h-auto blur-hero`}
         />
       </div>
       <AnimatePresence mode="wait" />

@@ -18,7 +18,7 @@ export const HowItWorks = () => {
         width={1440}
         height={850}
         priority
-        className={`absolute w-full h-auto blur-hero top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-full lg:h-auto`}
+        className={`absolute -z-10 w-full h-auto blur-hero top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-full lg:h-auto`}
       />
 
       <h2>How it works</h2>

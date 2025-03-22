@@ -19,7 +19,7 @@ export default async function Layout({ children }: {children:React.ReactNode;}) 
   return (
     <Suspense fallback={<Loader />}>
       <DynamicServiceMoviesProvider userId={userId}>
-        <div className=" flex flex-col items-center justify-between w-full min-h-lvh h-full ">
+        <div className="relative flex flex-col items-center justify-between w-full min-h-lvh h-full ">
           
           <Header />
             
