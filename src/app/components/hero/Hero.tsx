@@ -26,12 +26,12 @@ export const Hero: React.FC = () => {
           finding the perfect movie match.
         </p>
 
-        <ButtonOrLink href="/quiz" className={`z-10 mt-2 md:w-[245px]`}>
+        <ButtonOrLink href="/quiz" className={`mt-2 md:w-[245px]`}>
           <ShowQuizCount /> start quiz
         </ButtonOrLink>
       </article>
       <div
-        className={`relative flex items-center justify-center w-full h-auto`}
+        className={` flex items-center justify-center w-full h-auto`}
       >
         <Image
           src={"/images/hero-image.webp"}

@@ -59,6 +59,7 @@ module.exports = {
         0deg, rgba(18, 19, 44, 1) 2%,
          rgba(18, 19, 44, 0.99) 8%,
          rgba(18, 19, 44, 0.66) 100%) `,
+        mobileBgGradient: `linear-gradient(220deg, #12132c 0%, rgba(18, 19, 44, 0.9) 100%)`
       },
       fontFamily: {
         urbanist: ["var(--font-urbanist)", "sans-serif"],

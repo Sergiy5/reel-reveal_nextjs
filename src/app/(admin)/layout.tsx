@@ -19,8 +19,10 @@ export default async function Layout({ children }: {children:React.ReactNode;}) 
   return (
     <Suspense fallback={<Loader />}>
       <DynamicServiceMoviesProvider userId={userId}>
-        <div className="relative flex flex-col items-center justify-between w-full min-h-lvh h-full ">
+        <div className=" flex flex-col items-center justify-between w-full min-h-lvh h-full ">
+          
           <Header />
+            
           <Image
             src={`/icons/header_bg-ellips.svg`}
             alt="Background ellips"
@@ -29,8 +31,10 @@ export default async function Layout({ children }: {children:React.ReactNode;}) 
             priority
             className={`absolute blur-header w-full max-w-[1440px] h-auto -z-10 `}
           />
-          
+          <div className="relative -z-10 w-full" >
+
           {children}
+          </div>
 
           <Image
             src={"/icons/footer_bg-ellips.svg"}

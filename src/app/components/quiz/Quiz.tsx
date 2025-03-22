@@ -87,23 +87,25 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   return (
     <motion.section
       {...animationSection}
-      className="relative flex items-center justify-center py-[131px] w-full min-h-[592px] gap-12">
-      <div className="absolute top-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
-
+      className="flex items-center justify-between flex-col py-32 w-full min-h-[592px] gap-12">
+      <div className=" w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
+      <div className="w-full">
+        
       {isValidating ? (
         <Loader />
       ) : isQuizActive ? (
-          <QuizQuestions quizData={setQuizResult} isLeftQuiz={ count === 0} />
+        <QuizQuestions quizData={setQuizResult} isLeftQuiz={ count === 0} />
       ) : (
         <QuizListMovies
-          clearPrevQuiz={handleNextQuizClick}
-          sessionUser={sessionUser}
-          arrMovies={listMovies ?? qiuzMoviesSignal.value}
+        clearPrevQuiz={handleNextQuizClick}
+        sessionUser={sessionUser}
+        arrMovies={listMovies ?? qiuzMoviesSignal.value}
         />
       )}
+      </div>
 
       
-      <div className="absolute bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
+      <div className="bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
