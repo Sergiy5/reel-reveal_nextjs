@@ -88,7 +88,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     <motion.section
       {...animationSection}
       className="flex items-center justify-between flex-col py-32 w-full min-h-[592px] gap-12">
-      <div className=" w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon rotate-180"></div>
+      <div className=" w-lvw h-10 bg-repeat-x bg-contain bg-borderIcon rotate-180"></div>
       <div className="w-full">
         
       {isValidating ? (

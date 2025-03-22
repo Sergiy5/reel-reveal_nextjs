@@ -31,7 +31,7 @@ export default async function Layout({ children }: {children:React.ReactNode;}) 
             priority
             className={`absolute blur-header w-full max-w-[1440px] h-auto -z-10 `}
           />
-          <div className="relative -z-10 w-full" >
+          <div className="relative z-0 w-full" >
 
           {children}
           </div>

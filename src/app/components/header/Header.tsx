@@ -8,7 +8,7 @@ export const Header: React.FC = async () => {
   const session = await auth();
 
   return (
-    <div className={` w-full`}>
+    <div className={`relative z-10 w-full`}>
       <div
         className={`flex items-center justify-center py-0 w-full h-[58px] bg-bgColor z-20 
             md:h-[68px] lg:h-[84px]`}
