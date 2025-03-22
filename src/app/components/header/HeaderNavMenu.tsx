@@ -13,8 +13,8 @@ interface HeaderNavMenuProps {
 }
 export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
   isAuth,
-  isOpenMenu,
-  setIsOpenMenu,
+  // isOpenMenu,
+  // setIsOpenMenu,
 }) => {
   const [userName, setUserName] = useState<string | null>(null);
   const { count } = useContextCountQuiz();
@@ -34,21 +34,21 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
     >
         <Link
           href={"/movies"}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          // onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`link font-light leading-8 text-xl`}
         >
           <p>Movie search</p>
         </Link>
         <Link
           href={`/saved`}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          // onClick={() => setIsOpenMenu(!isOpenMenu)}
           className=" relative link"
         >
           <p>Favorites</p>
         </Link>
         <Link
           href={isAuth ? "/profile" : "/auth"}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          // onClick={() => setIsOpenMenu(!isOpenMenu)}
           className="link"
         >
           {isAuth ? (
@@ -61,7 +61,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({
         </Link>
         <Link
           href={"/quiz"}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
+          // onClick={() => setIsOpenMenu(!isOpenMenu)}
           className={`flex items-center justify-between gap-2 leading-5  px-5 h-[38px]
            text-bgColor bg-textColor rounded-[30px] shadow-0 uppercase transition duration-250 ease-in-out
             hover:bg-accentColor hover:shadow-hoverShadow active:bg-clickedColor`}
