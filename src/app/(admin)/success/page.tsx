@@ -101,20 +101,20 @@ const STATUS_CONTENT_MAP: IStatusContentMap = {
 };
 
 export default async function SuccessPage({
-  searchParams,
-}: {
-  searchParams: URLSearchParams;
-    }) {
+  // searchParams,
+}) {
+  // npx update-browserslist-db@latest
         //   const { payment_intent: paymentIntentId } = await searchParams;
-     const paymentIntentId = searchParams.get("payment_intent");
+  //  const paymentIntentId = searchParams.get("payment_intent");
+  // const 
 
-  if (!paymentIntentId) redirect("/");
+  // if (!paymentIntentId) redirect("/");
 
-  const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+  // const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
-  if (!paymentIntent) redirect("/");
+  // if (!paymentIntent) redirect("/");
 
-  const { status } = paymentIntent;
+  // const { status } = paymentIntent;
 
   return (
     <div id="page-wrapper payment-status">
@@ -125,7 +125,7 @@ export default async function SuccessPage({
         {STATUS_CONTENT_MAP[status].icon}
       </div>
       <h2 id="status-text">{STATUS_CONTENT_MAP[status].text}</h2>
-      {paymentIntent && (
+      {/* {paymentIntent && (
         <div id="details-table">
           <table>
             <tbody>
@@ -144,8 +144,8 @@ export default async function SuccessPage({
             </tbody>
           </table>
         </div>
-      )}
-      {paymentIntent && (
+      )} */}
+      {/* {paymentIntent && (
         <a
           href={`https://dashboard.stripe.com/payments/${paymentIntentId}`}
           id="view-details"
@@ -172,7 +172,7 @@ export default async function SuccessPage({
             />
           </svg>
         </a>
-      )}
+      )} */}
       <Link id="retry-button" href="/">
         Test another
       </Link>
