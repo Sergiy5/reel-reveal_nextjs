@@ -107,17 +107,19 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
     <div
       className={` flex flex-col items-center justify-center w-full gap-10 lg:gap-12 z-10`}
     >
+      {/* &nbsp; */}
       {isActiveSearch && !isLoading ? (
-        <h1 className="flex justify-start md:justify-center w-full">
-          Found&nbsp;
-          <span className="font-bold text-accentColor">{totalMovies}</span>
-          &nbsp;movies based on your search &quot;{safeQueryTitle}
-          &quot;
-        </h1>
+        <h2 className="flex-inline flex-wrap items-start justify-start w-full">
+          Found
+          <span className="font-bold text-accentColor">
+            &nbsp;{totalMovies}&nbsp;
+          </span>
+          <span className="" >{`movies based on your search "${safeQueryTitle}"`}</span>
+        </h2>
       ) : (
-        <h1 className="flex justify-start md:justify-center w-full">
+        <h2 className="flex justify-start md:justify-center w-full">
           The most popular movies
-        </h1>
+        </h2>
       )}
       {/* Filter */}
       <MovieSearchFilter
@@ -144,9 +146,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
         </ButtonOrLink>
       </div>
       <Modal isOpen={isLoading || isValidating}>
-        <div className={`flex items-center my-auto h-lvh`}>
           <Loader />
-        </div>
       </Modal>
     </div>
   );

@@ -1,14 +1,14 @@
 import { IMovie } from "@/typification";
 
 export const getManyMoviesByTitle = async (
-  arrMovies: string[]
+  arrMovies: {title:string, year:string}[]
 ): Promise<IMovie[][]> => {
   const API_TOKEN = process.env.BEARER_TOKEN_TMDB;
 
   try {
-    const requests = arrMovies.map((movie) =>
+    const requests = arrMovies.map(({ title, year }) =>
       fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${movie}&language=en-US`,
+        `https://api.themoviedb.org/3/search/movie?query=${title}&year=${year}`,
         {
           headers: {
             Authorization: `Bearer ${API_TOKEN}`,
@@ -18,10 +18,10 @@ export const getManyMoviesByTitle = async (
     );
 
     const response = await Promise.all(requests);
-
+    
     return response.map(({ results }) => results);
   } catch (error: any) {
-    console.log("getManyMoviesByTitle error", error.message);
+    console.log("getManyMoviesByTitle error", error?.message);
     return error;
   }
 };

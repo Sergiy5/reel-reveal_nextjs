@@ -22,7 +22,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   disabled,
   ...props
 }) => {
-  const commonClasses = `flex items-center justify-center gap-2 h-10 font-semibold
+  const commonClasses = `flex items-center justify-center gap-2 text-blackColor h-10 font-semibold
     uppercase rounded-full shadow-0 bg-accentColor
     transition-all duration-300  text-bgColor w-full
      

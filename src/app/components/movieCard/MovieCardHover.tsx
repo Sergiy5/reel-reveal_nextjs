@@ -24,12 +24,13 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
   movie,
   handleMovie,
 }) => {
+  // console.log("MOVIE=====================================================",movie)
   const formattedMovie = useMemo(() => {
     return {
       ...movie,
       voteAverageFormatted:
         movie.voteAverage?.toFixed(1) ?? movie.vote_average?.toFixed(1),
-      releaseYear: movie.releaseDate.toString().slice(0, 4),
+      releaseYear: movie?.releaseDate?.toString().slice(0, 4) || "Unknown",
     };
   }, [movie]);
 

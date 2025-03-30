@@ -38,19 +38,21 @@ export default async function OneMoviePage(props: {
   const { title, original_title } = movie;
 
   return (
-    <div className="page-wrapper md:pt-0 lg:pt-0 gap-0 md:gap-0">
+    <div className="md:pt-0 lg:pt-0 gap-0 md:gap-0">
       <MovieInfo movie={movie} />
-      <DynamicMovieInfoTrailer id={movieId} />
-      <div
-        className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}
-      >
-        <DynamicMovieInfoCast id={movieId} />
-        <DynamicSimilarMovies
-          movieId={movieId}
-          title={title ?? original_title}
-          sessionUser={sessionUser}
-        />
-        <DynamicSliderCarousel />
+      <div className="page-wrapper">
+        <DynamicMovieInfoTrailer id={movieId} />
+        <div
+          className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}
+        >
+          <DynamicMovieInfoCast id={movieId} />
+          <DynamicSimilarMovies
+            movieId={movieId}
+            title={title ?? original_title}
+            sessionUser={sessionUser}
+          />
+          <DynamicSliderCarousel />
+        </div>
       </div>
     </div>
   );

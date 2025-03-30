@@ -37,7 +37,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
     isValidating,
     mutate,
   } = useSWR(
-    quizResult.length >= 7 ? ["quizMovies", quizResult] : null,
+    quizResult.length === 8 ? ["quizMovies", quizResult] : null,
     () => fetchQuizMovies(quizResult),
     {
       revalidateOnFocus: false,
@@ -50,7 +50,8 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       onError: (error: any) => {
         console.error(error);
       },
-    }
+      
+    },
   );
 
   const handleNextQuizClick = () => {
@@ -78,7 +79,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   if (error) {
     return (
       <div className="flex items-center justify-center flex-col gap-12">
-        <h2 className={`pr-2.5 pl-2.5`}>Somthing went wrong</h2>;
+        <h2 className={`pr-2.5 pl-2.5`}>Somthing went wrong</h2>
         <ButtonOrLink onClick={mutate}>try again</ButtonOrLink>
       </div>
     );

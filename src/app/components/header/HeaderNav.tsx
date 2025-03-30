@@ -28,9 +28,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ isAuth }) => {
   return (
     <div id="nav" className={`relative w-full`}>
       <HeaderNavMenu
-        isOpenMenu={isOpenMenu}
         isAuth={isAuth}
-        setIsOpenMenu={setIsOpenMenu}
       />
       <HeaderNavMenuMobile
         isOpenMenu={isOpenMenu}

@@ -22,6 +22,7 @@ module.exports = {
         scrolBarTrackColor: "#23283e",
         scrolBarThumbColor: "#656878",
         greyColor: "#717180",
+        blackColor: "#17171D",
       },
       blur: {
         header: "119.5px",

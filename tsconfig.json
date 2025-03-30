@@ -38,7 +38,7 @@
     "src/app/api/fetchMovies",
     "build/types/**/*.ts",
     "out/types/**/*.ts"
-  ],
+, "src/app/api/webhooks"  ],
   "exclude": [
     "node_modules"
   ]
