@@ -7,6 +7,7 @@ import { ShowQuizCount } from "@/app/components/showQuizCount/ShowQuizCount";
 import { animationSection } from "@/variables/animation";
 
 export const Hero: React.FC = () => {
+
   return (
     <motion.section
       {...animationSection}
@@ -27,7 +28,7 @@ export const Hero: React.FC = () => {
         </p>
 
         <ButtonOrLink href="/quiz" className={`mt-2 md:w-[245px]`}>
-          <ShowQuizCount /> start quiz
+          <ShowQuizCount/> start quiz
         </ButtonOrLink>
       </article>
       <div

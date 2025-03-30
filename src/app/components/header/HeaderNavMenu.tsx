@@ -55,7 +55,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({ isAuth }) => {
           <span className="font-semibold text-base">
             {count == 0 ? "get pro" : "take quiz"}
           </span>
-          <ShowQuizCount count={count} />
+          <ShowQuizCount />
         </Link>
       </Tooltip>
     </div>

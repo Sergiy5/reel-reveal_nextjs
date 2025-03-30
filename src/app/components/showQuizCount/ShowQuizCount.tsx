@@ -1,10 +1,12 @@
+"use client";
+
+import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Icon } from "../ui/Icon";
 
-interface ShowQuizCountProps {
-  count: number
-} 
 
-export const ShowQuizCount: React.FC<ShowQuizCountProps> = ({count}) => {
+
+export const ShowQuizCount: React.FC = () => {
+  const { count } = useContextCountQuiz();
 
   return (
     <span className="flex items-center gap-[3px]">
