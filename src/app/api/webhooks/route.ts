@@ -1,22 +1,22 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
-// import { stripe } from "@/utils/stripe";
 import type Stripe from "stripe";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY!);
+// import { stripe } from "@/utils/stripe";
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY!);
 
 
 export const POST = async (req: NextRequest) => {
-    console.log("+========================================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    // console.log("+========================================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 try {
     const amount = 5;
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: amount,
-        currency: "usd",
-        automatic_method_methods: {enable: true},
-    })
+    // const paymentIntent = await stripe.paymentIntents.create({
+    //     amount: amount,
+    //     currency: "usd",
+    //     automatic_method_methods: {enable: true},
+    // })
 
-    return NextResponse.json({clientSecret: paymentIntent.client_secret})
+    // return NextResponse.json({clientSecret: paymentIntent.client_secret})
 } catch (error) {
     console.log("ERROR IN WEBHOOK STRIPE", error)
 }
