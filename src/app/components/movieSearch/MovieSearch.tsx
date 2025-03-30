@@ -117,20 +117,20 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
           <span className="" >{`movies based on your search "${safeQueryTitle}"`}</span>
         </h2>
       ) : (
-        <h2 className="flex justify-start md:justify-center w-full">
+        <h2 className="flex justify-start items-start w-full">
           The most popular movies
         </h2>
       )}
       {/* Filter */}
-      <MovieSearchFilter
+      {!movieTitle && <MovieSearchFilter
         getFilterOptions={setFilterOptions}
         genreName={queryGenre}
-      />
+      />}
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div
         className={`flex w-full items-center justify-center gap-5 z-10 flex-col sm:flex-row`}
       >
-        <ButtonOrLink
+        { movies && movies.length >= 20 && <ButtonOrLink
           onClick={() => {
             setMovieStatus(null);
             setPage((prev) => prev + 1);
@@ -140,12 +140,13 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
           className="md:w-[245px]"
         >
           load more
-        </ButtonOrLink>
+        </ButtonOrLink>}
+
         <ButtonOrLink href="/quiz" className="md:w-[245px]">
           take quiz
         </ButtonOrLink>
       </div>
-      <Modal isOpen={isLoading || isValidating}>
+      <Modal isOpen={isLoading}>
           <Loader />
       </Modal>
     </div>

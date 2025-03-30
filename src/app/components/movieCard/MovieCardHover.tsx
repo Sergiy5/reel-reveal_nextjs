@@ -42,7 +42,7 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
       id={`${id}`}
       data-movie={"movie"}
       onClick={handleMovie}
-      className={`absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor
+      className={`absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor  hover:cursor-pointer
          transition-opacity duration-500 ease-in-out
         ${movie.isShowHover ? "opacity-100" : "opacity-0"}
         `}

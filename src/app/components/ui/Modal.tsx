@@ -66,7 +66,7 @@ export const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !children) return null;
 
   const modalRoot = document.getElementById("modal");
 

@@ -102,7 +102,7 @@ const handleMouseEvent = (e: React.MouseEvent<HTMLDivElement>) => {
       onMouseLeave={() => {
         setIsShowHover(false);
       }}
-      className={`p-1 w-full lg:p-2 xl:p-3`}
+      className={"p-1 w-full lg:p-2 xl:p-3"}
     >
       {/* Hover Movie Card */}
       <div className=" relative w-full">

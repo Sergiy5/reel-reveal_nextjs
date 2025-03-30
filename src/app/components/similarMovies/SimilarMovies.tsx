@@ -42,12 +42,14 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
 
   return (
     <>
-      {similarMovies && similarMovies.length && (
+      {similarMovies && similarMovies.length > 0 ? (
         <GetShowMovies
           title={"Similar movies"}
           movies={similarMovies}
           sessionUser={sessionUser}
         />
+      ) : (
+        <></>
       )}
     </>
   );

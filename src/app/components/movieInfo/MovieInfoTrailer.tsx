@@ -21,7 +21,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
     if (data.results.length) setTrailerId(data.results[0].key);
   }, [data]);
 
-  if (error) return null;
+  if (error || !trailerId) return null;
 
   return (
     <div className={`flex items-center w-full justify-center`}>
