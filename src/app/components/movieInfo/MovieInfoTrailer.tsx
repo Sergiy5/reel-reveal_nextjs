@@ -51,7 +51,6 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [trailerId, setTrailerId] = useState<number | null>();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-
   const { data, error, isLoading } = useSWR(`trailer-${id}`, () =>
     fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: id })
   );
@@ -76,16 +75,27 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
             });
           }}
         >
-          <ContentLoader
-            uniqueKey="movie-info-loader"
-            animate={!isLoading && !trailerId ? false : true}
-            viewBox="0 0 340 210"
-            backgroundColor="#20263D"
-            foregroundColor="#318b83"
-            className="w-full h-full rounded-2xl"
-          >
-            <rect x="0" y="0" width="340" height="210" />
-          </ContentLoader>
+          <>
+            {/* Flashlight effect */}
+            <div
+              className="absolute inset-0 z-20 pointer-events-none"
+              style={{
+                maskImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, transparent 80px, black 140px)`,
+                WebkitMaskImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, transparent 80px, black 140px)`,
+                backgroundColor: "rgba(0,0,0,0.7)",
+              }}
+            ></div>
+            <ContentLoader
+              uniqueKey="movie-info-loader"
+              animate={!isLoading && !trailerId ? false : true}
+              viewBox="0 0 340 210"
+              backgroundColor="#20263D"
+              foregroundColor="#318b83"
+              className="w-full h-full rounded-2xl"
+            >
+              <rect x="0" y="0" width="340" height="210" />
+            </ContentLoader>
+          </>
           {!isLoading && !trailerId && (
             <h3 className="absolute inset-0 flex items-center justify-center text-white z-50">
               Sorry, we couldn&apos;t find any trailer for this movie
@@ -96,12 +106,12 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
         <div
           className={` flex items-center justify-center overflow-hidden w-full h-auto border-0 rounded-2xl`}
         >
-          {/* <iframe
+          <iframe
             src={`https://www.youtube.com/embed/${trailerId}`}
             allowFullScreen
             title="Description"
             className="w-full aspect-video"
-          /> */}
+          />
         </div>
       )}
     </div>

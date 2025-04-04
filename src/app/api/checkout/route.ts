@@ -1,8 +1,8 @@
-// import { NextResponse } from "next/server";
-// import { stripe } from "@/utils/stripe";
+import { NextResponse } from "next/server";
+import { stripe } from "@/utils/stripe";
 
-// export async function POST(req: Request) {
-//   try {
+export async function POST(req: Request) {
+  try {
 //     const { amount, currency } = await req.json();
 
 //     const session = await stripe.checkout.sessions.create({
@@ -25,10 +25,10 @@
 //     });
 
 //     return NextResponse.json({ sessionId: session.id });
-//   } catch (error) {
-//     return NextResponse.json(
-//       { error: "Something went wrong" },
-//       { status: 500 }
-//     );
-//   }
-// }
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
+  }
+}
