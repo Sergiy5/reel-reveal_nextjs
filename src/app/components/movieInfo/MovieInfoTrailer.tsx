@@ -66,7 +66,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
       {isLoading || !trailerId ? (
         <div className="relative w-full h-full">
           {/* <FunnyTrailerPlaceholderWithFlashlight /> */}
-          {/* <ContentLoader
+          <ContentLoader
             uniqueKey="movie-info-loader"
             animate={!isLoading && !trailerId ? false : true}
             viewBox="0 0 340 210"
@@ -75,7 +75,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
             className="w-full h-full rounded-2xl"
           >
             <rect x="0" y="0" width="340" height="210" />
-          </ContentLoader> */}
+          </ContentLoader>
           {!isLoading && !trailerId && (
             <h3 className="absolute inset-0 flex items-center justify-center text-white z-50">
               Sorry, we couldn&apos;t find any trailer for this movie
