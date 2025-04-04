@@ -3,8 +3,6 @@
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Icon } from "../ui/Icon";
 
-
-
 export const ShowQuizCount: React.FC = () => {
   const { count } = useContextCountQuiz();
 

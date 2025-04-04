@@ -38,7 +38,7 @@ export default async function OneMoviePage(props: {
   const { title, original_title } = movie;
 
   return (
-    <div className="md:pt-0 lg:pt-0 gap-0 md:gap-0">
+    <div className="flex flex-col items-center overflow-hidden md:pt-0 lg:pt-0 gap-0 md:gap-0">
       <MovieInfo movie={movie} />
       <div className="page-wrapper">
         <DynamicMovieInfoTrailer id={movieId} />
