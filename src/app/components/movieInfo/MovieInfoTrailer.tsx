@@ -49,6 +49,8 @@ export interface VideoComponentProps {
 
 export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [trailerId, setTrailerId] = useState<number | null>();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
 
   const { data, error, isLoading } = useSWR(`trailer-${id}`, () =>
     fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: id })
@@ -64,8 +66,16 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   return (
     <div className={`flex items-center w-full justify-center`}>
       {isLoading || !trailerId ? (
-        <div className="relative w-full h-full">
-          {/* <FunnyTrailerPlaceholderWithFlashlight /> */}
+        <div
+          className="relative w-full h-full"
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            setMousePosition({
+              x: e.clientX - rect.left,
+              y: e.clientY - rect.top,
+            });
+          }}
+        >
           <ContentLoader
             uniqueKey="movie-info-loader"
             animate={!isLoading && !trailerId ? false : true}
@@ -86,12 +96,12 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
         <div
           className={` flex items-center justify-center overflow-hidden w-full h-auto border-0 rounded-2xl`}
         >
-          <iframe
+          {/* <iframe
             src={`https://www.youtube.com/embed/${trailerId}`}
             allowFullScreen
             title="Description"
             className="w-full aspect-video"
-          />
+          /> */}
         </div>
       )}
     </div>
