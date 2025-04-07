@@ -1,3 +1,8 @@
+<!-- To start stripe -->
+In a second terminal, keep Stripe CLI listening:
+stripe listen --forward-to localhost:3000/api/webhook
+
+
 Movie Discovery Platform
 
 Welcome to the Movie Discovery Platform, a web application built with Next.js where you can explore a vast collection of movies, get detailed information, take quizzes to discover personalized recommendations, and enjoy an enhanced movie-watching experience.

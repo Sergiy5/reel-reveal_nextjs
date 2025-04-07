@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 interface ButtonOrLinkProps {
   href?: string;
+  target?: string;
   onClick?: () => void;
   children: React.ReactNode;
   className?: string;
@@ -14,10 +15,11 @@ interface ButtonOrLinkProps {
 }
 export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
   href,
+  target,
   onClick,
   children,
   transparent,
-  className = "",
+  className,
   type,
   disabled,
   ...props
@@ -46,7 +48,7 @@ export const ButtonOrLink: React.FC<ButtonOrLinkProps> = ({
 
   if (href) {
     return (
-      <Link href={href} className={`${commonClasses} ${className}`}>
+      <Link href={href} target={target} className={`${commonClasses} ${className}`}>
         {children}
       </Link>
     );
