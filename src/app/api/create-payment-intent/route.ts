@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 5000, // or calculate from body.items
+      amount: 500, // or calculate from body.items
       currency: "eur",
       automatic_payment_methods: { enabled: true },
     });

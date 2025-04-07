@@ -13,6 +13,8 @@ import { loadStripe, StripePaymentElementOptions } from "@stripe/stripe-js";
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+console.log(baseUrl);
 
 const PaymentForm:React.FC<{ amount: number }> = ({ amount })=> {
   const stripe = useStripe();
@@ -36,7 +38,7 @@ const PaymentForm:React.FC<{ amount: number }> = ({ amount })=> {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
+        return_url: `${baseUrl}success`,
       },
     });
 
