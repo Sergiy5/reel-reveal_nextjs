@@ -14,7 +14,6 @@ import { loadStripe, StripePaymentElementOptions } from "@stripe/stripe-js";
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-console.log(baseUrl);
 
 const PaymentForm:React.FC<{ amount: number }> = ({ amount })=> {
   const stripe = useStripe();
