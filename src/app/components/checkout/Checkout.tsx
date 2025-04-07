@@ -77,7 +77,7 @@ const PaymentForm:React.FC<{ amount: number }> = ({ amount })=> {
         </span>
       </button>
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <h3 id="payment-message" className="text-red-500" >{message}</h3>}
     </form>
   );
 }

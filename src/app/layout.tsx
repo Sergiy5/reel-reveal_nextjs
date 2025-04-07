@@ -18,7 +18,7 @@ const urbanist = Urbanist({
 const CountQuizProviderDynamic = dynamic(() =>
   import("@/context/CountQuizContext").then((mod) => mod.CountQuizProvider)
 );
-
+{/* <meta property="og:site_name" content="Link preview site name"></meta> */}
 export const metadata: Metadata = {
   title: "Reel-Reveal | AI Movie Quiz for Personalized Recommendations",
   description:
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     description:
       "Take our AI-based quiz and get the best movie recommendations based on your taste!",
     url: "https://www.reel-reveal.club",
+    siteName: "Reel-Reveal",
     type: "website",
     images: [
       {
