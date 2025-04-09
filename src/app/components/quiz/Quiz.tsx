@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import {motion} from "motion/react";
+import { motion } from "motion/react";
 import { Loader } from "../ui/Loader";
 import { QuizListMovies } from "./QuizListMovies";
 import { QuizQuestions } from "./QuizQuestions";
@@ -12,7 +12,7 @@ import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
-import { PopUp } from "./PopUp";
+import { Popup } from "./Popup";
 import { animationSection } from "@/variables/animation";
 
 interface IQuizProps {
@@ -50,8 +50,7 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
       onError: (error: any) => {
         console.error(error);
       },
-      
-    },
+    }
   );
 
   const handleNextQuizClick = () => {
@@ -88,35 +87,33 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
   return (
     <motion.section
       {...animationSection}
-      className="flex items-center justify-between flex-col py-32 w-full min-h-[592px] gap-12">
+      className="flex items-center justify-between flex-col py-32 w-full min-h-[592px] gap-12"
+    >
       <div className=" w-lvw h-10 bg-repeat-x bg-contain bg-borderIcon rotate-180"></div>
       <div className="w-full">
-        
-      {isValidating ? (
-        <Loader />
-      ) : isQuizActive ? (
-        <QuizQuestions quizData={setQuizResult} isLeftQuiz={ count === 0} />
-      ) : (
-        <QuizListMovies
-        clearPrevQuiz={handleNextQuizClick}
-        sessionUser={sessionUser}
-        arrMovies={listMovies ?? qiuzMoviesSignal.value}
-        />
-      )}
+        {isValidating ? (
+          <Loader />
+        ) : isQuizActive ? (
+          <QuizQuestions quizData={setQuizResult} isLeftQuiz={count === 0} />
+        ) : (
+          <QuizListMovies
+            clearPrevQuiz={handleNextQuizClick}
+            sessionUser={sessionUser}
+            arrMovies={listMovies ?? qiuzMoviesSignal.value}
+          />
+        )}
       </div>
 
-      
       <div className="bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        isHideCross={true}
       >
-        <div className="relative flex items-center justify-center w-full h-lvh">
+        <div className="relative flex items-center justify-center md:h-[620px] w-[100vw] md:w-[90vw] lg:w-[860px] h-lvh">
           <div
-            className={`absolute w-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[1280px]"}`}
+            className={`absolute w-full h-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[1280px]"}`}
           >
-            <PopUp onClose={() => setShowModal(false)} />
+            <Popup />
           </div>
         </div>
       </Modal>

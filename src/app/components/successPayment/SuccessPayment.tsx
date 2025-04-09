@@ -5,8 +5,8 @@ import { ButtonOrLink } from "../ui";
 
 export const SuccessIcon = (
   <svg
-    width="16"
-    height="14"
+    width="12"
+    height="10"
     viewBox="0 0 16 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ export const SuccessIcon = (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M15.4695 0.232963C15.8241 0.561287 15.8454 1.1149 15.5171 1.46949L6.14206 11.5945C5.97228 11.7778 5.73221 11.8799 5.48237 11.8748C5.23253 11.8698 4.99677 11.7582 4.83452 11.5681L0.459523 6.44311C0.145767 6.07557 0.18937 5.52327 0.556912 5.20951C0.924454 4.89575 1.47676 4.93936 1.79051 5.3069L5.52658 9.68343L14.233 0.280522C14.5613 -0.0740672 15.1149 -0.0953599 15.4695 0.232963Z"
-      fill="white"
+      fill="#17171D"
     />
   </svg>
 );
@@ -121,43 +121,49 @@ export const SuccessPayment: React.FC<ISuccessPaymentProps> = ({
 // console.log(paymentIntent);
 
   return (
-    <div className="flex flex-col items-center gap-4 border border-accentColor rounded-lg py-7 px-4">
+    <div className="flex flex-col items-center justify-start gap-10 bg-white rounded-lg py-7 px-4">
       <div
-        className="mx-auto w-16 h-16 rounded-full flex items-center justify-center"
+        className="flex items-center justify-center w-8 h-8 rounded-full mr-auto"
         style={{ backgroundColor: statusInfo.iconColor }}
       >
         {statusInfo.icon}
       </div>
-      <h2 className="">{statusInfo.text}</h2>
-      <div className="flex flex-col justify-center gap-2 w-full mt-10">
-        <ButtonOrLink
+      <div className="flex flex-col items-center gap-4" >
+        
+      <h2 className="text-bgColor">{statusInfo.text}</h2>
+      <h4 className="text-bgColor">Your order has been placed</h4>
+      </div>
+      <div className="flex flex-col md:flex-row justify-center gap-2 w-full">
+        <Link
           href={`https://dashboard.stripe.com/payments/${paymentIntentId}`}
           target="_blank"
-          transparent
-          className=""
+          className="flex items-center justify-center w-full md:w-1/2 rounded-lg h-8 bg-black text-white"
         >
           View details
-        </ButtonOrLink>
-        <ButtonOrLink href={statusInfo.link} className="">
+        </Link>
+        <Link
+          href={statusInfo.link}
+          className="flex items-center justify-center w-full md:w-1/2 rounded-lg h-8 bg-black text-white"
+        >
           {statusInfo.textLink}
-        </ButtonOrLink>
+        </Link>
       </div>
 
       {process.env.NODE_ENV === "development" && (
         <>
           <div className="mx-auto text-left">
-            <p className="flex gap-1 pr-4 font-medium">
+            <h2 className="flex gap-1 pr-4">
               Status:
               <span className="text-accentColor">
                 {paymentIntent.status.toUpperCase()}
               </span>
-            </p>
+            </h2>
             <p className="flex gap-1 pr-4 font-medium">
               Payment ID:
               <span className="text-accentColor">{paymentIntentId}</span>
             </p>
           </div>
-          <ButtonOrLink href="/payment" className="">
+          <ButtonOrLink href="/payment" className="bg-black text-white">
             Test again
           </ButtonOrLink>
         </>

@@ -136,7 +136,9 @@ const handleMouseEvent = (e: React.MouseEvent<HTMLDivElement>) => {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <div className="p-12">
         <MovieInfoTrailer id={movie.id} />
+        </div>
       </Modal>
     </div>
   );

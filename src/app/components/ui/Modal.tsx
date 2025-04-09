@@ -68,39 +68,64 @@ export const Modal: React.FC<ModalProps> = ({
 
   if (!isOpen || !children) return null;
 
-  const modalRoot = document.getElementById("modal");
+  const modalRoot = document?.getElementById("modal");
 
   if (!modalRoot) return null;
 
   return createPortal(
     <div
-      onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-        handleClickOutside(e)
-      }
-      className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-80"
+      onClick={handleClickOutside}
+      className="fixed inset-0 z-50 flex items-center justify-center w-screen bg-black bg-opacity-80"
     >
-     
-      {onClose && (
-        <button
-          onClick={onClose}
-          className="absolute z-50 bg-enableBgColor p-1 top-8 right-8"
-          aria-label="Close Modal"
-        >
-          {!isHideCross && (
+      {/* This is the dynamic sizing wrapper */}
+      <div className="relative inline-block">
+        {children}
+        {onClose && !isHideCross && (
+          <button
+            onClick={onClose}
+            className="absolute z-50 p-1 top-4 right-4"
+            aria-label="Close Modal"
+          >
             <Icon
               id={"cross"}
-              width={30}
-              height={30}
-              className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
-                         transition duration-300 easy-in-out hover:text-accentColor`}
+              width={20}
+              height={20}
+              className="w-[20px] h-[20px] text-disabledColor transition duration-300 ease-in-out hover:text-accentColor"
             />
-          )}
-        </button>
-      )}
-      <div className=" flex items-center justify-center w-full max-w-[1280px] h-auto px-2 lg:px-20">
-        {children}
+          </button>
+        )}
       </div>
     </div>,
     modalRoot
+
+    // <div
+    //   onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+    //     handleClickOutside(e)
+    //   }
+    //   className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-80"
+    // >
+
+    //   {onClose && (
+    //     <button
+    //       onClick={onClose}
+    //       className="absolute z-50 p-1 top-8 right-8"
+    //       aria-label="Close Modal"
+    //     >
+    //       {!isHideCross && (
+    //         <Icon
+    //           id={"cross"}
+    //           width={30}
+    //           height={30}
+    //           className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
+    //                      transition duration-300 easy-in-out hover:text-accentColor`}
+    //         />
+    //       )}
+    //     </button>
+    //   )}
+    //   <div className=" flex items-center justify-center w-auto h-auto px-2 lg:px-20">
+    //     {children}
+    //   </div>
+    // </div>,
+    // modalRoot
   );
 };
