@@ -12,7 +12,7 @@ import { qiuzMoviesSignal } from "@/context/MoviesContext";
 import { ButtonOrLink } from "../ui/ButtonOrLink";
 import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
-import { Popup } from "./NPopup";
+import { Popup } from "./Popup";
 import { animationSection } from "@/variables/animation";
 
 interface IQuizProps {
