@@ -17,7 +17,7 @@ interface SavedMoviesProps {
 
 export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
-    const [movies, setMovies] = useState<IMovie[]>();
+    const [movies, setMovies] = useState<IMovie[] | null>(null);
 
     const { likedMovies, isLoading } = useMoviesContext();
 
@@ -33,6 +33,8 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
 
       setMovies(data?.movies);
     }, [data, data?.movies.length]);
+
+    if (movies === null) return null;
     
     return (
       <div
