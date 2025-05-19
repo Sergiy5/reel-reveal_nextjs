@@ -40,7 +40,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
       <div
         className={`flex items-center flex-col justify-center gap-20 w-full mb-20 ${movies?.length ? "z-10" : "z-20"} `}
       >
-        {movies?.length === 0 || !movies ? (
+        {movies?.length === 0 ? (
           <>
             <Image
               src="/images/popcorn.png"
