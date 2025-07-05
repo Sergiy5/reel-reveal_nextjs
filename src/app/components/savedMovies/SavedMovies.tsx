@@ -70,7 +70,10 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
           </>
         )}
         <Modal isOpen={isLoading}>
+          <div className="flex items-center justify-center w-screen h-screen">
+
           <Loader />
+          </div>
         </Modal>
       </div>
     );
