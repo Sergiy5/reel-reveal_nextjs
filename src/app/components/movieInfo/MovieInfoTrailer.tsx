@@ -25,7 +25,8 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   if (error || !trailerId) return null;
 
   return (
-    <div className={`flex items-center justify-center w-[100vw] lg:w-[90vw] max-w-[1200px] overflow-hidden`}
+    <div
+      className={`flex items-center justify-center w-[100vw] md:w-full max-w-[1200px] overflow-hidden`}
     >
       {isLoading || !trailerId ? (
         <div className="relative w-full h-full">
@@ -47,13 +48,13 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
         </div>
       ) : (
         <div
-          className={` flex items-center justify-center overflow-hidden w-full h-auto border-0 rounded-2xl`}
+          className={` flex items-center justify-center overflow-hidden max-w-screen w-full h-auto border-0 rounded-2xl`}
         >
           <iframe
             src={`https://www.youtube.com/embed/${trailerId}`}
             allowFullScreen
             title="Description"
-            className="w-full aspect-video"
+            className="w-full aspect-video max-w-screen"
           />
         </div>
       )}

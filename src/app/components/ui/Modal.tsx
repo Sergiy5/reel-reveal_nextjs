@@ -78,7 +78,7 @@ export const Modal: React.FC<ModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center w-screen bg-black bg-opacity-80"
     >
       {/* This is the dynamic sizing wrapper */}
-      <div className="relative inline-block">
+      <div className="relative max-w-screen inline-block">
         {children}
         {onClose && !isHideCross && (
           <button

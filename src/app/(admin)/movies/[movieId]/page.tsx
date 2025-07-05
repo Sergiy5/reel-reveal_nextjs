@@ -41,7 +41,10 @@ export default async function OneMoviePage(props: {
     <div className="flex flex-col items-center overflow-hidden md:pt-0 lg:pt-0 gap-0 md:gap-0">
       <MovieInfo movie={movie} />
       <div className="page-wrapper">
+        <div className="w-full flex items-center justify-center">
+
         <DynamicMovieInfoTrailer id={movieId} />
+        </div>
         <div
           className={`flex items-center justify-center flex-col w-full gap-16 md:gap-20 xl:gap-30`}
         >

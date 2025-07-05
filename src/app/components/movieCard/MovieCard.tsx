@@ -106,10 +106,7 @@ const handleMouseEvent = (e: React.MouseEvent<HTMLDivElement>) => {
     >
       {/* Hover Movie Card */}
       <div className=" relative w-full">
-          <MovieCardHover
-            movie={movieForHover}
-            handleMovie={handleMovie}
-          />
+        <MovieCardHover movie={movieForHover} handleMovie={handleMovie} />
         {poster_path ? (
           <Image
             id={`${id}`}
@@ -136,8 +133,8 @@ const handleMouseEvent = (e: React.MouseEvent<HTMLDivElement>) => {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <div className="p-12">
-        <MovieInfoTrailer id={movie.id} />
+        <div className="flex items-center justify-center p-12 w-full md:w-[70vw]">
+          <MovieInfoTrailer id={movie.id} />
         </div>
       </Modal>
     </div>
