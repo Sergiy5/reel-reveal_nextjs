@@ -16,12 +16,11 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
   movies,
   sessionUser,
 }) => {
-    const { topRef, scrollToTop } = useScrollToTop<HTMLDivElement>();
 
 
   return (
-    <div ref={topRef} className="grid w-full h-auto lg:grid-cols-4 grid-cols-2 sm:items-center">
-      {movies.map((movie, index) => (
+    <div className="relative grid w-full h-auto lg:grid-cols-4 grid-cols-2 sm:items-center">
+      {movies.map((movie) => (
         <motion.div
           key={movie.id}
           {...animationCard}

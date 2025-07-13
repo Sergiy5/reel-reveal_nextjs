@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
 import { copyToClipboard } from "@/utils";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 interface IMovieForHover {
   voteAverage?: number;
@@ -44,10 +44,10 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
    e.stopPropagation();
    const success = copyToClipboard(title);
     if (success) {
-     toast.success("Text copied!");
+    //  toast.success("Text copied!");
     //  alert("Text copied!");
     } else {
-     toast.error("Copy failed.");
+    //  toast.error("Copy failed.");
     //  alert("Copy failed.");
    }
  };

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, ReactNode } from "react";
+import React, { useEffect, ReactNode, useState } from "react";
 import { createPortal } from "react-dom";
 import { Icon } from "./Icon";
 
@@ -18,8 +18,9 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   isHideCross = false,
 }) => {
-
+const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null);
   useEffect(() => {
+    if(!document) return
     const handleBodyScroll = () => {
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
@@ -66,12 +67,14 @@ export const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  if (!isOpen || !children) return null;
-
-  const modalRoot = document?.getElementById("modal");
-
-  if (!modalRoot) return null;
-
+  
+  useEffect(() => {
+    const modalRoot = document?.getElementById("modal");
+    setModalRoot(modalRoot);
+  }, [])
+  
+  if (!modalRoot || !isOpen) return null;
+  
   return createPortal(
     <div
       onClick={handleClickOutside}
@@ -97,35 +100,5 @@ export const Modal: React.FC<ModalProps> = ({
       </div>
     </div>,
     modalRoot
-
-    // <div
-    //   onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-    //     handleClickOutside(e)
-    //   }
-    //   className="fixed flex items-center justify-center inset-0 z-50 bg-black bg-opacity-80"
-    // >
-
-    //   {onClose && (
-    //     <button
-    //       onClick={onClose}
-    //       className="absolute z-50 p-1 top-8 right-8"
-    //       aria-label="Close Modal"
-    //     >
-    //       {!isHideCross && (
-    //         <Icon
-    //           id={"cross"}
-    //           width={30}
-    //           height={30}
-    //           className={` w-[30px] h-[30px] lg:w-[38px] lg:h-[42px] text-textColor
-    //                      transition duration-300 easy-in-out hover:text-accentColor`}
-    //         />
-    //       )}
-    //     </button>
-    //   )}
-    //   <div className=" flex items-center justify-center w-auto h-auto px-2 lg:px-20">
-    //     {children}
-    //   </div>
-    // </div>,
-    // modalRoot
   );
 };
