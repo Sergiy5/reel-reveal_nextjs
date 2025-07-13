@@ -37,6 +37,5 @@ export const useMovies = (userId: string | undefined) => {
       },
     }
   );
-
   return { data: userId ? data : null, error, mutate, isValidating, isLoading };
 };

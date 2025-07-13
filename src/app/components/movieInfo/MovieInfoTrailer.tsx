@@ -18,8 +18,13 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   );
   useEffect(() => {
     if (!data) return;
-    // console.log("DATA_TRAILLER_>>>>>>>>>>>>>>>>>",data)
-    if (data.results.length) setTrailerId(data.results[0].key);
+    // console.log("DATA_TRAILLER_>>>>>>>>>>>>>>>>>", data)
+    const arrMovies = data.results.filter(
+      (item: any) => item.type === "Trailer" || item.type === "Teaser"
+    );
+    console.log("DATA_TRAILLER_>>>>>>>>>>>>>>>>>", arrMovies)
+
+    if (data.results.length) setTrailerId(arrMovies[0].key);
   }, [data]);
 
   if (error || !trailerId) return null;

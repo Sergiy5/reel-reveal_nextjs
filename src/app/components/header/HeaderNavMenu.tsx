@@ -6,6 +6,7 @@ import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { useSession } from "next-auth/react";
 import { ShowQuizCount } from "@/app/components/showQuizCount/ShowQuizCount";
 import { Tooltip } from "@/app/components/ui/Tooltip";
+import { usePathname } from "next/navigation";
 
 interface HeaderNavMenuProps {
   isAuth: boolean;
@@ -14,6 +15,7 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({ isAuth }) => {
   const [userName, setUserName] = useState<string | null>(null);
   const { count } = useContextCountQuiz();
 
+  const pathname = usePathname();
   const { update, data, status } = useSession();
 
   useEffect(() => {
@@ -28,14 +30,20 @@ export const HeaderNavMenu: React.FC<HeaderNavMenuProps> = ({ isAuth }) => {
           `}
     >
       <Link href={"/movies"} className={`link font-light leading-8 text-xl`}>
-        <p>Movie search</p>
+        <p className={`${pathname === "/movies" ? "text-accentColor" : ""}`}>
+          Movie search
+        </p>
       </Link>
-      <Link href={`/saved`} className=" relative link">
-        <p>Favorites</p>
+      <Link href={`/saved`} className="relative link">
+        <p className={`${pathname === "/saved" ? "text-accentColor" : ""}`}>
+          Favorites
+        </p>
       </Link>
       <Link href={isAuth ? "/profile" : "/auth"} className="link">
         {isAuth ? (
-          <p>
+          <p
+            className={`${pathname === "/profile" || pathname === "/auth" ? "text-accentColor" : ""}`}
+          >
             Hi <span className="font-thin">{userName}</span>
           </p>
         ) : (

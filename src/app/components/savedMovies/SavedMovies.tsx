@@ -19,23 +19,25 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
     const [movies, setMovies] = useState<IMovie[] | null>(null);
 
-    const { likedMovies, isLoading, isValidating, error } = useMoviesContext();
- 
+    const { likedMovies, isLoading, error } = useMoviesContext();
+
+    const lengthLikedMovies = likedMovies.length;
+
     const { data } = useSWR(
-      likedMovies.length > 0
-        ? ["/api/movies/many-by-array_id", likedMovies]
+      lengthLikedMovies > 0
+        ? ["/api/movies/many-by-array_id", lengthLikedMovies]
         : null,
       () => fetcher(["/api/movies/many-by-array_id", likedMovies])
     );
 
     useEffect(() => {
-      console.log("ERROR GET MOVIES", error);
+      // console.log("DATA GET MOVIES", data, "Error ========>", error);
       if (!data) return;
 
       setMovies(data?.movies);
     }, [data, data?.movies.length, error]);
 
-    if (movies === null && (isLoading || isValidating)) return <Loader />;
+    if (movies === null) return <Loader />;
     return (
       <div
         className={`flex items-center flex-col justify-center gap-12 w-full mb-20 ${movies?.length ? "z-10" : "z-20"} `}
@@ -66,13 +68,12 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
               Saved <span className="text-accentColor">{movies?.length}</span>{" "}
               movies
             </h1>
-              <ListMovies movies={movies ?? []} sessionUser={sessionUser}/>
+            <ListMovies movies={movies ?? []} sessionUser={sessionUser} />
           </>
         )}
         <Modal isOpen={isLoading}>
           <div className="flex items-center justify-center w-screen h-screen">
-
-          <Loader />
+            <Loader />
           </div>
         </Modal>
       </div>

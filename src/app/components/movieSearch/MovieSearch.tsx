@@ -156,15 +156,15 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
         </ButtonOrLink>
       </div>
       {/* {isVisible && ( */}
-        <button
-          onClick={scrollToTop}
-          className={`fixed bottom-10 bg-accentColor/60 hover:bg-accentColor text-bgColor p-2 rounded-full
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-10 bg-accentColor/60 hover:bg-accentColor text-bgColor p-2 rounded-full
              transition-all duration-200 easy-in-out ${isVisible ? "right-10" : "-right-[210px]"}`}
-        >
-          <HiOutlineChevronDoubleUp className="size-10" />
-        </button>
+      >
+        <HiOutlineChevronDoubleUp className="size-10" />
+      </button>
       {/* )} */}
-      <Modal isOpen={isLoading}>
+      <Modal isOpen={isLoading || isValidating}>
         <Loader />
       </Modal>
     </div>
