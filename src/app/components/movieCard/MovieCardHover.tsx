@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
 import { MovieCardHoverBtn } from "./MovieCardHoverBtn";
 import { nanoid } from "nanoid";
+import { copyToClipboard } from "@/utils";
+import { toast } from "react-toastify";
 
 interface IMovieForHover {
   voteAverage?: number;
@@ -34,15 +36,28 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
     };
   }, [movie]);
 
+  
+  
   const { title, id, isLiked, isWatched, voteAverageFormatted, releaseYear } =
-    formattedMovie;
+  formattedMovie;
+  const handleCopy = (e: React.MouseEvent<HTMLButtonElement>) => {
+   e.stopPropagation();
+   const success = copyToClipboard(title);
+    if (success) {
+     toast.success("Text copied!");
+    //  alert("Text copied!");
+    } else {
+     toast.error("Copy failed.");
+    //  alert("Copy failed.");
+   }
+ };
 
   return (
     <div
       id={`${id}`}
       data-movie={"movie"}
       onClick={handleMovie}
-      className={`absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor  hover:cursor-pointer
+      className={`absolute w-full h-full bg-cardGradient p-4 flex flex-col justify-between rounded-[18px] border border-accentColor cursor-pointer
          transition-opacity duration-500 ease-in-out
         ${movie.isShowHover ? "opacity-100" : "opacity-0"}
         `}
@@ -87,7 +102,13 @@ export const MovieCardHover: React.FC<MovieCardHoverProps> = ({
           </li>
         </ul>
       </div>
-      <span className="text-white">{title}</span>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="text-white text-start w-full transition-colors duration-200 ease-in-out hover:text-accentColor"
+      >
+        <span className="">{title}</span>
+      </button>
     </div>
   );
 };

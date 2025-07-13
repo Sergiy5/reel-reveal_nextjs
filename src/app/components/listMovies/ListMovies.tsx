@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { nanoid } from "nanoid";
+import React, { useEffect } from "react";
 import { motion } from "motion/react";
 import { IMovie, ISessionUser } from "@/typification";
 import { MovieCard } from "@/app/components/movieCard/MovieCard";
 import { animationCard } from "@/variables/animation";
+import { useScrollToTop } from "@/hooks";
 
 export interface ListMoviesProps {
   movies: IMovie[];
@@ -16,8 +16,11 @@ export const ListMovies: React.FC<ListMoviesProps> = ({
   movies,
   sessionUser,
 }) => {
+    const { topRef, scrollToTop } = useScrollToTop<HTMLDivElement>();
+
+
   return (
-    <div className="grid w-full h-auto lg:grid-cols-4 grid-cols-2 sm:items-center">
+    <div ref={topRef} className="grid w-full h-auto lg:grid-cols-4 grid-cols-2 sm:items-center">
       {movies.map((movie, index) => (
         <motion.div
           key={movie.id}

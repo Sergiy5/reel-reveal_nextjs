@@ -66,17 +66,9 @@ ul {
 }
 
 h1 {
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 120%;
+  @apply font-semibold text-5xl tracking-normal;
 }
 
-@media (min-width: 769px) {
-  h1 {
-    line-height: 60px;
-    font-size: 52px;
-  }
-}
 
 h2 {
   @apply text-4xl font-semibold

@@ -19,8 +19,8 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
   ({ sessionUser }) => {
     const [movies, setMovies] = useState<IMovie[] | null>(null);
 
-    const { likedMovies, isLoading } = useMoviesContext();
-
+    const { likedMovies, isLoading, isValidating, error } = useMoviesContext();
+ 
     const { data } = useSWR(
       likedMovies.length > 0
         ? ["/api/movies/many-by-array_id", likedMovies]
@@ -29,16 +29,16 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
     );
 
     useEffect(() => {
+      console.log("ERROR GET MOVIES", error);
       if (!data) return;
 
       setMovies(data?.movies);
-    }, [data, data?.movies.length]);
+    }, [data, data?.movies.length, error]);
 
-    if (movies === null) return null;
-    
+    if (movies === null && (isLoading || isValidating)) return <Loader />;
     return (
       <div
-        className={`flex items-center flex-col justify-center gap-20 w-full mb-20 ${movies?.length ? "z-10" : "z-20"} `}
+        className={`flex items-center flex-col justify-center gap-12 w-full mb-20 ${movies?.length ? "z-10" : "z-20"} `}
       >
         {movies?.length === 0 ? (
           <>
@@ -66,7 +66,7 @@ export const SavedMovies: React.FC<SavedMoviesProps> = React.memo(
               Saved <span className="text-accentColor">{movies?.length}</span>{" "}
               movies
             </h1>
-            <ListMovies movies={movies ?? []} sessionUser={sessionUser} />
+              <ListMovies movies={movies ?? []} sessionUser={sessionUser}/>
           </>
         )}
         <Modal isOpen={isLoading}>
