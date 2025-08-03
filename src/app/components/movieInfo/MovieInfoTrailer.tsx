@@ -27,7 +27,7 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
     if (data.results.length) setTrailerId(arrMovies[0].key);
   }, [data]);
 
-  if (error || !trailerId) return null;
+  if (error) return null;
 
   return (
     <div
