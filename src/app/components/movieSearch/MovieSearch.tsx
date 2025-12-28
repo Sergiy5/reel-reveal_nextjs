@@ -135,7 +135,7 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
       )}
       <ListMovies movies={movies} sessionUser={sessionUser} />
       <div
-        className={`flex w-full items-center justify-center gap-5 z-10 flex-col sm:flex-row`}
+        className={`flex w-full items-center justify-center gap-5 flex-col sm:flex-row`}
       >
         {movies && movies.length >= 20 && (
           <ButtonOrLink

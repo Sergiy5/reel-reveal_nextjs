@@ -14,12 +14,14 @@ import { useContextCountQuiz } from "@/context/CountQuizContext";
 import { Modal } from "../ui/Modal";
 import { Popup } from "./Popup";
 import { animationSection } from "@/variables/animation";
+// import { LoaderQuiz} from "../ui/loaderQuiz";
 
 interface IQuizProps {
   sessionUser: ISessionUser;
+  isSHowWithAnimation?: boolean;
 }
 
-export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
+export const Quiz: React.FC<IQuizProps> = ({ sessionUser, isSHowWithAnimation=true, }) => {
   const [quizResult, setQuizResult] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -86,10 +88,10 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
 
   return (
     <motion.section
-      {...animationSection}
-      className="flex items-center justify-between flex-col py-32 w-full min-h-[592px] gap-12"
+      {...(isSHowWithAnimation ? animationSection : {})}
+      className="flex items-center justify-between flex-col py-32 w-full gap-12"
     >
-      <div className=" w-lvw h-10 bg-repeat-x bg-contain bg-borderIcon rotate-180"></div>
+      <div className="w-lvw h-10 bg-repeat-x bg-contain bg-borderIcon rotate-180"/>
       <div className="w-full">
         {isValidating ? (
           <Loader />
@@ -104,11 +106,8 @@ export const Quiz: React.FC<IQuizProps> = ({ sessionUser }) => {
         )}
       </div>
 
-      <div className="bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"></div>
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-      >
+      <div className="bottom-0 w-lvw h-10 bg-repeat-x bg-contain z-10 bg-borderIcon"/>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <div className="relative flex items-center justify-center md:h-[620px] w-[100vw] md:w-[90vw] lg:w-[860px] h-lvh">
           <div
             className={`absolute w-full h-full transition-all duration-1000 ease-in-out z-40 ${showPopUp ? "left-1/2 -translate-x-1/2" : "-left-[1280px]"}`}

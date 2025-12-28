@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <div className="page-wrapper">
-      <DynamicQuiz sessionUser={sessionUser} />
+      <DynamicQuiz sessionUser={sessionUser} isSHowWithAnimation={false} />
       <HowItWorks />
       <SliderCarousel />
     </div>

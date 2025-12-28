@@ -5,7 +5,7 @@ export const fetchQuizMovies = async (quizData: string[]) => {
   try {
     // Fetch data from OpenAI API
     const movieTitles = await fetchQuizDataFromOpenAI(quizData);
-
+// console.log("movieTitles_>>>>>>>>>>>>>>>>>>", movieTitles);
     if (!movieTitles || !movieTitles.length) {
       throw new Error("Error fetching data from OpenAI... Try again.");
     }
