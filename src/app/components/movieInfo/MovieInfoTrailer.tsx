@@ -13,8 +13,15 @@ export const MovieInfoTrailer: React.FC<VideoComponentProps> = ({ id }) => {
   const [trailerId, setTrailerId] = useState<number | null>();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const { data, error, isLoading } = useSWR(`trailer-${id}`, () =>
-    fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: id })
+  const { data, error, isLoading } = useSWR(
+    `trailer-${id}`,
+    () => fetchMovieDataFromAPI("/api/movies/trailer_id", { movieId: id }),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      shouldRetryOnError: false,
+      dedupingInterval: 60000, // Dedupe for 1 minute
+    }
   );
   useEffect(() => {
     if (!data) return;

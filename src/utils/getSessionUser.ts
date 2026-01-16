@@ -1,16 +1,16 @@
 "use server";
 
+import { cache } from "react";
 import { headers } from "next/headers"; // Import headers from Next.js
 import { auth } from "@/auth"; // Assuming auth is imported from another module
 import { ISessionUser } from "@/typification";
 import { userStatuses } from "@/variables";
 
-export const getSessionUser = async (): Promise<ISessionUser> => {
+// Wrap with React cache() to deduplicate calls within the same request
+export const getSessionUser = cache(async (): Promise<ISessionUser> => {
   const headersInstance = await headers(); // Await headers() only if you need its data.
-  // console.log(`Protocol>>>>>>>>>>>>>>>>>>>>>>>>>>>>_: ${headersInstance}`); // Debug log for x-forwarded-proto, optional.
 
   const proto = headersInstance.get("x-forwarded-proto"); // Access specific header value if needed.
-  // console.log(`Protocol>>>>>>>>>>>>>>>>>>>>>>>>>>>>_: ${proto}`); // Debug log for x-forwarded-proto, optional.
 
   const session = await auth();
 
@@ -22,4 +22,4 @@ export const getSessionUser = async (): Promise<ISessionUser> => {
       ? userStatuses.Authenticated
       : userStatuses.Unauthenticated,
   };
-};
+});

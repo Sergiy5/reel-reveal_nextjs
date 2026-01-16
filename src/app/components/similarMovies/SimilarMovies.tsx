@@ -23,10 +23,13 @@ export const SimilarMovies: React.FC<SimilarMoviesProps> = ({
     isValidating,
     mutate,
   } = useSWR(
-    movieId ? "/api/movies/similar" : null,
+    movieId ? `similar-${movieId}` : null,
     () => fetchMovieDataFromAPI("/api/movies/similar", { movieId }),
     {
       revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      shouldRetryOnError: false,
+      dedupingInterval: 60000, // Dedupe for 1 minute
     }
   );
 

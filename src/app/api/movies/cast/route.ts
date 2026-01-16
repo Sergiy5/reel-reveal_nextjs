@@ -17,9 +17,13 @@ export const GET = async (req: Request) => {
       });
     }
     const data = await response.json();
-    // console.log("RESPONSE_>>>>>>>>>>>>>>>>>>>>>>>>>_", data)
 
-    return NextResponse.json(data);
+    // Cache cast info for 24 hours (rarely changes)
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=172800",
+      },
+    });
   } catch (error) {
     console.log(error);
      return NextResponse.json(

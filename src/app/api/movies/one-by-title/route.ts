@@ -22,8 +22,14 @@ export const GET = async (req: Request) => {
       });
     }
     const data = await response.json();
-    // console.log("RESPONSE_DATA_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", data);
-    return NextResponse.json(data, { status: 200 });
+
+    // Cache search results for 5 minutes
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    });
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch movies" });
   }

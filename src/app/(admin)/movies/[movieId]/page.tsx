@@ -1,7 +1,28 @@
 import dynamic from "next/dynamic";
 import { MovieInfo } from "@/app/components/movieInfo/MovieInfo";
-import { getMovieById } from "@/app/services";
+import { getMovieById, getTopRatedMovies, getUpcomingMovies } from "@/app/services";
 import { getSessionUser } from "@/utils";
+
+// Pre-generate top and upcoming movie pages at build time
+export async function generateStaticParams() {
+  const [topRated, upcoming] = await Promise.all([
+    getTopRatedMovies(),
+    getUpcomingMovies(),
+  ]);
+
+  // Combine and dedupe movie IDs
+  const movieIds = new Set([
+    ...topRated.map((m) => m.id),
+    ...upcoming.map((m) => m.id),
+  ]);
+
+  return Array.from(movieIds).map((id) => ({
+    movieId: String(id),
+  }));
+}
+
+// Enable ISR with 1 hour revalidation for dynamic pages
+export const revalidate = 3600;
 
 const DynamicSimilarMovies = dynamic(() =>
   import("@/app/components/similarMovies/SimilarMovies").then(

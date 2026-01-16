@@ -9,18 +9,16 @@ export const GET = async (req: Request) => {
             `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
             options
         )
-        
-        // if (!response.ok) {
-        //     throw new Error("Failed to fetch similar movies from TMDB");
-        // }
-        const data = await response.json();
-        // console.log(
-        //   "===================================================================",
-        //   data
-        // );
-        // console.log(data)
 
-        return NextResponse.json(data.results, { status: 200 }); 
+        const data = await response.json();
+
+        // Cache similar movies for 6 hours
+        return NextResponse.json(data.results, {
+          status: 200,
+          headers: {
+            "Cache-Control": "public, s-maxage=21600, stale-while-revalidate=43200",
+          },
+        });
 
 
     } catch (error) {
@@ -34,7 +32,5 @@ export const GET = async (req: Request) => {
          }
        );
     }
-   
+
 }
-
-

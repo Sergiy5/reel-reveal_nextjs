@@ -59,7 +59,12 @@ export const GET = async (req: NextRequest) => {
 
     // console.log("RESPONSE_>>>>>>>>>>>>>>>>>>>>>>>>>_",data)
     
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    });
   } catch (error: any) { 
     console.error("Error fetching movies:", error?.message);
 

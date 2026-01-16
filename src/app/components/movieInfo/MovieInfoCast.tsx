@@ -12,8 +12,15 @@ interface TopCastProps {
   id: number;
 }
 export const MovieInfoCast: React.FC<TopCastProps> = ({ id }) => {
-  const { data, error, isLoading } = useSWR(`cast-${id}`, () =>
-    fetchMovieDataFromAPI("/api/movies/cast", { movieId: id })
+  const { data, error, isLoading } = useSWR(
+    `cast-${id}`,
+    () => fetchMovieDataFromAPI("/api/movies/cast", { movieId: id }),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      shouldRetryOnError: false,
+      dedupingInterval: 60000, // Dedupe for 1 minute
+    }
   );
 
   const settings = {

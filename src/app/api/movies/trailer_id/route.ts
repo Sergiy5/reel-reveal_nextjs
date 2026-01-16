@@ -19,9 +19,14 @@ export const GET = async (req: Request): Promise<NextResponse> => {
     }
 
     const data = await response.json();
-    // console.log("DATA_IN_ROUTE_>>>>>>>>>>>>>>>>>>>>>>>>>>>",data)
 
-    return NextResponse.json(data, { status: 200 });
+    // Cache trailers for 24 hours (they rarely change)
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=172800",
+      },
+    });
 
   } catch (error) {
     console.error("Error in POST /api/movies/get-trailer_id:", error);

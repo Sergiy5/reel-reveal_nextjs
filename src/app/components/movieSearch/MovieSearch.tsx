@@ -51,8 +51,9 @@ export const MovieSearch: React.FC<MovieSearchProps> = ({ sessionUser }) => {
       ),
     {
       revalidateOnFocus: false, // Prevents refetching on window focus
-      shouldRetryOnError: true, // Retries fetching if it fails
-      dedupingInterval: 0, // Ensures it refetches immediately when dependencies change
+      shouldRetryOnError: false, // Prevent retry loops that increase function invocations
+      dedupingInterval: 2000, // Dedupe requests within 2 seconds
+      revalidateIfStale: false, // Only revalidate when explicitly triggered
     }
   );
 
