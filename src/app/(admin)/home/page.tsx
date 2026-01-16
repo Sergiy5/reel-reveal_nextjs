@@ -26,7 +26,6 @@ const DynamicGetShowMovies = dynamic(() =>
 export default async function Home() {
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();
-
   const sessionUser = await getSessionUser();
 
   return (
