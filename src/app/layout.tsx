@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { Urbanist } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
@@ -75,6 +76,7 @@ export default async function RootLayout({
       </head>
 
       <body className={`${urbanist.className} ${urbanist.variable}`}>
+        <Analytics />
         <SessionProvider>
           <CountQuizProviderDynamic>
             {children}

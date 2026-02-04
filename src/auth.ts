@@ -74,18 +74,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       // If signing out, clear the token
       if (user === null) {
         return null;
       }
 
-      // Keep user data in the token
+      // Keep user data in the token (Credentials login)
       if (user && "_id" in user) {
         token.id = user._id;
         token.name = user.name;
         token.email = user.email;
         token.image = user.image;
+      }
+
+      // Google OAuth login - fetch MongoDB _id
+      if (account?.provider === "google" && token.email) {
+        await connectDB();
+        const dbUser = await User.findOne({ email: token.email }).lean<IUserType>();
+        if (dbUser && dbUser._id) {
+          token.id = dbUser._id.toString();
+          token.name = dbUser.name;
+          token.image = dbUser.image;
+        }
       }
 
       return token;
